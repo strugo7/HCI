@@ -1,0 +1,31 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+.claude/settings.json
+.claude/settings.local.json
+
+# Obsidian community plugins — vendored 3rd-party code, and the Local REST API
+# plugin's data.json holds the API key AND an RSA private key
+content/.obsidian/plugins/
+
+# Obsidian local state
+content/.obsidian/workspace.json
+content/.obsidian/workspace-mobile.json
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
