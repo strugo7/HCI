@@ -168,7 +168,7 @@ Turn Knowledge Objects into a lesson a student can actually read in Hebrew.
 
 ---
 
-# Phase 3 — Concepts, Glossary, Knowledge Graph
+# Phase 3 — Concepts, Glossary, Knowledge Graph ✅ DONE
 
 ## Goal
 
@@ -423,13 +423,29 @@ Until step 4 lands, this debt is one careless commit away from coming back.
 
 ---
 
-## 3. Concepts do not exist
+## 3. Concepts do not exist — ✅ RESOLVED (Phase 3)
 
-`content/concepts/` has no files.
+`content/concepts/` holds 82 concepts. Every `[[link]]` in the vault resolves,
+and the CI gate fails if one stops resolving.
 
-Lessons cannot reference concepts that do not exist, which means the knowledge graph (Phase 3) has nothing to build from.
+The graph is derived from them on every build: 119 nodes (82 concepts + 37
+lessons) and 555 edges, with cycle and orphan detection wired into
+`pnpm content:validate`.
 
-**Action:** authoring concepts is part of Phase 3, but the Phase 1 golden lesson must reference at least one real concept file so link resolution is genuinely exercised rather than mocked.
+**Two failures worth keeping**, because both were silent:
+
+1. **Concept slugs and lesson ids share one namespace and collide.** Twenty-one
+   of them do — a lesson is usually named after the concept it teaches
+   (`firewall`, `cia`, `dmz`). Keying a graph node by the bare slug merged the
+   two, and every `[[Firewall]]` edge pointed at the *lesson*. Node ids are now
+   `concept:firewall` / `lesson:firewall`, and the count is checked: nodes must
+   equal concepts + lessons.
+
+2. **`related:` was slugified, not resolved.** `related: [Perimeter]` produced
+   the slug `perimeter` whether or not such a concept existed, so the graph
+   could invent a node the vault does not have. It now resolves through the
+   concept index exactly as a `[[link]]` does, and an unresolvable name is
+   reported and dropped.
 
 ---
 

@@ -19,7 +19,7 @@ import {
 } from '@cyberatlas/core';
 
 import { toMdast } from './processor.js';
-import { blocksFromNode, createTransformContext } from './transform.js';
+import { blocksFromNode, createTransformContext, resolveConcept } from './transform.js';
 import type { ConceptParseResult, ParseContext } from './types.js';
 
 /** The two explanation passes every concept makes, keyed by their headings. */
@@ -123,7 +123,7 @@ export function parseConcept(source: string, ctx: ParseContext): ConceptParseRes
     simpleExplanation: simple,
     technicalExplanation: technical,
     examples,
-    related: frontmatter.related.map(slugify),
+    related: resolveRelated(frontmatter, ctx, diagnostics),
     appearsIn: [], // computed by the build, never authored
   } satisfies Record<string, unknown> as unknown);
 
@@ -142,6 +142,47 @@ export function parseConcept(source: string, ctx: ParseContext): ConceptParseRes
   }
 
   return { data: concept.data as Concept, diagnostics };
+}
+
+/**
+ * `related:` names → the slugs they actually own.
+ *
+ * A name is resolved against the concept index, exactly as a `[[link]]` is,
+ * rather than being slugified and hoped for: `related: [Perimeter]` slugifies
+ * to `perimeter` whether or not any such concept exists, and an edge to a
+ * concept that does not exist is a node the graph invents. A name that resolves
+ * to nothing is dropped and reported — the graph is derived from the vault, so
+ * it may only contain what the vault holds.
+ *
+ * Self-references are dropped too. A concept related to itself is a loop in the
+ * graph and tells a student nothing.
+ */
+function resolveRelated(
+  frontmatter: ConceptFrontmatter,
+  ctx: ParseContext,
+  diagnostics: Diagnostic[],
+): string[] {
+  const slugs = new Set<string>();
+
+  for (const name of frontmatter.related) {
+    const canonical = resolveConcept(name, ctx.concepts);
+
+    if (canonical === undefined) {
+      diagnostics.push({
+        severity: 'warning',
+        file: ctx.file,
+        line: null,
+        column: null,
+        message: `Related concept "${name}" does not exist in content/concepts; the edge is dropped.`,
+        code: DIAGNOSTIC_CODES.MISSING_CONCEPT,
+      });
+      continue;
+    }
+
+    if (canonical !== frontmatter.slug) slugs.add(canonical);
+  }
+
+  return [...slugs].sort();
 }
 
 /**

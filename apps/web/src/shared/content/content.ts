@@ -8,7 +8,8 @@
  * Each lesson is its own chunk, so opening one lesson does not download the
  * other thirty-six.
  */
-import type { Difficulty, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
+import type { Concept, Difficulty, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
+import type { KnowledgeGraph } from '@cyberatlas/knowledge-graph';
 
 import indexJson from '@/generated/content/index.json';
 
@@ -49,6 +50,10 @@ export interface ConceptMeta {
   /** The definition the concept file owns, as plain text. */
   readonly definition: string;
   readonly appearsIn: readonly string[];
+  /** Every other name the concept goes by — Hebrew and English both. */
+  readonly aliases: readonly string[];
+  readonly tags: readonly string[];
+  readonly related: readonly string[];
 }
 
 /** A unit of the course — one of the lecturer's decks. From `curriculum.yaml`. */
@@ -89,6 +94,19 @@ export function lessonIndex(): readonly LessonMeta[] {
 
 export function conceptIndex(): readonly ConceptMeta[] {
   return contentIndex.concepts;
+}
+
+const conceptsBySlug = new Map(contentIndex.concepts.map((concept) => [concept.slug, concept]));
+
+/**
+ * A concept's metadata, without its body.
+ *
+ * This is what a link to a concept needs in order to show what it points at
+ * before the student commits to opening it.
+ */
+export function conceptBySlug(slug: string | undefined): ConceptMeta | null {
+  if (slug === undefined) return null;
+  return conceptsBySlug.get(slug) ?? null;
 }
 
 /** The nine units, in the curriculum's pedagogical order. */
@@ -143,6 +161,30 @@ export async function loadLesson(id: string): Promise<Lesson | null> {
   if (!chunk) return null;
   const module = await chunk();
   return module.default;
+}
+
+/** Concepts chunk the same way: a concept page downloads one concept. */
+const conceptChunks = import.meta.glob<{ default: Concept }>(
+  '../../generated/content/concepts/*.json',
+);
+
+export async function loadConcept(slug: string): Promise<Concept | null> {
+  const chunk = conceptChunks[`../../generated/content/concepts/${slug}.json`];
+  if (!chunk) return null;
+  const module = await chunk();
+  return module.default;
+}
+
+/**
+ * The knowledge graph, whole.
+ *
+ * Unlike a lesson, the graph is not divisible — every node is reachable from
+ * every other, and a view of it cannot lay out a part without knowing the rest.
+ * It is one lazy chunk, so a student who never opens /graph never downloads it.
+ */
+export async function loadGraph(): Promise<KnowledgeGraph> {
+  const module = await import('@/generated/content/graph.json');
+  return module.default as KnowledgeGraph;
 }
 
 /** Quizzes and decks chunk the same way, and for the same reason. */

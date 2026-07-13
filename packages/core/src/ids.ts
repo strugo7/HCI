@@ -23,6 +23,27 @@ export function slugify(input: string): string {
 }
 
 /**
+ * Every key a written concept name may be found under, in priority order.
+ *
+ * Prose names a concept the way prose does — "Web Application Firewall (WAF)" —
+ * while the concept file registers the full name and the acronym as two
+ * separate aliases, because those are the two ways it is written on its own.
+ * The combined form is decomposed here rather than being enumerated as a third
+ * alias on every concept that has an acronym: the convention is a property of
+ * how people write, not of any one concept.
+ */
+export function conceptLookupKeys(name: string): string[] {
+  const keys = [slugify(name)];
+
+  const acronym = /^(.+?)\s*\(([^()]+)\)$/.exec(name.trim());
+  if (acronym) {
+    keys.push(slugify(acronym[1] ?? ''), slugify(acronym[2] ?? ''));
+  }
+
+  return keys.filter((key) => key !== '');
+}
+
+/**
  * Positional ID for a block that carries no author-supplied id.
  * Deterministic in (scope, type, index): `lesson-01/definition-003`.
  */

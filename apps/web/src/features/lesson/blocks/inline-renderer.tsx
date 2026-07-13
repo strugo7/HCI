@@ -7,9 +7,10 @@
 import type { ReactNode } from 'react';
 
 import type { Inline } from '@cyberatlas/core';
-import { Link } from 'react-router-dom';
 
-import { conceptPath } from '@/router/routes';
+// Imported by module path, not through the feature barrel: the concept barrel
+// pulls in the lesson renderer, and going through it would close a cycle.
+import { ConceptLink } from '@/features/concept/concept-link';
 
 interface InlineRendererProps {
   readonly inlines: readonly Inline[];
@@ -48,15 +49,7 @@ export function InlineRenderer({ inlines }: InlineRendererProps): ReactNode {
             );
 
           case 'concept-reference':
-            return (
-              <Link
-                key={i}
-                to={conceptPath(node.target)}
-                className="font-medium text-primary underline decoration-primary/30 underline-offset-2 transition-colors hover:decoration-primary/60 tech-term"
-              >
-                {node.label}
-              </Link>
-            );
+            return <ConceptLink key={i} target={node.target} label={node.label} />;
 
           default:
             return null;
