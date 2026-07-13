@@ -1,459 +1,455 @@
 # LEARNING_DSL.md
 
-> Version 1.0
+> Version 2.0
+> Status: Canonical
 
-This document defines the educational language used by the Computer Security Learning Platform.
+This document defines the educational language used by CyberAtlas.
 
-This language is the only supported format for writing educational content.
+It is the only supported format for writing educational content.
 
-Claude must always generate content using this specification.
+---
 
-React renders this language into interactive components.
+# ⚠️ Read This Before Editing
+
+**Version 1.0 of this document was corrupted.** Every directive was written as a
+bare `:::` with its name stripped, which made the entire vocabulary unreadable —
+`:::definition` had become `:::`. The parser contract was, for a time,
+undefined.
+
+Two rules exist to prevent a recurrence:
+
+1. **Every directive example in this file is inside a fenced code block.**
+   Never write a directive name in bare prose.
+2. **This document is not the source of truth. It is the human-readable mirror
+   of one.** The machine-readable vocabulary lives in
+   `packages/core/src/directives.ts`. If the two ever disagree, **the code wins**
+   and this file is the bug.
+
+Adding a directive is a three-step change, in this order:
+
+1. add it to `packages/core/src/directives.ts`
+2. teach the parser to build its Knowledge Object
+3. teach the renderer to draw it
 
 ---
 
 # Philosophy
 
-Content should describe **what** is being taught.
+Content describes **what** is being taught.
 
-The renderer decides **how** it is is displayed.
+The renderer decides **how** it is displayed.
 
 Never mix content with presentation.
 
 ---
 
-# Document Structure
+# Language
 
-Every lesson starts with Front Matter.
+Educational content is written in **Hebrew**.
+
+Technology names stay in English and are never translated.
+
+```text
+Firewall     ✅        חומת אש        ❌
+DNS          ✅
+TCP/IP       ✅
+OAuth        ✅
+Cloud        ✅
+```
+
+The UI renders right-to-left. Authors do not think about this — write Hebrew
+prose, and the renderer handles direction and bidi isolation.
+
+---
+
+# Front Matter
+
+Every lesson begins with YAML front matter.
 
 ```yaml
 ---
-id:
-title:
-lesson:
-category:
-difficulty:
-estimated_time:
+id: lesson-01
+title: מהו מרחב הסייבר?
+lessonNumber: 1
+course: computer-security
+category: יסודות
+difficulty: easy
+estimatedTime: 25
 tags:
-prerequisites:
-related:
+  - cyberspace
+  - fundamentals
+prerequisites: []
+relatedLessons:
+  - lesson-02
+relatedConcepts:
+  - Firewall
+  - DNS
+version: 1
 ---
 ```
 
----
+`id` and `title` are **required**. Everything else has a default.
 
-# Headings
-
-```md
-# Lesson
-
-## Section
-
-### Topic
-```
+`version` exists because published lessons are immutable — an edit ships as a
+new version, and a student's progress stays attached to the version they
+actually completed.
 
 ---
 
-# Learning Objectives
+# Directive Syntax
 
-```md
+A directive is a fenced container block.
+
+````md
+:::name
+content
 :::
+````
 
-- ...
+Some directives take attributes.
 
-- ...
-
-- ...
-
+````md
+:::quiz{ref="lesson-01-quiz"}
 :::
-```
+````
 
-Purpose
-
-Describe what the student will know after completing the section.
+**Unknown directive names are a hard parser error.** There is no silent
+fallback — a typo is caught at build time, not discovered by a student staring
+at a blank page.
 
 ---
 
-# Definition
+# The Complete Vocabulary
 
-```md
-:::
+Seventeen directives. This list is exhaustive.
 
-...
-
-:::
-```
-
-Purpose
-
-Introduce a concept.
-
-Rules
-
-- Keep concise.
-- One concept only.
-- No examples.
-
----
-
-# Explanation
-
-Regular markdown paragraphs.
-
-Purpose
-
-Expand the definition.
-
-Rules
-
-Explain clearly.
-
-Use simple language.
+| Directive     | Purpose                              | Required? |
+| ------------- | ------------------------------------ | --------- |
+| `objectives`  | What the student will know after this| per lesson |
+| `definition`  | What a thing *is*                    | per concept |
+| `example`     | One concrete, real-world case        | per concept |
+| `analogy`     | A familiar situation that clarifies  | optional  |
+| `important`   | A fact that must be remembered       | optional  |
+| `warning`     | A common misunderstanding to avoid   | optional  |
+| `tip`         | Practical advice                     | optional  |
+| `diagram`     | A described visual                   | optional  |
+| `image`       | A described image                    | optional  |
+| `animation`   | A described animation                | optional  |
+| `video`       | A described video                    | optional  |
+| `selfcheck`   | A question that verifies understanding | per section |
+| `quiz`        | Reference to a quiz file             | per lesson |
+| `flashcards`  | Reference to a flashcard deck        | per lesson |
+| `summary`     | Closing recap, no new information    | per lesson |
+| `keypoints`   | The bullet-list takeaways            | per lesson |
+| `references`  | Where this came from                 | per lesson |
 
 ---
 
-# Example
+# Semantic Blocks
 
-```md
+## objectives
+
+````md
+:::objectives
+- להגדיר מהו מרחב הסייבר.
+- להבין את ההבדל בין האינטרנט לבין מרחב הסייבר.
+- לזהות אילו מערכות שייכות למרחב הסייבר.
 :::
+````
 
-...
+## definition
 
+Answers **"what is this?"** — nothing more.
+
+Short. Precise. Objective. **Never contains an example.**
+
+````md
+:::definition
+מרחב הסייבר הוא כלל הסביבה הדיגיטלית המאפשרת למחשבים, מערכות, ארגונים ובני אדם
+לתקשר, להעביר מידע ולבצע פעולות באמצעות רשתות מחשבים.
 :::
-```
+````
 
-Purpose
+Definitions are **owned by concepts**. A lesson that defines a term inline is
+duplicating knowledge — link to the concept instead.
 
-Provide one real-world example.
+## example
 
-Rules
+Answers **"where would I actually meet this?"**
 
-Concrete.
+Concrete. Practical. Drawn from real systems students already use.
 
-Practical.
+````md
+:::example
+כאשר אתם מזמינים אוכל דרך Wolt, האפליקציה מתקשרת עם שרתי החברה, המידע עובר דרך
+ספק האינטרנט, ומתבצע תשלום מול חברת האשראי. כל אלה פועלים יחד בתוך מרחב הסייבר.
+:::
+````
 
-Easy to understand.
+## analogy
+
+Optional. Use only when a familiar situation genuinely makes a hard idea
+easier — not for decoration.
+
+````md
+:::analogy
+Firewall דומה למאבטח בכניסה לבניין: הוא אינו מונע כניסה מכולם, אלא בודק כל אדם
+מול רשימת כללים ומחליט אם לאפשר מעבר.
+:::
+````
 
 ---
 
-# Analogy
+# Callouts
 
-```md
+Same shape, different intent. The renderer colors them by meaning.
+
+## important
+
+For facts a student must carry forward. **Overuse destroys the signal** — if
+everything is important, nothing is.
+
+````md
+:::important
+כל אינטרנט הוא חלק ממרחב הסייבר, אך לא כל מרחב סייבר הוא אינטרנט.
 :::
+````
 
-...
+## warning
 
+For a specific misconception you are actively heading off.
+
+````md
+:::warning
+Firewall אינו Antivirus. Firewall מסנן תעבורת רשת; Antivirus מזהה קבצים זדוניים.
 :::
-```
+````
 
-Purpose
+## tip
 
-Explain difficult concepts using familiar situations.
+Optional. Practical advice.
 
-Optional.
+````md
+:::tip
+כשאתם מנתחים אירוע אבטחה, התחילו תמיד מהשאלה: מה בדיוק הותקף?
+:::
+````
 
 ---
 
-# Important
+# Media
 
-```md
+Content **describes** visuals. It never embeds them.
+
+There is no ASCII art, no image files, no YouTube URLs in educational content.
+The author says what should be drawn; the renderer decides whether and how to
+draw it.
+
+## diagram
+
+````md
+:::diagram
+תרשים המראה את מרחב הסייבר כמעגל חיצוני, ובתוכו האינטרנט כמעגל פנימי קטן יותר.
+סביב האינטרנט: רשתות ארגוניות, מרכזי נתונים, מערכות IoT ומחשבים אישיים — כולם
+בתוך מרחב הסייבר אך מחוץ לאינטרנט.
 :::
+````
 
-...
+## image
 
+````md
+:::image
+צילום מסך של הגדרות Firewall בנתב ביתי, עם הדגשה על טבלת הכללים.
 :::
-```
+````
 
-Purpose
+## animation
 
-Highlight information students must remember.
+````md
+:::animation
+אנימציה המראה מנה (packet) עוברת דרך Firewall: הכלל נבדק, ואז המנה מועברת או
+נחסמת.
+:::
+````
+
+## video
+
+````md
+:::video
+סרטון קצר המדגים כיצד נראית מתקפת Phishing מנקודת מבטו של המשתמש.
+:::
+````
 
 ---
 
-# Warning
+# Assessment
 
-```md
+## selfcheck
+
+Every major section ends with one. Verifies **understanding**, never recall.
+
+````md
+:::selfcheck
+question: האם מערכת מחשבים פנימית של בית חולים, שאינה מחוברת לאינטרנט, היא חלק ממרחב הסייבר?
+answer: כן. מרחב הסייבר כולל גם רשתות פנימיות ומערכות שאינן מחוברות ישירות לאינטרנט.
 :::
+````
 
-...
+Note this replaces the `<details>` HTML tags used in the old golden lesson.
+Content never contains HTML — the renderer decides whether the answer is
+revealed by a click, a hover, or an accordion.
 
+## quiz
+
+A reference. **Never an inlined quiz.**
+
+````md
+:::quiz{ref="lesson-01-quiz"}
 :::
-```
+````
 
-Purpose
+## flashcards
 
-Prevent common misunderstandings.
+````md
+:::flashcards{ref="lesson-01"}
+:::
+````
 
 ---
 
-# Tip
+# Closing Blocks
 
-```md
+## keypoints
+
+````md
+:::keypoints
+- מרחב הסייבר רחב יותר מהאינטרנט.
+- הוא כולל מערכות, משתמשים, תוכנות ותשתיות.
+- כל פעולה דיגיטלית מתרחשת בתוך מרחב הסייבר.
 :::
+````
 
-...
+## summary
 
+Reinforces. Introduces nothing new. Fits on one screen.
+
+````md
+:::summary
+מרחב הסייבר הוא הסביבה הדיגיטלית שבה פועלות כל מערכות המידע והתקשורת המודרניות.
+הבנת המושג היא אבן היסוד ללימוד אבטחת מידע, משום שכל איום ומנגנון הגנה שנלמד
+בהמשך פועל בתוכו.
 :::
-```
+````
 
-Purpose
+## references
 
-Helpful advice.
-
-Optional.
-
----
-
-# Diagram
-
-```md
+````md
+:::references
+- מצגות הקורס, שיעור 1
+- NotebookLM — סיכום מקורות
 :::
-
-Describe the desired illustration.
-
-:::
-```
-
-Purpose
-
-Describe what should be visualized.
-
-Never create ASCII diagrams unless explicitly requested.
-
----
-
-# Image
-
-```md
-:::
-
-Describe the desired image.
-
-:::
-```
-
----
-
-# Animation
-
-```md
-:::
-
-Describe the desired animation.
-
-:::
-```
-
----
-
-# Video
-
-```md
-:::
-
-Describe the desired educational video.
-
-:::
-```
-
----
-
-# Self Check
-
-```md
-:::
-
-Question
-
-Answer
-
-:::
-```
-
-Purpose
-
-Verify understanding.
-
-Every major section should include one.
-
----
-
-# Quiz Reference
-
-```md
-:::
-
-lesson-01-quiz
-
-:::
-```
-
-Reference only.
-
-Never embed full quizzes.
-
----
-
-# Flashcards Reference
-
-```md
-:::
-
-lesson-01
-
-:::
-```
-
-Reference only.
-
----
-
-# Summary
-
-```md
-:::
-
-...
-
-:::
-```
-
----
-
-# Key Points
-
-```md
-:::
-
-- ...
-
-- ...
-
-- ...
-
-:::
-```
-
----
-
-# References
-
-```md
-:::
-
-Course Slides
-
-NotebookLM
-
-Additional Resources
-
-:::
-```
+````
 
 ---
 
 # Concept Links
 
-Use Obsidian syntax.
+Concepts are referenced with Obsidian wiki-link syntax.
 
-Example
-
+```md
 [[Firewall]]
 
-[[TCP/IP]]
-
-[[Cloud]]
+[[DNS]]
 
 [[CIA]]
+```
 
-The renderer converts these into interactive concept cards.
+Never use Markdown links for concepts.
 
----
+The parser resolves `[[Firewall]]` to `concepts/firewall.md` and emits a
+`concept-reference` object. The renderer turns it into an interactive chip with
+a hover preview. **A link to a concept that does not exist is a build error.**
 
-# Tables
-
-Use standard Markdown tables.
-
----
-
-# Code
-
-Use fenced code blocks.
+Every one of these links becomes an edge in the knowledge graph. This is the
+only way graph edges are created — the graph is derived, never authored.
 
 ---
 
-# Lists
+# Standard Markdown
 
-Use standard Markdown lists.
+These work as expected and need no directive:
 
----
-
-# Images
-
-Never embed files.
-
-Always describe the desired illustration.
-
----
-
-# HTML
-
-Never generate HTML.
+- **Explanations** — ordinary paragraphs. This is the connective tissue of a
+  lesson and should be most of it.
+- **Headings** — `#` lesson, `##` section, `###` topic.
+- **Lists** — prefer them over dense prose.
+- **Tables** — for comparisons only.
+- **Code** — fenced blocks. Always rendered LTR, even inside Hebrew text.
 
 ---
 
-# JSX
+# Forbidden in Content
 
-Never generate JSX.
+Educational content must survive being rendered by a client that does not exist
+yet — a mobile app, a CLI, a screen reader, a print export.
 
----
+```text
+HTML             ❌   including <details>, <br>, <div>
+JSX              ❌
+CSS              ❌
+Tailwind classes ❌
+React components ❌
+ASCII diagrams   ❌   describe with :::diagram instead
+Embedded images  ❌   describe with :::image instead
+YouTube URLs     ❌   describe with :::video instead
+Inline styling   ❌
+Layout hints     ❌
+```
 
-# CSS
-
-Never generate CSS.
-
----
-
-# React
-
-Never generate React components inside educational content.
+If content specifies presentation, presentation has leaked into content, and
+the separation the whole architecture rests on is gone.
 
 ---
 
 # Educational Rules
 
-Always explain before giving examples.
+Explain before you define.
 
-Never introduce more than one new concept at a time.
+Introduce one new concept at a time.
 
-Keep paragraphs short.
+Keep paragraphs to 4–6 lines.
 
-Prefer visual explanations.
+Prefer visual explanation where it genuinely helps.
 
-Always connect concepts.
-
-Always assume the student is learning the topic for the first time.
+Always assume the student is meeting this topic for the first time.
 
 ---
 
-# Output Quality Checklist
+# Quality Checklist
 
-Every lesson should answer:
+Every lesson must answer:
 
+```text
 ✓ What is it?
-
 ✓ Why does it matter?
-
-✓ Where is it used?
-
 ✓ How does it work?
-
+✓ Where is it used?
 ✓ Example
-
 ✓ Common mistakes
-
 ✓ Self-check
-
 ✓ Related concepts
+```
 
-If any of these are missing, the lesson is incomplete.
+If any is missing, the lesson is incomplete.
+
+---
+
+# Related Documents
+
+| Document              | Purpose                                    |
+| --------------------- | ------------------------------------------ |
+| `packages/core/src/directives.ts` | **The actual vocabulary.** Code, not prose. |
+| `CONTENT_SPEC.md`     | How content is structured                  |
+| `PARSER_SPEC.md`      | How this DSL becomes Knowledge Objects     |
+| `AI_AUTHORING_GUIDE.md` | How AI writes content in this DSL        |
+| `ARCHITECTURE.md`     | Where the parser sits in the system        |

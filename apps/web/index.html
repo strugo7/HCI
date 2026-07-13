@@ -1,0 +1,33 @@
+<!doctype html>
+<!--
+  Hebrew content, RTL-first. `dir` and `lang` are set here rather than in JS so
+  the first paint is already correct and text never flips after hydration.
+-->
+<html lang="he" dir="rtl" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberAtlas — אבטחת מידע</title>
+    <meta
+      name="description"
+      content="פלטפורמת למידה אינטראקטיבית לאבטחת מידע ומרחב הסייבר"
+    />
+    <script>
+      // Resolve the theme before first paint, so dark mode never flashes white.
+      (function () {
+        try {
+          var stored = localStorage.getItem('cyberatlas-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = stored === 'dark' || (stored !== 'light' && prefersDark);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (_) {
+          /* private mode — fall back to the light default */
+        }
+      })();
+    </script>
+  </head>
+  <body class="h-full">
+    <div id="root" class="h-full"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

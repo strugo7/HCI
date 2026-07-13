@@ -153,17 +153,17 @@ content/
 │
 packages/
 │
+├── core/              ← Knowledge Objects + DSL vocabulary (Zod).
+│                        The single source of truth. Depends on nothing.
 ├── markdown-parser/
 │
 ├── markdown-renderer/
 │
 ├── knowledge-graph/
 │
-├── search-indexer/
-│
 ├── quiz-engine/
 │
-└── ui/
+└── search/
 │
 docs/
 │

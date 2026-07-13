@@ -1,0 +1,183 @@
+---
+id: proxy-firewall-quiz
+lesson: proxy-firewall
+title: שאלון — Proxy Firewall
+---
+
+## Question
+
+id: q-proxy-firewall-001
+type: multiple-choice
+difficulty: medium
+cognitive: understand
+estimatedTime: 60
+points: 5
+concepts:
+  - Proxy Firewall
+  - Firewall
+
+מהו ההבדל המבני המרכזי בין Proxy Firewall לבין Firewall קלאסי בשכבה 3?
+
+### Answers
+
+A. Proxy Firewall מסיים את חיבור הלקוח ופותח חיבור שני נפרד אל השרת, כך שהצדדים לעולם אינם מדברים ישירות; חומת אש בשכבה 3 מעבירה את אותה מנה הלאה.
+
+B. Proxy Firewall בודק כתובות IP ופורטים במהירות גבוהה יותר מחומת אש בשכבה 3.
+
+C. Proxy Firewall פועל רק על תעבורה יוצאת, וחומת אש בשכבה 3 פועלת רק על תעבורה נכנסת.
+
+D. Proxy Firewall מצפין את התעבורה, וחומת אש בשכבה 3 משאירה אותה גלויה.
+
+E. אין הבדל מבני; Proxy Firewall הוא פשוט חומת אש בשכבה 3 עם יותר כללי ACL.
+
+Correct: A
+
+Explanation: ההבדל הוא מבני — Proxy מנתק את החיבור ופותח חיבור שני בשם הלקוח, ולכן אין מנה שעוברת ישירות מהלקוח לשרת; זה מה שמאפשר לו לראות תוכן מלא. B הופך את היוצרות: בדיקת כתובות ופורטים היא דווקא חומת אש בשכבה 3, וה-Proxy איטי יותר, לא מהיר יותר. C שגויה כי Proxy קיים בשני הכיוונים (Forward ו-Reverse), ואינו מוגבל לכיוון אחד. D מבלבלת בין ניתוק חיבור לבין הצפנה — ה-Proxy דווקא חייב לפענח (לסיים) TLS כדי לבחון תוכן. E מכחישה את עצם ההבדל: ACL נוסף אינו הופך רכיב שכבה 3 למתווך שמנתק חיבור בשכבה 7.
+
+Difficulty: medium
+
+Concepts: Proxy Firewall, Firewall
+
+Bloom: understand
+
+Learning Objective: להסביר את מנגנון ניתוק החיבור ולהבחין בינו לבין העברת מנות בחומת אש בשכבה 3.
+
+Misconception: סטודנטים מניחים ש-Proxy הוא "חומת אש חזקה יותר" מאותו סוג, ולא מזהים שהמנגנון שונה מהיסוד.
+
+---
+
+## Question
+
+id: q-proxy-firewall-002
+type: comparison
+difficulty: medium
+cognitive: analyze
+estimatedTime: 70
+points: 5
+concepts:
+  - Proxy Firewall
+  - WAF
+  - NGFW
+
+כיצד ממוקמים Proxy Firewall, WAF ו-NGFW זה ביחס לזה?
+
+### Answers
+
+A. Proxy Firewall הוא השער הכללי בשכבה 7; WAF הוא ההתמחות שלו לתעבורת web; NGFW מאחד שכבה 3 ושכבה 7 בקופסה אחת.
+
+B. שלושתם רכיבי שכבה 3 שנבדלים רק במהירות.
+
+C. WAF הוא הרכיב הכללי, ו-Proxy Firewall הוא ההתמחות שלו לתעבורת web.
+
+D. NGFW פועל רק בשכבה 7, ו-Proxy Firewall פועל רק בשכבה 3.
+
+E. שלושתם שמות נרדפים לאותו רכיב בדיוק.
+
+Correct: A
+
+Explanation: ה-Proxy הוא הקטגוריה הרחבה של שער בשכבה 7 שמנתק חיבור לכל פרוטוקול שנכתב לו מנוע; ה-WAF הוא צאצא מתמחה שממוקד ב-web ובחתימות כמו SQL Injection; ה-NGFW מאחד את שכבה 3 ושכבה 7. B שגויה כי Proxy ו-WAF בוחנים תוכן בשכבה 7, לא רק כותרות בשכבה 3. C הופכת את יחס הכללי-להתמחות: ה-WAF הוא ההתמחות ל-web, לא ההפך. D שגויה כי NGFW כולל דווקא גם שכבה 3 (סינון מנות), וה-Proxy הוא רכיב שכבה 7, לא שכבה 3. E מוחקת הבחנות אמיתיות בהיקף ובתפקיד בין שלושת הרכיבים.
+
+Difficulty: medium
+
+Concepts: Proxy Firewall, WAF, NGFW
+
+Bloom: analyze
+
+Learning Objective: למקם את ה-Proxy במודל השכבות ולהבחין בין השער הכללי, ההתמחות ל-web, והרכיב המאחד.
+
+Misconception: סטודנטים מבלבלים בין Proxy ל-WAF ומניחים שהם אותו דבר, או הופכים את יחס הכללי-להתמחות ביניהם.
+
+---
+
+## Question
+
+id: q-proxy-firewall-003
+type: scenario
+difficulty: hard
+cognitive: apply
+estimatedTime: 85
+points: 5
+concepts:
+  - Proxy Firewall
+  - DMZ
+
+היכן ובאיזה כיוון יש להציב Proxy במצב המתואר?
+
+### Scenario
+
+בית חולים מפעיל שרת web ציבורי לקביעת תורים, וחושש שתוקפים יסרקו וינצלו את השרת
+ישירות. במקביל, מחלקת ה-IT רוצה למנוע מתחנות העבודה הפנימיות לגלוש לאתרים
+חיצוניים לא מאושרים. מהי ההמלצה הנכונה ביותר?
+
+### Answers
+
+A. Reverse Proxy ב-DMZ מול שרת התורים — כדי שהתוקף ידבר עם המתווך ולא ייגע בשרת; ו-Forward Proxy מול תחנות העבודה — כדי לאכוף מדיניות יציאה לאינטרנט.
+
+B. Forward Proxy ב-DMZ מול שרת התורים, ו-Reverse Proxy מול תחנות העבודה.
+
+C. Reverse Proxy מול שרת התורים בלבד; אין צורך בשום רכיב עבור גלישת העובדים.
+
+D. חומת אש קלאסית בשכבה 3 בלבד תספק את שתי הדרישות ללא Proxy כלל.
+
+E. WAF מול תחנות העבודה יאכוף את מדיניות הגלישה, ו-Forward Proxy יסתיר את שרת התורים.
+
+Correct: A
+
+Explanation: Reverse Proxy מול השרת הציבורי מסתיר אותו — התוקף מגיע אל המתווך, לרוב ב-DMZ, ולא אל השרת האמיתי. Forward Proxy מול הלקוחות שולט ביציאה ואוכף מדיניות גלישה. B מחליף את כיווני ה-Proxy: Reverse מגן על שרת, Forward שולט בלקוחות — לא ההפך. C מתעלם מהדרישה השנייה (מדיניות גלישת העובדים), שדורשת Forward Proxy. D שגויה כי חומת אש בשכבה 3 בודקת כתובות ופורטים בלבד; היא אינה מסתירה שרת מאחורי מתווך ואינה אוכפת מדיניות תוכן על גלישה. E מחליף בין הרכיבים: WAF אינו אוכף מדיניות יציאה של לקוחות, ו-Forward Proxy אינו הכיוון שמסתיר שרת נכנס.
+
+Difficulty: hard
+
+Concepts: Proxy Firewall, DMZ
+
+Bloom: apply
+
+Learning Objective: לבחור את כיוון ה-Proxy ואת מיקומו לפי המטרה — הגנה על שרת נכנס מול שליטה ביציאת לקוחות.
+
+Misconception: סטודנטים מחליפים בין Forward ל-Reverse Proxy, ולא מקשרים את ה-Reverse Proxy למיקומו ב-DMZ.
+
+---
+
+## Question
+
+id: q-proxy-firewall-004
+type: attack-analysis
+difficulty: hard
+cognitive: evaluate
+estimatedTime: 80
+points: 5
+concepts:
+  - Proxy Firewall
+  - WAF
+
+מהי המגבלה שחושף המצב המתואר, והרכיב שנדרש כדי לגשר עליה?
+
+### Scenario
+
+צוות אבטחה מציב Proxy Firewall מול אתר web ומצפה שיבחן את תוכן הבקשות. לאחר
+ההטמעה מתברר שכל התעבורה מגיעה מוצפנת ב-HTTPS, וה-Proxy אינו מזהה בה דבר חשוד.
+
+### Answers
+
+A. כדי לבחון תוכן מוצפן, ה-Proxy חייב לסיים (terminate) את ה-TLS — לפענח, לבדוק, ולהצפין מחדש; בלי כך התוכן נראה לו כרעש.
+
+B. Proxy Firewall אינו מסוגל לבחון תוכן כלל; יש להחליפו בחומת אש בשכבה 3.
+
+C. התעבורה המוצפנת בטוחה בהגדרה, ולכן אין צורך לבחון אותה.
+
+D. יש להוסיף עוד כללי ACL לפי כתובות IP כדי שה-Proxy יראה את התוכן המוצפן.
+
+E. ההצפנה פוגעת רק ב-Firewall בשכבה 3; Proxy בשכבה 7 רואה תוכן מוצפן ישירות ללא פענוח.
+
+Correct: A
+
+Explanation: המגבלה היא ש-Proxy אינו יכול לבחון תוכן מוצפן עד שיפענח אותו — הוא חייב לסיים את ה-TLS, לבדוק, ואז להצפין מחדש אל השרת. B שגויה כי בחינת תוכן היא בדיוק היכולת של ה-Proxy, וחומת אש בשכבה 3 עיוורת לתוכן עוד יותר. C היא התפיסה המוטעית עצמה: תעבורה מוצפנת יכולה להסתיר התקפה אפליקטיבית (למשל SQL Injection על פני 443), ולכן היא דורשת בדיקה. D מבלבלת בין בקרת גישה לפי כותרות (ACL) לבין פענוח תוכן — כללי IP אינם חושפים מטען מוצפן. E שגויה כי אף רכיב אינו קורא תוכן מוצפן בלי מפתח; גם Proxy בשכבה 7 חייב לפענח תחילה.
+
+Difficulty: hard
+
+Concepts: Proxy Firewall, WAF
+
+Bloom: evaluate
+
+Learning Objective: לנמק מדוע בדיקת תוכן מוצפן מחייבת סיום TLS, ולזהות זאת כמחיר וכסיכון של ה-Proxy.
+
+Misconception: סטודנטים מניחים שרכיב שכבה 7 "רואה הכל" אוטומטית, ולא מזהים שתוכן מוצפן מחייב פענוח מפורש.

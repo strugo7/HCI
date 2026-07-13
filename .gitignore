@@ -2,7 +2,6 @@
 .env
 .env.*
 !.env.example
-.claude/settings.json
 .claude/settings.local.json
 
 # Obsidian community plugins — vendored 3rd-party code, and the Local REST API
@@ -29,3 +28,12 @@ out/
 # Logs
 *.log
 npm-debug.log*
+
+# Turborepo
+.turbo/
+
+# Local env
+*.local
+
+# Working artifacts: structured extractions of lecturer source material
+.extraction/

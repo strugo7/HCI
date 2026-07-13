@@ -1,0 +1,179 @@
+/**
+ * Lesson feature — custom styles.
+ *
+ * Block-level components are styled via Tailwind where possible. This file
+ * covers scroll-driven animations, custom indicator colors, and effects that
+ * would be unreadable as class strings.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Reading progress bar                                                 *
+ * ------------------------------------------------------------------ */
+
+.lesson-progress-bar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 50;
+  height: 3px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.lesson-progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--learn-definition)));
+  border-radius: 0 2px 2px 0;
+  transition: width 80ms ease-out;
+}
+
+/* ------------------------------------------------------------------ *
+ * TOC section-type badges                                              *
+ * ------------------------------------------------------------------ */
+
+.toc-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  white-space: nowrap;
+}
+
+.toc-badge--reading    { background: hsl(37 92% 95%);  color: hsl(37 80% 35%);  }
+.toc-badge--definition { background: hsl(142 50% 93%); color: hsl(142 60% 30%); }
+.toc-badge--example    { background: hsl(199 70% 92%); color: hsl(199 70% 30%); }
+.toc-badge--insight    { background: hsl(340 60% 93%); color: hsl(340 50% 35%); }
+.toc-badge--diagram    { background: hsl(262 50% 93%); color: hsl(262 50% 35%); }
+.toc-badge--quiz       { background: hsl(0 65% 93%);   color: hsl(0 55% 35%);   }
+.toc-badge--summary    { background: hsl(215 40% 93%); color: hsl(215 40% 35%); }
+
+.dark .toc-badge--reading    { background: hsl(37 30% 18%);  color: hsl(37 80% 70%);  }
+.dark .toc-badge--definition { background: hsl(142 25% 18%); color: hsl(142 55% 65%); }
+.dark .toc-badge--example    { background: hsl(199 30% 18%); color: hsl(199 60% 65%); }
+.dark .toc-badge--insight    { background: hsl(340 25% 18%); color: hsl(340 50% 70%); }
+.dark .toc-badge--diagram    { background: hsl(262 25% 18%); color: hsl(262 45% 70%); }
+.dark .toc-badge--quiz       { background: hsl(0 25% 18%);   color: hsl(0 55% 70%);   }
+.dark .toc-badge--summary    { background: hsl(215 20% 18%); color: hsl(215 35% 70%); }
+
+/* TOC step number circles */
+.toc-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.toc-step--reading    { background: hsl(37 92% 92%);  color: hsl(37 80% 40%);  }
+.toc-step--definition { background: hsl(142 50% 90%); color: hsl(142 60% 30%); }
+.toc-step--example    { background: hsl(199 70% 90%); color: hsl(199 70% 30%); }
+.toc-step--insight    { background: hsl(340 60% 91%); color: hsl(340 50% 35%); }
+.toc-step--diagram    { background: hsl(262 50% 91%); color: hsl(262 50% 35%); }
+.toc-step--quiz       { background: hsl(0 65% 91%);   color: hsl(0 55% 35%);   }
+.toc-step--summary    { background: hsl(215 40% 91%); color: hsl(215 40% 35%); }
+
+.dark .toc-step--reading    { background: hsl(37 30% 22%);  color: hsl(37 80% 70%);  }
+.dark .toc-step--definition { background: hsl(142 25% 22%); color: hsl(142 55% 65%); }
+.dark .toc-step--example    { background: hsl(199 30% 22%); color: hsl(199 60% 65%); }
+.dark .toc-step--insight    { background: hsl(340 25% 22%); color: hsl(340 50% 70%); }
+.dark .toc-step--diagram    { background: hsl(262 25% 22%); color: hsl(262 45% 70%); }
+.dark .toc-step--quiz       { background: hsl(0 25% 22%);   color: hsl(0 55% 70%);   }
+.dark .toc-step--summary    { background: hsl(215 20% 22%); color: hsl(215 35% 70%); }
+
+.toc-item--active .toc-step {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px currentColor;
+}
+
+/* ------------------------------------------------------------------ *
+ * Block-level accent borders                                           *
+ * ------------------------------------------------------------------ */
+
+.block-definition {
+  border-inline-start: 4px solid hsl(var(--learn-definition));
+}
+
+.block-example {
+  border-inline-start: 4px solid hsl(var(--learn-example));
+}
+
+.block-analogy {
+  border-inline-start: 4px solid hsl(var(--learn-analogy));
+}
+
+.block-important {
+  border-inline-start: 4px solid hsl(var(--learn-important));
+}
+
+.block-warning {
+  border-inline-start: 4px solid hsl(var(--learn-warning));
+}
+
+.block-tip {
+  border-inline-start: 4px solid hsl(var(--learn-tip));
+}
+
+/* ------------------------------------------------------------------ *
+ * Self-check reveal animation                                          *
+ * ------------------------------------------------------------------ */
+
+.selfcheck-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.selfcheck-answer--open {
+  grid-template-rows: 1fr;
+}
+
+.selfcheck-answer__inner {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ *
+ * Objectives checkmark animation                                       *
+ * ------------------------------------------------------------------ */
+
+.objective-check {
+  transition: all 0.15s ease;
+}
+
+.objective-check--checked {
+  color: hsl(var(--learn-example));
+}
+
+/* ------------------------------------------------------------------ *
+ * Notes sidebar                                                        *
+ * ------------------------------------------------------------------ */
+
+.notes-textarea {
+  resize: vertical;
+  min-height: 8rem;
+  field-sizing: content;
+}
+
+/* ------------------------------------------------------------------ *
+ * Key term card hover                                                  *
+ * ------------------------------------------------------------------ */
+
+.key-term-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.key-term-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dark .key-term-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
