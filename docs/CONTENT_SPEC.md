@@ -467,15 +467,19 @@ Use tables only for comparisons.
 
 # Visual Learning
 
-Whenever a visual explanation would improve understanding,
+Whenever a visual explanation would improve understanding, describe it with a
+media directive — `:::diagram`, `:::image`, `:::animation` or `:::video`.
 
-include
+````md
+:::diagram
+תרשים המראה את שכבות מודל TCP/IP, מהשכבה הפיזית ועד שכבת האפליקציה, עם דוגמה
+לפרוטוקול אחד בכל שכבה.
+:::
+````
 
-```
-:::
-...
-:::
-```
+Describe what should be drawn. Never draw it.
+
+See `LEARNING_DSL.md` for the complete directive vocabulary.
 
 ---
 

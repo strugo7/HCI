@@ -1,0 +1,35 @@
+{
+  "name": "cyberatlas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CyberAtlas — AI-powered knowledge platform for Computer Security education",
+  "packageManager": "pnpm@11.1.2",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,css}\"",
+    "content:build": "tsx scripts/build-content.ts",
+    "content:validate": "tsx scripts/validate-content.ts",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "dependencies": {
+    "@cyberatlas/core": "workspace:*",
+    "@cyberatlas/knowledge-graph": "workspace:*",
+    "@cyberatlas/markdown-parser": "workspace:*",
+    "@cyberatlas/search": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.3"
+  }
+}

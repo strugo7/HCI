@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 47% 25%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 47% 25%;
+
+    /* Callout colors, named by teaching intent rather than by hue. */
+    --learn-definition: 217 91% 60%;
+    --learn-example: 142 71% 45%;
+    --learn-analogy: 262 83% 58%;
+    --learn-important: 38 92% 50%;
+    --learn-warning: 0 84% 60%;
+    --learn-tip: 199 89% 48%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 44% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 44% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 210 40% 96%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 210 40% 96%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 213 27% 84%;
+
+    /* Lifted lightness so callouts stay legible on a dark surface. */
+    --learn-definition: 217 91% 68%;
+    --learn-example: 142 61% 55%;
+    --learn-analogy: 262 73% 68%;
+    --learn-important: 38 92% 60%;
+    --learn-warning: 0 74% 68%;
+    --learn-tip: 199 79% 58%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  /*
+   * Latin technical terms inside Hebrew prose. Without isolation the bidi
+   * algorithm drags adjacent punctuation to the wrong side, so "Firewall."
+   * renders as ".Firewall". Applied by the renderer to code and tech spans.
+   */
+  .tech-term {
+    unicode-bidi: isolate;
+    direction: ltr;
+    display: inline-block;
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    unicode-bidi: isolate;
+    direction: ltr;
+    text-align: start;
+  }
+}
+
+@layer components {
+  /*
+   * Reading measure. Hebrew runs slightly wider than Latin at the same point
+   * size, so lesson prose gets a touch more room than a typical 65ch column.
+   */
+  .prose-lesson {
+    @apply max-w-[72ch] text-[1.0625rem] leading-[1.85];
+  }
+}

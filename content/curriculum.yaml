@@ -1,0 +1,199 @@
+
+# CyberAtlas — קוריקולום קורס 276206, אבטחת מידע ממוחשב לסייבר
+#
+# היחידות מסודרות בסדר לימוד פדגוגי: בונים אוצר מילים, מכירים את התוקף,
+# ורק אז את ההגנה. המשקל (weight) נשמר כמטא-דאטה לתעדוף חזרה למבחן — הוא כבר לא קובע את הסדר.
+#
+# המשקלים נגזרים מניתוח שלושה מבחני עבר (2023, 2024, 2025) — .extraction/00-past-exams.md
+# מבנה המבחן: 20 שאלות רב-ברירה · 5 נק' לשאלה · שעה וחצי · בלי חומר עזר.
+# מ-2024: חמישה מסיחים. ב-2025: 70% מהשאלות באשכולות תרחיש.
+#
+# כל שיעור מחזיק בקבוצת מושגים משלו ואין חפיפה — ראה .extraction/CONCEPT-INVENTORY.md
+# 37 שיעורים, כולם כתובים · 75 מושגי ליבה.
+#
+# חמישה שיעורים נוספו כדי לכסות נושאים שבסילבוס אך לא נבחנו במבחני עבר:
+# network-model, cryptography (יחידה 1) · dos-ddos (יחידה 3) · micro-segmentation (יחידה 5) ·
+# incident-response (יחידה 9, שבוע 11). חלקם נשענים על מקורות חיצוניים רשמיים
+# (NIST, Cloudflare, Palo Alto, Check Point, CrowdStrike) — מסומן במפורש בכל שיעור.
+#
+# source = מצגת המרצה · weight = אחוז מהמבחן · status = ready | partial | blocked
+
+course: computer-security
+courseCode: 276206
+courseTitle: אבטחת מידע ממוחשב לסייבר
+
+units:
+
+  # ------------------------------------------------------------------
+  # 1 — התשתית. כל השאר נשען על אוצר המילים שנבנה כאן.
+  - id: foundations
+    title: יסודות — מרחב הסייבר ומשולש ההגנה
+    source: 01-Information Security Introduction.pdf
+    weight: 6.7                 # Cyberspace 5.0 + CIA 1.7
+    status: ready
+    note: >
+      משקל נמוך במבחן, אך זו התשתית שכל השאר נשען עליה — ולכן היא ראשונה.
+      attack-terminology מגדיר את משטח התקיפה ואת וקטור התקיפה: "איפה אפשר לתקוף" מול "איך תוקפים בפועל".
+      ההבחנה הזו היא התנאי המוקדם לכל יחידת אנטומיית התקיפה.
+      שיעור ה-CIA כתוב וטעון עדכון: Accountability, RTO/RPO, חתימות דיגיטליות, Trusted מול Trustworthy.
+    lessons:
+      - cyberspace              # ארבע השכבות: Physical, Logical, Social, Governance
+      - network-model           # TCP/IP מול OSI, Layer 3 מול Layer 7 — התשתית ל-FW/WAF (מקור חיצוני)
+      - cia                     # ✅ כתוב — טעון עדכון
+      - cryptography            # הצפנה, גיבוב, חתימות דיגיטליות — לא נבחן, מעמיק את CIA (מקור חיצוני)
+      - trust-and-trustworthiness  # Trusted מול Trustworthy, TCB — ה-Key Insight היחיד בדק
+      - attack-terminology      # Vulnerability, Attack Surface, Attack Vector, Phishing
+
+  # ------------------------------------------------------------------
+  # 2 — הכלי של התוקף. קונקרטי, מוחשי, ומגיע לפני הטקסונומיה המופשטת.
+  - id: malware
+    title: נוזקות
+    source: 02-Malware.pdf
+    weight: 11.7
+    status: ready
+    note: >
+      המצגת כולה באנגלית — אין למרצה מינוח עברי. המונח האנגלי חייב להופיע לצד העברי.
+      Trojan אינו מוגדר באף שקופית ולכן אינו שיעור.
+      Droppers ו-Web Shells הם 17 מתוך 37 שקופיות — הם החומר האמיתי של היחידה.
+    lessons:
+      - malware                 # מהי נוזקה
+      - virus                   # ⚠ Polymorphism נבחן ב-2024 — חייב להופיע
+      - worm                    # "לא צריך host program" — הוא חוזר על זה 3 פעמים
+      - ransomware              # Ransomware, C&C — אין הגדרה טקסטואלית בדק, יש לגזור אותה
+      - dropper                 # ⚠ המלכודת: דרופר אינו מזיק — הוא רק מוריד ומתקין
+      - web-shell               # נבחן 2024 — WebShell מוסווה כקובץ לוג
+
+  # ------------------------------------------------------------------
+  # 3 — הטקסונומיה. עכשיו שיש נוזקות מוחשיות, אפשר למיין תקיפות למשפחות.
+  - id: attack-anatomy
+    title: אנטומיית תקיפה — טקסונומיית RFC 2828
+    source: 03-2828.pdf
+    weight: 18.3
+    status: ready
+    note: >
+      69 שקופיות, אוחדו לשישה שיעורים.
+      ⚠ שקופית 8 מסווגת Interruption כ-Passive, בסתירה להגדרת המרצה בשקופית 7.
+      מציגים את שתי הגרסאות ומסמנים את הסתירה. לא מתקנים בשקט.
+    lessons:
+      - attack-classification   # Active Attack, Passive Attack ← נבחן 3 פעמים
+      - rfc-2828                # ארבע משפחות: Disclosure, Deception, Disruption, Usurpation
+      - unauthorized-disclosure # Exposure, Interception, Inference, Intrusion
+      - deception               # Masquerade, Falsification, Repudiation
+      - disruption              # Incapacitation, Corruption, Obstruction, DDoS
+      - dos-ddos                # DoS מול DDoS, Botnet, Amplification — מרחיב את Obstruction (מקור חיצוני)
+      - usurpation              # Misappropriation, Misuse
+
+  # ------------------------------------------------------------------
+  # 4 — הטקסונומיה בפעולה. תקיפה אמיתית מקצה לקצה, ומסגרת לתאר אותה.
+  - id: applied-attack
+    title: תקיפה יישומית — MITRE ATT&CK וסימולציית Macro
+    source: וידאו (תמלולי הרצאה)
+    weight: 0.0
+    status: ready
+    note: >
+      שלושה שיעורים מתמלולי וידאו של המרצה. אפס שאלות מבחן ישירות, אך סימולציית ה-Macro
+      ממחישה את אנטומיית התקיפה (18.3%) הלכה למעשה — Spear Phishing, Process Injection, C&C, תנועה רוחבית.
+      ממוקמת מיד אחרי RFC 2828: התלמיד מקבל את הטקסונומיה, ואז רואה אותה רצה על תקיפה חיה.
+    lessons:
+      - attack-simulation-macro   # סימולציית תקיפה מלאה: רוברט, מריה, Malop
+      - mitre-attack-evaluation   # הערכת מוצרי הגנה ב-MITRE ATT&CK
+      - mitre-attack-analysis     # קריאת דוחות, Data Sources, כיסוי לינוקס
+
+  # ------------------------------------------------------------------
+  # 5 — כאן מתהפך הצד. מודל ההגנה קודם, ואז המימושים לפי שכבה.
+  - id: defense-principles
+    title: עקרונות ההגנה — ממודל הטירה עד חומת אש
+    source: 05-FW.pdf · 07-DMZ.pdf (הגנה לעומק, אבטחה היקפית)
+    weight: 23.3                # Defense in Depth ~15 + Firewalls 5.0 + WAF/DPI 3.3
+    status: ready
+    note: >
+      היחידה בנויה כמדרג: קודם מודל ההגנה (טירה → קריסתה → הגנה לעומק),
+      ואז המימושים לפי שכבת OSI — Packet Filter/ACL בשכבה 3, Proxy ו-WAF בשכבה 7, GenAI בסוף.
+      אצל המרצה Firewall = Packet Filter = Layer 3 (כותרת חוזרת בשש שקופיות).
+      ההשוואה היחידה שלו: Layer 3 מול Layer 7. הוא מתרגל קריאת טבלאות ACL (שקופיות 20–22).
+      ⚠ Stateful Inspection חי ביחידת ה-IDS, לא כאן — אין להוסיף "דורות" לשיעור ה-firewall.
+      ⚠ Proxy Firewall אינו מופיע ב-05-FW.pdf — נשען על מקור חיצוני רשמי, מסומן במפורש בשיעור.
+      AI Firewall קיים בדק (שקופיות 31–33) — ואפס שאלות ב-3 שנים.
+      micro-segmentation נוסף כתשובה לקריסת הפרימטר: Zero Trust, East-West, NIST SP 800-207 (מקור חיצוני).
+    lessons:
+      - perimeter-security      # מודל הטירה והתפוררותו, Lateral Movement, Micro-segmentation
+      - defense-in-depth        # אפס שאלות בשמו — אך ~15% מהמבחן בתוכנו
+      - micro-segmentation      # Zero Trust, East-West, Blast Radius, NIST SP 800-207 (מקור חיצוני)
+      - firewall                # Firewall, Packet Filter, ACL, Implicit Deny ← טבלאות הכללים נבחנות
+      - proxy-firewall          # מקור חיצוני. Application Proxy, ניתוק החיבור הישיר
+      - waf                     # WAF, Layer 7, DPI ← הבחינה נוקבת ב-DPI בשמו (2025)
+      - genai-firewall          # AI/GenAI Firewall, דק 05 שקופיות 31–33
+
+  # ------------------------------------------------------------------
+  # 6 — ההגנה שאינה ברשת אלא בזהות. "מי אתה" ו"מה מותר לך".
+  - id: identity-access
+    title: ניהול זהויות והרשאות
+    source: 08-summary-unified.pdf   # חלקי — ציר האימות בלבד; השאר ממקורות חיצוניים רשמיים
+    weight: 13.4
+    note: >
+      13.4% מהמבחן, מגמה עולה (2023: 1 → 2024: 3 → 2025: 4).
+      ממוקמת מיד אחרי עקרונות ההגנה — Least Privilege ו-AAA הם המשך ישיר של ה-ACL.
+      Identity Management: ~70% מכוסה מהסיכום המאוחד (עמ' 29-30) — 5 גורמי אימות, MFA, OTP, ביומטריה.
+      Access Management: RBAC/ABAC/MAC/DAC אינם באף מקור מקומי — מושלמים ממקורות רשמיים (CompTIA, OWASP, NIST),
+      מסומנים במפורש בכל שיעור.
+    status: ready
+    lessons:
+      - identity-management     # 5 גורמי אימות, MFA, OTP, ביומטריה, SSO
+      - access-management       # AuthN מול AuthZ, RBAC/ABAC/MAC/DAC (חיצוני)
+
+  # ------------------------------------------------------------------
+  # 7 — כשהחסימה לא הספיקה: זיהוי, התרעה, וחסימה אקטיבית.
+  - id: ids-ips
+    title: IDS, IPS ו-NGFW
+    source: 06-IDS.pdf
+    weight: 16.7
+    status: ready
+    note: >
+      False Positive הוא המושג החוזר ביותר בכל שלושת המבחנים.
+      Stateful Inspection חי כאן, לא במצגת ה-Firewall.
+      דורש את שיעור ה-firewall כתנאי מוקדם — NGFW מוגדר ביחס אליו.
+    lessons:
+      - ids-ips                 # IDS, IPS, NIDS, HIDS ← ההבחנה חוזרת 3 פעמים בדק
+      - ids-detection-methods   # Knowledge-based, Behavior-based, FP, FN ← הנושא הנבחן ביותר
+      - ngfw                    # NGFW, Stateful Inspection, App-ID
+
+  # ------------------------------------------------------------------
+  # 8 — השיא: מרכיבים את כל הכלים לארכיטקטורה אחת.
+  - id: perimeter-dmz
+    title: אבטחה היקפית ו-DMZ
+    source: 07-DMZ.pdf
+    weight: 25.0
+    status: ready
+    note: >
+      היחידה הכבדה ביותר, ומגיעה אחרונה בכוונה: "היכן תמקם את X" ו"איזו ארכיטקטורה חזקה יותר"
+      דורשות שהתלמיד כבר יכיר חומת אש, ACL, WAF ו-IDS. שתי השאלות האלה חוזרות בכל שנה.
+      תנאים מוקדמים: defense-principles (יחידה 5) ו-ids-ips (יחידה 7).
+      ⚠ דק 05 מגדיר DMZ כ"לא מוגן בחומת אש" — סתירה ישירה לדק 07. מאמצים את דק 07.
+    lessons:
+      - dmz                     # DMZ, אזורי אמון, כללי זרימת תעבורה, מיקום שירותים
+      - dmz-architectures       # Three-Legged, Screened Subnet, Internal Firewall
+
+  # ------------------------------------------------------------------
+  # 9 — אחרי שהתקיפה חדרה: מה עושים. שבוע 11 בקורס. אפס שאלות מבחן.
+  - id: incident-response-unit
+    title: תגובה לאירועי אבטחה
+    source: מקור חיצוני רשמי (NIST SP 800-61, SANS PICERL) — אין דק מקומי
+    weight: 0.0
+    status: ready
+    note: >
+      שבוע 11 בקורס, אפס שאלות ב-3 מבחני עבר — אך זהו נושא ליבה שהיה חסר לגמרי.
+      אין לו מצגת מקומית: השיעור נשען כולו על מקורות חיצוניים רשמיים, מסומן במפורש.
+      עמוד השדרה: מחזור NIST בן 4 שלבים (Preparation → Detection & Analysis →
+      Containment/Eradication/Recovery → Post-Incident), ולצדו PICERL של SANS.
+      ממוקם אחרי ה-DMZ: IDS/IPS מזהה — וכאן לומדים מה קורה אחרי שההתראה נדלקת.
+    lessons:
+      - incident-response       # Event/Alert/Incident, NIST 4 שלבים, PICERL, SIEM/SOC/EDR (מקור חיצוני)
+
+# ------------------------------------------------------------------
+# נושאים שלא נבחנו מעולם (3 שנים, אפס שאלות) אך נכתבו לכיסוי מלא של הסילבוס:
+#   Cryptography · DoS/DDoS · Network model (TCP/IP) · Micro-segmentation · Incident Response
+# מופיעים במבחנים רק כמסיחים שגויים — נכתבו כרקע מושגי מוצק, בלי עומק-יתר לתעדוף מבחן.
+# AI Firewall (genai-firewall) — קיים בדק, אפס שאלות. proxy-firewall — מקור חיצוני.
+#
+# עדיין ללא כיסוי (מכוון):
+#   Trojan · Cyber Kill Chain — לא קיימים באף מצגת (MITRE ATT&CK מכוסה מתמלולי וידאו).

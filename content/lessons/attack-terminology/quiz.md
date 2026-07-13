@@ -1,0 +1,188 @@
+---
+id: attack-terminology-quiz
+lesson: attack-terminology
+---
+
+# קוויז — אוצר המילים של תוקף
+
+## Question
+
+id: q-attack-terminology-001
+type: multiple-choice
+difficulty: easy
+cognitive: understand
+estimatedTime: 45
+points: 5
+concepts:
+  - Vulnerability
+
+בשרשרת הסיכון שהמרצה מציג, מהי המשמעות המדויקת של "חולשה" (Vulnerability)?
+
+### Answers
+
+A. מצב — נקודת תורפה הקיימת במערכת, בין אם נוצלה ובין אם לא.
+B. פעולה — המעשה המכוון של ניצול נקודת תורפה כדי לגרום נזק.
+C. תוצאה — המצב שאחרי תקיפה מוצלחת, שבו מדיניות האבטחה הופרה.
+D. פוטנציאל — שחקן או אירוע שעלולים לנצל נקודת תורפה.
+E. סימן — ראיה נצפית לכך שהמערכת כבר נפרצה.
+
+Correct: A
+
+Explanation: חולשה היא **מצב** הקיים במערכת (תשובה A) — נקודת תורפה בתכנון, בקוד, בתצורה או באדם, שקיימת גם אם איש לא ניצל אותה. B מתאר את ה-Attack (הפעולה). C מתאר את ה-Compromise (התוצאה). D מתאר את ה-Threat (הפוטנציאל). E מתאר Indicator of Compromise. כל אלה חוליות אחרות בשרשרת — הבלבול ביניהן הוא בדיוק מה שהשאלה בודקת.
+
+Difficulty: easy
+
+Concepts: Vulnerability
+
+Bloom: understand
+
+Learning Objective: להבחין בין חוליות שרשרת הסיכון Vulnerability → Threat → Attack → Compromise.
+
+Misconception: סטודנטים מזהים "חולשה" עם "תקיפה" או עם "פריצה", ומאבדים את ההבחנה בין מצב, פעולה ותוצאה.
+
+## Question
+
+id: q-attack-terminology-002
+type: comparison
+difficulty: medium
+cognitive: understand
+estimatedTime: 60
+points: 5
+concepts:
+  - Attack Surface
+  - Attack Vector
+
+מהו ההבדל בין משטח התקיפה (Attack Surface) לבין וקטור התקיפה (Attack Vector)?
+
+### Answers
+
+A. המשטח הוא מכלול נקודות החשיפה (איפה אפשר לנסות); הווקטור הוא הנתיב המעשי היחיד שנבחר (איך תוקפים בפועל).
+B. המשטח הוא הנתיב המעשי שהתוקף בוחר; הווקטור הוא מכלול נקודות החשיפה.
+C. המשטח והווקטור הם שני שמות לאותו דבר — נקודת הכניסה של התוקף.
+D. המשטח הוא החולשה עצמה; הווקטור הוא התיקון שסוגר אותה.
+E. המשטח שייך לתקיפות רשת בלבד; הווקטור שייך לתקיפות אנוש בלבד.
+
+Correct: A
+
+Explanation: A נכונה: המשטח עונה על "איפה" (רחב — כל נקודות החשיפה), הווקטור על "איך" (צר — נתיב יחיד). B הופכת בין השניים — טעות הבלבול הקלאסית. C שגויה כי הם מציינים שני דברים שונים (הזדמנות מול שיטה). D מבלבלת בין המושגים לבין חולשה ותיקון. E ממציאה חלוקה שאינה קיימת — לשני המושגים יש ביטוי בכל ארבעת סוגי המשטח.
+
+Difficulty: medium
+
+Concepts: Attack Surface, Attack Vector
+
+Bloom: understand
+
+Learning Objective: להבחין בין "איפה אפשר לתקוף" (משטח) לבין "איך תוקפים בפועל" (וקטור).
+
+Misconception: היפוך בין המונחים — ייחוס "איך" למשטח ו"איפה" לווקטור.
+
+## Question
+
+id: q-attack-terminology-003
+type: multiple-choice
+difficulty: medium
+cognitive: apply
+estimatedTime: 60
+points: 5
+concepts:
+  - Attack Surface
+  - Attack Vector
+
+צוות אבטחה סגר את כל הפורטים המיותרים בשרתים, הסיר שירותים שאינם בשימוש, והחיל הרשאות מינימליות. באיזו פעולה הגנתית מדובר, ומה היא משיגה?
+
+### Answers
+
+A. צמצום משטח התקיפה — הפחתת מספר נקודות החשיפה שדרכן אפשר בכלל לנסות לתקוף.
+B. חסימת וקטור תקיפה — נטרול נתיב תקיפה ספציפי כמו דיוג או הזרקת SQL.
+C. זיהוי Compromise — איתור סימנים לכך שהמערכת כבר נפרצה.
+D. תיקון חולשת Zero-Day — סגירת פרצה לא ידועה שאין לה טלאי.
+E. הרחבת המשטח — הוספת נקודות ניטור כדי לראות יותר תעבורה.
+
+Correct: A
+
+Explanation: סגירת פורטים והסרת שירותים הן צמצום משטח (A) — הן מקטינות את מספר נקודות החשיפה. B שגויה: חסימת וקטור נעשית בכלים ממוקדי-נתיב (סינון דוא"ל, ולידציה), לא בסגירת פורטים כלליים. C עוסקת בשלב מאוחר יותר בשרשרת. D שגויה כי לא דובר בטלאי לחולשה ספציפית אלא בהקטנת חשיפה כללית. E הפוכה — הפעולות מקטינות את המשטח, לא מרחיבות אותו.
+
+Difficulty: medium
+
+Concepts: Attack Surface, Attack Vector
+
+Bloom: apply
+
+Learning Objective: לזהות שצמצום משטח וחסימת וקטור הן פעולות הגנה שונות, ולסווג פעולה נתונה.
+
+Misconception: תפיסת כל פעולת הגנה כ"חסימת תקיפה", בלי להבחין בין צמצום המשטח לחסימת וקטור.
+
+## Question
+
+id: q-attack-terminology-004
+type: scenario
+difficulty: hard
+cognitive: analyze
+estimatedTime: 90
+points: 5
+concepts:
+  - Phishing
+  - MFA
+
+### Scenario
+
+בנק גדול מקבל תלונות מלקוחות על העברות כספים שלא ביצעו. בחקירה מתגלה שכל ההעברות עברו אימות דו-שלבי (MFA) תקין, בוצעו מאזור גיאוגרפי סביר של הלקוחות, בשעות פעילות רגילות ובסכומים סבירים.
+
+מה ההסבר הסביר ביותר למתרחש?
+
+### Answers
+
+A. מתקפת Real-Time Phishing שיירטה והעבירה בזמן אמת את קודי האימות הדו-שלבי לאתר האמיתי.
+B. כשל מובנה ב-MFA שהופך אותו לחסר תועלת מול כל תוקף.
+C. מתקפת מניעת שירות (DDoS) על מערכות הניטור של הבנק.
+D. זיוף התעודות הדיגיטליות (certificates) של אתר הבנק.
+E. הצפנת מסד הנתונים של הבנק בידי כופרה (ransomware).
+
+Correct: A
+
+Explanation: A נכונה: ב-Real-Time Phishing האתר המזויף מבקש מהקורבן את הסיסמה ואת קוד ה-MFA, ומעביר אותם לאתר האמיתי בשניות — כך שה-MFA "עובד" והתוקף עובר דרכו. הראיות (אימות תקין, אזור סביר, שעות רגילות) מתאימות בדיוק לכך. B שגויה: ה-MFA לא נכשל — הוא נעקף בגלל גורם שני חלש (OTP), וזו אינה עדות לחוסר תועלת גורף. C שגויה: DDoS פוגע בזמינות, לא מבצע העברות מאומתות. D שגויה: זיוף certificate היה מתריע בדפדפן ואינו מסביר אימות MFA תקין. E שגויה: כופרה מצפינה מידע, לא מבצעת טרנזקציות שקטות ומאומתות.
+
+Difficulty: hard
+
+Concepts: Phishing, MFA
+
+Bloom: analyze
+
+Learning Objective: לזהות מתוך ראיות תרחיש שדיוג בזמן אמת עוקף MFA מבוסס SMS/OTP.
+
+Misconception: האמונה ש-MFA חוסם דיוג לחלוטין, או שאימות תקין שולל כל תרחיש תקיפה.
+
+## Question
+
+id: q-attack-terminology-005
+type: multiple-choice
+difficulty: medium
+cognitive: analyze
+estimatedTime: 60
+points: 5
+concepts:
+  - Vulnerability
+
+חברה מדווחת בגאווה כי החילה מיד כל עדכון אבטחה (patch) שיצרני התוכנה שחררו. מדוע היא עדיין חשופה משמעותית לתקיפה?
+
+### Answers
+
+A. Patching מטפל בעיקר ב-Software Bugs, אך אינו נוגע בחמשת סוגי החולשות האחרים — ובראשם הגורם האנושי.
+B. Patching מסיר את כל ששת סוגי החולשות בבת אחת, כך שהחברה למעשה אינה חשופה כלל.
+C. Patching מרחיב את משטח התקיפה, ולכן הוא מזיק יותר משהוא מועיל.
+D. Patching פועל רק נגד חולשות Zero-Day, ולכן חולשות ידועות נשארות פתוחות.
+E. Patching הוא הגנה מפני וקטורים בלבד, ואינו קשור כלל לחולשות.
+
+Correct: A
+
+Explanation: A נכונה: עדכונים סוגרים בעיקר Software Bugs, אך חמשת הסוגים האחרים — Misconfigurations, Design Flaws, Human Factors, Supply Chain ו-Zero-Day — נשארים. עובד שייפול לדיוג (Human Factor) אינו מושפע משום patch. B שגויה כי היא מתעלמת מחמישה שישיים מהמיון. C שגויה: patching מקטין חשיפה, לא מרחיב אותה. D הפוכה: patch דווקא סוגר חולשות **ידועות**, ולא-קיים ל-Zero-Day שעדיין לא התגלה. E שגויה: patching הוא בדיוק כלי לתיקון חולשות, לא נטול קשר אליהן.
+
+Difficulty: medium
+
+Concepts: Vulnerability
+
+Bloom: analyze
+
+Learning Objective: להבין ש-patching מטפל בסוג חולשה אחד מתוך שישה, וש-Human Factors נותר חשוף.
+
+Misconception: ההנחה ש"מערכת מעודכנת = מערכת מאובטחת", תוך התעלמות מתצורה, תכנון, אדם וספק.
