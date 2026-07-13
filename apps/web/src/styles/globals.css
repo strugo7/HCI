@@ -42,6 +42,24 @@
     --learn-warning: 0 84% 60%;
     --learn-tip: 199 89% 48%;
 
+    /*
+     * The knowledge graph's units.
+     *
+     * Numbered rather than named, because a hue here means "the first unit you
+     * selected", not "blue" — the same unit takes a different hue in a
+     * different selection.
+     *
+     * Spent only while the student is filtering. Nine units cannot each hold a
+     * hue without turning a 119-node graph into confetti, so five is the whole
+     * budget and monochrome is the default. These are distinguishable under the
+     * common forms of colour blindness and each legible on the card surface.
+     */
+    --graph-1: 217 91% 55%;
+    --graph-2: 25 90% 52%;
+    --graph-3: 160 70% 38%;
+    --graph-4: 291 62% 55%;
+    --graph-5: 45 93% 45%;
+
     --radius: 0.75rem;
 
     /*
@@ -100,6 +118,14 @@
     --learn-important: 38 92% 60%;
     --learn-warning: 0 74% 68%;
     --learn-tip: 199 79% 58%;
+
+    /* Lifted for the same reason: a mid-tone hue that reads on white sinks into
+       the navy card. */
+    --graph-1: 217 91% 68%;
+    --graph-2: 25 95% 62%;
+    --graph-3: 160 60% 50%;
+    --graph-4: 291 70% 70%;
+    --graph-5: 45 93% 60%;
 
     /* No --sidebar-* here on purpose: the :root aliases already follow the
        tokens this block redefines. */

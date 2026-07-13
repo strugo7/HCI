@@ -65,6 +65,16 @@ export default {
           warning: 'hsl(var(--learn-warning))',
           tip: 'hsl(var(--learn-tip))',
         },
+        // The graph's unit hues. Numeric rather than named, because they mean
+        // "the Nth unit the student selected" — the same unit takes a different
+        // hue in a different selection, so a name would be a lie.
+        graph: {
+          1: 'hsl(var(--graph-1))',
+          2: 'hsl(var(--graph-2))',
+          3: 'hsl(var(--graph-3))',
+          4: 'hsl(var(--graph-4))',
+          5: 'hsl(var(--graph-5))',
+        },
         // Required by shadcn's sidebar. Every token aliases one we already own
         // (see globals.css) — the sidebar is a surface in our navy palette, not
         // a second palette living next to it.

@@ -43,7 +43,8 @@ export default function GraphPage(): ReactNode {
         <>
           <ConceptGraph graph={graph} />
           <p className="mt-4 text-sm text-muted-foreground">
-            עמדו על צומת כדי להאיר את הקשרים שלו, או לחצו כדי לפתוח אותו.
+            עמדו על צומת כדי להאיר את הקשרים שלו, ולחצו כדי למקד את הגרף סביבו. סננו לפי יחידה כדי
+            לראות תת־גרף אחד, והתקרבו כדי שיותר צמתים יזדהו בשמם.
           </p>
         </>
       )}
