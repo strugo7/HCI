@@ -31,6 +31,8 @@ export const DIAGNOSTIC_CODES = {
   MALFORMED_QUIZ: 'malformed-quiz',
   BROKEN_LINK: 'broken-link',
   EMBEDDED_HTML: 'embedded-html',
+  /** A media directive's src that cannot render as that directive, e.g. :::video pointing at an .html. */
+  MEDIA_MISMATCH: 'media-mismatch',
   /** Prerequisites that loop: a course with no lesson a student can take first. */
   CIRCULAR_DEPENDENCY: 'circular-dependency',
   /** A concept no lesson links to and no concept relates to — unreachable. */

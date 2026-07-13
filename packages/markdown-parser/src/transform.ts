@@ -316,6 +316,88 @@ function isDirectiveNode(node: RootContent): node is RootContent & DirectiveNode
 /** `question: … / answer: …`, the body shape of a selfcheck. */
 const SELFCHECK = /question:\s*([\s\S]*?)\n\s*answer:\s*([\s\S]*)/i;
 
+/* ------------------------------------------------------------------ *
+ * Media assets
+ * ------------------------------------------------------------------ */
+
+/** A self-contained HTML page, rendered inside a sandboxed iframe. */
+const HTML_EXTENSIONS = new Set(['html', 'htm']);
+/** A video file the browser plays natively. */
+const VIDEO_EXTENSIONS = new Set(['mp4', 'webm', 'mov', 'm4v']);
+
+/** The media variant a vault file renders as, decided by its extension. */
+function variantOfFile(file: string): 'animation' | 'video' | 'image' {
+  const ext = file.slice(file.lastIndexOf('.') + 1).toLowerCase();
+  if (HTML_EXTENSIONS.has(ext)) return 'animation';
+  if (VIDEO_EXTENSIONS.has(ext)) return 'video';
+  return 'image';
+}
+
+/** Which src files each media directive may name. `diagram` and `image` share image files. */
+function directiveAcceptsFile(directive: string, file: string): boolean {
+  const variant = variantOfFile(file);
+  if (variant === 'image') return directive === 'image' || directive === 'diagram';
+  return directive === variant;
+}
+
+/**
+ * Resolve a media directive's `src` attribute to a vault-relative path.
+ *
+ * The author names a file, never a path — same contract as `![[embeds]]`.
+ * A file the vault does not hold is an error, and so is a file the directive
+ * cannot render (`:::video` pointing at an .html): both would ship a frame
+ * that shows nothing.
+ */
+function resolveMediaSrc(
+  node: DirectiveNode,
+  ctx: TransformContext,
+): { src: string | null; height: number | null } | null {
+  const file = node.attributes?.src?.trim();
+  const rawHeight = node.attributes?.height?.trim();
+
+  let height: number | null = null;
+  if (rawHeight) {
+    height = Number.parseInt(rawHeight, 10);
+    if (Number.isNaN(height) || height <= 0) {
+      report(
+        ctx,
+        'error',
+        DIAGNOSTIC_CODES.MISSING_REQUIRED_FIELD,
+        `":::${node.name}" height must be a positive number of pixels, got "${rawHeight}".`,
+        node,
+      );
+      return null;
+    }
+  }
+
+  if (!file) return { src: null, height };
+
+  const path = ctx.assets.get(file);
+  if (path === undefined) {
+    report(
+      ctx,
+      'error',
+      DIAGNOSTIC_CODES.MISSING_ASSET,
+      `Asset "${file}" is not in the vault. Put it in content/media.`,
+      node,
+    );
+    return null;
+  }
+
+  if (!directiveAcceptsFile(node.name, file)) {
+    report(
+      ctx,
+      'error',
+      DIAGNOSTIC_CODES.MEDIA_MISMATCH,
+      `":::${node.name}" cannot render "${file}" — use ":::${variantOfFile(file)}" for this file type.`,
+      node,
+    );
+    return null;
+  }
+
+  return { src: path, height };
+}
+
 function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | null {
   const { name } = node;
 
@@ -378,14 +460,18 @@ function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | n
         );
         return null;
       }
+      const resolved = resolveMediaSrc(node, ctx);
+      if (resolved === null) return null;
       return {
         id: ctx.ids.next('media'),
         type: 'media',
         variant: name,
         description,
-        // Content describes; it never embeds. An asset may be produced later.
-        src: null,
+        // Without src, the content only describes — an asset may be produced
+        // later. With src, it names a file the vault already holds.
+        src: resolved.src,
         alt: null,
+        height: resolved.height,
       };
     }
 
@@ -503,10 +589,11 @@ function extractEmbeds(node: Paragraph, ctx: TransformContext): { media: Block[]
       media.push({
         id: ctx.ids.next('media'),
         type: 'media',
-        variant: 'image',
+        variant: variantOfFile(file.trim()),
         description: caption?.trim() ?? file.trim(),
         src: path,
         alt: caption?.trim() ?? null,
+        height: null,
       });
       return '';
     });

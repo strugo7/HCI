@@ -128,11 +128,39 @@ Embedding a file the vault does not hold is a build error.
 
 ---
 
+# Animations
+
+An animation is a self-contained HTML file that lives in content/media. The renderer shows it inside a sandboxed iframe.
+
+If the animation already exists, name it with src. The description doubles as the caption. height is optional, in pixels (default 480).
+
+Example
+
+:::animation{src="dns-resolution.html" height="520"}
+
+תהליך רזולוציית DNS צעד אחר צעד.
+
+:::
+
+If the animation does not exist yet, write the same directive without src — describe what it should show, and it renders as a placeholder until the file is produced.
+
+Naming a file the vault does not hold is a build error, and so is pointing :::animation at a non-HTML file.
+
 # Videos
 
-Suggest useful educational animations.
+A video is a file (mp4 / webm) in content/media. Embed it by file name, like an image:
 
-Never embed YouTube links.
+![[arp-spoofing-demo.mp4|הדגמת מתקפת ARP Spoofing]]
+
+Or with a directive when a description is wanted:
+
+:::video{src="arp-spoofing-demo.mp4"}
+
+הדגמה מוקלטת של המתקפה בסביבת מעבדה.
+
+:::
+
+Never embed YouTube links or any external URL — only files the vault holds.
 
 ---
 

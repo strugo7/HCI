@@ -131,7 +131,9 @@ export type Callout = z.infer<typeof CalloutSchema>;
 /**
  * diagram | image | animation | video.
  * `description` is what the author wants drawn. `src` stays null until an
- * asset is produced for it — content describes, it never embeds.
+ * asset is produced for it; once the asset exists in the vault, the directive
+ * names it (`:::animation{src="dns.html"}`) or the author embeds it
+ * (`![[dns.html]]`) and `src` carries its vault-relative path.
  */
 export const MediaSchema = KnowledgeObjectBaseSchema.extend({
   type: z.literal('media'),
@@ -139,6 +141,8 @@ export const MediaSchema = KnowledgeObjectBaseSchema.extend({
   description: z.string().min(1),
   src: z.string().nullable(),
   alt: z.string().nullable(),
+  /** Rendered height in px for framed media (animations). null → renderer default. */
+  height: z.number().int().positive().nullable(),
 });
 export type Media = z.infer<typeof MediaSchema>;
 
