@@ -291,7 +291,7 @@ Examples should
 
 Every abstract concept should contain a diagram suggestion.
 
-Never embed images.
+Never inline a drawing, and never link an external image.
 
 Instead describe
 
@@ -299,6 +299,10 @@ Instead describe
 - labels
 - flow
 - important elements
+
+An image that already exists is a different case: put the file in
+`content/media` and embed it by name — `![[CIA Triangle.png|caption]]`. The
+build fails if the file is not there. See `LEARNING_DSL.md`.
 
 ---
 

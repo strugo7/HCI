@@ -5,20 +5,25 @@
  * once: content and spec drifting apart with nothing to notice. A directive
  * the schema does not know about fails here, loudly, with a file and a line.
  *
- * Status: wiring pending until the parser lands (`/build-parser`).
+ * Unlike the build, this reports on the *whole* vault and exits non-zero on
+ * any error — that is the point of a gate.
  */
-import { formatDiagnostic, hasErrors, type Diagnostic } from '@cyberatlas/core';
+import { formatDiagnostic, hasErrors } from '@cyberatlas/core';
+
+import { compileVault } from './lib/compile.js';
 
 async function main(): Promise<void> {
-  const diagnostics: Diagnostic[] = [];
-
-  // TODO(/build-parser): parse every lesson, concept, quiz and flashcard deck,
-  // and collect diagnostics without stopping at the first failure.
+  const { lessons, concepts, diagnostics, failed } = await compileVault();
 
   for (const d of diagnostics) console.error(formatDiagnostic(d));
 
   const errors = diagnostics.filter((d) => d.severity === 'error').length;
   const warnings = diagnostics.filter((d) => d.severity === 'warning').length;
+
+  console.log(`\ncontent: ${lessons.length} lesson(s), ${concepts.length} concept(s) parsed`);
+  if (failed.length > 0) {
+    console.log(`content: ${failed.length} bundle(s) did not compile: ${failed.join(', ')}`);
+  }
   console.log(`content: ${errors} error(s), ${warnings} warning(s)`);
 
   if (hasErrors(diagnostics)) process.exit(1);

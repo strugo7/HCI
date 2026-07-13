@@ -78,26 +78,6 @@ export function LessonPageLayout({ lesson }: LessonPageLayoutProps): ReactNode {
   }, [sections]);
 
   /* ------------------------------------------------------------------ *
-   * Description — first paragraph text for the hero                     *
-   * ------------------------------------------------------------------ */
-  const description = useMemo(() => {
-    const firstSection = sections[0];
-    if (!firstSection) return undefined;
-    for (const block of firstSection.blocks) {
-      if (block.type === 'paragraph' && block.children.length > 0) {
-        return block.children
-          .map((inline) => {
-            if ('value' in inline) return inline.value;
-            if ('label' in inline) return inline.label;
-            return '';
-          })
-          .join('');
-      }
-    }
-    return undefined;
-  }, [sections]);
-
-  /* ------------------------------------------------------------------ *
    * Start button handler                                                *
    * ------------------------------------------------------------------ */
   const handleStart = useCallback(() => {
@@ -111,16 +91,13 @@ export function LessonPageLayout({ lesson }: LessonPageLayoutProps): ReactNode {
     <>
       <LessonProgressBar />
 
-      <LessonHero
-        frontmatter={frontmatter}
-        description={description}
-        onStart={handleStart}
-      />
+      <LessonHero frontmatter={frontmatter} onStart={handleStart} />
 
       {/* 3-column layout */}
       <div className="flex gap-8">
-        {/* Notes sidebar (left in RTL) */}
-        <LessonNotes concepts={frontmatter.relatedConcepts} />
+        {/* Key terms (left in RTL). The parser's resolved slugs, not the
+            frontmatter's hand-written titles — those do not key the index. */}
+        <LessonNotes concepts={lesson.concepts} />
 
         {/* Main content */}
         <div ref={mainRef} className="min-w-0 flex-1">

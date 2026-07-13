@@ -3,20 +3,23 @@ import type { ReactNode } from 'react';
 
 import type { Block } from '@cyberatlas/core';
 
+import { assetUrl } from '@/shared/content/content';
+
 interface MediaBlockProps {
   readonly block: Extract<Block, { type: 'media' }>;
 }
 
 export function MediaBlock({ block }: MediaBlockProps): ReactNode {
-  // If a generated asset exists, show it. Otherwise show a placeholder
-  // describing what needs to be created.
+  // A media block either points at a real asset in the vault, or describes one
+  // that does not exist yet. Both are legitimate states of the content.
   if (block.src) {
     return (
       <figure className="my-8">
         <img
-          src={block.src}
+          src={assetUrl(block.src)}
           alt={block.alt ?? block.description}
-          className="w-full rounded-lg border"
+          loading="lazy"
+          className="w-full rounded-lg border bg-muted/30"
         />
         {block.alt ? (
           <figcaption className="mt-2 text-center text-sm text-muted-foreground">

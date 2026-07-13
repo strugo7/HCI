@@ -28,6 +28,7 @@ units:
   # 1 — התשתית. כל השאר נשען על אוצר המילים שנבנה כאן.
   - id: foundations
     title: יסודות — מרחב הסייבר ומשולש ההגנה
+    description: אוצר המילים שכל השאר נשען עליו — ארבע שכבות מרחב הסייבר, משולש ה-CIA, קריפטוגרפיה ומונחי התקיפה.
     source: 01-Information Security Introduction.pdf
     weight: 6.7                 # Cyberspace 5.0 + CIA 1.7
     status: ready
@@ -48,6 +49,7 @@ units:
   # 2 — הכלי של התוקף. קונקרטי, מוחשי, ומגיע לפני הטקסונומיה המופשטת.
   - id: malware
     title: נוזקות
+    description: הכלי של התוקף, קונקרטי ומוחשי — וירוס, תולעת, כופרה, דרופר ו-Web Shell.
     source: 02-Malware.pdf
     weight: 11.7
     status: ready
@@ -67,6 +69,7 @@ units:
   # 3 — הטקסונומיה. עכשיו שיש נוזקות מוחשיות, אפשר למיין תקיפות למשפחות.
   - id: attack-anatomy
     title: אנטומיית תקיפה — טקסונומיית RFC 2828
+    description: מיון תקיפות למשפחות — גילוי, הונאה, שיבוש ותפיסה בכוח, ולצדם תקיפה אקטיבית מול פסיבית.
     source: 03-2828.pdf
     weight: 18.3
     status: ready

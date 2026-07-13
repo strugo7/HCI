@@ -4,12 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "pnpm -w run content:build",
     "dev": "vite",
+    "prebuild": "pnpm -w run content:build",
     "build": "tsc -b && vite build",
+    "pretypecheck": "pnpm -w run content:build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist src/generated"
   },
   "dependencies": {
     "@cyberatlas/core": "workspace:*",

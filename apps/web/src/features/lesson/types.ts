@@ -40,18 +40,23 @@ export const SECTION_KIND_LABELS: Record<SectionKind, string> = {
 /**
  * Infer the dominant section "kind" from its blocks.
  *
- * The first strong signal wins. If a section has a definition block → it's a
- * definition section. If it's the last section → summary. Otherwise → reading.
+ * The badge answers "what kind of work is this section?", so it keys off the
+ * rarest signal present. A `selfcheck` is deliberately NOT one: every section
+ * in every lesson ends with one, so it distinguishes nothing — reading it as a
+ * signal would label the whole table of contents "חידון".
  */
 export function inferSectionKind(
   blockTypes: readonly string[],
   isLast: boolean,
 ): SectionKind {
-  if (blockTypes.includes('definition')) return 'definition';
-  if (blockTypes.includes('example')) return 'example';
-  if (blockTypes.includes('analogy')) return 'insight';
-  if (blockTypes.includes('media')) return 'diagram';
-  if (blockTypes.includes('selfcheck') || blockTypes.includes('quiz-reference')) return 'quiz';
-  if (blockTypes.includes('summary') || isLast) return 'summary';
+  const has = (type: string): boolean => blockTypes.includes(type);
+
+  if (has('summary') || has('keypoints')) return 'summary';
+  if (has('definition')) return 'definition';
+  if (has('example')) return 'example';
+  if (has('analogy')) return 'insight';
+  if (has('media') || has('table')) return 'diagram';
+  if (has('quiz-reference')) return 'quiz';
+  if (isLast) return 'summary';
   return 'reading';
 }

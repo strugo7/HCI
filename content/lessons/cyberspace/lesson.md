@@ -1,6 +1,7 @@
 ---
 id: cyberspace
 title: מרחב הסייבר וארבע שכבותיו
+description: הזירה שעליה מגנים — ארבע השכבות שמרכיבות את מרחב הסייבר, ומדוע האינטרנט הוא רק חלק ממנו.
 lessonNumber: 1
 course: computer-security
 category: יסודות

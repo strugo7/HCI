@@ -17,11 +17,19 @@ export interface LessonBundle {
 
 /** Everything the parser resolves links against. */
 export interface ParseContext {
-  /** Concept slugs known to exist, so `[[Firewall]]` can be checked. */
-  readonly knownConcepts: ReadonlySet<string>;
-  /** Asset paths known to exist, so `![[firewall.png]]` can be checked. */
-  readonly knownAssets: ReadonlySet<string>;
-  /** Path reported in diagnostics. */
+  /**
+   * Every writable form of a concept → its canonical slug.
+   * Keys are slugified, so `[[Cyberspace]]`, `[[cyberspace]]` and the alias
+   * `[[מרחב הסייבר]]` all resolve to the one concept that owns the definition.
+   */
+  readonly concepts: ReadonlyMap<string, string>;
+  /**
+   * File name → vault-relative path, so `![[CIA Triangle.png]]` can be both
+   * checked and resolved. An embed of a file the vault does not hold is a
+   * build error, not a broken image a student finds.
+   */
+  readonly assets: ReadonlyMap<string, string>;
+  /** Path reported in diagnostics. For a lesson, the bundle directory. */
   readonly file: string;
 }
 

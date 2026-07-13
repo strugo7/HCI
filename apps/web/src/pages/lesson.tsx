@@ -1,23 +1,36 @@
 /**
- * Lesson page — renders a single lesson using the lesson page layout.
+ * Lesson page — renders one compiled Lesson knowledge object.
  *
- * Currently loads mock data for the CIA lesson. Once the parser is
- * operational, this will load real Lesson objects via the content pipeline.
+ * The Lesson arrives fully parsed from `src/generated/content`. This page
+ * decides nothing about the content: only what to show while the chunk is in
+ * flight, and what to say when the id does not exist.
  */
+import { BookX } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { CIA_LESSON_MOCK } from '@/features/lesson/__mock__/cia-lesson';
-import { LessonPageLayout } from '@/features/lesson';
+import { LessonPageLayout, useLesson } from '@/features/lesson';
+import { EmptyState } from '@/shared/components/empty-state';
+import { PageSkeleton } from '@/shared/components/page-skeleton';
 
 import '@/features/lesson/lesson.css';
 
 export default function LessonPage(): ReactNode {
   const { lessonId } = useParams<{ lessonId: string }>();
+  const { data: lesson, isPending } = useLesson(lessonId);
 
-  // TODO: Replace with real data loading once the parser is operational.
-  // For now, we serve the CIA mock for any lessonId.
-  const lesson = lessonId === 'cia' ? CIA_LESSON_MOCK : CIA_LESSON_MOCK;
+  if (isPending) return <PageSkeleton />;
+
+  if (!lesson) {
+    return (
+      <EmptyState
+        icon={BookX}
+        title="השיעור לא נמצא"
+        description="אין שיעור עם המזהה הזה במאגר. ייתכן שהקישור שגוי, או שהשיעור עדיין לא נבנה."
+        hint={`content/lessons/${lessonId ?? ''}/`}
+      />
+    );
+  }
 
   return <LessonPageLayout lesson={lesson} />;
 }

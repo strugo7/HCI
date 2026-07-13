@@ -114,9 +114,17 @@ Illustration showing communication between client, router, ISP and server.
 
 # Images
 
-Never embed images.
+If the image does not exist, describe it with :::image and let the renderer decide.
 
-Describe the desired image.
+If the image already exists in content/media, embed it by file name.
+
+Example
+
+![[CIA Triangle.png|שלוש הצלעות מושכות זו כנגד זו.]]
+
+Never link an external image, and never write a path — only the file name.
+
+Embedding a file the vault does not hold is a build error.
 
 ---
 

@@ -15,8 +15,6 @@ import { Button } from '@/shared/components/ui/button';
 
 interface LessonHeroProps {
   readonly frontmatter: LessonFrontmatter;
-  /** First meaningful paragraph text for the description. */
-  readonly description?: string | undefined;
   readonly onStart?: (() => void) | undefined;
 }
 
@@ -26,7 +24,9 @@ const DIFFICULTY_LABELS: Record<string, string> = {
   hard: 'מתקדם',
 };
 
-export function LessonHero({ frontmatter, description, onStart }: LessonHeroProps): ReactNode {
+export function LessonHero({ frontmatter, onStart }: LessonHeroProps): ReactNode {
+  const { description } = frontmatter;
+
   return (
     <header className="mb-10">
       {/* Breadcrumbs */}

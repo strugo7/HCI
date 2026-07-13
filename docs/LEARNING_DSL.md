@@ -239,11 +239,33 @@ Optional. Practical advice.
 
 # Media
 
-Content **describes** visuals. It never embeds them.
+Content **describes** visuals it does not have, and **names** the ones the
+vault does.
 
-There is no ASCII art, no image files, no YouTube URLs in educational content.
-The author says what should be drawn; the renderer decides whether and how to
-draw it.
+There is no ASCII art and no external URL in educational content. What a
+directive gives you is a description — the author says what should be drawn,
+and the renderer decides whether and how to draw it. What an embed gives you
+is a real file that already lives in the vault.
+
+## Embedding a real asset
+
+````md
+![[CIA Triangle.png]]
+
+![[CIA Triangle.png|שלוש הצלעות מושכות זו כנגד זו: חיזוק אחת נוטה להחליש אחרת.]]
+````
+
+The file must exist in `content/media`. **An embed of a file the vault does
+not hold is a build error** — a student never meets a broken image.
+
+Write the file name, never a path: content does not know how the vault is laid
+out, and it certainly does not know the URL an app happens to serve it from.
+The text after `|` becomes the caption.
+
+The build copies only the assets that are actually embedded, so an unused image
+in the vault ships nothing.
+
+Everything below describes a visual that does not exist yet.
 
 ## diagram
 
@@ -400,7 +422,7 @@ CSS              ❌
 Tailwind classes ❌
 React components ❌
 ASCII diagrams   ❌   describe with :::diagram instead
-Embedded images  ❌   describe with :::image instead
+External images  ❌   put the file in content/media and write ![[file.png]]
 YouTube URLs     ❌   describe with :::video instead
 Inline styling   ❌
 Layout hints     ❌

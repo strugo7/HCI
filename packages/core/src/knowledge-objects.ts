@@ -225,6 +225,12 @@ export type Difficulty = z.infer<typeof DifficultySchema>;
 export const LessonFrontmatterSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
+  /**
+   * One sentence, written for the lesson card and the page header.
+   * It exists so a header never has to reach into the body and repeat the
+   * lesson's first paragraph back to the reader.
+   */
+  description: z.string().optional(),
   lessonNumber: z.number().int().positive().optional(),
   course: z.string().default('computer-security'),
   category: z.string().optional(),
