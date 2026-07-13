@@ -1,0 +1,215 @@
+/**
+ * One question, and the teaching that follows an answer.
+ *
+ * Stateless by contract: it is handed a Question, what the student picked, and
+ * whether that pick has been checked. It decides nothing about correctness —
+ * the quiz-engine already did — and it authors no content. Every sentence on
+ * screen comes from `content/lessons/<lesson>/quiz.md`.
+ *
+ * The explanation is the point of the whole screen. A red X teaches nothing;
+ * the paragraph saying *why the distractor you chose is wrong* is what turns a
+ * wrong answer into a lesson, so it is revealed in full, not summarized.
+ */
+import { Check, Lightbulb, TriangleAlert, X } from 'lucide-react';
+import type { ReactNode } from 'react';
+
+import type { AnswerKey, Question } from '@cyberatlas/core';
+import { explainDistractor } from '@cyberatlas/quiz-engine';
+
+import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import { cn } from '@/shared/lib/utils';
+
+interface QuestionCardProps {
+  readonly question: Question;
+  readonly selected: AnswerKey | null;
+  /** Once checked, the answers lock and the explanation opens. */
+  readonly checked: boolean;
+  readonly correct: boolean;
+  readonly onSelect: (key: AnswerKey) => void;
+}
+
+/** Enum → label. UI chrome, not content: it names a field, it does not teach. */
+const DIFFICULTY: Record<Question['difficulty'], string> = {
+  easy: 'קל',
+  medium: 'בינוני',
+  hard: 'קשה',
+};
+
+export function QuestionCard({
+  question,
+  selected,
+  checked,
+  correct,
+  onSelect,
+}: QuestionCardProps): ReactNode {
+  const misconception = selected !== null ? explainDistractor(question, selected) : null;
+
+  return (
+    <article className="space-y-6">
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <span className="rounded-sm bg-muted px-2 py-1 font-medium text-muted-foreground">
+          {DIFFICULTY[question.difficulty]}
+        </span>
+        <span className="rounded-sm bg-muted px-2 py-1 font-medium text-muted-foreground">
+          {question.points} נקודות
+        </span>
+      </div>
+
+      <h2 className="max-w-[72ch] whitespace-pre-line text-xl font-semibold leading-relaxed">
+        {question.prompt}
+      </h2>
+
+      {question.scenario !== null ? (
+        <section
+          aria-label="תרחיש"
+          className="max-w-[72ch] rounded-lg border-s-4 border-s-learn-definition bg-learn-definition/5 p-5"
+        >
+          <p className="mb-2 text-sm font-semibold text-learn-definition">תרחיש</p>
+          <p className="whitespace-pre-line text-[1.0625rem] leading-[1.85] text-card-foreground">
+            {question.scenario}
+          </p>
+        </section>
+      ) : null}
+
+      <RadioGroup
+        value={selected ?? ''}
+        onValueChange={(value) => onSelect(value as AnswerKey)}
+        disabled={checked}
+        aria-label="אפשרויות התשובה"
+        className="max-w-[72ch] gap-3"
+      >
+        {question.answers.map((answer) => (
+          <AnswerOption
+            key={answer.key}
+            questionId={question.id}
+            answerKey={answer.key}
+            text={answer.text}
+            isSelected={selected === answer.key}
+            isCorrect={question.correct === answer.key}
+            checked={checked}
+          />
+        ))}
+      </RadioGroup>
+
+      {checked ? (
+        <div className="max-w-[72ch] space-y-4">
+          <Verdict correct={correct} />
+
+          <section
+            aria-label="הסבר"
+            className="rounded-lg border border-border bg-card p-5 shadow-sm"
+          >
+            <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
+              <Lightbulb className="size-4" aria-hidden />
+              הסבר
+            </p>
+            <p className="whitespace-pre-line text-[1.0625rem] leading-[1.85] text-card-foreground">
+              {question.explanation}
+            </p>
+          </section>
+
+          {/* Only shown when the student actually fell into the trap. */}
+          {!correct && misconception !== null ? (
+            <section
+              aria-label="המלכודת"
+              className="rounded-lg border-s-4 border-s-learn-warning bg-learn-warning/5 p-5"
+            >
+              <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-learn-warning">
+                <TriangleAlert className="size-4" aria-hidden />
+                המלכודת שנפלת בה
+              </p>
+              <p className="whitespace-pre-line text-[1.0625rem] leading-[1.85] text-card-foreground">
+                {misconception}
+              </p>
+            </section>
+          ) : null}
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
+/**
+ * State is never signalled by color alone: every marked option carries an icon
+ * and a written label, so it survives both colour-blindness and a screen reader.
+ */
+function AnswerOption({
+  questionId,
+  answerKey,
+  text,
+  isSelected,
+  isCorrect,
+  checked,
+}: {
+  readonly questionId: string;
+  readonly answerKey: AnswerKey;
+  readonly text: string;
+  readonly isSelected: boolean;
+  readonly isCorrect: boolean;
+  readonly checked: boolean;
+}): ReactNode {
+  const id = `${questionId}-${answerKey}`;
+
+  const showCorrect = checked && isCorrect;
+  const showWrong = checked && isSelected && !isCorrect;
+
+  return (
+    <div
+      className={cn(
+        'flex items-start gap-3 rounded-md border p-4 transition-colors',
+        !checked && 'cursor-pointer border-border hover:bg-accent',
+        !checked && isSelected && 'border-primary bg-accent',
+        showCorrect && 'border-learn-example bg-learn-example/5',
+        showWrong && 'border-learn-warning bg-learn-warning/5',
+        checked && !showCorrect && !showWrong && 'border-border opacity-60',
+      )}
+    >
+      <RadioGroupItem value={answerKey} id={id} className="mt-1.5" />
+
+      <label htmlFor={id} className={cn('flex-1 leading-[1.85]', !checked && 'cursor-pointer')}>
+        <span className="me-2 font-semibold text-muted-foreground" lang="en">
+          {answerKey}
+        </span>
+        {text}
+
+        {showCorrect ? (
+          <span className="ms-2 inline-flex items-center gap-1 whitespace-nowrap align-middle text-sm font-semibold text-learn-example">
+            <Check className="size-4" aria-hidden />
+            התשובה הנכונה
+          </span>
+        ) : null}
+
+        {showWrong ? (
+          <span className="ms-2 inline-flex items-center gap-1 whitespace-nowrap align-middle text-sm font-semibold text-learn-warning">
+            <X className="size-4" aria-hidden />
+            בחרת בזו
+          </span>
+        ) : null}
+      </label>
+    </div>
+  );
+}
+
+function Verdict({ correct }: { readonly correct: boolean }): ReactNode {
+  return (
+    <p
+      role="status"
+      className={cn(
+        'flex items-center gap-2 text-base font-semibold',
+        correct ? 'text-learn-example' : 'text-learn-warning',
+      )}
+    >
+      {correct ? (
+        <>
+          <Check className="size-5" aria-hidden />
+          תשובה נכונה
+        </>
+      ) : (
+        <>
+          <X className="size-5" aria-hidden />
+          תשובה שגויה
+        </>
+      )}
+    </p>
+  );
+}

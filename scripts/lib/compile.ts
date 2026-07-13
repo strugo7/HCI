@@ -11,11 +11,13 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import type { Concept, Diagnostic, Lesson } from '@cyberatlas/core';
+import type { Concept, Diagnostic, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
 import {
   conceptKeys,
   parseConcept,
+  parseFlashcards,
   parseLesson,
+  parseQuiz,
   readConceptFrontmatter,
   type LessonBundle,
 } from '@cyberatlas/markdown-parser';
@@ -28,9 +30,27 @@ const CONCEPTS_DIR = path.join(CONTENT_DIR, 'concepts');
 /** Directories an `![[embed]]` may name a file from, in search order. */
 const ASSET_DIRS = ['media', 'assets'] as const;
 
+/**
+ * A lesson's cards, as they ship.
+ *
+ * A deck is a build artifact, not a Knowledge Object: the cards are the
+ * knowledge, and the deck is just the bag they travel in. It carries no title
+ * of its own — a deck *is* its lesson, and it borrows that lesson's title
+ * rather than keeping a second copy of it that can drift.
+ */
+export interface FlashcardDeck {
+  /** The ref a lesson's `:::flashcards{ref=…}` points at — the lesson's id. */
+  readonly id: string;
+  readonly lesson: string;
+  readonly title: string;
+  readonly cards: Flashcard[];
+}
+
 export interface CompiledVault {
   readonly lessons: Lesson[];
   readonly concepts: Concept[];
+  readonly quizzes: Quiz[];
+  readonly decks: FlashcardDeck[];
   readonly diagnostics: Diagnostic[];
   /** Lesson directories that produced no Lesson at all. */
   readonly failed: string[];
@@ -145,9 +165,16 @@ export async function compileVault(): Promise<CompiledVault> {
   }
 
   /* ---------------------------------------------------------------- *
-   * Pass 3 — lessons, resolved against the same index.                *
+   * Pass 3 — lessons, resolved against the same index, and the quiz   *
+   * and cards that belong to each.                                     *
+   *                                                                    *
+   * The quiz is parsed *after* its lesson because it may need to       *
+   * borrow the lesson's title: nine quiz files declare none of their   *
+   * own, and the schema requires one.                                  *
    * ---------------------------------------------------------------- */
   const lessons: Lesson[] = [];
+  const quizzes: Quiz[] = [];
+  const decks: FlashcardDeck[] = [];
   const failed: string[] = [];
 
   for (const dir of await listDirs(LESSONS_DIR)) {
@@ -182,6 +209,35 @@ export async function compileVault(): Promise<CompiledVault> {
     diagnostics.push(...result.diagnostics);
     if (result.data) lessons.push(result.data);
     else failed.push(dir);
+
+    const title = result.data?.frontmatter.title;
+    const id = result.data?.id ?? dir;
+
+    const quizSource = await readIfPresent(path.join(base, 'quiz.md'));
+    if (quizSource !== undefined) {
+      const quiz = parseQuiz(
+        quizSource,
+        { concepts: index, assets, file: `content/lessons/${dir}/quiz.md` },
+        title,
+      );
+      diagnostics.push(...quiz.diagnostics);
+      if (quiz.data) quizzes.push(quiz.data);
+    }
+
+    const cardSource = await readIfPresent(path.join(base, 'flashcards.md'));
+    if (cardSource !== undefined) {
+      const deck = parseFlashcards(cardSource, {
+        concepts: index,
+        assets,
+        file: `content/lessons/${dir}/flashcards.md`,
+      });
+      diagnostics.push(...deck.diagnostics);
+      // A lesson points at its cards by its own id, so that is what they are
+      // keyed by — see `:::flashcards{ref="cyberspace"}`.
+      if (deck.data) {
+        decks.push({ id, lesson: id, title: title ?? id, cards: deck.data });
+      }
+    }
   }
 
   /* ---------------------------------------------------------------- *
@@ -201,7 +257,7 @@ export async function compileVault(): Promise<CompiledVault> {
     appearsIn: (appearsIn.get(concept.frontmatter.slug) ?? []).sort(),
   }));
 
-  return { lessons, concepts: withBackrefs, diagnostics, failed, assets };
+  return { lessons, concepts: withBackrefs, quizzes, decks, diagnostics, failed, assets };
 }
 
 /** `exactOptionalPropertyTypes` forbids assigning `undefined` to `summary?`. */

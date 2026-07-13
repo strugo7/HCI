@@ -12,7 +12,9 @@ export const ROUTES = {
   glossary: '/glossary',
   concept: '/glossary/:slug',
   flashcards: '/flashcards',
+  deck: '/flashcards/:deckId',
   practice: '/practice',
+  quiz: '/quiz/:quizId',
   exams: '/exams',
   graph: '/graph',
   progress: '/progress',
@@ -32,4 +34,12 @@ export function lessonPath(lessonId: string): string {
 
 export function conceptPath(slug: string): string {
   return ROUTES.concept.replace(':slug', slug);
+}
+
+export function quizPath(quizId: string): string {
+  return ROUTES.quiz.replace(':quizId', quizId);
+}
+
+export function deckPath(deckId: string): string {
+  return ROUTES.deck.replace(':deckId', deckId);
 }

@@ -8,7 +8,7 @@
  * Each lesson is its own chunk, so opening one lesson does not download the
  * other thirty-six.
  */
-import type { Difficulty, Lesson } from '@cyberatlas/core';
+import type { Difficulty, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
 
 import indexJson from '@/generated/content/index.json';
 
@@ -24,6 +24,23 @@ export interface LessonMeta {
   readonly prerequisites: readonly string[];
   readonly sectionCount: number;
   readonly concepts: readonly string[];
+  /** Null when the lesson ships without one — not the same as "not loaded yet". */
+  readonly quizRef: string | null;
+  readonly questionCount: number;
+  readonly flashcardsRef: string | null;
+  readonly cardCount: number;
+}
+
+/**
+ * A lesson's cards, as the build emits them.
+ *
+ * The deck borrows its lesson's title rather than owning a second copy of it.
+ */
+export interface FlashcardDeck {
+  readonly id: string;
+  readonly lesson: string;
+  readonly title: string;
+  readonly cards: readonly Flashcard[];
 }
 
 export interface ConceptMeta {
@@ -126,6 +143,36 @@ export async function loadLesson(id: string): Promise<Lesson | null> {
   if (!chunk) return null;
   const module = await chunk();
   return module.default;
+}
+
+/** Quizzes and decks chunk the same way, and for the same reason. */
+const quizChunks = import.meta.glob<{ default: Quiz }>('../../generated/content/quizzes/*.json');
+const deckChunks = import.meta.glob<{ default: FlashcardDeck }>(
+  '../../generated/content/flashcards/*.json',
+);
+
+export async function loadQuiz(id: string): Promise<Quiz | null> {
+  const chunk = quizChunks[`../../generated/content/quizzes/${id}.json`];
+  if (!chunk) return null;
+  const module = await chunk();
+  return module.default;
+}
+
+export async function loadDeck(id: string): Promise<FlashcardDeck | null> {
+  const chunk = deckChunks[`../../generated/content/flashcards/${id}.json`];
+  if (!chunk) return null;
+  const module = await chunk();
+  return module.default;
+}
+
+/** Every lesson that ships a deck, in lesson order. Drives the flashcards index. */
+export function decksIndex(): readonly LessonMeta[] {
+  return contentIndex.lessons.filter((lesson) => lesson.flashcardsRef !== null);
+}
+
+/** Every lesson that ships a quiz, in lesson order. Drives the practice index. */
+export function quizzesIndex(): readonly LessonMeta[] {
+  return contentIndex.lessons.filter((lesson) => lesson.quizRef !== null);
 }
 
 /**

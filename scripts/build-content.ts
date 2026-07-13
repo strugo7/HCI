@@ -13,9 +13,22 @@
 import { copyFile, mkdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { formatDiagnostic, type Block, type Concept, type Inline, type Lesson } from '@cyberatlas/core';
+import {
+  formatDiagnostic,
+  type Block,
+  type Concept,
+  type Inline,
+  type Lesson,
+  type Quiz,
+} from '@cyberatlas/core';
 
-import { compileVault, CONTENT_DIR, diagnosticsFor, ROOT } from './lib/compile.js';
+import {
+  compileVault,
+  CONTENT_DIR,
+  diagnosticsFor,
+  ROOT,
+  type FlashcardDeck,
+} from './lib/compile.js';
 import { readCurriculum } from './lib/curriculum.js';
 
 const OUT_DIR = path.join(ROOT, 'apps/web/src/generated/content');
@@ -47,9 +60,17 @@ function definitionText(concept: Concept): string {
     .trim();
 }
 
-/** What a lesson list needs, without carrying any of the lesson body. */
-function toMeta(lesson: Lesson) {
+/**
+ * What a lesson list needs, without carrying any of the lesson body.
+ *
+ * The quiz and card *counts* travel with the metadata so a listing page can
+ * say "5 questions" without downloading five quizzes to count them.
+ */
+function toMeta(lesson: Lesson, quizzes: readonly Quiz[], decks: readonly FlashcardDeck[]) {
   const { frontmatter } = lesson;
+  const quiz = quizzes.find((q) => q.id === lesson.quizRef);
+  const deck = decks.find((d) => d.id === lesson.flashcardsRef);
+
   return {
     id: lesson.id,
     title: frontmatter.title,
@@ -61,6 +82,12 @@ function toMeta(lesson: Lesson) {
     prerequisites: frontmatter.prerequisites,
     sectionCount: lesson.sections.length,
     concepts: lesson.concepts,
+    // Null, not absent, when the lesson ships without one — the UI has to be
+    // able to tell "no quiz" from "quiz I failed to look up".
+    quizRef: quiz ? quiz.id : null,
+    questionCount: quiz ? quiz.questions.length : 0,
+    flashcardsRef: deck ? deck.id : null,
+    cardCount: deck ? deck.cards.length : 0,
   };
 }
 
@@ -84,7 +111,7 @@ function embeddedAssets(lessons: readonly Lesson[], concepts: readonly Concept[]
 }
 
 async function main(): Promise<void> {
-  const { lessons, concepts, diagnostics, failed } = await compileVault();
+  const { lessons, concepts, quizzes, decks, diagnostics, failed } = await compileVault();
 
   // The curriculum is checked against what actually compiled, so a unit can
   // never point at a lesson that does not exist.
@@ -122,6 +149,8 @@ async function main(): Promise<void> {
    * ---------------------------------------------------------------- */
   await rm(OUT_DIR, { recursive: true, force: true });
   await mkdir(path.join(OUT_DIR, 'lessons'), { recursive: true });
+  await mkdir(path.join(OUT_DIR, 'quizzes'), { recursive: true });
+  await mkdir(path.join(OUT_DIR, 'flashcards'), { recursive: true });
 
   await rm(PUBLIC_ASSET_DIR, { recursive: true, force: true });
   const assets = embeddedAssets(lessons, concepts);
@@ -143,13 +172,27 @@ async function main(): Promise<void> {
     );
   }
 
+  // One file per quiz and per deck, for the same reason lessons get one each:
+  // opening the cyberspace quiz must not download the other thirty-six.
+  for (const quiz of quizzes) {
+    await writeFile(path.join(OUT_DIR, 'quizzes', `${quiz.id}.json`), JSON.stringify(quiz), 'utf8');
+  }
+
+  for (const deck of decks) {
+    await writeFile(
+      path.join(OUT_DIR, 'flashcards', `${deck.id}.json`),
+      JSON.stringify(deck),
+      'utf8',
+    );
+  }
+
   await writeFile(
     path.join(OUT_DIR, 'index.json'),
     JSON.stringify({
       course,
       units,
       lessons: lessons
-        .map(toMeta)
+        .map((lesson) => toMeta(lesson, quizzes, decks))
         .sort((a, b) => (a.lessonNumber ?? 999) - (b.lessonNumber ?? 999)),
       concepts: concepts.map((c) => ({
         slug: c.frontmatter.slug,
@@ -164,8 +207,14 @@ async function main(): Promise<void> {
   const errors = diagnostics.filter((d) => d.severity === 'error').length;
   const warnings = diagnostics.filter((d) => d.severity === 'warning').length;
 
+  const questions = quizzes.reduce((n, q) => n + q.questions.length, 0);
+  const cards = decks.reduce((n, d) => n + d.cards.length, 0);
+
   console.log(
     `\ncontent: ${lessons.length} lesson(s), ${concepts.length} concept(s), ${assets.size} asset(s) → apps/web`,
+  );
+  console.log(
+    `content: ${quizzes.length} quiz(zes) / ${questions} question(s), ${decks.length} deck(s) / ${cards} card(s)`,
   );
   if (failed.length > 0) {
     console.log(`content: ${failed.length} bundle(s) did not compile: ${failed.join(', ')}`);

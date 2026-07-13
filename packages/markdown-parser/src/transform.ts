@@ -201,6 +201,39 @@ export function inlinesFrom(
 }
 
 /**
+ * `**bold**` / `*italic*` → the words themselves.
+ *
+ * These fields are `string` by schema, so whatever comes out of here is what a
+ * student literally sees. Leaving the markers in would print asterisks on the
+ * screen — and 132 of the vault's 218 explanations use them. Emphasis is a
+ * presentational claim about text, and a plain-text field cannot carry one;
+ * the sentence reads correctly without it.
+ */
+function stripEmphasis(value: string): string {
+  return value
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '$1');
+}
+
+/**
+ * Raw text → plain text, with `[[links]]` resolved.
+ *
+ * A quiz prompt and a flashcard face are `string` by schema, not `Inline[]`:
+ * a question is *read*, not walked as a block tree. The links inside still
+ * have to mean something, though — so they resolve exactly as they do in a
+ * lesson (a link to a concept that does not exist is still an error, not a
+ * dead link a student finds), and the graph edge is still recorded. Only the
+ * rendered form flattens, down to the label the author wrote.
+ */
+export function resolveText(value: string, ctx: TransformContext, node?: Positioned): string {
+  const resolved = splitWikiLinks(value, ctx, node ?? {})
+    .map((inline) => (inline.type === 'concept-reference' ? inline.label : inline.value))
+    .join('');
+
+  return stripEmphasis(resolved);
+}
+
+/**
  * Collect the inline content of a directive body.
  *
  * A body with several paragraphs keeps its breaks: the paragraphs are joined
