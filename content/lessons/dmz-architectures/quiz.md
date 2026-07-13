@@ -44,12 +44,6 @@ Correct: B
 
 Explanation: זו הסוגיה המרכזית של הפרק: **ההגנה נקבעת על ידי הטופולוגיה, לא על ידי הרכיבים**. באפשרות B (Screened Subnet) ה-DMZ כלוא בין שתי חומות אש, ולכן אין נתיב מהאינטרנט לרשת הפנימית שאינו חוצה שתי נקודות אכיפה עצמאיות; גם אם החיצונית נפרצה, הפנימית עדיין מגנה על נכסי הליבה. זהו Defense in Depth, והמרצה מסמן ארכיטקטורה זו כ-ENTERPRISE STANDARD (4/5 כוכבי אבטחה). **A שגויה** — Three-Legged הוא Single Point of Failure: אותה חומת אש משמשת גם כשער מהאינטרנט וגם כמחסום בין ה-DMZ לפנים, ולכן "מדיניות אחת" היא חיסרון ולא יתרון (2/5 כוכבים). **C שגויה** — ויתור על ה-DMZ אינו מקטין את משטח התקיפה אלא מבטל את החציצה: השרתים הפומביים והנכסים הפנימיים חולקים אזור אמון אחד, ופריצה אחת מספיקה. **D שגויה** — זו בדיוק ההנחה שהשאלה באה להפריך; רכיבים זהים בחיבור שונה נותנים הגנה שונה. **E שגויה** — עצם קיומו של DMZ אינו מספיק; מה שקובע הוא כמה שכבות אכיפה עומדות בין ה-DMZ לרשת הפנימית.
 
-Difficulty: medium
-
-Concepts: Three-Legged DMZ, Screened Subnet, Defense in Depth
-
-Bloom: evaluate
-
 Learning Objective: להעריך ארכיטקטורות DMZ חלופיות ולקבוע איזו מספקת הגנה חזקה יותר, בהינתן רכיבים זהים.
 
 Misconception: סטודנטים מניחים שרמת ההגנה נגזרת מהציוד שנרכש. בפועל היא נגזרת מהסידור — אותה חומת אש ואותו DMZ, מחוברים אחרת, נותנים 2/5 או 4/5 כוכבי אבטחה.
@@ -87,12 +81,6 @@ E. ייתור הצורך בהצפנת התעבורה בין ה-DMZ לרשת הפ
 Correct: A
 
 Explanation: התשובה היא **Vendor Diversity**, ובלשון המרצה: "Use different vendors for each firewall to reduce single-vulnerability exposure. A zero-day in one vendor won't compromise both layers." המפתח הוא המילה "לוגית" בשאלה: חלוקה לוגית לממשקים בתוך מכשיר אחד אינה הפרדה אמיתית — זהו עדיין קוד אחד וחולשה אחת. שני ספקים שונים הופכים את שתי השכבות לבלתי תלויות. **B שגויה והפוכה** — המרצה רושם במפורש Higher cost בעמודת החסרונות; שתי חומות אש עולות יותר, לא פחות. **C שגויה והפוכה** — המרצה רושם More latency: התעבורה עוברת בשתי נקודות בדיקה בטור, ולכן ההשהיה **עולה**. **D שגויה והפוכה** — המרצה רושם Complex ops; ניהול שתי מדיניות עצמאיות מורכב יותר, לא פשוט יותר. **E שגויה** — חומת אש מסננת תעבורה ואינה מצפינה אותה; קיומן של שתיים אינו מייתר הצפנה, ובארכיטקטורה היברידית המרצה דורש להצפין את כל התעבורה בין הסביבות.
-
-Difficulty: medium
-
-Concepts: Screened Subnet, Three-Legged DMZ
-
-Bloom: understand
 
 Learning Objective: להסביר מהו Vendor Diversity ולזהותו כיתרון המשמעותי של Dual Firewall על פני חומת אש יחידה המחולקת לוגית.
 
@@ -137,12 +125,6 @@ Correct: C
 
 Explanation: ברגע שחומת האש היחידה נפלה, **כל בקרה שמתבצעת בתוכה חסרת ערך** — התוקף שולט בה ויכול לשנות כל כלל. זהו בדיוק ה-Single Point of Failure: "If firewall is compromised, attacker has direct path to all zones. No defense in depth between DMZ and internal network." רק מכשיר אכיפה **עצמאי**, שלא הושפע מהפריצה, יכול לעצור את התוקף בדרכו פנימה — וזהו ההיגיון שמאחורי Screened Subnet. **A ו-B שגויות מאותה סיבה בדיוק, וזו המלכודת המרכזית של השאלה**: שתיהן מציעות להקשיח כללים באותה חומת אש שכבר בשליטת התוקף. הקשחת פורטים או ניתוב במכשיר שנפרץ אינה מגינה מפני מי שמחזיק במכשיר. **D שגויה** — הצפנה מגנה על סודיות התעבורה מפני מאזין, אך אינה מונעת מהתוקף ליזום חיבורים לגיטימיים-לכאורה אל מסדי הנתונים; הוא אינו צריך לקרוא את התעבורה, הוא זה שמייצר אותה. **E שגויה** — IDS מתריע אך אינו חוסם, ומיקומו **בתוך** ה-DMZ אינו מכסה את הגבול שבין ה-DMZ לרשת הפנימית; המרצה מציין את המיקום "בין ה-DMZ לרשת הפנימית" כמיקום הרלוונטי.
 
-Difficulty: hard
-
-Concepts: Three-Legged DMZ, Internal Firewall, Defense in Depth
-
-Bloom: analyze
-
 Learning Objective: לנתח את השלכות ה-SPOF ולזהות שרק בקרה עצמאית מהמכשיר שנפרץ מספקת הגנה בשלב שלאחר הפריצה.
 
 Misconception: סטודנטים מציעים "להגדיר כללים קשוחים יותר" כתשובה כמעט אוטומטית — ולא שמים לב שהכללים הללו נאכפים על ידי המכשיר שכבר אבד. בקרה שהתוקף שולט בה אינה בקרה.
@@ -181,12 +163,6 @@ Correct: A
 
 Explanation: **"No tier skipping allowed"** הוא כלל מפורש ב-TRAFFIC FLOW RULES של המרצה: Internet → Tier 1 only · Tier 1 → Tier 2 (specific ports) · Tier 2 → Tier 3 (DB ports only). Tier 1 הוא השרת שמדבר עם האינטרנט ולכן הסביר ביותר להיפרץ; נתיב ישיר ממנו ל-Tier 3 הופך פריצה אחת לגישה לנתונים, ומרוקן את FW2 ו-FW3 ממשמעות. זוהי גם הפרצה שהמרצה מדרג כ-HIGH RISK ראשונה: "Direct database access from DMZ to internal". **B שגויה** — "קריאה בלבד" אינה מגבלה מול תוקף ששולט בשרת: הוא זה שמנסח את השאילתות, ובלאו הכי דליפת נתונים רפואיים או פיננסיים היא פגיעת סודיות חמורה גם ללא שינוי. **C שגויה** — הצפנה מגנה על התעבורה בדרך, לא על **מי** רשאי ליזום אותה; ערוץ מוצפן מ-Tier 1 ל-Tier 3 הוא עדיין tier skipping. **D שגויה** — IDS מתריע ואינו חוסם, ולכן הוא מקטין את זמן הגילוי אך אינו מונע את הגישה; הוא אינו תחליף לגבול אכיפה. **E שגויה** — העברת מסד הנתונים ל-Tier 2 אינה פותרת אלא מבטלת את ההפרדה: שכבת הנתונים תשב יחד עם שכבת היישום, בניגוד לכל היגיון ה-n-tier.
 
-Difficulty: medium
-
-Concepts: Internal Firewall, DMZ
-
-Bloom: apply
-
 Learning Objective: ליישם את כללי זרימת התעבורה של Three-Tier DMZ ולזהות הפרה של "No tier skipping allowed".
 
 Misconception: סטודנטים מאמינים ש"קריאה בלבד" או "מוצפן" מנטרלים את הסיכון בנתיב עוקף שכבות. שניהם אינם רלוונטיים: הבעיה אינה בתוכן התעבורה אלא בעצם קיומו של נתיב ישיר מהשרת החשוף אל הנתונים.
@@ -224,12 +200,6 @@ Correct: A
 
 Explanation: ההחלטה על Internal Firewall היא **החלטת ניהול סיכונים**, וזהו בדיוק ה-CISO Decision Framework של המרצה: "Match architecture to risk appetite, regulatory requirements, and operational capabilities — **not just budget**." שלושת המרכיבים: היקף הנזק (blast radius) אם ה-DMZ ייפרץ, התקציב (Higher cost), ומורכבות התפעול (Complex ops) — שהמרצה עצמו רושם כשני החסרונות של הארכיטקטורה. **B שגויה** — היא סותרת ישירות את "not just budget"; תקציב הוא אילוץ, לא קריטריון החלטה יחיד. **C שגויה, וזהו בדיוק ההפך מהמטרה** — ריכוז כל שכבות האבטחה על מכשיר אחד הוא הגדרת ה-Single Point of Failure, ו-Internal Firewall קיים כדי לפרק אותו. **D שגויה** — גישה אוטומטית מה-DMZ פנימה היא "outbound any-any" שהמרצה מדרג HIGH RISK; הכלל הוא allow-list בלבד וללא גישה ישירה ל-AD/DB. **E שגויה** — שתי חומות האש אוכפות מדיניות **עצמאית** ואינן מבטלות זו את זו; זהו כל הרעיון של Defense in Depth, ו"אם אחת נכשלת, האחרות ממשיכות להגן".
 
-Difficulty: hard
-
-Concepts: Internal Firewall, Defense in Depth
-
-Bloom: evaluate
-
 Learning Objective: להעריך את השיקולים לפריסת Internal Firewall כהחלטת ניהול סיכונים, ולא כהחלטה תקציבית או טכנית בלבד.
 
 Misconception: סטודנטים בוחרים במסיח התקציבי ה"מפוכח", או חוששים ששכבה שנייה "תפריע" לראשונה. שתי חומות אש עצמאיות אינן מתנגשות — הן מגבות זו את זו, וזו הגדרת Defense in Depth.
@@ -266,12 +236,6 @@ E. Lower throughput · No audit trail · No vendor diversity.
 Correct: A
 
 Explanation: אלה שלושת החסרונות שהמרצה רושם בטבלת ה-CONS של Dual Firewall: עלות גבוהה יותר, תפעול מורכב יותר, והשהיה גדולה יותר (התעבורה חוצה שתי נקודות בדיקה בטור). **B שגויה** — אלה שלושת החסרונות של ה-**Single** Firewall DMZ (Three-Legged), והחלפה ביניהם היא המלכודת המרכזית. **C שגויה** — אלה שלושת ה-**PROS** של Three-Legged, לא חסרונות של אף ארכיטקטורה. **D שגויה** — אלה תצורות שגויות (misconfigurations) שהמרצה מדרג HIGH RISK, ולא חסרונות מובנים של הארכיטקטורה. **E שגויה** — "No audit trail" ו-"No vendor diversity" הם ההפך הגמור מהמצב: Dual Firewall מספק דווקא audit trail בשתי נקודות חנק, ו-Vendor Diversity הוא היתרון המובהק שלו.
-
-Difficulty: easy
-
-Concepts: Screened Subnet, Three-Legged DMZ
-
-Bloom: remember
 
 Learning Objective: לשחזר את טבלאות ה-PROS/CONS של שתי הארכיטקטורות ולא להחליף ביניהן.
 

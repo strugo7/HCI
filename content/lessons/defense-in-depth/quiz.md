@@ -39,12 +39,6 @@ Correct: A
 
 Explanation: זהו לב ההגנה לעומק — המרצה מנסח זאת כ-"Multiple **independent** security controls. If one fails, others continue protecting" (דק 07, שקופית 16). ברגע שרכיב נפרץ, שום הגדרה **בתוכו** אינה רלוונטית: התוקף שולט בו ויכול לשנות אותה. רק בקרה **אחרת ונפרדת** יכולה להמשיך להגן, וזו בדיוק ה-[[Internal Firewall]] וה-IDS/IPS שמאחורי ה-DMZ. **B, C ו-E שגויות מאותה סיבה בדיוק, וזו המלכודת המרכזית של השאלה**: שלושתן מציעות להקשיח את הרכיב שכבר בידי התוקף — כללי ניתוב, כללי פורטים ורמת לוגים כולם מוגדרים בחומת האש עצמה, והתוקף ששולט בה פשוט משנה או מכבה אותם. **D** מבלבלת בין סודיות לבקרת גישה: הצפנת התעבורה מגנה מפני האזנה, אך אינה מונעת מהתוקף לפתוח חיבורים חדשים ולגיטימיים-למראה אל שרתי הליבה — והוא גם ממילא נמצא בנקודת סיום ה-TLS.
 
-Difficulty: medium
-
-Concepts: Defense in Depth, Internal Firewall, IDS
-
-Bloom: analyze
-
 Learning Objective: לזהות ששכבה שנפרצה אינה יכולה להגן על עצמה, ושרק בקרה עצמאית מאחוריה ממשיכה להגן.
 
 Misconception: סטודנטים מנסים "לתקן" את הרכיב שנפרץ, במקום לשאול מה עומד **מאחוריו**.
@@ -82,12 +76,6 @@ Correct: A
 
 Explanation: המרצה מסמן את ה-[[Screened Subnet]] כ-ENTERPRISE STANDARD ומנמק: "Two firewalls provide defense in depth. Even if external firewall is compromised, internal firewall protects core assets", ומוסיף את ה-**Vendor Diversity**: "A zero-day in one vendor won't compromise both layers". זו הדרישה ל**עצמאות** בין הבקרות — שתי חומות אש זהות מאותו ספק נופלות מאותה חולשה, ולכן הן שכבה אחת שנספרה פעמיים. **B ו-C הפוכות מהמציאות**: המרצה מונה במפורש "Higher cost" ו-"Complex ops" כחסרונות ה-Dual Firewall. **D** מערבבת בין שכבת בקרת הגישה לשכבת ההצפנה — חומות אש אינן מחליפות הצפנה, והן מגנות על נכסים שונים לגמרי. **E** ממציאה יכולת: הוספת חומת אש שנייה אינה מוסיפה מנוע זיהוי כלשהו, ואף חומת אש אינה מזהה איומים ללא עדכונים.
 
-Difficulty: medium
-
-Concepts: Defense in Depth, Screened Subnet, Three-Legged DMZ
-
-Bloom: understand
-
 Learning Objective: להסביר מדוע Vendor Diversity הוא ביטוי ישיר של דרישת העצמאות בהגנה לעומק.
 
 Misconception: סטודנטים חושבים ש"עוד חומת אש" = עוד שכבה, גם כשהיא זהה לראשונה. עומק נמדד בעצמאות, לא במספר.
@@ -124,12 +112,6 @@ E. מפני שהפרדה לשלושה אזורים היא הפרדה לוגית 
 Correct: A
 
 Explanation: המרצה כותב במפורש על ה-Three-Legged: "⚠ SINGLE POINT OF FAILURE — If firewall is compromised, attacker has direct path to all zones. **No defense in depth between DMZ and internal network**". שלושה אזורים בתרשים אינם שלוש שכבות במציאות: יש שם **רכיב אכיפה אחד**, ונפילתו פותחת את הכל — כולל [[Lateral Movement]] חופשי אל הפנים. **B שגויה עובדתית**: חומת אש three-legged אכן אוכפת מדיניות נפרדת לכל ממשק — זה בדיוק תפקידה; הבעיה אינה במדיניות אלא בכך שכולן חיות באותו רכיב. **C שגויה**: מיקום שרתי Web ב-DMZ הוא בדיוק השימוש בארכיטקטורה הזו. **D** מציעה בעיית ביצועים, לא בעיית אבטחה — המרצה מונה את ה-SPOF כסיכון **אבטחתי**, לא כצוואר בקבוק. **E** ממציאה כלל שלא קיים: ההבחנה אינה לוגי מול פיזי אלא **תלוי מול עצמאי** — שתי חומות אש נפרדות מספקות עומק גם כשהן מפרידות רשתות לוגיות.
-
-Difficulty: hard
-
-Concepts: Defense in Depth, Three-Legged DMZ, Lateral Movement
-
-Bloom: analyze
 
 Learning Objective: להבחין בין ריבוי אזורים בתרשים לבין ריבוי בקרות עצמאיות בפועל.
 
@@ -171,12 +153,6 @@ Correct: A
 
 Explanation: המרצה מקדיש לכך שורה מפורשת בשקופית ה-Control stack (דק 07, שקופית 24): "Place controls where they can see traffic (**choke points**). Avoid '**bypass paths**' (direct-to-origin, admin side doors, unmanaged peering)". בקרה שאינה רואה את התעבורה אינה בקרה — ותוקף שפונה ישירות ל-origin פשוט אינו נמצא על הנתיב שעליו יושבות כל החמש. **B שגויה**: לא רק ה-CDN נעקף — כל חמש הבקרות יושבות **מאחוריו** על אותו נתיב, ולכן כולן נעקפות יחד. **C שגויה**: ה-WAF וה-IDS אכן בודקים תוכן, אך רק תוכן ש**עובר דרכם**; תעבורה שלא הגיעה אליהם אינה נבדקת. **D** מזלזלת בממצא: הכתובת אינה הרשאה, אך היא **מפתח לעקיפת כל מנגנוני האכיפה**. **E** היא המלכודת המרכזית — היא מדקלמת את העיקרון בלי לבדוק את התנאי שלו: חמש שכבות **בטור על נתיב אחד** אינן חמש שכבות כשקיים נתיב שני שאין בו אף אחת. עומק נמדד לפי הנתיב החלש ביותר.
 
-Difficulty: hard
-
-Concepts: Defense in Depth, Web Application Firewall (WAF)
-
-Bloom: evaluate
-
 Learning Objective: להעריך ארכיטקטורת שכבות לפי הנתיב החלש ביותר, ולזהות נתיבי עקיפה.
 
 Misconception: סטודנטים סופרים שכבות על התרשים הרשמי ומתעלמים מהנתיב שאינו מופיע בו.
@@ -214,12 +190,6 @@ Correct: A
 
 Explanation: ה-IDS ביצע בדיוק את תפקידו — הוא זיהה והתריע. מה שנשבר הוא ה**תהליך** שמאחוריו: סף ההסלמה וניתוב ההתראות. זו ההדגמה המדויקת לניסוח של המרצה, "Defense requires a layered approach: technology, **training, and policy**" (דק 02, שקופית 26), ולכך ש-**Monitoring & Response** היא קטגוריה עצמאית בגלגל ה-Defense in Depth. **B שגויה עובדתית**: הזיהוי הצליח, ההתראה נוצרה — החלפת המוצר לא תשנה דבר. **C** מציעה פתרון הפוך: זיהוי מבוסס חתימות ([[Knowledge-based Detection]]) הוא בדיוק מה ש**עבד** כאן, וכיבויו יפגע בדיוק (accuracy) בלי לגעת בבעיה. **D** מייחסת ל-[[Firewall]] יכולת שאין לו — חומת אש היא רכיב **מדיניות** ברמת שכבה 3, היא אינה "מזהה נוזקות במעגל שני", וממילא הבעיה לא הייתה החמצה. **E** קופצת ל"עוד מוצרים" — בדיוק התפיסה שהיחידה הזו שוללת: הבעיה אינה מחסור בשכבות אלא שכבה קיימת שהפלט שלה לא הגיע לאיש.
 
-Difficulty: medium
-
-Concepts: Defense in Depth, IDS, False Positive
-
-Bloom: evaluate
-
 Learning Objective: לזהות שהגנה לעומק כוללת תהליכי ניטור ותגובה, ולא רק בקרות טכנולוגיות.
 
 Misconception: כל כישלון אבטחה מיוחס אוטומטית לכלי שנכשל, ולא לתהליך שסביבו. כאן הכלי עבד — התהליך לא.
@@ -255,12 +225,6 @@ E. להשקיע את מלוא התקציב במערכת IDS מרכזית, שתנ
 Correct: A
 
 Explanation: הדרישה נוקבת בשתי שכבות שונות — גבול הרשת ורמת ה-Host — ולכן דורשת שני **סוגי** בקרה. המרצה מבחין ביניהם במפורש (דק 05, שקופיות 13-14): Host-based FW = "Software firewall installed on a computer. Protects **that computer only**"; Network-based FW = "Combination of hardware & software. Protects **an entire network**". שקופית ה-Firewall Breaches (שקופית 16) מדגימה בדיוק למה צריך את שניהם: הנוזקה עוברת דרך ה-Network firewall — וה-Host-based firewalls בקצוות הן שעדיין חוסמות חלק מהתחנות. **B שגויה**: חומת אש רשתית, חזקה ככל שתהיה, מגנה על הגבול — היא אינה רואה תעבורה שכבר נמצאת בתוך הרשת (Lateral Movement), ולכן אינה מכסה את רמת השרתים. **C** מרבה רכיבים **מאותו סוג בדיוק** — זו הרחבה לרוחב, לא עומק, והיא עדיין מחמיצה את שכבת ה-Host. **D** נופלת בכיוון ההפוך: היא מוותרת לגמרי על הגבול, ומחייבת כל שרת להתגונן בעצמו מול האינטרנט הפתוח. **E** מחליפה בקרת **חסימה** בבקרת **גילוי** — [[IDS]] מתריע בלבד ואינו חוסם, ולכן אינו יכול להחליף חומת אש.
-
-Difficulty: medium
-
-Concepts: Defense in Depth, Firewall
-
-Bloom: apply
 
 Learning Objective: ליישם את עקרון השכבות בבחירת בקרות הפועלות ברמות שונות (רשת מול Host).
 
