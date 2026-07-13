@@ -10,6 +10,7 @@ export const ROUTES = {
   lesson: '/lessons/:lessonId',
   glossary: '/glossary',
   concept: '/glossary/:slug',
+  flashcards: '/flashcards',
   practice: '/practice',
   exams: '/exams',
   graph: '/graph',

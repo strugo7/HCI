@@ -43,6 +43,25 @@
     --learn-tip: 199 89% 48%;
 
     --radius: 0.75rem;
+
+    /*
+     * shadcn's sidebar requires its own token names. It ships a zinc palette
+     * that has nothing to do with our navy, and a ring in the same hue as
+     * --learn-definition — a hue reserved for callouts alone.
+     *
+     * So each sidebar token is an alias of one we already own. `var()` resolves
+     * at computed-value time, so .dark redefining --card also redefines
+     * --sidebar-background: the sidebar tracks the theme for free, and the two
+     * palettes cannot drift apart because there is only one.
+     */
+    --sidebar-background: var(--card);
+    --sidebar-foreground: var(--card-foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
   }
 
   .dark {
@@ -81,6 +100,9 @@
     --learn-important: 38 92% 60%;
     --learn-warning: 0 74% 68%;
     --learn-tip: 199 79% 58%;
+
+    /* No --sidebar-* here on purpose: the :root aliases already follow the
+       tokens this block redefines. */
   }
 
   * {

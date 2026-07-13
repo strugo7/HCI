@@ -65,6 +65,19 @@ export default {
           warning: 'hsl(var(--learn-warning))',
           tip: 'hsl(var(--learn-tip))',
         },
+        // Required by shadcn's sidebar. Every token aliases one we already own
+        // (see globals.css) — the sidebar is a surface in our navy palette, not
+        // a second palette living next to it.
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

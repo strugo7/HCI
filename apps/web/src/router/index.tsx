@@ -12,6 +12,7 @@ const LessonsPage = lazy(() => import('@/pages/lessons'));
 const LessonPage = lazy(() => import('@/pages/lesson'));
 const GlossaryPage = lazy(() => import('@/pages/glossary'));
 const ConceptPage = lazy(() => import('@/pages/concept'));
+const FlashcardsPage = lazy(() => import('@/pages/flashcards'));
 const PracticePage = lazy(() => import('@/pages/practice'));
 const ExamsPage = lazy(() => import('@/pages/exams'));
 const GraphPage = lazy(() => import('@/pages/graph'));
@@ -30,6 +31,7 @@ const routes: RouteObject[] = [
       { path: ROUTES.lesson, element: <LessonPage /> },
       { path: ROUTES.glossary, element: <GlossaryPage /> },
       { path: ROUTES.concept, element: <ConceptPage /> },
+      { path: ROUTES.flashcards, element: <FlashcardsPage /> },
       { path: ROUTES.practice, element: <PracticePage /> },
       { path: ROUTES.exams, element: <ExamsPage /> },
       { path: ROUTES.graph, element: <GraphPage /> },
