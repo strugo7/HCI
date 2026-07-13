@@ -34,12 +34,36 @@ export interface ConceptMeta {
   readonly appearsIn: readonly string[];
 }
 
+/** A unit of the course — one of the lecturer's decks. From `curriculum.yaml`. */
+export interface UnitMeta {
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly source: string;
+  /** Share of the exam, in percent. 0 means the topic was never examined. */
+  readonly weight: number;
+  /** Lesson ids, in teaching order — not in lesson-number order. */
+  readonly lessons: readonly string[];
+}
+
+export interface CourseMeta {
+  readonly code: string;
+  readonly title: string;
+}
+
 interface ContentIndex {
+  readonly course: CourseMeta;
+  readonly units: readonly UnitMeta[];
   readonly lessons: readonly LessonMeta[];
   readonly concepts: readonly ConceptMeta[];
 }
 
 const contentIndex = indexJson as ContentIndex;
+
+/** The course itself — name and code, straight from `curriculum.yaml`. */
+export function course(): CourseMeta {
+  return contentIndex.course;
+}
 
 /** Lesson metadata, ordered by lesson number. Cheap — no bodies attached. */
 export function lessonIndex(): readonly LessonMeta[] {
@@ -48,6 +72,45 @@ export function lessonIndex(): readonly LessonMeta[] {
 
 export function conceptIndex(): readonly ConceptMeta[] {
   return contentIndex.concepts;
+}
+
+/** The nine units, in the curriculum's pedagogical order. */
+export function unitIndex(): readonly UnitMeta[] {
+  return contentIndex.units;
+}
+
+export function unitById(id: string | undefined): UnitMeta | null {
+  if (id === undefined) return null;
+  return contentIndex.units.find((unit) => unit.id === id) ?? null;
+}
+
+const lessonsById = new Map(contentIndex.lessons.map((lesson) => [lesson.id, lesson]));
+
+/**
+ * The unit's lessons, in the order the curriculum teaches them.
+ *
+ * Deliberately not sorted by `lessonNumber`: the curriculum's sequence is the
+ * pedagogical one, and it is the only order a unit page may present.
+ */
+export function lessonsInUnit(unit: UnitMeta): readonly LessonMeta[] {
+  return unit.lessons
+    .map((id) => lessonsById.get(id))
+    .filter((lesson): lesson is LessonMeta => lesson !== undefined);
+}
+
+/**
+ * Which unit a lesson belongs to.
+ *
+ * This is what lets a lesson offer a way back to the unit the student came
+ * from — without the lesson page having to be told where it was opened from.
+ */
+const unitByLessonId = new Map<string, UnitMeta>(
+  contentIndex.units.flatMap((unit) => unit.lessons.map((id) => [id, unit] as const)),
+);
+
+export function unitOfLesson(lessonId: string | undefined): UnitMeta | null {
+  if (lessonId === undefined) return null;
+  return unitByLessonId.get(lessonId) ?? null;
 }
 
 /**

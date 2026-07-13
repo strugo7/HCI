@@ -6,6 +6,7 @@
  */
 export const ROUTES = {
   dashboard: '/',
+  unit: '/units/:unitId',
   lessons: '/lessons',
   lesson: '/lessons/:lessonId',
   glossary: '/glossary',
@@ -20,6 +21,10 @@ export const ROUTES = {
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
+
+export function unitPath(unitId: string): string {
+  return ROUTES.unit.replace(':unitId', unitId);
+}
 
 export function lessonPath(lessonId: string): string {
   return ROUTES.lesson.replace(':lessonId', lessonId);

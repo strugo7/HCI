@@ -11,6 +11,8 @@ import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } fro
 
 import type { Lesson } from '@cyberatlas/core';
 
+import { unitOfLesson } from '@/shared/content/content';
+
 import { LessonHero } from './lesson-hero';
 import { LessonNotes } from './lesson-notes';
 import { LessonProgressBar } from './lesson-progress-bar';
@@ -91,7 +93,7 @@ export function LessonPageLayout({ lesson }: LessonPageLayoutProps): ReactNode {
     <>
       <LessonProgressBar />
 
-      <LessonHero frontmatter={frontmatter} onStart={handleStart} />
+      <LessonHero frontmatter={frontmatter} unit={unitOfLesson(lesson.id)} onStart={handleStart} />
 
       {/* 3-column layout */}
       <div className="flex gap-8">

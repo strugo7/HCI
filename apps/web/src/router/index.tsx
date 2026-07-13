@@ -8,6 +8,7 @@ import { ROUTES } from './routes';
 // Route-level code splitting: a student opening one lesson should not download
 // the graph view or the exam engine.
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
+const UnitPage = lazy(() => import('@/pages/unit'));
 const LessonsPage = lazy(() => import('@/pages/lessons'));
 const LessonPage = lazy(() => import('@/pages/lesson'));
 const GlossaryPage = lazy(() => import('@/pages/glossary'));
@@ -27,6 +28,7 @@ const routes: RouteObject[] = [
     element: <RootLayout />,
     children: [
       { index: true, element: <DashboardPage /> },
+      { path: ROUTES.unit, element: <UnitPage /> },
       { path: ROUTES.lessons, element: <LessonsPage /> },
       { path: ROUTES.lesson, element: <LessonPage /> },
       { path: ROUTES.glossary, element: <GlossaryPage /> },
@@ -45,4 +47,4 @@ const routes: RouteObject[] = [
 
 export const router = createBrowserRouter(routes);
 
-export { ROUTES, lessonPath, conceptPath } from './routes';
+export { ROUTES, unitPath, lessonPath, conceptPath } from './routes';

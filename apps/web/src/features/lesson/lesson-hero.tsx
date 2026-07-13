@@ -10,11 +10,14 @@ import { Link } from 'react-router-dom';
 
 import type { LessonFrontmatter } from '@cyberatlas/core';
 
-import { ROUTES } from '@/router/routes';
+import { ROUTES, unitPath } from '@/router/routes';
 import { Button } from '@/shared/components/ui/button';
+import type { UnitMeta } from '@/shared/content/content';
 
 interface LessonHeroProps {
   readonly frontmatter: LessonFrontmatter;
+  /** The unit this lesson belongs to — the student's way back. */
+  readonly unit: UnitMeta | null;
   readonly onStart?: (() => void) | undefined;
 }
 
@@ -24,25 +27,39 @@ const DIFFICULTY_LABELS: Record<string, string> = {
   hard: 'מתקדם',
 };
 
-export function LessonHero({ frontmatter, onStart }: LessonHeroProps): ReactNode {
+export function LessonHero({ frontmatter, unit, onStart }: LessonHeroProps): ReactNode {
   const { description } = frontmatter;
 
   return (
     <header className="mb-10">
-      {/* Breadcrumbs */}
-      <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground" aria-label="Breadcrumbs">
-        <Link to={ROUTES.lessons} className="transition-colors hover:text-foreground">
-          שיעורים
+      {/*
+        The trail is the way back. It walks the curriculum — topics → unit →
+        this lesson — so returning from a lesson lands on the unit the student
+        opened it from, not on the flat lesson list.
+
+        ChevronLeft is the separator: in RTL, left is "deeper".
+      */}
+      <nav
+        className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground"
+        aria-label="מסלול ניווט"
+      >
+        <Link to={ROUTES.dashboard} className="transition-colors hover:text-foreground">
+          כל הנושאים
         </Link>
-        <ChevronLeft className="size-3.5" aria-hidden />
-        {frontmatter.category ? (
+        <ChevronLeft className="size-3.5 shrink-0" aria-hidden />
+        {unit ? (
           <>
-            <span>{frontmatter.category}</span>
-            <ChevronLeft className="size-3.5" aria-hidden />
+            <Link
+              to={unitPath(unit.id)}
+              className="transition-colors hover:text-foreground"
+            >
+              {unit.title}
+            </Link>
+            <ChevronLeft className="size-3.5 shrink-0" aria-hidden />
           </>
         ) : null}
-        <span className="font-medium text-foreground">
-          שיעור {frontmatter.lessonNumber ?? ''}
+        <span className="font-medium text-foreground" aria-current="page">
+          {frontmatter.title}
         </span>
       </nav>
 

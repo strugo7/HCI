@@ -16,6 +16,7 @@ import path from 'node:path';
 import { formatDiagnostic, type Block, type Concept, type Inline, type Lesson } from '@cyberatlas/core';
 
 import { compileVault, CONTENT_DIR, diagnosticsFor, ROOT } from './lib/compile.js';
+import { readCurriculum } from './lib/curriculum.js';
 
 const OUT_DIR = path.join(ROOT, 'apps/web/src/generated/content');
 
@@ -85,6 +86,15 @@ function embeddedAssets(lessons: readonly Lesson[], concepts: readonly Concept[]
 async function main(): Promise<void> {
   const { lessons, concepts, diagnostics, failed } = await compileVault();
 
+  // The curriculum is checked against what actually compiled, so a unit can
+  // never point at a lesson that does not exist.
+  const {
+    course,
+    units,
+    diagnostics: curriculumDiagnostics,
+  } = await readCurriculum(lessons.map((lesson) => lesson.id));
+  diagnostics.push(...curriculumDiagnostics);
+
   for (const d of diagnostics) console.error(formatDiagnostic(d));
 
   /* ---------------------------------------------------------------- *
@@ -94,7 +104,15 @@ async function main(): Promise<void> {
     (d) => d.severity === 'error',
   );
 
-  if (blocking.length > 0 || MUST_BUILD.some((id) => failed.includes(id))) {
+  // A curriculum error is always fatal: it would ship a unit page with a row
+  // that navigates nowhere.
+  const curriculumErrors = curriculumDiagnostics.filter((d) => d.severity === 'error');
+
+  if (
+    blocking.length > 0 ||
+    curriculumErrors.length > 0 ||
+    MUST_BUILD.some((id) => failed.includes(id))
+  ) {
     console.error(`\ncontent: build failed — ${MUST_BUILD.join(', ')} must parse cleanly`);
     process.exit(1);
   }
@@ -128,6 +146,8 @@ async function main(): Promise<void> {
   await writeFile(
     path.join(OUT_DIR, 'index.json'),
     JSON.stringify({
+      course,
+      units,
       lessons: lessons
         .map(toMeta)
         .sort((a, b) => (a.lessonNumber ?? 999) - (b.lessonNumber ?? 999)),

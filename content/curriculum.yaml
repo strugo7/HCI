@@ -90,6 +90,7 @@ units:
   # 4 — הטקסונומיה בפעולה. תקיפה אמיתית מקצה לקצה, ומסגרת לתאר אותה.
   - id: applied-attack
     title: תקיפה יישומית — MITRE ATT&CK וסימולציית Macro
+    description: הטקסונומיה בפעולה — סימולציית תקיפת Macro מקצה לקצה, והערכת מוצרי הגנה במסגרת MITRE.
     source: וידאו (תמלולי הרצאה)
     weight: 0.0
     status: ready
@@ -106,6 +107,7 @@ units:
   # 5 — כאן מתהפך הצד. מודל ההגנה קודם, ואז המימושים לפי שכבה.
   - id: defense-principles
     title: עקרונות ההגנה — ממודל הטירה עד חומת אש
+    description: כאן מתהפך הצד — הגנה לעומק, חומת אש וטבלאות ACL בשכבה 3, ו-WAF ו-Proxy בשכבה 7.
     source: 05-FW.pdf · 07-DMZ.pdf (הגנה לעומק, אבטחה היקפית)
     weight: 23.3                # Defense in Depth ~15 + Firewalls 5.0 + WAF/DPI 3.3
     status: ready
@@ -131,6 +133,7 @@ units:
   # 6 — ההגנה שאינה ברשת אלא בזהות. "מי אתה" ו"מה מותר לך".
   - id: identity-access
     title: ניהול זהויות והרשאות
+    description: ההגנה שאינה ברשת אלא בזהות — חמישה גורמי אימות, MFA, ומודלי הרשאות RBAC, ABAC, MAC ו-DAC.
     source: 08-summary-unified.pdf   # חלקי — ציר האימות בלבד; השאר ממקורות חיצוניים רשמיים
     weight: 13.4
     note: >
@@ -148,6 +151,7 @@ units:
   # 7 — כשהחסימה לא הספיקה: זיהוי, התרעה, וחסימה אקטיבית.
   - id: ids-ips
     title: IDS, IPS ו-NGFW
+    description: כשהחסימה לא הספיקה — זיהוי, התרעה וחסימה אקטיבית, ומחיר ההתראות השגויות.
     source: 06-IDS.pdf
     weight: 16.7
     status: ready
@@ -164,6 +168,7 @@ units:
   # 8 — השיא: מרכיבים את כל הכלים לארכיטקטורה אחת.
   - id: perimeter-dmz
     title: אבטחה היקפית ו-DMZ
+    description: השיא, שמרכיב את כל הכלים לארכיטקטורה אחת — אזורי אמון, מיקום שירותים וארכיטקטורות DMZ.
     source: 07-DMZ.pdf
     weight: 25.0
     status: ready
@@ -180,6 +185,7 @@ units:
   # 9 — אחרי שהתקיפה חדרה: מה עושים. שבוע 11 בקורס. אפס שאלות מבחן.
   - id: incident-response-unit
     title: תגובה לאירועי אבטחה
+    description: מה עושים אחרי שההתראה נדלקה — מחזור NIST בן ארבעת השלבים, PICERL, ו-SIEM/SOC/EDR.
     source: מקור חיצוני רשמי (NIST SP 800-61, SANS PICERL) — אין דק מקומי
     weight: 0.0
     status: ready
