@@ -20,11 +20,14 @@ import {
 
 import { DIAGNOSTIC_CODES, type Concept, type Diagnostic, type Lesson } from '@cyberatlas/core';
 
+import type { UnitMeta } from './curriculum.js';
+
 export function compileGraph(
   lessons: readonly Lesson[],
   concepts: readonly Concept[],
+  units: readonly UnitMeta[],
 ): { graph: KnowledgeGraph; diagnostics: Diagnostic[] } {
-  const graph = buildGraph(lessons, concepts);
+  const graph = buildGraph(lessons, concepts, units);
   const diagnostics: Diagnostic[] = [];
 
   const lessonIds = new Set(lessons.map((lesson) => lesson.id));

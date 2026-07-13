@@ -125,7 +125,7 @@ async function main(): Promise<void> {
 
   // The graph is derived from what compiled, for the same reason: it may only
   // contain concepts and lessons that actually exist.
-  const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts);
+  const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts, units);
   diagnostics.push(...graphDiagnostics);
 
   for (const d of diagnostics) console.error(formatDiagnostic(d));

@@ -33,6 +33,14 @@ export const GraphNodeSchema = z.object({
   label: z.string().min(1),
   /** How many edges touch this node — drives visual weight in the graph view. */
   degree: z.number().int().nonnegative().default(0),
+  /**
+   * The curriculum unit this node belongs to, or null when nothing places it.
+   *
+   * The graph itself has no opinion about topics: `[[links]]` and `related:`
+   * say what connects to what, never what any of it is *about*. The curriculum
+   * does say that, so the topic is imported from there and attached here.
+   */
+  unit: z.string().nullable().default(null),
 });
 export type GraphNode = z.infer<typeof GraphNodeSchema>;
 
@@ -70,9 +78,34 @@ export const GraphEdgeSchema = z.object({
 });
 export type GraphEdge = z.infer<typeof GraphEdgeSchema>;
 
+/**
+ * Just enough of a curriculum unit to place a node in it.
+ *
+ * A structural type rather than an import: this package stays IO-free and knows
+ * nothing about `curriculum.yaml`. The build reads the file and hands the result
+ * in, so `scripts/lib/curriculum.ts` keeps owning `UnitMeta`.
+ */
+export interface GraphUnit {
+  readonly id: string;
+  readonly title: string;
+  /** Lesson ids, in teaching order. */
+  readonly lessons: readonly string[];
+}
+
+export const GraphUnitRefSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+});
+export type GraphUnitRef = z.infer<typeof GraphUnitRefSchema>;
+
 export const KnowledgeGraphSchema = z.object({
   nodes: z.array(GraphNodeSchema),
   edges: z.array(GraphEdgeSchema),
+  /**
+   * The curriculum's units, in curriculum order. The graph view builds its
+   * filter chips straight from this and never loads the curriculum itself.
+   */
+  units: z.array(GraphUnitRefSchema).default([]),
 });
 export type KnowledgeGraph = z.infer<typeof KnowledgeGraphSchema>;
 
@@ -101,6 +134,81 @@ function relatedEdge(a: string, b: string): GraphEdge {
 }
 
 /**
+ * Place every node in a curriculum unit.
+ *
+ * A lesson is placed by the unit that lists it — the curriculum says so
+ * outright. A concept has no such statement anywhere, so it is placed by the
+ * lessons that actually *teach* it: the unit holding the most lessons that
+ * reference the concept wins. Relatedness does not get a vote. A concept is
+ * about what it is taught alongside, not about what an author once said it
+ * resembles.
+ *
+ * A tie breaks by curriculum order. It has to break by something *stated*, or
+ * the same vault would place a concept differently depending on the order the
+ * files happened to come off the disk, and the build would stop being
+ * reproducible.
+ *
+ * Runs after edges are dropped, for the same reason `degree` does: a concept
+ * belongs to the unit that reaches it, not to the unit that meant to.
+ */
+function assignUnits(
+  nodes: Map<string, GraphNode>,
+  edges: Map<string, GraphEdge>,
+  units: readonly GraphUnit[],
+): void {
+  const rank = new Map(units.map((unit, i) => [unit.id, i]));
+
+  const unitOf = new Map<string, string>();
+  for (const unit of units) {
+    for (const lessonId of unit.lessons) unitOf.set(lessonNodeId(lessonId), unit.id);
+  }
+
+  for (const node of nodes.values()) {
+    if (node.kind === 'lesson') node.unit = unitOf.get(node.id) ?? null;
+  }
+
+  // One vote per lesson that teaches the concept, tallied by that lesson's unit.
+  const votes = new Map<string, Map<string, number>>();
+
+  for (const edge of edges.values()) {
+    if (edge.kind !== 'references') continue;
+
+    const unit = unitOf.get(edge.source);
+    if (unit === undefined) continue;
+
+    const tally = votes.get(edge.target) ?? new Map<string, number>();
+    tally.set(unit, (tally.get(unit) ?? 0) + 1);
+    votes.set(edge.target, tally);
+  }
+
+  for (const node of nodes.values()) {
+    if (node.kind !== 'concept') continue;
+
+    const tally = votes.get(node.id);
+    if (tally === undefined) {
+      node.unit = null;
+      continue;
+    }
+
+    let best: string | null = null;
+    let bestVotes = 0;
+    let bestRank = Number.POSITIVE_INFINITY;
+
+    for (const [unit, count] of tally) {
+      const unitRank = rank.get(unit) ?? Number.POSITIVE_INFINITY;
+      const wins = count > bestVotes || (count === bestVotes && unitRank < bestRank);
+      if (!wins) continue;
+
+      best = unit;
+      bestVotes = count;
+      bestRank = unitRank;
+    }
+
+    node.unit = best;
+  }
+}
+
+/**
  * Build the whole graph from parsed content.
  *
  * Only what the vault holds becomes a node: an edge pointing at a concept or a
@@ -110,6 +218,7 @@ function relatedEdge(a: string, b: string): GraphEdge {
 export function buildGraph(
   lessons: readonly Lesson[],
   concepts: readonly Concept[],
+  units: readonly GraphUnit[] = [],
 ): KnowledgeGraph {
   const nodes = new Map<string, GraphNode>();
 
@@ -121,6 +230,7 @@ export function buildGraph(
       ref: slug,
       label: title,
       degree: 0,
+      unit: null,
     });
   }
 
@@ -131,6 +241,7 @@ export function buildGraph(
       ref: lesson.id,
       label: lesson.frontmatter.title,
       degree: 0,
+      unit: null,
     });
   }
 
@@ -174,10 +285,13 @@ export function buildGraph(
     if (target) target.degree += 1;
   }
 
+  assignUnits(nodes, edges, units);
+
   // Sorted, so the same vault produces a byte-identical graph on every build.
   return {
     nodes: [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id)),
     edges: [...edges.values()].sort((a, b) => edgeKey(a).localeCompare(edgeKey(b))),
+    units: units.map((unit) => ({ id: unit.id, title: unit.title })),
   };
 }
 

@@ -11,14 +11,23 @@
 import { formatDiagnostic, hasErrors } from '@cyberatlas/core';
 
 import { compileVault } from './lib/compile.js';
+import { readCurriculum } from './lib/curriculum.js';
 import { compileGraph } from './lib/graph.js';
 
 async function main(): Promise<void> {
   const { lessons, concepts, diagnostics, failed } = await compileVault();
 
+  // Graph nodes are placed in the curriculum's units, so the gate has to read
+  // the curriculum too — otherwise CI would be checking a graph in which
+  // nothing is placed, which is not the graph the app ships.
+  const { units, diagnostics: curriculumDiagnostics } = await readCurriculum(
+    lessons.map((lesson) => lesson.id),
+  );
+  diagnostics.push(...curriculumDiagnostics);
+
   // The gate checks the graph too, or a prerequisite cycle would only be
   // discovered by the build — which is to say, after review.
-  const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts);
+  const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts, units);
   diagnostics.push(...graphDiagnostics);
 
   for (const d of diagnostics) console.error(formatDiagnostic(d));
