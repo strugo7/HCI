@@ -18,6 +18,7 @@ const DeckPage = lazy(() => import('@/pages/deck'));
 const PracticePage = lazy(() => import('@/pages/practice'));
 const QuizPage = lazy(() => import('@/pages/quiz'));
 const ExamsPage = lazy(() => import('@/pages/exams'));
+const ExamPage = lazy(() => import('@/pages/exam'));
 const GraphPage = lazy(() => import('@/pages/graph'));
 const ProgressPage = lazy(() => import('@/pages/progress'));
 const SearchPage = lazy(() => import('@/pages/search'));
@@ -40,6 +41,7 @@ const routes: RouteObject[] = [
       { path: ROUTES.practice, element: <PracticePage /> },
       { path: ROUTES.quiz, element: <QuizPage /> },
       { path: ROUTES.exams, element: <ExamsPage /> },
+      { path: ROUTES.exam, element: <ExamPage /> },
       { path: ROUTES.graph, element: <GraphPage /> },
       { path: ROUTES.progress, element: <ProgressPage /> },
       { path: ROUTES.search, element: <SearchPage /> },
@@ -51,4 +53,4 @@ const routes: RouteObject[] = [
 
 export const router = createBrowserRouter(routes);
 
-export { ROUTES, unitPath, lessonPath, conceptPath, quizPath, deckPath } from './routes';
+export { ROUTES, unitPath, lessonPath, conceptPath, quizPath, examPath, deckPath } from './routes';

@@ -16,6 +16,7 @@ export const ROUTES = {
   practice: '/practice',
   quiz: '/quiz/:quizId',
   exams: '/exams',
+  exam: '/exams/:examId',
   graph: '/graph',
   progress: '/progress',
   search: '/search',
@@ -38,6 +39,10 @@ export function conceptPath(slug: string): string {
 
 export function quizPath(quizId: string): string {
   return ROUTES.quiz.replace(':quizId', quizId);
+}
+
+export function examPath(examId: string): string {
+  return ROUTES.exam.replace(':examId', examId);
 }
 
 export function deckPath(deckId: string): string {

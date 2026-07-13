@@ -11,10 +11,11 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import type { Concept, Diagnostic, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
+import type { Concept, Diagnostic, Exam, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
 import {
   conceptKeys,
   parseConcept,
+  parseExam,
   parseFlashcards,
   parseLesson,
   parseQuiz,
@@ -22,11 +23,14 @@ import {
   type LessonBundle,
 } from '@cyberatlas/markdown-parser';
 
+import { lintExams } from './exam-lint.js';
+
 export const ROOT = path.resolve(import.meta.dirname, '../..');
 export const CONTENT_DIR = path.join(ROOT, 'content');
 
 const LESSONS_DIR = path.join(CONTENT_DIR, 'lessons');
 const CONCEPTS_DIR = path.join(CONTENT_DIR, 'concepts');
+const EXAMS_DIR = path.join(CONTENT_DIR, 'exams');
 /** Directories an `![[embed]]` may name a file from, in search order. */
 const ASSET_DIRS = ['media', 'assets'] as const;
 
@@ -50,6 +54,8 @@ export interface CompiledVault {
   readonly lessons: Lesson[];
   readonly concepts: Concept[];
   readonly quizzes: Quiz[];
+  /** Unit-level summative exams, from `content/exams/`. */
+  readonly exams: Exam[];
   readonly decks: FlashcardDeck[];
   readonly diagnostics: Diagnostic[];
   /** Lesson directories that produced no Lesson at all. */
@@ -241,6 +247,33 @@ export async function compileVault(): Promise<CompiledVault> {
   }
 
   /* ---------------------------------------------------------------- *
+   * Pass 4 — unit exams. Same DSL as a quiz, owned by a unit, and     *
+   * held to the exam lint: shuffle-safe explanations, no longest-     *
+   * answer tell, integrative coverage.                                 *
+   * ---------------------------------------------------------------- */
+  const exams: Exam[] = [];
+
+  let examFiles: string[] = [];
+  try {
+    examFiles = await listMarkdown(EXAMS_DIR);
+  } catch {
+    // A vault without exams is incomplete, not broken.
+  }
+
+  for (const name of examFiles) {
+    const source = await readFile(path.join(EXAMS_DIR, name), 'utf8');
+    const result = parseExam(source, {
+      concepts: index,
+      assets,
+      file: `content/exams/${name}`,
+    });
+    diagnostics.push(...result.diagnostics);
+    if (result.data) exams.push(result.data);
+  }
+
+  diagnostics.push(...lintExams(exams, lessons));
+
+  /* ---------------------------------------------------------------- *
    * Back-references. Derived, never authored.                         *
    * ---------------------------------------------------------------- */
   const appearsIn = new Map<string, string[]>();
@@ -257,7 +290,7 @@ export async function compileVault(): Promise<CompiledVault> {
     appearsIn: (appearsIn.get(concept.frontmatter.slug) ?? []).sort(),
   }));
 
-  return { lessons, concepts: withBackrefs, quizzes, decks, diagnostics, failed, assets };
+  return { lessons, concepts: withBackrefs, quizzes, exams, decks, diagnostics, failed, assets };
 }
 
 /** `exactOptionalPropertyTypes` forbids assigning `undefined` to `summary?`. */

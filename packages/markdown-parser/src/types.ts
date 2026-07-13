@@ -1,4 +1,4 @@
-import type { Concept, Lesson, ParseResult, Quiz, Flashcard } from '@cyberatlas/core';
+import type { Concept, Exam, Lesson, ParseResult, Quiz, Flashcard } from '@cyberatlas/core';
 
 /**
  * The raw files that make up one lesson directory, read off disk.
@@ -36,4 +36,5 @@ export interface ParseContext {
 export type LessonParseResult = ParseResult<Lesson>;
 export type ConceptParseResult = ParseResult<Concept>;
 export type QuizParseResult = ParseResult<Quiz>;
+export type ExamParseResult = ParseResult<Exam>;
 export type FlashcardsParseResult = ParseResult<Flashcard[]>;

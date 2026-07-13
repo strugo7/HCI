@@ -92,6 +92,21 @@ firewall-topology
 
 ---
 
+# Image (Optional)
+
+Embed an image anywhere in the question text or the scenario:
+
+```md
+![[dmz-topology.png]]
+```
+
+The file must exist in `content/media/` or `content/assets/`. The embed is
+stripped from the text and rendered below the scenario. A question that
+describes a drawing must embed it — an embed of a missing file fails the
+build.
+
+---
+
 # Answers
 
 ```md

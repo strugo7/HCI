@@ -19,5 +19,5 @@ export { parseConcept, conceptKeys, readConceptFrontmatter } from './concept.js'
  * A lesson carries only a *reference* to them, never their content — which is
  * why a lesson page renders fully whether or not either was parsed.
  */
-export { parseQuiz } from './quiz.js';
+export { parseQuiz, parseExam } from './quiz.js';
 export { parseFlashcards } from './flashcards.js';

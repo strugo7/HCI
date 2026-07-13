@@ -6,15 +6,24 @@
  */
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import type { Quiz } from '@cyberatlas/core';
+import type { Exam, Quiz } from '@cyberatlas/core';
 
-import { loadDeck, loadQuiz, type FlashcardDeck } from '@/shared/content/content';
+import { loadDeck, loadExam, loadQuiz, type FlashcardDeck } from '@/shared/content/content';
 
 export function useQuiz(quizId: string | undefined): UseQueryResult<Quiz | null> {
   return useQuery({
     queryKey: ['quiz', quizId],
     queryFn: () => loadQuiz(quizId ?? ''),
     enabled: quizId !== undefined,
+    staleTime: Infinity,
+  });
+}
+
+export function useExam(examId: string | undefined): UseQueryResult<Exam | null> {
+  return useQuery({
+    queryKey: ['exam', examId],
+    queryFn: () => loadExam(examId ?? ''),
+    enabled: examId !== undefined,
     staleTime: Infinity,
   });
 }

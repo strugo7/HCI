@@ -54,6 +54,12 @@ export const QuestionSchema = KnowledgeObjectBaseSchema.extend({
   scenario: z.string().nullable().default(null),
   /** Slug of a diagram this question is asked about. */
   diagram: z.string().nullable().default(null),
+  /**
+   * Vault-relative image paths (`media/…`), embedded with `![[file.png]]`
+   * inside the prompt or the scenario. A question about a drawing must show
+   * the drawing.
+   */
+  images: z.array(z.string()).default([]),
 
   /**
    * Four or five options. The real exam used four distractors through 2023 and
@@ -80,6 +86,25 @@ export const QuizSchema = KnowledgeObjectBaseSchema.extend({
   questions: z.array(QuestionSchema),
 });
 export type Quiz = z.infer<typeof QuizSchema>;
+
+/**
+ * A unit's summative exam (מבחן מסכם).
+ *
+ * Same question DSL as a quiz, but it belongs to a curriculum unit rather than
+ * a lesson, and its answers are shuffled at render time — which is why exam
+ * explanations must never name option letters. Questions carry the unit id in
+ * their `lesson` field; the cross-lesson mapping lives in `concepts`.
+ */
+export const ExamSchema = KnowledgeObjectBaseSchema.extend({
+  type: z.literal('exam'),
+  unit: z.string().min(1),
+  title: z.string().min(1),
+  questions: z.array(QuestionSchema),
+});
+export type Exam = z.infer<typeof ExamSchema>;
+
+/** What grading actually needs — satisfied by both a Quiz and an Exam. */
+export type Gradeable = Pick<Quiz, 'id' | 'questions'>;
 
 /* ------------------------------------------------------------------ *
  * Assessment results — produced by the quiz-engine, never authored

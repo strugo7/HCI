@@ -5,15 +5,15 @@
  * blurb, and the lessons it teaches, in the order it teaches them. The page
  * decides presentation only.
  */
-import { ChevronRight, FolderX } from 'lucide-react';
+import { ChevronRight, FolderX, GraduationCap } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { LessonRow } from '@/features/curriculum/lesson-row';
 import { unitIcon } from '@/features/curriculum/units';
-import { ROUTES } from '@/router/routes';
+import { examPath, ROUTES } from '@/router/routes';
 import { EmptyState } from '@/shared/components/empty-state';
-import { lessonsInUnit, unitById, unitIndex } from '@/shared/content/content';
+import { examsIndex, lessonsInUnit, unitById, unitIndex } from '@/shared/content/content';
 
 export default function UnitPage(): ReactNode {
   const { unitId } = useParams<{ unitId: string }>();
@@ -33,6 +33,7 @@ export default function UnitPage(): ReactNode {
   const lessons = lessonsInUnit(unit);
   const Icon = unitIcon(unit.id);
   const index = unitIndex().findIndex((u) => u.id === unit.id) + 1;
+  const exam = examsIndex().find((e) => e.unit === unit.id) ?? null;
 
   return (
     <>
@@ -94,6 +95,34 @@ export default function UnitPage(): ReactNode {
           </ol>
         )}
       </section>
+
+      {/* The unit's closing act: after the last lesson, the exam that pulls
+          all of them together. Distinct from a lesson row on purpose. */}
+      {exam !== null ? (
+        <section aria-labelledby="unit-exam" className="mt-8">
+          <h2 id="unit-exam" className="mb-4 text-sm font-medium text-muted-foreground">
+            לסיום היחידה
+          </h2>
+          <Link
+            to={examPath(exam.id)}
+            className="flex items-start gap-4 rounded-lg border-2 border-primary/30 bg-card p-5 shadow-sm transition-colors hover:border-primary/60 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <div className="shrink-0 rounded-lg bg-primary/10 p-3">
+              <GraduationCap className="size-6 text-primary" aria-hidden />
+            </div>
+            <div className="space-y-1">
+              <p className="font-semibold leading-snug">{exam.title}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                מבחן שמצליב בין כל שיעורי היחידה. התשובות מעורבלות מחדש בכל ניסיון.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {exam.questionCount} שאלות · {exam.maxScore} נק' · כ-
+                {Math.max(1, Math.round(exam.estimatedTime / 60))} דק'
+              </p>
+            </div>
+          </Link>
+        </section>
+      ) : null}
     </>
   );
 }

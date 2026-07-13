@@ -13,20 +13,30 @@
 import { Check, Lightbulb, TriangleAlert, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 
-import type { AnswerKey, Question } from '@cyberatlas/core';
+import type { Answer, AnswerKey, Question } from '@cyberatlas/core';
 import { explainDistractor } from '@cyberatlas/quiz-engine';
 
 import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import { assetUrl } from '@/shared/content/content';
 import { cn } from '@/shared/lib/utils';
 
 interface QuestionCardProps {
   readonly question: Question;
+  /**
+   * The answers in *display* order — shuffled for an exam, authored for a
+   * quiz. Selection still travels by canonical key; only the labels follow
+   * the position on screen.
+   */
+  readonly answers: readonly Answer[];
   readonly selected: AnswerKey | null;
   /** Once checked, the answers lock and the explanation opens. */
   readonly checked: boolean;
   readonly correct: boolean;
   readonly onSelect: (key: AnswerKey) => void;
 }
+
+/** The label a student sees is the position, never the canonical key. */
+const POSITION_LABELS = ['A', 'B', 'C', 'D', 'E'] as const;
 
 /** Enum → label. UI chrome, not content: it names a field, it does not teach. */
 const DIFFICULTY: Record<Question['difficulty'], string> = {
@@ -37,6 +47,7 @@ const DIFFICULTY: Record<Question['difficulty'], string> = {
 
 export function QuestionCard({
   question,
+  answers,
   selected,
   checked,
   correct,
@@ -59,6 +70,22 @@ export function QuestionCard({
         {question.prompt}
       </h2>
 
+      {/* A question about a drawing shows the drawing. Light background even
+          in dark mode — diagrams are authored on white. */}
+      {question.images.length > 0 ? (
+        <div className="max-w-[72ch] space-y-3">
+          {question.images.map((src) => (
+            <img
+              key={src}
+              src={assetUrl(src)}
+              alt="תרשים המצורף לשאלה"
+              className="max-w-full rounded-lg border border-border bg-white p-2"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      ) : null}
+
       {question.scenario !== null ? (
         <section
           aria-label="תרחיש"
@@ -78,11 +105,12 @@ export function QuestionCard({
         aria-label="אפשרויות התשובה"
         className="max-w-[72ch] gap-3"
       >
-        {question.answers.map((answer) => (
+        {answers.map((answer, position) => (
           <AnswerOption
             key={answer.key}
             questionId={question.id}
             answerKey={answer.key}
+            label={POSITION_LABELS[position] ?? answer.key}
             text={answer.text}
             isSelected={selected === answer.key}
             isCorrect={question.correct === answer.key}
@@ -136,6 +164,7 @@ export function QuestionCard({
 function AnswerOption({
   questionId,
   answerKey,
+  label,
   text,
   isSelected,
   isCorrect,
@@ -143,6 +172,8 @@ function AnswerOption({
 }: {
   readonly questionId: string;
   readonly answerKey: AnswerKey;
+  /** The position letter shown to the student — not the canonical key. */
+  readonly label: string;
   readonly text: string;
   readonly isSelected: boolean;
   readonly isCorrect: boolean;
@@ -168,7 +199,7 @@ function AnswerOption({
 
       <label htmlFor={id} className={cn('flex-1 leading-[1.85]', !checked && 'cursor-pointer')}>
         <span className="me-2 font-semibold text-muted-foreground" lang="en">
-          {answerKey}
+          {label}
         </span>
         {text}
 

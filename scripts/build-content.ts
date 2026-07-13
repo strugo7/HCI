@@ -17,6 +17,7 @@ import {
   formatDiagnostic,
   type Block,
   type Concept,
+  type Exam,
   type Inline,
   type Lesson,
   type Quiz,
@@ -93,7 +94,12 @@ function toMeta(lesson: Lesson, quizzes: readonly Quiz[], decks: readonly Flashc
 }
 
 /** Every asset the compiled content actually points at. */
-function embeddedAssets(lessons: readonly Lesson[], concepts: readonly Concept[]): Set<string> {
+function embeddedAssets(
+  lessons: readonly Lesson[],
+  concepts: readonly Concept[],
+  quizzes: readonly Quiz[],
+  exams: readonly Exam[],
+): Set<string> {
   const used = new Set<string>();
 
   const scan = (blocks: readonly Block[]): void => {
@@ -108,11 +114,18 @@ function embeddedAssets(lessons: readonly Lesson[], concepts: readonly Concept[]
     scan(concept.technicalExplanation);
   }
 
+  // A question's drawing ships the same way a lesson's does.
+  for (const holder of [...quizzes, ...exams]) {
+    for (const question of holder.questions) {
+      for (const src of question.images) used.add(src);
+    }
+  }
+
   return used;
 }
 
 async function main(): Promise<void> {
-  const { lessons, concepts, quizzes, decks, diagnostics, failed } = await compileVault();
+  const { lessons, concepts, quizzes, exams, decks, diagnostics, failed } = await compileVault();
 
   // The curriculum is checked against what actually compiled, so a unit can
   // never point at a lesson that does not exist.
@@ -128,6 +141,22 @@ async function main(): Promise<void> {
   const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts, units);
   diagnostics.push(...graphDiagnostics);
 
+  // An exam belongs to a unit the same way a curriculum row belongs to a
+  // lesson: pointing at a unit that does not exist is fatal, because the
+  // exams page would render a row that navigates nowhere.
+  const unitIds = new Set(units.map((unit) => unit.id));
+  const examDiagnostics = exams
+    .filter((exam) => !unitIds.has(exam.unit))
+    .map((exam) => ({
+      severity: 'error' as const,
+      file: `content/exams/${exam.unit}.md`,
+      line: null,
+      column: null,
+      message: `Exam "${exam.id}" claims unit "${exam.unit}", which is not in curriculum.yaml.`,
+      code: 'missing-required-field',
+    }));
+  diagnostics.push(...examDiagnostics);
+
   for (const d of diagnostics) console.error(formatDiagnostic(d));
 
   /* ---------------------------------------------------------------- *
@@ -139,10 +168,14 @@ async function main(): Promise<void> {
 
   // A curriculum error is always fatal: it would ship a unit page with a row
   // that navigates nowhere. A graph error is fatal for the same reason — a
-  // prerequisite cycle is a study plan a student can never start.
-  const structuralErrors = [...curriculumDiagnostics, ...graphDiagnostics].filter(
-    (d) => d.severity === 'error',
-  );
+  // prerequisite cycle is a study plan a student can never start. An exam
+  // error is fatal too: a shuffled exam whose explanation names option
+  // letters, or one the longest-answer trick passes, teaches wrong.
+  const structuralErrors = [
+    ...curriculumDiagnostics,
+    ...graphDiagnostics,
+    ...diagnostics.filter((d) => d.file.startsWith('content/exams/')),
+  ].filter((d) => d.severity === 'error');
 
   if (
     blocking.length > 0 ||
@@ -160,10 +193,11 @@ async function main(): Promise<void> {
   await mkdir(path.join(OUT_DIR, 'lessons'), { recursive: true });
   await mkdir(path.join(OUT_DIR, 'concepts'), { recursive: true });
   await mkdir(path.join(OUT_DIR, 'quizzes'), { recursive: true });
+  await mkdir(path.join(OUT_DIR, 'exams'), { recursive: true });
   await mkdir(path.join(OUT_DIR, 'flashcards'), { recursive: true });
 
   await rm(PUBLIC_ASSET_DIR, { recursive: true, force: true });
-  const assets = embeddedAssets(lessons, concepts);
+  const assets = embeddedAssets(lessons, concepts, quizzes, exams);
 
   if (assets.size > 0) {
     await mkdir(PUBLIC_ASSET_DIR, { recursive: true });
@@ -203,6 +237,10 @@ async function main(): Promise<void> {
     await writeFile(path.join(OUT_DIR, 'quizzes', `${quiz.id}.json`), JSON.stringify(quiz), 'utf8');
   }
 
+  for (const exam of exams) {
+    await writeFile(path.join(OUT_DIR, 'exams', `${exam.id}.json`), JSON.stringify(exam), 'utf8');
+  }
+
   for (const deck of decks) {
     await writeFile(
       path.join(OUT_DIR, 'flashcards', `${deck.id}.json`),
@@ -216,6 +254,19 @@ async function main(): Promise<void> {
     JSON.stringify({
       course,
       units,
+      // Exam *metadata* only — the questions stay in their own chunk, for the
+      // same reason a lesson's body does. Ordered like the curriculum.
+      exams: units
+        .map((unit) => exams.find((exam) => exam.unit === unit.id))
+        .filter((exam): exam is Exam => exam !== undefined)
+        .map((exam) => ({
+          id: exam.id,
+          unit: exam.unit,
+          title: exam.title,
+          questionCount: exam.questions.length,
+          maxScore: exam.questions.reduce((n, q) => n + q.points, 0),
+          estimatedTime: exam.questions.reduce((n, q) => n + q.estimatedTime, 0),
+        })),
       lessons: lessons
         .map((lesson) => toMeta(lesson, quizzes, decks))
         .sort((a, b) => (a.lessonNumber ?? 999) - (b.lessonNumber ?? 999)),
@@ -249,6 +300,8 @@ async function main(): Promise<void> {
   console.log(
     `content: ${quizzes.length} quiz(zes) / ${questions} question(s), ${decks.length} deck(s) / ${cards} card(s)`,
   );
+  const examQuestions = exams.reduce((n, e) => n + e.questions.length, 0);
+  console.log(`content: ${exams.length} exam(s) / ${examQuestions} question(s)`);
   console.log(`content: graph — ${graph.nodes.length} node(s), ${graph.edges.length} edge(s)`);
   if (failed.length > 0) {
     console.log(`content: ${failed.length} bundle(s) did not compile: ${failed.join(', ')}`);

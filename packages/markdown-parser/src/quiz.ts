@@ -17,11 +17,13 @@
  */
 import {
   DIAGNOSTIC_CODES,
+  ExamSchema,
   QuestionSchema,
   QuizSchema,
   slugify,
   type Answer,
   type Diagnostic,
+  type Exam,
   type Quiz,
 } from '@cyberatlas/core';
 
@@ -33,7 +35,7 @@ import {
   resolveText,
   type TransformContext,
 } from './transform.js';
-import type { ParseContext, QuizParseResult } from './types.js';
+import type { ExamParseResult, ParseContext, QuizParseResult } from './types.js';
 
 /** The field block that opens a question. Anything else ends it. */
 const FIELD = /^(id|type|difficulty|cognitive|estimatedTime|points|concepts)\s*:\s*(.*)$/;
@@ -49,6 +51,8 @@ const ANSWER = /^([A-E])\.\s+(.+)$/;
 const TAIL = /^(Correct|Explanation|Learning Objective|Misconception)\s*:\s*(.*)$/;
 /** A `---` rule separates questions. It is presentation, not content. */
 const RULE = /^-{3,}\s*$/;
+/** `![[file.png]]` — an image embedded in a prompt or a scenario. */
+const IMAGE_EMBED = /!\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g;
 /** `# …` — a title, used only as a fallback when frontmatter has none. */
 const H1 = /^#\s+(.+)$/;
 
@@ -236,13 +240,26 @@ function withDefault<T>(key: string, value: T | undefined): Record<string, T> {
   return value === undefined ? {} : { [key]: value };
 }
 
-export function parseQuiz(
+/**
+ * The parts shared by a lesson quiz and a unit exam, before either schema has
+ * had its say. `owner` is the lesson slug or the unit id — whichever the
+ * frontmatter key named.
+ */
+interface ScannedAssessment {
+  readonly id: string;
+  readonly owner: string;
+  readonly title: string;
+  readonly questions: unknown[];
+}
+
+function scanAssessment(
   source: string,
   ctx: ParseContext,
-  /** Used only when the file declares no title of its own. */
+  /** The frontmatter key that names the owner: "lesson" or "unit". */
+  ownerKey: 'lesson' | 'unit',
+  diagnostics: Diagnostic[],
   fallbackTitle?: string,
-): QuizParseResult {
-  const diagnostics: Diagnostic[] = [];
+): ScannedAssessment | null {
   const file = ctx.file;
 
   const { data, content, error } = readFrontmatter(source);
@@ -256,22 +273,22 @@ export function parseQuiz(
       message: `Invalid frontmatter: ${error}. A value containing ": " must be quoted.`,
       code: DIAGNOSTIC_CODES.INVALID_FRONTMATTER,
     });
-    return { data: null, diagnostics };
+    return null;
   }
 
   const id = typeof data['id'] === 'string' ? data['id'] : '';
-  const lesson = typeof data['lesson'] === 'string' ? data['lesson'] : '';
+  const owner = typeof data[ownerKey] === 'string' ? (data[ownerKey] as string) : '';
 
-  if (id === '' || lesson === '') {
+  if (id === '' || owner === '') {
     diagnostics.push({
       severity: 'error',
       file,
       line: 1,
       column: 1,
-      message: 'Quiz frontmatter must declare an "id" and a "lesson".',
+      message: `Quiz frontmatter must declare an "id" and a "${ownerKey}".`,
       code: DIAGNOSTIC_CODES.INVALID_FRONTMATTER,
     });
-    return { data: null, diagnostics };
+    return null;
   }
 
   /* ---------------------------------------------------------------- *
@@ -315,8 +332,33 @@ export function parseQuiz(
 
     const text = (value: string): string => resolveText(value, tctx, at);
 
-    const prompt = text(raw.prompt);
-    const scenario = text(raw.scenario);
+    // Images come out before concept links go in: `![[x.png]]` must never be
+    // half-eaten by the `[[link]]` resolver. The embed is removed from the
+    // text and lands in `images`; a file the vault does not hold is an error,
+    // because a question about a drawing the student cannot see is broken.
+    const images: string[] = [];
+    const extractImages = (value: string): string =>
+      value
+        .replaceAll(IMAGE_EMBED, (_match, name: string) => {
+          const src = ctx.assets.get(name.trim());
+          if (src === undefined) {
+            diagnostics.push({
+              severity: 'error',
+              file,
+              line: startLine,
+              column: 1,
+              message: `Question "${qid}" embeds "${name.trim()}", which is not in content/media or content/assets.`,
+              code: DIAGNOSTIC_CODES.MISSING_ASSET,
+            });
+          } else {
+            images.push(src);
+          }
+          return '';
+        })
+        .trim();
+
+    const prompt = text(extractImages(raw.prompt));
+    const scenario = text(extractImages(raw.scenario));
 
     // The one authoring mistake this DSL invites: writing the question at the
     // end of the "### Scenario" block. The schema would just say "prompt is
@@ -346,10 +388,11 @@ export function parseQuiz(
     const candidate = {
       id: qid,
       type: 'question',
-      lesson,
+      lesson: owner,
       prompt,
       scenario: scenario === '' ? null : scenario,
       diagram: null,
+      images,
       answers: raw.answers.map((a) => ({ key: a.key, text: text(a.text) })),
       correct,
       explanation,
@@ -406,24 +449,77 @@ export function parseQuiz(
       message: 'Quiz has no questions.',
       code: DIAGNOSTIC_CODES.MALFORMED_QUIZ,
     });
-    return { data: null, diagnostics };
+    return null;
   }
 
-  const quiz = QuizSchema.safeParse({ id, type: 'quiz', lesson, title, questions });
+  return { id, owner, title, questions };
+}
+
+function schemaFailure(
+  diagnostics: Diagnostic[],
+  file: string,
+  issues: readonly { path: PropertyKey[]; message: string }[],
+): void {
+  diagnostics.push({
+    severity: 'error',
+    file,
+    line: 1,
+    column: 1,
+    message: `Quiz failed schema validation: ${issues
+      .map((issue) => `${issue.path.join('.')} ${issue.message}`)
+      .join('; ')}`,
+    code: DIAGNOSTIC_CODES.MALFORMED_QUIZ,
+  });
+}
+
+export function parseQuiz(
+  source: string,
+  ctx: ParseContext,
+  /** Used only when the file declares no title of its own. */
+  fallbackTitle?: string,
+): QuizParseResult {
+  const diagnostics: Diagnostic[] = [];
+  const scanned = scanAssessment(source, ctx, 'lesson', diagnostics, fallbackTitle);
+  if (scanned === null) return { data: null, diagnostics };
+
+  const quiz = QuizSchema.safeParse({
+    id: scanned.id,
+    type: 'quiz',
+    lesson: scanned.owner,
+    title: scanned.title,
+    questions: scanned.questions,
+  });
 
   if (!quiz.success) {
-    diagnostics.push({
-      severity: 'error',
-      file,
-      line: 1,
-      column: 1,
-      message: `Quiz failed schema validation: ${quiz.error.issues
-        .map((issue) => `${issue.path.join('.')} ${issue.message}`)
-        .join('; ')}`,
-      code: DIAGNOSTIC_CODES.MALFORMED_QUIZ,
-    });
+    schemaFailure(diagnostics, ctx.file, quiz.error.issues);
     return { data: null, diagnostics };
   }
 
   return { data: quiz.data as Quiz, diagnostics };
+}
+
+/**
+ * `content/exams/<unit>.md` → Exam. Same DSL as a lesson quiz; the frontmatter
+ * names a `unit` instead of a `lesson`, and that unit id is what each question
+ * carries in its `lesson` field.
+ */
+export function parseExam(source: string, ctx: ParseContext): ExamParseResult {
+  const diagnostics: Diagnostic[] = [];
+  const scanned = scanAssessment(source, ctx, 'unit', diagnostics);
+  if (scanned === null) return { data: null, diagnostics };
+
+  const exam = ExamSchema.safeParse({
+    id: scanned.id,
+    type: 'exam',
+    unit: scanned.owner,
+    title: scanned.title,
+    questions: scanned.questions,
+  });
+
+  if (!exam.success) {
+    schemaFailure(diagnostics, ctx.file, exam.error.issues);
+    return { data: null, diagnostics };
+  }
+
+  return { data: exam.data as Exam, diagnostics };
 }

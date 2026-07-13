@@ -8,7 +8,7 @@
  * Each lesson is its own chunk, so opening one lesson does not download the
  * other thirty-six.
  */
-import type { Concept, Difficulty, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
+import type { Concept, Difficulty, Exam, Flashcard, Lesson, Quiz } from '@cyberatlas/core';
 import type { KnowledgeGraph } from '@cyberatlas/knowledge-graph';
 
 import indexJson from '@/generated/content/index.json';
@@ -73,9 +73,21 @@ export interface CourseMeta {
   readonly title: string;
 }
 
+/** What the exams list needs, without downloading a single question. */
+export interface ExamMeta {
+  readonly id: string;
+  readonly unit: string;
+  readonly title: string;
+  readonly questionCount: number;
+  readonly maxScore: number;
+  /** Seconds, summed over the questions. */
+  readonly estimatedTime: number;
+}
+
 interface ContentIndex {
   readonly course: CourseMeta;
   readonly units: readonly UnitMeta[];
+  readonly exams: readonly ExamMeta[];
   readonly lessons: readonly LessonMeta[];
   readonly concepts: readonly ConceptMeta[];
 }
@@ -187,8 +199,9 @@ export async function loadGraph(): Promise<KnowledgeGraph> {
   return module.default as KnowledgeGraph;
 }
 
-/** Quizzes and decks chunk the same way, and for the same reason. */
+/** Quizzes, exams and decks chunk the same way, and for the same reason. */
 const quizChunks = import.meta.glob<{ default: Quiz }>('../../generated/content/quizzes/*.json');
+const examChunks = import.meta.glob<{ default: Exam }>('../../generated/content/exams/*.json');
 const deckChunks = import.meta.glob<{ default: FlashcardDeck }>(
   '../../generated/content/flashcards/*.json',
 );
@@ -198,6 +211,18 @@ export async function loadQuiz(id: string): Promise<Quiz | null> {
   if (!chunk) return null;
   const module = await chunk();
   return module.default;
+}
+
+export async function loadExam(id: string): Promise<Exam | null> {
+  const chunk = examChunks[`../../generated/content/exams/${id}.json`];
+  if (!chunk) return null;
+  const module = await chunk();
+  return module.default;
+}
+
+/** Every unit's summative exam, in the curriculum's unit order. */
+export function examsIndex(): readonly ExamMeta[] {
+  return contentIndex.exams;
 }
 
 export async function loadDeck(id: string): Promise<FlashcardDeck | null> {

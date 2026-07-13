@@ -9,7 +9,7 @@
  * function that reads the time cannot be tested, and a grade that depends on
  * when it was computed is not a grade.
  */
-import type { AnswerKey, Question, Quiz, QuizResult, QuestionResult } from '@cyberatlas/core';
+import type { AnswerKey, Gradeable, Question, QuizResult, QuestionResult } from '@cyberatlas/core';
 
 /** What the student picked. `null` means skipped — which is not the same as wrong. */
 export type Submission = ReadonlyMap<string, AnswerKey | null>;
@@ -30,7 +30,7 @@ export const DEFAULT_GRADING: GradingOptions = { passThreshold: 0.7 };
  * apart, and it should be able to.
  */
 export function gradeQuiz(
-  quiz: Quiz,
+  quiz: Gradeable,
   submission: Submission,
   options: GradingOptions = DEFAULT_GRADING,
 ): QuizResult {
