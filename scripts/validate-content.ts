@@ -11,9 +11,15 @@
 import { formatDiagnostic, hasErrors } from '@cyberatlas/core';
 
 import { compileVault } from './lib/compile.js';
+import { compileGraph } from './lib/graph.js';
 
 async function main(): Promise<void> {
   const { lessons, concepts, diagnostics, failed } = await compileVault();
+
+  // The gate checks the graph too, or a prerequisite cycle would only be
+  // discovered by the build — which is to say, after review.
+  const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts);
+  diagnostics.push(...graphDiagnostics);
 
   for (const d of diagnostics) console.error(formatDiagnostic(d));
 
@@ -21,6 +27,7 @@ async function main(): Promise<void> {
   const warnings = diagnostics.filter((d) => d.severity === 'warning').length;
 
   console.log(`\ncontent: ${lessons.length} lesson(s), ${concepts.length} concept(s) parsed`);
+  console.log(`content: graph — ${graph.nodes.length} node(s), ${graph.edges.length} edge(s)`);
   if (failed.length > 0) {
     console.log(`content: ${failed.length} bundle(s) did not compile: ${failed.join(', ')}`);
   }

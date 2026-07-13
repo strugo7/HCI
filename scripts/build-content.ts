@@ -30,6 +30,7 @@ import {
   type FlashcardDeck,
 } from './lib/compile.js';
 import { readCurriculum } from './lib/curriculum.js';
+import { compileGraph } from './lib/graph.js';
 
 const OUT_DIR = path.join(ROOT, 'apps/web/src/generated/content');
 
@@ -122,6 +123,11 @@ async function main(): Promise<void> {
   } = await readCurriculum(lessons.map((lesson) => lesson.id));
   diagnostics.push(...curriculumDiagnostics);
 
+  // The graph is derived from what compiled, for the same reason: it may only
+  // contain concepts and lessons that actually exist.
+  const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts);
+  diagnostics.push(...graphDiagnostics);
+
   for (const d of diagnostics) console.error(formatDiagnostic(d));
 
   /* ---------------------------------------------------------------- *
@@ -132,12 +138,15 @@ async function main(): Promise<void> {
   );
 
   // A curriculum error is always fatal: it would ship a unit page with a row
-  // that navigates nowhere.
-  const curriculumErrors = curriculumDiagnostics.filter((d) => d.severity === 'error');
+  // that navigates nowhere. A graph error is fatal for the same reason — a
+  // prerequisite cycle is a study plan a student can never start.
+  const structuralErrors = [...curriculumDiagnostics, ...graphDiagnostics].filter(
+    (d) => d.severity === 'error',
+  );
 
   if (
     blocking.length > 0 ||
-    curriculumErrors.length > 0 ||
+    structuralErrors.length > 0 ||
     MUST_BUILD.some((id) => failed.includes(id))
   ) {
     console.error(`\ncontent: build failed — ${MUST_BUILD.join(', ')} must parse cleanly`);
@@ -149,6 +158,7 @@ async function main(): Promise<void> {
    * ---------------------------------------------------------------- */
   await rm(OUT_DIR, { recursive: true, force: true });
   await mkdir(path.join(OUT_DIR, 'lessons'), { recursive: true });
+  await mkdir(path.join(OUT_DIR, 'concepts'), { recursive: true });
   await mkdir(path.join(OUT_DIR, 'quizzes'), { recursive: true });
   await mkdir(path.join(OUT_DIR, 'flashcards'), { recursive: true });
 
@@ -172,6 +182,21 @@ async function main(): Promise<void> {
     );
   }
 
+  // A concept page shows the concept's full body, so a concept is a chunk too.
+  // The glossary index carries only its definition sentence, and the eighty-one
+  // other concepts stay on disk until one of them is opened.
+  for (const concept of concepts) {
+    await writeFile(
+      path.join(OUT_DIR, 'concepts', `${concept.frontmatter.slug}.json`),
+      JSON.stringify(concept),
+      'utf8',
+    );
+  }
+
+  // The graph ships whole: it is small, every node is a link away from every
+  // other, and the graph view needs all of it at once to lay anything out.
+  await writeFile(path.join(OUT_DIR, 'graph.json'), JSON.stringify(graph), 'utf8');
+
   // One file per quiz and per deck, for the same reason lessons get one each:
   // opening the cyberspace quiz must not download the other thirty-six.
   for (const quiz of quizzes) {
@@ -194,12 +219,20 @@ async function main(): Promise<void> {
       lessons: lessons
         .map((lesson) => toMeta(lesson, quizzes, decks))
         .sort((a, b) => (a.lessonNumber ?? 999) - (b.lessonNumber ?? 999)),
-      concepts: concepts.map((c) => ({
-        slug: c.frontmatter.slug,
-        title: c.frontmatter.title,
-        definition: definitionText(c),
-        appearsIn: c.appearsIn,
-      })),
+      concepts: concepts
+        .map((c) => ({
+          slug: c.frontmatter.slug,
+          title: c.frontmatter.title,
+          definition: definitionText(c),
+          appearsIn: c.appearsIn,
+          // The glossary must be findable by every name the concept goes by —
+          // a student searching "חומת אש" is looking for Firewall. These are
+          // the same keys the parser resolves `[[links]]` against.
+          aliases: c.frontmatter.aliases,
+          tags: c.frontmatter.tags,
+          related: c.related,
+        }))
+        .sort((a, b) => a.title.localeCompare(b.title, 'he')),
     }),
     'utf8',
   );
@@ -216,6 +249,7 @@ async function main(): Promise<void> {
   console.log(
     `content: ${quizzes.length} quiz(zes) / ${questions} question(s), ${decks.length} deck(s) / ${cards} card(s)`,
   );
+  console.log(`content: graph — ${graph.nodes.length} node(s), ${graph.edges.length} edge(s)`);
   if (failed.length > 0) {
     console.log(`content: ${failed.length} bundle(s) did not compile: ${failed.join(', ')}`);
   }

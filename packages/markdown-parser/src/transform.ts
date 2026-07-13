@@ -12,10 +12,10 @@ import type { List, Paragraph, PhrasingContent, RootContent, Table } from 'mdast
 import { toString as mdastToString } from 'mdast-util-to-string';
 
 import {
+  conceptLookupKeys,
   DIAGNOSTIC_CODES,
   IdGenerator,
   isDirective,
-  slugify,
   type Block,
   type Diagnostic,
   type Inline,
@@ -84,6 +84,30 @@ export function report(
 }
 
 /* ------------------------------------------------------------------ *
+ * Concept resolution
+ * ------------------------------------------------------------------ */
+
+/**
+ * A concept as written → the one slug that owns it, or undefined if the vault
+ * holds no such concept.
+ *
+ * Every path that turns a written name into a concept goes through here —
+ * `[[wiki-links]]`, a quiz's `concepts:` list, a card's, and a concept's own
+ * `related:`. They must agree: a name that resolves in a lesson and fails in a
+ * quiz would put an edge in the graph that the lesson page cannot show.
+ */
+export function resolveConcept(
+  name: string,
+  concepts: ReadonlyMap<string, string>,
+): string | undefined {
+  for (const key of conceptLookupKeys(name)) {
+    const canonical = concepts.get(key);
+    if (canonical !== undefined) return canonical;
+  }
+  return undefined;
+}
+
+/* ------------------------------------------------------------------ *
  * Inline content
  * ------------------------------------------------------------------ */
 
@@ -117,8 +141,7 @@ function splitWikiLinks(value: string, ctx: TransformContext, node: Positioned):
     }
     cursor = start + raw.length;
 
-    const key = slugify(target);
-    const canonical = ctx.concepts.get(key);
+    const canonical = resolveConcept(target, ctx.concepts);
 
     if (canonical === undefined) {
       report(
@@ -262,7 +285,7 @@ function bodyItems(nodes: readonly RootContent[], ctx: TransformContext): string
   return list.children.map((item) => {
     const text = mdastToString(item).trim();
     for (const match of text.matchAll(WIKI_LINK)) {
-      const canonical = ctx.concepts.get(slugify(match[1] ?? ''));
+      const canonical = resolveConcept(match[1] ?? '', ctx.concepts);
       if (canonical !== undefined) ctx.referenced.add(canonical);
     }
     return text.replaceAll(WIKI_LINK, (_m, target: string, alias?: string) => alias ?? target);

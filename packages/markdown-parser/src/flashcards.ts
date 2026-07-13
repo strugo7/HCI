@@ -21,7 +21,7 @@ import {
 } from '@cyberatlas/core';
 
 import { readFrontmatter } from './frontmatter.js';
-import { createTransformContext, report, resolveText } from './transform.js';
+import { createTransformContext, report, resolveConcept, resolveText } from './transform.js';
 import type { FlashcardsParseResult, ParseContext } from './types.js';
 
 const CARD = /^##\s+Card\s*$/;
@@ -151,14 +151,13 @@ function resolveConceptName(
   ctx: ReturnType<typeof createTransformContext>,
   line: number,
 ): string {
-  const key = slugify(name);
-  const canonical = ctx.concepts.get(key);
+  const canonical = resolveConcept(name, ctx.concepts);
 
   if (canonical === undefined) {
     report(ctx, 'warning', DIAGNOSTIC_CODES.MISSING_CONCEPT, `Card lists concept "${name}", which is not in content/concepts.`, {
       position: { start: { line, column: 1 } },
     });
-    return key;
+    return slugify(name);
   }
   return canonical;
 }

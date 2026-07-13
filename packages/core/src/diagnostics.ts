@@ -31,6 +31,10 @@ export const DIAGNOSTIC_CODES = {
   MALFORMED_QUIZ: 'malformed-quiz',
   BROKEN_LINK: 'broken-link',
   EMBEDDED_HTML: 'embedded-html',
+  /** Prerequisites that loop: a course with no lesson a student can take first. */
+  CIRCULAR_DEPENDENCY: 'circular-dependency',
+  /** A concept no lesson links to and no concept relates to — unreachable. */
+  ORPHAN_CONCEPT: 'orphan-concept',
 } as const;
 
 export type DiagnosticCode = (typeof DIAGNOSTIC_CODES)[keyof typeof DIAGNOSTIC_CODES];

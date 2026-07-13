@@ -26,7 +26,13 @@ import {
 } from '@cyberatlas/core';
 
 import { readFrontmatter } from './frontmatter.js';
-import { createTransformContext, report, resolveText, type TransformContext } from './transform.js';
+import {
+  createTransformContext,
+  report,
+  resolveConcept,
+  resolveText,
+  type TransformContext,
+} from './transform.js';
 import type { ParseContext, QuizParseResult } from './types.js';
 
 /** The field block that opens a question. Anything else ends it. */
@@ -205,14 +211,13 @@ function scanQuestion(lines: readonly string[], startLine: number): RawQuestion 
  * content that is otherwise correct.
  */
 function resolveConceptName(name: string, ctx: TransformContext, line: number): string {
-  const key = slugify(name);
-  const canonical = ctx.concepts.get(key);
+  const canonical = resolveConcept(name, ctx.concepts);
 
   if (canonical === undefined) {
     report(ctx, 'warning', DIAGNOSTIC_CODES.MISSING_CONCEPT, `Question lists concept "${name}", which is not in content/concepts.`, {
       position: { start: { line, column: 1 } },
     });
-    return key;
+    return slugify(name);
   }
   return canonical;
 }
