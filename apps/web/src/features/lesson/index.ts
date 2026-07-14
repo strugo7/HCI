@@ -10,9 +10,8 @@
 export { useLesson } from './use-lesson';
 export { LessonPageLayout } from './lesson-page-layout';
 export { LessonHero } from './lesson-hero';
-export { LessonToc } from './lesson-toc';
+export { LessonSidebar } from './lesson-sidebar';
 export { LessonSection } from './lesson-section';
-export { LessonNotes } from './lesson-notes';
 export { LessonProgressBar } from './lesson-progress-bar';
 export { BlockRenderer, BlocksRenderer } from './blocks/block-renderer';
 export type { TocEntry, SectionKind } from './types';

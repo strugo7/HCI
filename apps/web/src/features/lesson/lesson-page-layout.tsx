@@ -14,10 +14,9 @@ import type { Lesson } from '@cyberatlas/core';
 import { unitOfLesson } from '@/shared/content/content';
 
 import { LessonHero } from './lesson-hero';
-import { LessonNotes } from './lesson-notes';
+import { LessonSidebar } from './lesson-sidebar';
 import { LessonProgressBar } from './lesson-progress-bar';
 import { LessonSection } from './lesson-section';
-import { LessonToc } from './lesson-toc';
 import { inferSectionKind, type TocEntry } from './types';
 
 interface LessonPageLayoutProps {
@@ -90,16 +89,19 @@ export function LessonPageLayout({ lesson }: LessonPageLayoutProps): ReactNode {
   }, [sections]);
 
   return (
-    <>
+    <div className="lesson-page">
       <LessonProgressBar />
 
       <LessonHero frontmatter={frontmatter} unit={unitOfLesson(lesson.id)} onStart={handleStart} />
 
-      {/* 3-column layout */}
+      {/* 2-column layout */}
       <div className="flex gap-8">
-        {/* Key terms (left in RTL). The parser's resolved slugs, not the
-            frontmatter's hand-written titles — those do not key the index. */}
-        <LessonNotes concepts={lesson.concepts} />
+        {/* Sidebar on the right in RTL */}
+        <LessonSidebar
+          entries={tocEntries}
+          activeId={activeId}
+          concepts={lesson.concepts}
+        />
 
         {/* Main content */}
         <div ref={mainRef} className="min-w-0 flex-1">
@@ -107,10 +109,7 @@ export function LessonPageLayout({ lesson }: LessonPageLayoutProps): ReactNode {
             <LessonSection key={section.id} section={section} index={i} />
           ))}
         </div>
-
-        {/* TOC sidebar (right in RTL) */}
-        <LessonToc entries={tocEntries} activeId={activeId} />
       </div>
-    </>
+    </div>
   );
 }

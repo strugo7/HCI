@@ -177,3 +177,11 @@
 .dark .key-term-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
+/* ------------------------------------------------------------------ *
+ * Lesson Page Layout width stretch                                    *
+ * ------------------------------------------------------------------ */
+
+main:has(.lesson-page) > div.max-w-6xl {
+  max-width: 80rem; /* Stretch the page container to max-w-7xl (1280px) */
+}
