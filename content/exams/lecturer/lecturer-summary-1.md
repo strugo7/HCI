@@ -619,6 +619,8 @@ Correct: C
 
 Explanation: אם שרת ה-Web ב-DMZ נפרץ, ויש כלל Any-Any (הכל מותר) בינו לבין הרשת הפנימית, התוקף יכול לנוע באופן חופשי (Lateral Movement) מה-DMZ אל שרת ה-Database ולגנוב את הנתונים. ההמלצה היא לאפשר גישה רק לפורטים ספציפיים ורק משירותים מוגדרים (Least Privilege).
 
+Learning Objective: לזהות את החשיבות של מניעת גישה ישירה/לא מבוקרת מה-DMZ לרשת הפנימית כדי למנוע Lateral Movement.
+
 ---
 
 ---
