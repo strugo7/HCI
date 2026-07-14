@@ -31,6 +31,8 @@ export const CONTENT_DIR = path.join(ROOT, 'content');
 const LESSONS_DIR = path.join(CONTENT_DIR, 'lessons');
 const CONCEPTS_DIR = path.join(CONTENT_DIR, 'concepts');
 const EXAMS_DIR = path.join(CONTENT_DIR, 'exams');
+/** The lecturer's real past papers, transcribed from the scans in content/quizzes. */
+const LECTURER_EXAMS_DIR = path.join(EXAMS_DIR, 'lecturer');
 /** Directories an `![[embed]]` may name a file from, in search order. */
 const ASSET_DIRS = ['media', 'assets'] as const;
 
@@ -247,28 +249,41 @@ export async function compileVault(): Promise<CompiledVault> {
   }
 
   /* ---------------------------------------------------------------- *
-   * Pass 4 — unit exams. Same DSL as a quiz, owned by a unit, and     *
-   * held to the exam lint: shuffle-safe explanations, no longest-     *
-   * answer tell, integrative coverage.                                 *
+   * Pass 4 — exams. Ours, one per unit, held to the full exam lint:   *
+   * shuffle-safe explanations, no longest-answer tell, integrative    *
+   * coverage.                                                          *
+   *                                                                    *
+   * And the lecturer's, under exams/lecturer/ — the real past papers,  *
+   * transcribed. Those are an archive rather than an authored exam, so *
+   * the lint holds them only to shuffle safety.                        *
    * ---------------------------------------------------------------- */
   const exams: Exam[] = [];
 
-  let examFiles: string[] = [];
-  try {
-    examFiles = await listMarkdown(EXAMS_DIR);
-  } catch {
-    // A vault without exams is incomplete, not broken.
-  }
+  /** `[directory, path prefix reported in diagnostics]`. */
+  const examSources: readonly (readonly [string, string])[] = [
+    [EXAMS_DIR, 'content/exams'],
+    [LECTURER_EXAMS_DIR, 'content/exams/lecturer'],
+  ];
 
-  for (const name of examFiles) {
-    const source = await readFile(path.join(EXAMS_DIR, name), 'utf8');
-    const result = parseExam(source, {
-      concepts: index,
-      assets,
-      file: `content/exams/${name}`,
-    });
-    diagnostics.push(...result.diagnostics);
-    if (result.data) exams.push(result.data);
+  for (const [dir, prefix] of examSources) {
+    let examFiles: string[] = [];
+    try {
+      examFiles = await listMarkdown(dir);
+    } catch {
+      // A vault without exams is incomplete, not broken.
+      continue;
+    }
+
+    for (const name of examFiles) {
+      const source = await readFile(path.join(dir, name), 'utf8');
+      const result = parseExam(source, {
+        concepts: index,
+        assets,
+        file: `${prefix}/${name}`,
+      });
+      diagnostics.push(...result.diagnostics);
+      if (result.data) exams.push(result.data);
+    }
   }
 
   diagnostics.push(...lintExams(exams, lessons));

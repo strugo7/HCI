@@ -68,6 +68,18 @@ export const QuestionSchema = KnowledgeObjectBaseSchema.extend({
   answers: z.array(AnswerSchema).min(4).max(5),
   correct: AnswerKeySchema,
 
+  /**
+   * Pin the options to their authored order — never shuffle them.
+   *
+   * Only one thing earns this: an option that names *other options by letter*
+   * ("תשובות ב' ו-ג' אפשריות"). Shuffle it and the reference points at whatever
+   * happens to land in those slots, so the question becomes wrong rather than
+   * merely reordered. Two of the lecturer's 2023 questions do this.
+   *
+   * "כל התשובות נכונות" needs no pin: it refers to the set, not to positions.
+   */
+  lockAnswerOrder: z.boolean().default(false),
+
   /** Why the right answer is right AND why each distractor is wrong. */
   explanation: z.string().min(1),
   objective: z.string().min(1),
@@ -88,18 +100,55 @@ export const QuizSchema = KnowledgeObjectBaseSchema.extend({
 export type Quiz = z.infer<typeof QuizSchema>;
 
 /**
- * A unit's summative exam (מבחן מסכם).
+ * Who wrote the exam.
  *
- * Same question DSL as a quiz, but it belongs to a curriculum unit rather than
- * a lesson, and its answers are shuffled at render time — which is why exam
- * explanations must never name option letters. Questions carry the unit id in
- * their `lesson` field; the cross-lesson mapping lives in `concepts`.
+ * `unit` — ours. One summative exam per curriculum unit, authored to the Golden
+ * Exam standard and held to it by the exam lint.
+ *
+ * `lecturer` — the real thing (מבחן מרצה), transcribed from the scanned past
+ * papers in `content/quizzes/`. It is an *archive*, not an exam we designed, so
+ * the two lint rules that judge authoring quality do not apply to it: we cannot
+ * rewrite another person's distractors to be the same length, and we do not get
+ * to decide how many of his questions span two lessons.
+ */
+export const ExamKindSchema = z.enum(['unit', 'lecturer']);
+export type ExamKind = z.infer<typeof ExamKindSchema>;
+
+/**
+ * A summative exam — ours (מבחן מסכם) or the lecturer's (מבחן מרצה).
+ *
+ * Same question DSL as a quiz. Answers are shuffled at render time, which is
+ * why exam explanations must never name option letters — a rule the lint
+ * enforces in both alphabets, since the questions are Hebrew and the option
+ * keys are Latin.
+ *
+ * A unit exam belongs to a curriculum unit and its questions carry that unit id
+ * in their `lesson` field. A lecturer exam belongs to no unit — it ranges over
+ * the whole course — so `unit` is null and the questions carry the exam's own
+ * id. Topic mapping for those lives in `concepts`, as it does everywhere else.
  */
 export const ExamSchema = KnowledgeObjectBaseSchema.extend({
   type: z.literal('exam'),
-  unit: z.string().min(1),
+  /** Defaulting to `unit` keeps every exam authored before this field valid. */
+  kind: ExamKindSchema.default('unit'),
+  unit: z.string().nullable().default(null),
   title: z.string().min(1),
   questions: z.array(QuestionSchema),
+
+  /* Provenance — a lecturer exam is someone else's work, and says so. */
+  year: z.number().int().nullable().default(null),
+  /** Seconds. The 2023 paper allowed two hours; 2024 and 2025 allow 90 minutes. */
+  duration: z.number().int().positive().nullable().default(null),
+  /** The original PDF this was transcribed from. */
+  source: z.string().nullable().default(null),
+}).superRefine((exam, ctx) => {
+  if (exam.kind === 'unit' && exam.unit === null) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['unit'],
+      message: 'a unit exam must name the unit it examines',
+    });
+  }
 });
 export type Exam = z.infer<typeof ExamSchema>;
 

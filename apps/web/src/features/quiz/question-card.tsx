@@ -35,8 +35,15 @@ interface QuestionCardProps {
   readonly onSelect: (key: AnswerKey) => void;
 }
 
-/** The label a student sees is the position, never the canonical key. */
-const POSITION_LABELS = ['A', 'B', 'C', 'D', 'E'] as const;
+/**
+ * The label a student sees is the position, never the canonical key.
+ *
+ * Hebrew, because the exam is Hebrew and the lecturer's papers letter their
+ * options א–ה. The canonical key stays Latin (`correct: C`) — it is what the
+ * grader matches on and what every content file is written in, and it is never
+ * shown. Position, not key, is what the student reads.
+ */
+const POSITION_LABELS = ['א', 'ב', 'ג', 'ד', 'ה'] as const;
 
 /** Enum → label. UI chrome, not content: it names a field, it does not teach. */
 const DIFFICULTY: Record<Question['difficulty'], string> = {
@@ -198,9 +205,7 @@ function AnswerOption({
       <RadioGroupItem value={answerKey} id={id} className="mt-1.5" />
 
       <label htmlFor={id} className={cn('flex-1 leading-[1.85]', !checked && 'cursor-pointer')}>
-        <span className="me-2 font-semibold text-muted-foreground" lang="en">
-          {label}
-        </span>
+        <span className="me-2 font-semibold text-muted-foreground">{label}.</span>
         {text}
 
         {showCorrect ? (

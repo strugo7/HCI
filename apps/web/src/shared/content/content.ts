@@ -76,12 +76,17 @@ export interface CourseMeta {
 /** What the exams list needs, without downloading a single question. */
 export interface ExamMeta {
   readonly id: string;
-  readonly unit: string;
+  /** Ours belongs to a unit; the lecturer's ranges over the course and is null. */
+  readonly unit: string | null;
+  readonly kind: 'unit' | 'lecturer';
   readonly title: string;
   readonly questionCount: number;
   readonly maxScore: number;
   /** Seconds, summed over the questions. */
   readonly estimatedTime: number;
+  /** Lecturer exams only — the year the paper was sat, and the time allowed. */
+  readonly year: number | null;
+  readonly duration: number | null;
 }
 
 interface ContentIndex {
@@ -220,9 +225,19 @@ export async function loadExam(id: string): Promise<Exam | null> {
   return module.default;
 }
 
-/** Every unit's summative exam, in the curriculum's unit order. */
+/** Every exam — ours and the lecturer's. */
 export function examsIndex(): readonly ExamMeta[] {
   return contentIndex.exams;
+}
+
+/** Our summative exams, one per unit, in the curriculum's unit order. */
+export function unitExamsIndex(): readonly ExamMeta[] {
+  return contentIndex.exams.filter((exam) => exam.kind === 'unit');
+}
+
+/** The lecturer's real past papers, newest first. */
+export function lecturerExamsIndex(): readonly ExamMeta[] {
+  return contentIndex.exams.filter((exam) => exam.kind === 'lecturer');
 }
 
 export async function loadDeck(id: string): Promise<FlashcardDeck | null> {

@@ -38,7 +38,8 @@ import {
 import type { ExamParseResult, ParseContext, QuizParseResult } from './types.js';
 
 /** The field block that opens a question. Anything else ends it. */
-const FIELD = /^(id|type|difficulty|cognitive|estimatedTime|points|concepts)\s*:\s*(.*)$/;
+const FIELD =
+  /^(id|type|difficulty|cognitive|estimatedTime|points|concepts|lockAnswerOrder)\s*:\s*(.*)$/;
 /** A `concepts:` entry, indented under its key. */
 const LIST_ITEM = /^\s+-\s+(.+)$/;
 /** `## Question` — opens one question. */
@@ -232,6 +233,14 @@ function number(value: string | undefined): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 
+function boolean(value: string | undefined): boolean | undefined {
+  if (value === undefined) return undefined;
+  const v = value.trim().toLowerCase();
+  if (v === 'true') return true;
+  if (v === 'false') return false;
+  return undefined;
+}
+
 /**
  * `exactOptionalPropertyTypes` forbids writing `undefined` into an optional
  * field, so an absent value is *omitted* and the schema default applies.
@@ -241,15 +250,17 @@ function withDefault<T>(key: string, value: T | undefined): Record<string, T> {
 }
 
 /**
- * The parts shared by a lesson quiz and a unit exam, before either schema has
- * had its say. `owner` is the lesson slug or the unit id — whichever the
- * frontmatter key named.
+ * The parts shared by a lesson quiz and an exam, before either schema has had
+ * its say. `owner` is the lesson slug or the unit id — whichever the frontmatter
+ * key named. A lecturer exam owns no unit, so it falls back to its own id.
  */
 interface ScannedAssessment {
   readonly id: string;
   readonly owner: string;
   readonly title: string;
   readonly questions: unknown[];
+  /** The raw frontmatter, for keys only one caller cares about. */
+  readonly data: Record<string, unknown>;
 }
 
 function scanAssessment(
@@ -259,6 +270,11 @@ function scanAssessment(
   ownerKey: 'lesson' | 'unit',
   diagnostics: Diagnostic[],
   fallbackTitle?: string,
+  /**
+   * A lecturer exam ranges over the whole course and names no unit. Its
+   * questions then carry the exam's own id where a unit exam carries the unit.
+   */
+  ownerOptional = false,
 ): ScannedAssessment | null {
   const file = ctx.file;
 
@@ -277,7 +293,8 @@ function scanAssessment(
   }
 
   const id = typeof data['id'] === 'string' ? data['id'] : '';
-  const owner = typeof data[ownerKey] === 'string' ? (data[ownerKey] as string) : '';
+  const declaredOwner = typeof data[ownerKey] === 'string' ? (data[ownerKey] as string) : '';
+  const owner = declaredOwner === '' && ownerOptional ? id : declaredOwner;
 
   if (id === '' || owner === '') {
     diagnostics.push({
@@ -285,7 +302,9 @@ function scanAssessment(
       file,
       line: 1,
       column: 1,
-      message: `Quiz frontmatter must declare an "id" and a "${ownerKey}".`,
+      message: ownerOptional
+        ? 'Exam frontmatter must declare an "id".'
+        : `Quiz frontmatter must declare an "id" and a "${ownerKey}".`,
       code: DIAGNOSTIC_CODES.INVALID_FRONTMATTER,
     });
     return null;
@@ -405,6 +424,7 @@ function scanAssessment(
       ...withDefault('cognitive', raw.fields.get('cognitive')),
       ...withDefault('estimatedTime', number(raw.fields.get('estimatedTime'))),
       ...withDefault('points', number(raw.fields.get('points'))),
+      ...withDefault('lockAnswerOrder', boolean(raw.fields.get('lockAnswerOrder'))),
     };
 
     const parsed = QuestionSchema.safeParse(candidate);
@@ -452,7 +472,7 @@ function scanAssessment(
     return null;
   }
 
-  return { id, owner, title, questions };
+  return { id, owner, title, questions, data };
 }
 
 function schemaFailure(
@@ -499,21 +519,39 @@ export function parseQuiz(
 }
 
 /**
- * `content/exams/<unit>.md` → Exam. Same DSL as a lesson quiz; the frontmatter
- * names a `unit` instead of a `lesson`, and that unit id is what each question
- * carries in its `lesson` field.
+ * `content/exams/<unit>.md` → Exam, and `content/exams/lecturer/<year>.md` →
+ * the same thing with `kind: lecturer`.
+ *
+ * Same DSL as a lesson quiz; the frontmatter names a `unit` instead of a
+ * `lesson`, and that unit id is what each question carries in its `lesson`
+ * field. A lecturer exam names no unit — it ranges over the whole course — so
+ * its questions carry the exam id instead, and `unit` stays null.
  */
 export function parseExam(source: string, ctx: ParseContext): ExamParseResult {
   const diagnostics: Diagnostic[] = [];
-  const scanned = scanAssessment(source, ctx, 'unit', diagnostics);
+
+  // Peek at `kind` first: it decides whether a missing `unit` is a mistake.
+  const kind = readFrontmatter(source).data['kind'];
+  const lecturer = kind === 'lecturer';
+
+  const scanned = scanAssessment(source, ctx, 'unit', diagnostics, undefined, lecturer);
   if (scanned === null) return { data: null, diagnostics };
+
+  const str = (key: string): string | null =>
+    typeof scanned.data[key] === 'string' ? (scanned.data[key] as string) : null;
+  const num = (key: string): number | null =>
+    typeof scanned.data[key] === 'number' ? (scanned.data[key] as number) : null;
 
   const exam = ExamSchema.safeParse({
     id: scanned.id,
     type: 'exam',
-    unit: scanned.owner,
+    kind: lecturer ? 'lecturer' : 'unit',
+    unit: lecturer ? null : scanned.owner,
     title: scanned.title,
     questions: scanned.questions,
+    year: num('year'),
+    duration: num('duration'),
+    source: str('source'),
   });
 
   if (!exam.success) {

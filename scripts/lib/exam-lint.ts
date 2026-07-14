@@ -27,6 +27,46 @@ import type { Diagnostic, Exam, Lesson, Question } from '@cyberatlas/core';
  */
 const LETTER_REF = /(?<![A-Za-z0-9&])[A-E](?![A-Za-z0-9&]|-[A-Za-z])/;
 
+/**
+ * The same rule, in the alphabet the explanations are actually written in.
+ *
+ * The Latin check above has only ever fired because our own exams happen to
+ * name options in Latin ("תשובה C שגויה" — the case its own comment cites). But
+ * the option letters a student *sees* are Hebrew, and the natural way to write
+ * a Hebrew explanation is "תשובה א׳ נכונה". That sailed straight past the Latin
+ * regex, which means the one rule protecting a shuffled exam was not actually
+ * checking the thing it exists to check.
+ *
+ * Two shapes, because Hebrew writes the reference two ways:
+ *
+ *   1. A letter carrying a geresh — "א׳", "ב'" — which is only ever an ordinal.
+ *   2. A letter after the word that introduces it — "תשובה א", "מסיח ב".
+ *
+ * A bare letter with no geresh and no introducing word is *not* matched: ב, ו,
+ * ה and ל are ordinary Hebrew prefixes, and flagging them would bury the real
+ * hits under noise until authors learned to ignore the rule.
+ *
+ * Two exclusions, both learned the hard way from real content:
+ *
+ *   - The trailing `-[A-Za-z]` guard, which the Latin rule needs for the same
+ *     reason. "אפשרות ה-True Negative" is the definite article bolted onto a
+ *     foreign term, not a fifth option — and our IDS exam says exactly that.
+ *
+ *   - The second pattern stops at ד and does not accept a bare ה, because ה
+ *     after an introducing word is nearly always the definite article:
+ *     "המסיחים ה'פאסיביים'", "אפשרות ה'כוללת'". A genuine reference to option ה
+ *     carries a geresh — "תשובה ה'" — and the first pattern already has it.
+ */
+const HEBREW_LETTER_REFS = [
+  /(?<![֐-׿])[א-ה][׳'](?![֐-׿])/,
+  /(?:תשוב(?:ה|ות)|מסיח(?:ים)?|סעיף|אפשרות)\s+[א-ד](?![֐-׿]|-[A-Za-z0-9])/,
+] as const;
+
+/** Does this text name an option by its letter, in either alphabet? */
+function namesAnOptionLetter(text: string): boolean {
+  return LETTER_REF.test(text) || HEBREW_LETTER_REFS.some((re) => re.test(text));
+}
+
 /** The share of questions allowed to have a strictly-longest correct answer. */
 const LONGEST_CORRECT_MAX_RATIO = 0.35;
 /** A correct answer this much longer than the mean distractor stands out. */
@@ -34,8 +74,14 @@ const CONSPICUOUS_RATIO = 1.35;
 /** The share of questions that must span two or more lessons. */
 const INTEGRATIVE_MIN_RATIO = 0.4;
 
+/**
+ * A lecturer exam has no unit, so the old `content/exams/${exam.unit}.md` would
+ * point every one of its diagnostics at `content/exams/null.md`.
+ */
 function examFile(exam: Exam): string {
-  return `content/exams/${exam.unit}.md`;
+  return exam.kind === 'lecturer'
+    ? `content/exams/lecturer/${exam.id}.md`
+    : `content/exams/${exam.unit ?? exam.id}.md`;
 }
 
 /** Is the correct answer the strictly longest option of its question? */
@@ -79,13 +125,24 @@ export function lintExams(
     let longestCorrect = 0;
     let integrative = 0;
 
+    /*
+     * A lecturer exam is an archive of someone else's paper, not an exam we
+     * designed. Rules 2 and 3 judge *authoring* quality — we cannot rewrite his
+     * distractors to be the same length, and we do not get to decide how many
+     * of his questions span two lessons. Rule 1 stays on: the explanations are
+     * ours, and they are shown against shuffled answers.
+     */
+    const authored = exam.kind !== 'lecturer';
+
     for (const question of exam.questions) {
-      /* Rule 1 — shuffle safety. */
+      /* Rule 1 — shuffle safety. Applies to every exam, in both alphabets. */
       for (const [field, text] of [
         ['explanation', question.explanation],
         ['misconception', question.misconception ?? ''],
       ] as const) {
-        if (LETTER_REF.test(text)) {
+        // A question whose options are pinned is exempt: nothing is reordered,
+        // so a letter still points where the author meant it to.
+        if (!question.lockAnswerOrder && namesAnOptionLetter(text)) {
           diagnostics.push({
             severity: 'error',
             file,
@@ -98,6 +155,8 @@ export function lintExams(
           });
         }
       }
+
+      if (!authored) continue;
 
       /* Rule 2 — distractor parity, per question. */
       const correct = question.answers.find((a) => a.key === question.correct);
@@ -130,6 +189,8 @@ export function lintExams(
       }
       if (spanned.size >= 2) integrative += 1;
     }
+
+    if (!authored) continue;
 
     /* Rule 2 — the exam-wide tell. */
     const total = exam.questions.length;

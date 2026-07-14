@@ -30,6 +30,17 @@ function shuffled(answers: readonly Answer[]): readonly Answer[] {
   return out;
 }
 
+/**
+ * A question that names other options by letter ("תשובות ב' ו-ג' אפשריות")
+ * cannot be reordered: the reference would follow the slot, not the option it
+ * meant. Such a question declares `lockAnswerOrder`, and keeps the order it was
+ * authored in. Two of the lecturer's 2023 questions do.
+ */
 export function shuffleAnswers(questions: readonly Question[]): AnswerOrder {
-  return new Map(questions.map((question) => [question.id, shuffled(question.answers)]));
+  return new Map(
+    questions.map((question) => [
+      question.id,
+      question.lockAnswerOrder ? question.answers : shuffled(question.answers),
+    ]),
+  );
 }

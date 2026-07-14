@@ -16,6 +16,6 @@ export const NAV_ITEMS: NavItem[] = [
   { to: ROUTES.lessons, label: 'שיעורים', icon: BookOpen },
   { to: ROUTES.glossary, label: 'מונחים', icon: Library },
   { to: ROUTES.flashcards, label: 'כרטיסי זיכרון', icon: Layers },
-  { to: ROUTES.practice, label: 'מבחנים לתרגול', icon: GraduationCap },
+  { to: ROUTES.practice, label: 'תרגול ומבחנים', icon: GraduationCap },
   { to: ROUTES.graph, label: 'גרף הידע', icon: Network },
 ];

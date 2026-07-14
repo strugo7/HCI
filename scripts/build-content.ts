@@ -141,12 +141,13 @@ async function main(): Promise<void> {
   const { graph, diagnostics: graphDiagnostics } = compileGraph(lessons, concepts, units);
   diagnostics.push(...graphDiagnostics);
 
-  // An exam belongs to a unit the same way a curriculum row belongs to a
-  // lesson: pointing at a unit that does not exist is fatal, because the
-  // exams page would render a row that navigates nowhere.
+  // A unit exam belongs to a unit the same way a curriculum row belongs to a
+  // lesson: pointing at a unit that does not exist is fatal, because the exams
+  // page would render a row that navigates nowhere. A lecturer exam belongs to
+  // no unit — it ranges over the whole course — so there is nothing to check.
   const unitIds = new Set(units.map((unit) => unit.id));
   const examDiagnostics = exams
-    .filter((exam) => !unitIds.has(exam.unit))
+    .filter((exam) => exam.kind === 'unit' && !unitIds.has(exam.unit ?? ''))
     .map((exam) => ({
       severity: 'error' as const,
       file: `content/exams/${exam.unit}.md`,
@@ -255,18 +256,29 @@ async function main(): Promise<void> {
       course,
       units,
       // Exam *metadata* only — the questions stay in their own chunk, for the
-      // same reason a lesson's body does. Ordered like the curriculum.
-      exams: units
-        .map((unit) => exams.find((exam) => exam.unit === unit.id))
-        .filter((exam): exam is Exam => exam !== undefined)
-        .map((exam) => ({
-          id: exam.id,
-          unit: exam.unit,
-          title: exam.title,
-          questionCount: exam.questions.length,
-          maxScore: exam.questions.reduce((n, q) => n + q.points, 0),
-          estimatedTime: exam.questions.reduce((n, q) => n + q.estimatedTime, 0),
-        })),
+      // same reason a lesson's body does.
+      //
+      // Our unit exams come first, in curriculum order. The lecturer's papers
+      // follow, newest first: they belong to no unit, so ordering them by the
+      // curriculum would have dropped them from the index entirely.
+      exams: [
+        ...units
+          .map((unit) => exams.find((exam) => exam.kind === 'unit' && exam.unit === unit.id))
+          .filter((exam): exam is Exam => exam !== undefined),
+        ...exams
+          .filter((exam) => exam.kind === 'lecturer')
+          .sort((a, b) => (b.year ?? 0) - (a.year ?? 0)),
+      ].map((exam) => ({
+        id: exam.id,
+        unit: exam.unit,
+        kind: exam.kind,
+        title: exam.title,
+        questionCount: exam.questions.length,
+        maxScore: exam.questions.reduce((n, q) => n + q.points, 0),
+        estimatedTime: exam.questions.reduce((n, q) => n + q.estimatedTime, 0),
+        year: exam.year,
+        duration: exam.duration,
+      })),
       lessons: lessons
         .map((lesson) => toMeta(lesson, quizzes, decks))
         .sort((a, b) => (a.lessonNumber ?? 999) - (b.lessonNumber ?? 999)),

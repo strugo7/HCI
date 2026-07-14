@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { createBrowserRouter, type RouteObject } from 'react-router-dom';
+import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
 
 import { RootLayout } from '@/layouts/root-layout';
 
@@ -17,7 +17,6 @@ const FlashcardsPage = lazy(() => import('@/pages/flashcards'));
 const DeckPage = lazy(() => import('@/pages/deck'));
 const PracticePage = lazy(() => import('@/pages/practice'));
 const QuizPage = lazy(() => import('@/pages/quiz'));
-const ExamsPage = lazy(() => import('@/pages/exams'));
 const ExamPage = lazy(() => import('@/pages/exam'));
 const GraphPage = lazy(() => import('@/pages/graph'));
 const ProgressPage = lazy(() => import('@/pages/progress'));
@@ -40,7 +39,9 @@ const routes: RouteObject[] = [
       { path: ROUTES.deck, element: <DeckPage /> },
       { path: ROUTES.practice, element: <PracticePage /> },
       { path: ROUTES.quiz, element: <QuizPage /> },
-      { path: ROUTES.exams, element: <ExamsPage /> },
+      // The exams index folded into /practice as a tab. Sitting an exam did
+      // not: /exams/:examId is still where an exam is taken.
+      { path: ROUTES.exams, element: <Navigate to={`${ROUTES.practice}?tab=units`} replace /> },
       { path: ROUTES.exam, element: <ExamPage /> },
       { path: ROUTES.graph, element: <GraphPage /> },
       { path: ROUTES.progress, element: <ProgressPage /> },
