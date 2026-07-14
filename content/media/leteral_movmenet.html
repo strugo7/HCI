@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אנטומיה של תנועה רוחבית (Lateral Movement)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #0f172a; 
+            color: #e2e8f0;
+            margin: 0;
+            overflow: hidden; 
+            height: 100vh;
+            display: flex;
+        }
+
+        #canvas-container {
+            flex-grow: 1;
+            height: 100vh;
+            position: relative;
+        }
+
+        #ui-panel {
+            width: 420px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-left: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+            height: 100vh;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+            overflow-y: auto;
+        }
+
+        #system-log {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #475569;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .log-entry.success { color: #4ade80; }
+        .log-entry.error { color: #f87171; }
+        .log-entry.info { color: #38bdf8; }
+        .log-entry.warning { color: #fbbf24; }
+        .log-entry.critical { color: #f43f5e; font-weight: bold; }
+
+        .stage-btn {
+            transition: all 0.3s;
+        }
+        .stage-btn.active {
+            border-color: #38bdf8;
+            background-color: rgba(56, 189, 248, 0.1);
+            transform: translateX(-5px);
+        }
+        
+        .stage-btn.completed {
+            border-color: #22c55e;
+            opacity: 0.7;
+        }
+
+        #drag-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30, 41, 59, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #475569;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container">
+        <div id="drag-hint">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+            לחץ וגרור כדי לחקור את הרשת, גלול להתקרבות
+        </div>
+    </div>
+
+    <div id="ui-panel" class="p-5">
+        <div class="mb-4">
+            <h1 class="text-2xl font-bold text-red-400 mb-1">אנטומיה של תנועה רוחבית</h1>
+            <h2 class="text-sm text-slate-400">East/West Movement & The Two-Party Fallacy</h2>
+        </div>
+
+        <div class="space-y-3 mb-6" id="stages-container">
+            <!-- כפתורי השלבים יווצרו פה -->
+        </div>
+
+        <div class="flex-grow flex flex-col min-h-[150px]">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">מוניטור אבטחה (SOC Log)</h3>
+            <div id="system-log">
+                <div class="log-entry info">מערכת נטענה. רשת פנימית מוגנת מאחורי חומת אש היקפית (Perimeter).</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stages = [
+            {
+                id: 1,
+                title: "1. גישה ראשונית (Initial Access)",
+                desc: "עקיפת הפרימטר ע\"י פישינג ממוקד לרוברט (עובד זוטר).",
+                icon: "🎣"
+            },
+            {
+                id: 2,
+                title: "2. אשליית האמון (Two-Party Fallacy)",
+                desc: "הרשת הפנימית \"שטוחה\" ובוטחת בעצמה. אין חומות בפנים.",
+                icon: "🤝"
+            },
+            {
+                id: 3,
+                title: "3. סריקה והעלאת הרשאות",
+                desc: "איתור יעדי איכות (מנכ\"לית, DC, DB) וגניבת הרשאות.",
+                icon: "👁️"
+            },
+            {
+                id: 4,
+                title: "4. תנועה רוחבית (Lateral Spread)",
+                desc: "התפשטות למחשבים נוספים וביסוס אחיזה נרחבת.",
+                icon: "↔️"
+            },
+            {
+                id: 5,
+                title: "5. אימפקט ומודל Zero Trust",
+                desc: "הפעלת הנזק (כופרה), והצגת הפתרון: מיקרו-סגמנטציה.",
+                icon: "🛡️"
+            }
+        ];
+
+        // בניית כפתורי הממשק
+        const stagesContainer = document.getElementById('stages-container');
+        stages.forEach(stage => {
+            const btn = document.createElement('button');
+            btn.id = `btn-stage-${stage.id}`;
+            btn.className = 'stage-btn w-full bg-slate-800 border border-slate-600 rounded-lg p-3 text-right group flex items-center justify-between cursor-pointer hover:bg-slate-700';
+            btn.onclick = () => runStage(stage.id);
+            btn.innerHTML = `
+                <div>
+                    <div class="text-sm font-bold text-slate-200">${stage.title}</div>
+                    <div class="text-[11px] text-slate-400 mt-1 leading-snug">${stage.desc}</div>
+                </div>
+                <div class="text-2xl ml-2 opacity-80">${stage.icon}</div>
+            `;
+            stagesContainer.appendChild(btn);
+        });
+
+        // לוג מערכת
+        function logMsg(msg, type = 'info') {
+            const logEl = document.getElementById('system-log');
+            const timeStr = new Date().toLocaleTimeString('he-IL', { hour12: false });
+            logEl.innerHTML += `<div class="log-entry ${type}">[${timeStr}] ${msg}</div>`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        // ==========================================
+        // מערכת Three.js
+        // ==========================================
+        let scene, camera, renderer, controls;
+        let elements = { nodes: {}, firewall: null, attacker: null, zeroTrustShields: [] };
+        let activeAnimations = [];
+        let time = 0;
+
+        const COLORS = {
+            trusted: 0x10b981, // ירוק
+            compromised: 0xef4444, // אדום
+            attacker: 0x991b1b, // אדום כהה
+            firewall: 0x38bdf8, // תכלת
+            shield: 0x8b5cf6 // סגול (Zero Trust)
+        };
+
+        window.onload = init3D;
+
+        function init3D() {
+            const container = document.getElementById('canvas-container');
+            
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0f172a);
+            
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 35, 45); // מבט מלמעלה-באלכסון
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
+            
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.maxPolarAngle = Math.PI / 2 - 0.1;
+
+            // תאורה
+            scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(10, 20, 20);
+            dirLight.castShadow = true;
+            scene.add(dirLight);
+
+            buildTopology();
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
+        }
+
+        // יצירת טקסט מרחף
+        function createLabel(text, color, scale = 1) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // רקע חצי שקוף
+            ctx.roundRect(0, 0, canvas.width, canvas.height, 20);
+            ctx.fill();
+            
+            ctx.font = 'bold 42px Heebo, sans-serif';
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillStyle = color;
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+            const tex = new THREE.CanvasTexture(canvas);
+            const mat = new THREE.SpriteMaterial({ map: tex });
+            const sprite = new THREE.Sprite(mat);
+            sprite.scale.set(8 * scale, 2 * scale, 1);
+            return sprite;
+        }
+
+        // יצירת מודל מחשב/שרת
+        function createNode(type, x, z, name, color = COLORS.trusted) {
+            const group = new THREE.Group();
+            let geo;
+            
+            if (type === 'pc') geo = new THREE.BoxGeometry(2, 2, 2);
+            else if (type === 'server') geo = new THREE.BoxGeometry(2.5, 4, 2.5);
+            else if (type === 'db') geo = new THREE.CylinderGeometry(1.5, 1.5, 3, 32);
+
+            const mat = new THREE.MeshStandardMaterial({ color: color, metalness: 0.5, roughness: 0.3 });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.y = (type === 'server' || type === 'db') ? 2 : 1;
+            mesh.castShadow = true;
+            group.add(mesh);
+
+            const label = createLabel(name, "#ffffff", 0.7);
+            label.position.y = mesh.position.y + 3;
+            group.add(label);
+
+            group.position.set(x, 0, z);
+            scene.add(group);
+            
+            return { group, mesh, mat, type, isCompromised: false };
+        }
+
+        function buildTopology() {
+            // משטח הרשת הפנימית
+            const planeGeo = new THREE.PlaneGeometry(40, 30);
+            const planeMat = new THREE.MeshStandardMaterial({ color: 0x051a0d, roughness: 0.9 });
+            const intPlane = new THREE.Mesh(planeGeo, planeMat);
+            intPlane.rotation.x = -Math.PI / 2;
+            intPlane.position.set(0, -0.1, 0);
+            intPlane.receiveShadow = true;
+            scene.add(intPlane);
+
+            // חומת אש
+            const fwGeo = new THREE.BoxGeometry(40, 8, 2);
+            const fwMat = new THREE.MeshStandardMaterial({ color: COLORS.firewall, transparent: true, opacity: 0.3 });
+            elements.firewall = new THREE.Mesh(fwGeo, fwMat);
+            elements.firewall.position.set(0, 4, 16);
+            scene.add(elements.firewall);
+
+            const fwLabel = createLabel("Perimeter Firewall", "#38bdf8", 1.5);
+            fwLabel.position.set(0, 10, 16);
+            scene.add(fwLabel);
+
+            // תוקף (מחוץ לחומת האש)
+            const attGeo = new THREE.SphereGeometry(2, 32, 32);
+            const attMat = new THREE.MeshStandardMaterial({ color: COLORS.attacker, emissive: 0x4a0000 });
+            elements.attacker = new THREE.Mesh(attGeo, attMat);
+            elements.attacker.position.set(0, 2, 25);
+            scene.add(elements.attacker);
+            const attLabel = createLabel("Attacker (Internet)", "#f87171", 0.8);
+            attLabel.position.set(0, 5, 25);
+            scene.add(attLabel);
+
+            // תחנות רשת פנימית
+            elements.nodes.robert = createNode('pc', -10, 8, 'רוברט (זוטר)');
+            elements.nodes.maria = createNode('pc', 12, 5, 'מריה (מנכ"לית)');
+            elements.nodes.dc = createNode('server', -8, -8, 'Domain Controller');
+            elements.nodes.db = createNode('db', 10, -10, 'Database (DB)');
+            elements.nodes.pc1 = createNode('pc', 0, 0, 'תחנה 1');
+            elements.nodes.pc2 = createNode('pc', -4, -4, 'תחנה 2');
+            elements.nodes.pc3 = createNode('pc', 5, 2, 'תחנה 3');
+        }
+
+        // ==========================================
+        // מנוע אנימציות עזר
+        // ==========================================
+        
+        // ירי של פאקט (חץ/כדור) מנקודה לנקודה
+        function shootPacket(startPos, endPos, color, duration, onComplete) {
+            const geo = new THREE.SphereGeometry(0.5, 16, 16);
+            const mat = new THREE.MeshBasicMaterial({ color: color });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.copy(startPos);
+            scene.add(mesh);
+
+            const anim = {
+                mesh, startPos, endPos, duration,
+                elapsed: 0,
+                update: function(dt) {
+                    this.elapsed += dt;
+                    const progress = Math.min(this.elapsed / this.duration, 1);
+                    
+                    // קשת תנועה (פרבולה)
+                    const currentPos = new THREE.Vector3().lerpVectors(this.startPos, this.endPos, progress);
+                    currentPos.y += Math.sin(progress * Math.PI) * 3; 
+                    this.mesh.position.copy(currentPos);
+
+                    if (progress >= 1) {
+                        scene.remove(this.mesh);
+                        if (onComplete) onComplete();
+                        return false; // סיום אנימציה
+                    }
+                    return true; // המשך אנימציה
+                }
+            };
+            activeAnimations.push(anim);
+        }
+
+        // גל רדאר (סריקה)
+        function createRadarWave(startPos, color) {
+            const geo = new THREE.RingGeometry(0.1, 0.5, 32);
+            const mat = new THREE.MeshBasicMaterial({ color: color, transparent: true, side: THREE.DoubleSide });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.rotation.x = -Math.PI / 2;
+            mesh.position.copy(startPos);
+            mesh.position.y = 0.5; // מעל הרצפה
+            scene.add(mesh);
+
+            const anim = {
+                mesh, elapsed: 0, duration: 2,
+                update: function(dt) {
+                    this.elapsed += dt;
+                    const progress = this.elapsed / this.duration;
+                    
+                    const scale = 1 + progress * 40; // גודל הגל
+                    this.mesh.scale.set(scale, scale, 1);
+                    this.mesh.material.opacity = 1 - progress; // דוהה
+
+                    if (progress >= 1) {
+                        scene.remove(this.mesh);
+                        return false;
+                    }
+                    return true;
+                }
+            };
+            activeAnimations.push(anim);
+        }
+
+        // שינוי צבע הדרגתי
+        function infectNode(nodeKey) {
+            const node = elements.nodes[nodeKey];
+            if(node.isCompromised) return;
+            node.isCompromised = true;
+            
+            const startColor = node.mat.color.clone();
+            const endColor = new THREE.Color(COLORS.compromised);
+            
+            const anim = {
+                elapsed: 0, duration: 0.5,
+                update: function(dt) {
+                    this.elapsed += dt;
+                    const progress = Math.min(this.elapsed / this.duration, 1);
+                    
+                    // תיקון שגיאת ה-TypeError: שימוש ב-lerpColors עבור מחלקת Color ולא ב-lerpVectors
+                    node.mat.color.lerpColors(startColor, endColor, progress);
+                    node.mat.emissive.setHex(0x550000);
+                    return progress < 1;
+                }
+            };
+            activeAnimations.push(anim);
+            
+            // אפקט חלקיקים קטן
+            for(let i=0; i<5; i++) {
+                const p = new THREE.Mesh(new THREE.BoxGeometry(0.3,0.3,0.3), new THREE.MeshBasicMaterial({color: 0xff0000}));
+                p.position.copy(node.group.position);
+                p.position.y += 2;
+                scene.add(p);
+                activeAnimations.push({
+                    mesh: p, elapsed: 0, duration: 1,
+                    vx: (Math.random()-0.5), vy: Math.random(), vz: (Math.random()-0.5),
+                    update: function(dt) {
+                        this.elapsed += dt;
+                        this.mesh.position.x += this.vx * dt * 5;
+                        this.mesh.position.y += this.vy * dt * 5;
+                        this.mesh.position.z += this.vz * dt * 5;
+                        this.mesh.material.opacity = 1 - (this.elapsed/this.duration);
+                        if(this.elapsed >= this.duration) { scene.remove(this.mesh); return false; }
+                        return true;
+                    }
+                });
+            }
+        }
+
+        // ==========================================
+        // ניהול שלבים (הלוגיקה העסקית)
+        // ==========================================
+        let currentStage = 0;
+
+        function updateUI(stageId) {
+            document.querySelectorAll('.stage-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.id.split('-')[2]) < stageId) {
+                    btn.classList.add('completed');
+                }
+            });
+            document.getElementById(`btn-stage-${stageId}`).classList.add('active');
+            document.getElementById(`btn-stage-${stageId}`).classList.remove('completed');
+        }
+
+        function runStage(stageId) {
+            // מניעת הפעלה מחוץ לסדר (למען האנימציה)
+            if (stageId !== 1 && currentStage === 0) {
+                alert("אנא התחל משלב 1."); return;
+            }
+            if (stageId <= currentStage) return; // לא לחזור אחורה
+            
+            currentStage = stageId;
+            updateUI(stageId);
+
+            switch(stageId) {
+                case 1: stage1_InitialAccess(); break;
+                case 2: stage2_TwoPartyFallacy(); break;
+                case 3: stage3_Discovery(); break;
+                case 4: stage4_LateralMovement(); break;
+                case 5: stage5_ImpactAndZeroTrust(); break;
+            }
+        }
+
+        function stage1_InitialAccess() {
+            logMsg("תוקף שולח מייל Spear Phishing לעבר רוברט...", "warning");
+            
+            const start = elements.attacker.position.clone();
+            const end = elements.nodes.robert.group.position.clone();
+            end.y += 1;
+
+            // הפאקט עובר דרך ה-FW (כי זה מייל לגיטימי על פורט פתוח)
+            shootPacket(start, end, 0xffaa00, 2.0, () => {
+                logMsg("רוברט פתח את הקובץ. תחנת העבודה נדבקה! (Compromised)", "error");
+                infectNode('robert');
+            });
+        }
+
+        function stage2_TwoPartyFallacy() {
+            logMsg("The Two-Party Fallacy: הרשת מאמינה שכל מי שבפנים הוא 'טוב'.", "warning");
+            
+            // שינוי צבע המשטח להראות "אמון עיוור"
+            const plane = scene.children.find(c => c.geometry && c.geometry.type === 'PlaneGeometry' && c.position.y === -0.1);
+            if(plane) {
+                plane.material.color.setHex(0x0a2e18); // ירוק יותר מורגש
+            }
+
+            // הבהוב של כל התחנות להראות שהן מחוברות
+            Object.values(elements.nodes).forEach(node => {
+                if(!node.isCompromised) {
+                    const orig = node.mat.emissive.getHex();
+                    node.mat.emissive.setHex(0x00ff00);
+                    setTimeout(() => node.mat.emissive.setHex(orig), 1000);
+                }
+            });
+
+            setTimeout(() => {
+                logMsg("לרוברט יש הרשאות דיבור ישירות עם כל הרשת. אין חומות פנימיות.", "error");
+            }, 1000);
+        }
+
+        function stage3_Discovery() {
+            logMsg("התוקף מריץ סריקות רשת (Discovery) מתחנת רוברט...", "info");
+            
+            const pos = elements.nodes.robert.group.position.clone();
+            
+            // יצירת 3 גלי סריקה
+            for(let i=0; i<3; i++) {
+                setTimeout(() => {
+                    createRadarWave(pos, 0xff0000);
+                }, i * 800);
+            }
+
+            setTimeout(() => {
+                logMsg("יעדי איכות אותרו: מריה, Domain Controller, Database.", "critical");
+                // הבהוב היעדים
+                ['maria', 'dc', 'db'].forEach(key => {
+                    const node = elements.nodes[key];
+                    node.mat.emissive.setHex(0xffff00); // זהוב
+                    setTimeout(() => node.mat.emissive.setHex(0x000000), 1000);
+                });
+            }, 2000);
+
+            setTimeout(() => {
+                logMsg("Privilege Escalation: התוקף גנב טוקן ממשתמש שביקר אצל רוברט והעלה הרשאות ל-Admin.", "error");
+                // סימון ויזואלי של העלאת הרשאות על רוברט (טבעת אש/אדומה)
+                const ringGeo = new THREE.TorusGeometry(2, 0.2, 16, 32);
+                const ringMat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = Math.PI / 2;
+                ring.position.copy(pos);
+                ring.position.y = 0.1;
+                scene.add(ring);
+            }, 3500);
+        }
+
+        function stage4_LateralMovement() {
+            logMsg("מתחילה התפשטות רוחבית (East-West Movement)...", "critical");
+            
+            const start = elements.nodes.robert.group.position.clone();
+            start.y += 1;
+
+            const targets = Object.keys(elements.nodes).filter(k => k !== 'robert');
+            
+            // ירי פאקטים לכולם בזה אחר זה
+            targets.forEach((key, index) => {
+                setTimeout(() => {
+                    const end = elements.nodes[key].group.position.clone();
+                    end.y += 1;
+                    shootPacket(start, end, 0xff0000, 1.0, () => {
+                        infectNode(key);
+                        logMsg(`תחנה/שרת הודבקו: ${key}`, "error");
+                    });
+                }, index * 400);
+            });
+
+            setTimeout(() => {
+                logMsg("ביסוס אחיזה (Persistence) הושלם. התוקף שולט ברשת כולה.", "critical");
+            }, targets.length * 400 + 1000);
+        }
+
+        function stage5_ImpactAndZeroTrust() {
+            logMsg("Impact: כופרה הופעלה (Ransomware).", "critical");
+            
+            // הבהוב אדום/שחור של כל הסצנה
+            let flashes = 0;
+            const flashInt = setInterval(() => {
+                scene.background = new THREE.Color(flashes % 2 === 0 ? 0x220000 : 0x0f172a);
+                flashes++;
+                if(flashes > 5) clearInterval(flashInt);
+            }, 200);
+
+            setTimeout(() => {
+                logMsg("=== פתרון אדריכלי: Zero Trust ===", "success");
+                logMsg("פורס הגנות מיקרו-סגמנטציה ואימות מתמיד...", "info");
+                
+                // הפיכת כולם לירוקים בחזרה (ריפוי המערכת)
+                Object.values(elements.nodes).forEach(node => {
+                    node.isCompromised = false;
+                    node.mat.color.setHex(COLORS.trusted);
+                    node.mat.emissive.setHex(0x000000);
+                });
+
+                // ציור מגנים (Zero Trust Micro-perimeters) סביב כל צומת
+                Object.values(elements.nodes).forEach(node => {
+                    const shieldGeo = new THREE.BoxGeometry(4.5, 6, 4.5);
+                    const shieldMat = new THREE.MeshBasicMaterial({ 
+                        color: COLORS.shield, 
+                        transparent: true, 
+                        opacity: 0.2, 
+                        wireframe: true 
+                    });
+                    const shield = new THREE.Mesh(shieldGeo, shieldMat);
+                    shield.position.copy(node.group.position);
+                    shield.position.y += 1.5;
+                    scene.add(shield);
+                    elements.zeroTrustShields.push(shield);
+                });
+
+                logMsg("הנחת הרשת השטוחה בוטלה. כעת כל מחשב עטוף בחומת אש משלו (אפס אמון).", "success");
+
+                // המחשת חסימה ב-Zero Trust
+                setTimeout(() => {
+                    logMsg("ניסיון תנועה רוחבית חדש מרוברט למנכ\"לית נחסם באופן מיידי!", "success");
+                    const start = elements.nodes.robert.group.position.clone(); start.y += 1;
+                    const end = elements.nodes.maria.group.position.clone(); end.y += 1;
+                    
+                    shootPacket(start, end, 0xff0000, 1.0, () => {
+                        // מתפוצץ על המגן של מריה
+                        createRadarWave(end, COLORS.shield);
+                    });
+                }, 2000);
+
+            }, 2500);
+        }
+
+        // ==========================================
+        // לולאת רנדור וזמן אמת
+        // ==========================================
+        let clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const dt = clock.getDelta();
+            time += dt;
+
+            // עדכון אנימציות פעילות (פאקטים, גלים)
+            for (let i = activeAnimations.length - 1; i >= 0; i--) {
+                const anim = activeAnimations[i];
+                if (!anim.update(dt)) {
+                    activeAnimations.splice(i, 1);
+                }
+            }
+
+            // סיבוב מגני Zero Trust
+            elements.zeroTrustShields.forEach(shield => {
+                shield.rotation.y += dt * 0.5;
+            });
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('canvas-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+    </script>
+</body>
+</html>
