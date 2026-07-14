@@ -283,6 +283,8 @@ answer: כי הוא פועל בשכבה אחרת לגמרי. NGFW יושב בפ�
 
 ![[Gen AI FW2.png]]
 
-:::quiz{ref="ngfw-quiz"}:::
+:::quiz{ref="ngfw-quiz"}
+:::
 
-:::flashcards{ref="ngfw"}:::
+:::flashcards{ref="ngfw"}
+:::
