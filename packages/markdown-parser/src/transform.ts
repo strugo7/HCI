@@ -351,9 +351,10 @@ function directiveAcceptsFile(directive: string, file: string): boolean {
 function resolveMediaSrc(
   node: DirectiveNode,
   ctx: TransformContext,
-): { src: string | null; height: number | null } | null {
+): { src: string | null; height: number | null; width: number | null } | null {
   const file = node.attributes?.src?.trim();
   const rawHeight = node.attributes?.height?.trim();
+  const rawWidth = node.attributes?.width?.trim();
 
   let height: number | null = null;
   if (rawHeight) {
@@ -370,7 +371,22 @@ function resolveMediaSrc(
     }
   }
 
-  if (!file) return { src: null, height };
+  let width: number | null = null;
+  if (rawWidth) {
+    width = Number.parseInt(rawWidth, 10);
+    if (Number.isNaN(width) || width <= 0) {
+      report(
+        ctx,
+        'error',
+        DIAGNOSTIC_CODES.MISSING_REQUIRED_FIELD,
+        `":::${node.name}" width must be a positive number of pixels, got "${rawWidth}".`,
+        node,
+      );
+      return null;
+    }
+  }
+
+  if (!file) return { src: null, height, width };
 
   const path = ctx.assets.get(file);
   if (path === undefined) {
@@ -395,7 +411,7 @@ function resolveMediaSrc(
     return null;
   }
 
-  return { src: path, height };
+  return { src: path, height, width };
 }
 
 function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | null {
@@ -472,6 +488,7 @@ function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | n
         src: resolved.src,
         alt: null,
         height: resolved.height,
+        width: resolved.width,
       };
     }
 
@@ -594,6 +611,7 @@ function extractEmbeds(node: Paragraph, ctx: TransformContext): { media: Block[]
         src: path,
         alt: caption?.trim() ?? null,
         height: null,
+        width: null,
       });
       return '';
     });

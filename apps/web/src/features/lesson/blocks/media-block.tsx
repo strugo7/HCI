@@ -54,8 +54,13 @@ function MediaFigure({ block, caption }: MediaFigureProps): ReactNode {
           title={block.description}
           sandbox="allow-scripts"
           loading="lazy"
-          className="w-full rounded-lg border bg-muted/30"
-          style={{ height: block.height ?? ANIMATION_DEFAULT_HEIGHT }}
+          className="mx-auto rounded-lg border bg-muted/30"
+          style={{
+            height: block.height ?? ANIMATION_DEFAULT_HEIGHT,
+            width: block.width ? `${block.width}px` : '100%',
+            maxWidth: '100%',
+            display: 'block',
+          }}
         />
       ) : block.variant === 'video' ? (
         <video

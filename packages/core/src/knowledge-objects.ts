@@ -143,6 +143,8 @@ export const MediaSchema = KnowledgeObjectBaseSchema.extend({
   alt: z.string().nullable(),
   /** Rendered height in px for framed media (animations). null → renderer default. */
   height: z.number().int().positive().nullable(),
+  /** Rendered width in px for framed media (animations). null → renderer default (100%). */
+  width: z.number().int().positive().nullable(),
 });
 export type Media = z.infer<typeof MediaSchema>;
 
