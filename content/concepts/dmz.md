@@ -80,7 +80,7 @@ network providing public services (**not protected by firewall**)" — כאיל�
 מסגור דק 07 — אך דעו ששני הניסוחים קיימים בחומר.
 :::
 
-:::animation{src="dmz.html" height="600" width="900"}
+:::animation{src="dmz.html" height="800" width="1920"}
 כיצד טופולוגיית DMZ נראית. 
 :::
 
