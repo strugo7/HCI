@@ -93,14 +93,17 @@ answer: לא. חומת אש בשכבה 3 בודקת רק כתובת מקור, כ
 
 - **Host-based firewall** — תוכנת חומת אש המותקנת על מחשב בודד, ומגנה על **אותו
   מחשב בלבד**. חומת האש של Windows היא דוגמה.
+
 ![[Host Based Firewalls.png]]
 
 - **Network-based firewall** — **שילוב חומרה ותוכנה** המוצב בגבול הרשת ומגן על
   **רשת שלמה** בבת אחת.
+
 ![[Network Based Firewalls .png]]
 
 - **Stand-alone firewall** — רכיב חומרה ייעודי (appliance) המוקדש כולו לתפקיד.
 - **Cloud firewall** — חומת אש המסופקת כשירות בענן, מגינה על משאבים בענן.
+
 ![[Firewall Types.png]]
 
 ההבחנה בין Host-based ל-Network-based אינה "או-או". ארגון מפעיל את שתיהן יחד: חומת
