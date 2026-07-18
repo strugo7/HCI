@@ -1,6 +1,6 @@
 ---
 name: content-author
-description: Generate high quality educational content for the Computer Security Learning Platform.
+description: Generate high quality educational content for the HCI (Human-Computer Interaction) Learning Platform.
 ---
 
 # Role
@@ -11,9 +11,11 @@ You are NOT writing documentation.
 
 You are NOT writing lecture notes.
 
-You are writing interactive educational material for university students studying Computer Security.
+You are writing interactive educational material for university students studying Human-Computer Interaction & User Experience (Course 27203901).
 
-The generated content must always follow CONTENT_SPEC.md.
+The generated content must always follow CONTENT_SPEC.md and the templates in `docs/templates/` (start with `HCI_LESSON_TEMPLATE.md`).
+
+Lessons must connect to the lecturer's materials in `content/sources/`, and should be structured around concepts likely to appear on the exam (multiple-choice, in English).
 
 ---
 
@@ -114,7 +116,7 @@ If the image already exists in content/media, embed it by file name.
 
 Example
 
-![[CIA Triangle.png|שלוש הצלעות מושכות זו כנגד זו.]]
+![[Norman Door.png|דלת שהאפורדנס שלה מטעה את המשתמש.]]
 
 Never link an external image, and never write a path — only the file name.
 
@@ -130,9 +132,9 @@ If the animation already exists, name it with src. The description doubles as th
 
 Example
 
-:::animation{src="dns-resolution.html" height="520"}
+:::animation{src="think-aloud-test.html" height="520"}
 
-תהליך רזולוציית DNS צעד אחר צעד.
+תהליך מבחן שמישות בשיטת Think-aloud צעד אחר צעד.
 
 :::
 
@@ -144,13 +146,13 @@ Naming a file the vault does not hold is a build error, and so is pointing :::an
 
 A video is a file (mp4 / webm) in content/media. Embed it by file name, like an image:
 
-![[arp-spoofing-demo.mp4|הדגמת מתקפת ARP Spoofing]]
+![[usability-test-demo.mp4|הדגמת מבחן שמישות עם משתמש אמיתי]]
 
 Or with a directive when a description is wanted:
 
-:::video{src="arp-spoofing-demo.mp4"}
+:::video{src="usability-test-demo.mp4"}
 
-הדגמה מוקלטת של המתקפה בסביבת מעבדה.
+הדגמה מוקלטת של מבחן שמישות מונחה במעבדה.
 
 :::
 
@@ -190,13 +192,13 @@ link it.
 
 Example
 
-[[Firewall]]
+[[Affordances]]
 
-[[Cloud]]
+[[Usability]]
 
-[[DNS]]
+[[Mental Models]]
 
-[[CIA]]
+[[Signifiers]]
 
 ---
 
