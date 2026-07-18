@@ -257,11 +257,11 @@ This is the phase most likely to be underestimated.
 
 - Index built from Knowledge Objects at build time — lessons, sections, concepts, definitions, flashcards.
 - **Bilingual query handling in a single box:**
-  - A query may be pure Hebrew (`חומת אש`), pure Latin (`Firewall`), or mixed (`הגדרה של DNS`).
-  - Hebrew normalization: strip niqqud, normalize final forms (ך ם ן ף ץ ↔ כ מ נ פ צ), strip the prefix particles ו־ ה־ ב־ ל־ כ־ מ־ ש־ so `בפיירוול` matches `פיירוול`.
-  - Latin normalization: case-folding, and punctuation-insensitive matching so `TCP/IP` is found by `tcpip` and `tcp ip`.
-  - **Cross-script aliasing:** a concept's `aliases` field carries its Hebrew name(s) and its English name. Searching `חומת אש` must find the `Firewall` concept and vice versa. This is why `ConceptFrontmatterSchema` has `aliases`.
-  - Acronym expansion: `CIA` → confidentiality / integrity / availability, and their Hebrew equivalents.
+  - A query may be pure Hebrew (`שמישות`), pure Latin (`Affordance`), or mixed (`הגדרה של Usability`).
+  - Hebrew normalization: strip niqqud, normalize final forms (ך ם ן ף ץ ↔ כ מ נ פ צ), strip the prefix particles ו־ ה־ ב־ ל־ כ־ מ־ ש־ so `בשמישות` matches `שמישות`.
+  - Latin normalization: case-folding, and punctuation-insensitive matching so `UI/UX` is found by `uiux` and `ui ux`.
+  - **Cross-script aliasing:** a concept's `aliases` field carries its Hebrew name(s) and its English name. Searching `שמישות` must find the `Usability` concept and vice versa. This is why `ConceptFrontmatterSchema` has `aliases`.
+  - Acronym expansion: `HCI` → human / computer / interaction, and their Hebrew equivalents.
 - Results grouped by object type, with the matched context shown.
 
 **`apps/web`**
@@ -271,7 +271,7 @@ This is the phase most likely to be underestimated.
 
 ## Definition of Done
 
-- `DNS` and `די-אן-אס` and `שרת שמות` all reach the same concept.
+- `Usability` and `יוזביליטי` and `שמישות` all reach the same concept.
 - A mixed-script query returns sensible results rather than zero.
 - Search runs client-side against a prebuilt index. No server required.
 - Zero results renders an honest empty state, never fabricated suggestions.
@@ -339,11 +339,11 @@ AI **extends** learning. It never replaces the educational model.
 
 ## Goal
 
-Prove the architecture claim: **Computer Security is the first course, not the only one.**
+Prove the architecture claim: **HCI is the first course, not the only one.**
 
 ## Deliverables
 
-- Course as a first-class object. `frontmatter.course` already exists in `LessonFrontmatterSchema` and defaults to `computer-security` — Phase 8 makes it load-bearing.
+- Course as a first-class object. `frontmatter.course` already exists in `LessonFrontmatterSchema` and defaults to `hci-course` — Phase 8 makes it load-bearing.
 - Vault restructured to `content/<course>/…`.
 - Per-course routing, per-course knowledge graph, per-course search index.
 - Course selection in the UI.
@@ -436,9 +436,9 @@ lessons) and 555 edges, with cycle and orphan detection wired into
 
 1. **Concept slugs and lesson ids share one namespace and collide.** Twenty-one
    of them do — a lesson is usually named after the concept it teaches
-   (`firewall`, `cia`, `dmz`). Keying a graph node by the bare slug merged the
-   two, and every `[[Firewall]]` edge pointed at the *lesson*. Node ids are now
-   `concept:firewall` / `lesson:firewall`, and the count is checked: nodes must
+   (`affordances`, `usability`, `personas`). Keying a graph node by the bare slug merged the
+   two, and every `[[Affordances]]` edge pointed at the *lesson*. Node ids are now
+   `concept:affordances` / `lesson:affordances`, and the count is checked: nodes must
    equal concepts + lessons.
 
 2. **`related:` was slugified, not resolved.** `related: [Perimeter]` produced
@@ -455,10 +455,10 @@ lessons) and 555 edges, with cycle and orphan detection wired into
 
 ```yaml
 units:
-  - id: intro
-    lessons: [cyberspace, internet, cloud, threat, cia]
-  - id: malware
-    lessons: [virus, worm, trojan]
+  - id: introduction
+    lessons: [what-is-hci, affordances, mental-models, signifiers, usability]
+  - id: research
+    lessons: [ethnography, personas, scenarios]
 ```
 
 But the directories on disk are `lesson-01`, `lesson-02`, `lesson-03`.

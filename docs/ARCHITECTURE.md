@@ -6,11 +6,11 @@
 
 ---
 
-# CyberAtlas Architecture
+# HCI Platform Architecture
 
 ## Vision
 
-CyberAtlas is **not** a traditional Learning Management System (LMS).
+This platform is **not** a traditional Learning Management System (LMS).
 
 It is a **Learning Operating System** that separates educational content, learning logic, rendering, assessment, AI capabilities, and user interfaces into independent layers.
 
@@ -210,7 +210,7 @@ Example:
 
 ````text
 :::definition
-Firewall
+Affordance
 :::
 `````
 
@@ -367,7 +367,7 @@ Clients communicate only through public APIs.
 The layers above are conceptual. On disk they are a pnpm workspace:
 
 ```text
-cyberatlas/
+hci-platform/
 │
 ├── apps/
 │   └── web/                  React + Vite client (RTL-first)
@@ -645,7 +645,7 @@ The architecture is designed to support:
 
 # Design Goals
 
-CyberAtlas prioritizes:
+This platform prioritizes:
 
 * Maintainability
 * Separation of concerns

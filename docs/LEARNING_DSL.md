@@ -3,7 +3,7 @@
 > Version 2.0
 > Status: Canonical
 
-This document defines the educational language used by CyberAtlas.
+This document defines the educational language used by the HCI Learning Platform.
 
 It is the only supported format for writing educational content.
 
@@ -50,11 +50,11 @@ Educational content is written in **Hebrew**.
 Technology names stay in English and are never translated.
 
 ```text
-Firewall     ✅        חומת אש        ❌
-DNS          ✅
-TCP/IP       ✅
-OAuth        ✅
-Cloud        ✅
+Affordance   ✅        אַפוֹרדנס       ❌
+Usability    ✅
+UI/UX        ✅
+Persona      ✅
+Wireframe    ✅
 ```
 
 The UI renders right-to-left. Authors do not think about this — write Hebrew
@@ -69,21 +69,21 @@ Every lesson begins with YAML front matter.
 ```yaml
 ---
 id: lesson-01
-title: מהו מרחב הסייבר?
+title: מהו HCI?
 lessonNumber: 1
-course: computer-security
+course: hci-course
 category: יסודות
 difficulty: easy
 estimatedTime: 25
 tags:
-  - cyberspace
+  - hci
   - fundamentals
 prerequisites: []
 relatedLessons:
   - lesson-02
 relatedConcepts:
-  - Firewall
-  - DNS
+  - Affordances
+  - Usability
 version: 1
 ---
 ```
@@ -151,9 +151,9 @@ Seventeen directives. This list is exhaustive.
 
 ````md
 :::objectives
-- להגדיר מהו מרחב הסייבר.
-- להבין את ההבדל בין האינטרנט לבין מרחב הסייבר.
-- לזהות אילו מערכות שייכות למרחב הסייבר.
+- להגדיר מהו HCI (מנשק אדם-מחשב).
+- להבין את ההבדל בין UI, UX ל-HCI.
+- לזהות מתי עיצוב ממוקד-משתמש (UCD) בא לידי ביטוי בממשק.
 :::
 ````
 
@@ -165,8 +165,8 @@ Short. Precise. Objective. **Never contains an example.**
 
 ````md
 :::definition
-מרחב הסייבר הוא כלל הסביבה הדיגיטלית המאפשרת למחשבים, מערכות, ארגונים ובני אדם
-לתקשר, להעביר מידע ולבצע פעולות באמצעות רשתות מחשבים.
+HCI (מנשק אדם-מחשב) הוא תחום הבוחן כיצד בני אדם מתקשרים עם מערכות ממוחשבות,
+ומעצב את הממשק כך שיהיה יעיל, נוח ונגיש למשתמש.
 :::
 ````
 
@@ -181,8 +181,9 @@ Concrete. Practical. Drawn from real systems students already use.
 
 ````md
 :::example
-כאשר אתם מזמינים אוכל דרך Wolt, האפליקציה מתקשרת עם שרתי החברה, המידע עובר דרך
-ספק האינטרנט, ומתבצע תשלום מול חברת האשראי. כל אלה פועלים יחד בתוך מרחב הסייבר.
+כאשר אתם מזמינים אוכל דרך Wolt, כל החלטת עיצוב — היכן ממוקם כפתור ההזמנה, כיצד
+מנוסחת הודעת השגיאה, כמה צעדים עד התשלום — היא תוצר של HCI: התאמת הממשק לדרך
+שבה בני אדם חושבים ופועלים.
 :::
 ````
 
@@ -193,8 +194,8 @@ easier — not for decoration.
 
 ````md
 :::analogy
-Firewall דומה למאבטח בכניסה לבניין: הוא אינו מונע כניסה מכולם, אלא בודק כל אדם
-מול רשימת כללים ומחליט אם לאפשר מעבר.
+Affordance דומה לידית של דלת: צורתה מרמזת כיצד להשתמש בה — ידית בולטת מזמינה
+משיכה, ומשטח שטוח מזמין דחיפה, עוד לפני שקראנו שלט כלשהו.
 :::
 ````
 
@@ -211,7 +212,7 @@ everything is important, nothing is.
 
 ````md
 :::important
-כל אינטרנט הוא חלק ממרחב הסייבר, אך לא כל מרחב סייבר הוא אינטרנט.
+כל שמישות (Usability) כוללת שימושיות (Utility), אך מערכת שימושית אינה בהכרח שמישה.
 :::
 ````
 
@@ -221,7 +222,8 @@ For a specific misconception you are actively heading off.
 
 ````md
 :::warning
-Firewall אינו Antivirus. Firewall מסנן תעבורת רשת; Antivirus מזהה קבצים זדוניים.
+Affordance אינו Signifier. Affordance היא אפשרות הפעולה עצמה; Signifier הוא הרמז
+החזותי שמסמן היכן לבצע אותה.
 :::
 ````
 
@@ -231,7 +233,7 @@ Optional. Practical advice.
 
 ````md
 :::tip
-כשאתם מנתחים אירוע אבטחה, התחילו תמיד מהשאלה: מה בדיוק הותקף?
+כשאתם מעריכים ממשק, התחילו תמיד מהשאלה: מה המשתמש מנסה להשיג כאן?
 :::
 ````
 
@@ -250,9 +252,9 @@ is a real file that already lives in the vault.
 ## Embedding a real asset
 
 ````md
-![[CIA Triangle.png]]
+![[Norman Door.png]]
 
-![[CIA Triangle.png|שלוש הצלעות מושכות זו כנגד זו: חיזוק אחת נוטה להחליש אחרת.]]
+![[Norman Door.png|דלת שהידית שלה מזמינה משיכה בעוד שצריך לדחוף — אפורדנס שגוי.]]
 ````
 
 The file must exist in `content/media`. **An embed of a file the vault does
@@ -271,9 +273,9 @@ Everything below describes a visual that does not exist yet.
 
 ````md
 :::diagram
-תרשים המראה את מרחב הסייבר כמעגל חיצוני, ובתוכו האינטרנט כמעגל פנימי קטן יותר.
-סביב האינטרנט: רשתות ארגוניות, מרכזי נתונים, מערכות IoT ומחשבים אישיים — כולם
-בתוך מרחב הסייבר אך מחוץ לאינטרנט.
+תרשים המראה את מודל עיבוד המידע האנושי: קלט חושי נכנס לתפיסה, עובר לזיכרון
+העבודה (קצר-טווח), ומשם להחלטה ולפעולה. לצד זיכרון העבודה מופיע הזיכרון
+ארוך-הטווח שמזין ומקבל מידע.
 :::
 ````
 
@@ -281,7 +283,7 @@ Everything below describes a visual that does not exist yet.
 
 ````md
 :::image
-צילום מסך של הגדרות Firewall בנתב ביתי, עם הדגשה על טבלת הכללים.
+צילום מסך של טופס הרשמה עם מיקרו-קופי טוב: הודעות שגיאה ברורות ליד כל שדה.
 :::
 ````
 
@@ -289,8 +291,8 @@ Everything below describes a visual that does not exist yet.
 
 ````md
 :::animation
-אנימציה המראה מנה (packet) עוברת דרך Firewall: הכלל נבדק, ואז המנה מועברת או
-נחסמת.
+אנימציה המראה משתמש עובר דרך תהליך Think-aloud במבחן שמישות: הוא מקריא את
+מחשבותיו בעודו מנסה להשלים משימה בממשק.
 :::
 ````
 
@@ -298,7 +300,7 @@ Everything below describes a visual that does not exist yet.
 
 ````md
 :::video
-סרטון קצר המדגים כיצד נראית מתקפת Phishing מנקודת מבטו של המשתמש.
+סרטון קצר המדגים מבחן שמישות אמיתי: מנחה, משתתף ומשימה, מנקודת מבטו של המשתמש.
 :::
 ````
 
@@ -312,8 +314,8 @@ Every major section ends with one. Verifies **understanding**, never recall.
 
 ````md
 :::selfcheck
-question: האם מערכת מחשבים פנימית של בית חולים, שאינה מחוברת לאינטרנט, היא חלק ממרחב הסייבר?
-answer: כן. מרחב הסייבר כולל גם רשתות פנימיות ומערכות שאינן מחוברות ישירות לאינטרנט.
+question: האם עיצוב גרפי יפה של מסך מספיק כדי לומר שהממשק "טוב" מבחינת HCI?
+answer: לא. HCI בוחן גם שמישות — האם המשתמש מבין כיצד לפעול ומשלים את המשימה — ולא רק את המראה.
 :::
 ````
 
@@ -345,9 +347,9 @@ A reference. **Never an inlined quiz.**
 
 ````md
 :::keypoints
-- מרחב הסייבר רחב יותר מהאינטרנט.
-- הוא כולל מערכות, משתמשים, תוכנות ותשתיות.
-- כל פעולה דיגיטלית מתרחשת בתוך מרחב הסייבר.
+- HCI רחב יותר מ-UI: הוא כולל את המשתמש, המשימה וההקשר.
+- UI הוא הממשק הגלוי, UX היא החוויה הכוללת, ו-HCI הוא התחום שחוקר את שניהם.
+- כל החלטת עיצוב טובה מתחילה מהבנת המשתמש.
 :::
 ````
 
@@ -357,9 +359,9 @@ Reinforces. Introduces nothing new. Fits on one screen.
 
 ````md
 :::summary
-מרחב הסייבר הוא הסביבה הדיגיטלית שבה פועלות כל מערכות המידע והתקשורת המודרניות.
-הבנת המושג היא אבן היסוד ללימוד אבטחת מידע, משום שכל איום ומנגנון הגנה שנלמד
-בהמשך פועל בתוכו.
+HCI הוא התחום החוקר את האינטראקציה בין בני אדם למערכות ממוחשבות. הבנת המושג היא
+אבן היסוד ללימוד עיצוב חוויית משתמש, משום שכל עיקרון עיצוב ושיטת מחקר שנלמד
+בהמשך נשען עליו.
 :::
 ````
 
@@ -379,16 +381,16 @@ Reinforces. Introduces nothing new. Fits on one screen.
 Concepts are referenced with Obsidian wiki-link syntax.
 
 ```md
-[[Firewall]]
+[[Affordances]]
 
-[[DNS]]
+[[Usability]]
 
-[[CIA]]
+[[Mental Models]]
 ```
 
 Never use Markdown links for concepts.
 
-The parser resolves `[[Firewall]]` to `concepts/firewall.md` and emits a
+The parser resolves `[[Affordances]]` to `concepts/affordances.md` and emits a
 `concept-reference` object. The renderer turns it into an interactive chip with
 a hover preview. **A link to a concept that does not exist is a build error.**
 
