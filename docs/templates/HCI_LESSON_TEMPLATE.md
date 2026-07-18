@@ -82,6 +82,8 @@ By the end of this lesson, you will be able to:
 - Explain how the concept fits into broader HCI theory
 - Include 1-2 examples for each concept
 - Mark concepts that appear in other lessons
+- **Tag each concept with its exam weight (HIGH / MEDIUM / LOW)** so students know how heavily it is tested — HIGH = 3+ exam questions, MEDIUM = 1-2 questions, LOW = background. Roll these tags up into the "Key Exam Topics (Weight)" subsection in Resources.
+- **Wrap concept names in `[[bracket notation]]`** (e.g. `[[Signifiers]]`, `[[Mental Models]]`) when you reference other concepts, so the knowledge graph links them automatically.
 
 **Example for "Affordances" lesson:**
 
@@ -96,7 +98,7 @@ By the end of this lesson, you will be able to:
 
 **Example 1 (Physical):** A door handle with a flat plate affords pushing; a handle you can grasp affords pulling. The shape itself communicates the intended action.
 
-**Example 2 (Digital):** A underlined blue text affords clicking (it looks like a link). A raised button affords pressing. A text box affords typing.
+**Example 2 (Digital):** Underlined blue text affords clicking (it looks like a link). A raised button affords pressing. A text box affords typing.
 
 ### Perceived vs. Real Affordances
 
@@ -361,8 +363,9 @@ D) Saving should always require manual confirmation
 **Author Instructions:**
 - List 4-6 closely related HCI concepts
 - Explain the relationship (e.g., "builds on," "complements," "contrasts with")
-- Use format: **Concept Name** — brief explanation of relationship
-- Link to other lessons where available
+- **Link aggressively using `[[bracket notation]]` (wiki-style links)** — e.g. `[[Mental Models]]`, `[[Signifiers]]` — so the knowledge graph can connect this lesson to related concepts. This repo's knowledge-graph skill depends on these links to build relationships automatically.
+- Use format: **[[Concept Name]]** — brief explanation of relationship
+- Wrap every concept name in `[[ ]]` wherever it appears in this section (and elsewhere in the lesson) so it becomes a graph node
 - Help students build a coherent understanding of HCI
 
 **Example for "Affordances" lesson:**
@@ -370,17 +373,17 @@ D) Saving should always require manual confirmation
 ```markdown
 ## Related Concepts
 
-- **Mental Models** — Affordances help users build accurate mental models of how an interface works. When affordances match the system's actual behavior, users develop correct mental models and make fewer mistakes.
+- **[[Mental Models]]** — Affordances help users build accurate mental models of how an interface works. When affordances match the system's actual behavior, users develop correct mental models and make fewer mistakes.
 
-- **Signifiers** — While affordances are properties of the object, signifiers are the clues that communicate affordances to users. Good signifiers reveal affordances; poor signifiers hide them.
+- **[[Signifiers]]** — While affordances are properties of the object, signifiers are the clues that communicate affordances to users. Good signifiers reveal affordances; poor signifiers hide them.
 
-- **Feedback** — Affordances work best when followed by immediate feedback. Feedback confirms that an action was perceived and acted upon, reinforcing the affordance.
+- **[[Feedback]]** — Affordances work best when followed by immediate feedback. Feedback confirms that an action was perceived and acted upon, reinforcing the affordance.
 
-- **Consistency** — Consistent affordances across an interface (and across products) help users learn and apply patterns. Inconsistency forces users to relearn the interface repeatedly.
+- **[[Consistency]]** — Consistent affordances across an interface (and across products) help users learn and apply patterns. Inconsistency forces users to relearn the interface repeatedly.
 
-- **Accessibility** — Affordances must be perceivable by all users, including those with visual, motor, or cognitive disabilities. This might require providing multiple ways to perceive and act on affordances (visual, auditory, keyboard).
+- **[[Accessibility]]** — Affordances must be perceivable by all users, including those with visual, motor, or cognitive disabilities. This might require providing multiple ways to perceive and act on affordances (visual, auditory, keyboard).
 
-- **Usability** — Affordances are a key component of usability. An interface with poor affordances will score low on learnability, efficiency, memorability, and satisfaction.
+- **[[Usability]]** — Affordances are a key component of usability. An interface with poor affordances will score low on learnability, efficiency, memorability, and satisfaction.
 ```
 
 ---
@@ -390,16 +393,27 @@ D) Saving should always require manual confirmation
 **Purpose:** Provide references for further reading and examples students can explore.
 
 **Author Instructions:**
+- **Start with a "Lecturer Material Source" subsection as the FIRST resource.** The lecturer's own course materials in `/content/sources/` are the authoritative source for this course — always reference the relevant file(s) there before any external reading. External references (Norman, NNG, Apple HIG, etc.) are secondary / further reading.
 - Provide 4-6 authoritative sources
 - Include a mix of: academic references, books, articles, online resources
 - For each resource, explain what it covers and why it matters
 - Format: **Resource Title** — brief description
 - Include authors/sources where relevant
+- **Add a "Key Exam Topics (Weight)" subsection** that tags how heavily each concept in this lesson is tested, using the exam-weight scale:
+  - **HIGH** = 3+ exam questions (core, always tested)
+  - **MEDIUM** = 1-2 exam questions
+  - **LOW** = background / context, rarely tested directly
 
 **Example for "Affordances" lesson:**
 
 ```markdown
 ## Resources
+
+### Lecturer Material Source (Authoritative)
+
+- **`/content/sources/HCI_ concepts and applications - 27203901-20262_.../Design rules`** — The lecturer's own course notes on design rules, affordances, and signifiers. **This is the authoritative source for the exam** — align definitions and emphasis with it before consulting external references. (Also see the `Usability` and `Cognitive Psychology` folders under `/content/sources/` for related material.)
+
+### Further Reading (Secondary / External)
 
 - **Don Norman, "The Design of Everyday Things" (1988)** — The seminal work that introduced affordances to the design world. Chapter 1-2 specifically cover affordances and their importance in user-centered design. Essential reading for understanding why affordances matter.
 
@@ -412,6 +426,16 @@ D) Saving should always require manual confirmation
 - **Microsoft Fluent Design: "Interaction"** — Demonstrates affordance principles in Windows and Office applications. Useful for comparing affordance approaches across platforms.
 
 - **MIT D-Lab: "User-Centered Design" course materials** — Free course materials showing how affordances inform the early stages of interface design and prototyping.
+
+### Key Exam Topics (Weight)
+
+Tag how heavily each concept in this lesson is tested so students prioritize their studying:
+
+- **Perceived vs. Real Affordances** — **HIGH** (3+ exam questions; almost always tested)
+- **Affordances vs. Signifiers** — **HIGH** (3+ exam questions; the distinction is a recurring favorite)
+- **Affordances and Cognitive Load** — **MEDIUM** (1-2 exam questions)
+- **Designing Affordances for Different User Groups** — **MEDIUM** (1-2 exam questions)
+- **Historical origin of the term (Gibson, Norman)** — **LOW** (background; rarely tested directly)
 ```
 
 ---
