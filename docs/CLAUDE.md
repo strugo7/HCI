@@ -1,22 +1,44 @@
 # CLAUDE.md
 
-# CyberAtlas
+# HCI Learning Platform
 
-> AI-Powered Knowledge Platform for Computer Security Education
+> AI-Powered Knowledge Platform for Human-Computer Interaction & UX Education
 
 Version: 1.0
 
 ---
 
+# HCI Domain Context
+
+This platform teaches **Human-Computer Interaction & User Experience**
+(University Course 27203901) — not security. When writing content:
+
+## Core HCI Concepts
+
+- **Human-Centered Design (HCD):** a design process that puts user needs first throughout development
+- **Usability:** how easily users learn, use, and find satisfaction in an interface (learnability, efficiency, memorability, error tolerance, satisfaction)
+- **Affordances:** properties of an object that suggest how to interact with it — a handle affords pulling, a button affords pressing
+- **Mental Models:** how users predict system behavior based on prior experience
+- **Cognitive Load:** the mental effort an interface demands — reducing it improves usability
+
+## Content Guidelines
+
+- Every lesson connects to HCI principles from the lecturer materials in `content/sources/`
+- Practice questions are multiple-choice (the exam is in English); use real interface examples (Apple, Slack, Microsoft), not hypotheticals
+- Exam weight leans heavily on Ethnographic Research and Usability Testing (~40% together), then core concepts and design methods
+- Author with the templates in `docs/templates/` and mark concept exam weight: HIGH (3+ questions), MEDIUM (1–2), LOW (background)
+
+---
+
 # Mission
 
-CyberAtlas is not a documentation website.
+This platform is not a documentation website.
 
-CyberAtlas is not a note-taking application.
+This platform is not a note-taking application.
 
-CyberAtlas is an AI-powered educational platform that teaches Computer Security through reusable knowledge objects, interactive content and visual learning.
+This platform is an AI-powered educational platform that teaches Human-Computer Interaction & User Experience through reusable knowledge objects, interactive content and visual learning.
 
-The first implementation is a university Computer Security course.
+The first implementation is a university HCI course (27203901).
 
 The architecture must support additional courses in the future without modification.
 
@@ -126,7 +148,7 @@ Never bypass this pipeline.
 # Repository Structure
 
 ```
-computer-security-platform/
+hci-platform/
 
 apps/
 │
@@ -287,13 +309,13 @@ Example
 ```
 content/concepts/
 
-Firewall.md
+Affordances.md
 
-DNS.md
+Usability.md
 
-Cloud.md
+Mental-Models.md
 
-CIA.md
+Cognitive-Load.md
 ```
 
 Lessons reference concepts.
@@ -353,11 +375,10 @@ The platform should feel like
 - Apple Documentation
 - Coursera
 - Duolingo
-- TryHackMe
 
 Avoid
 
-- hacker aesthetics
+- cluttered layouts
 - terminal UI
 - unnecessary animations
 - decorative elements
@@ -386,23 +407,23 @@ Skills live inside
 
 Purpose
 
-Creates educational content.
+Creates HCI educational content following the `docs/templates/` guidelines.
 
 Responsible for
 
-Lessons
+Lessons (HCI_LESSON_TEMPLATE.md)
 
-Concepts
+Concepts (HCI_CONCEPTS_TEMPLATE.md)
 
 Definitions
 
-Examples
+Examples (from real interfaces)
 
 Summaries
 
-Flashcards
+Flashcards (HCI_FLASHCARD_TEMPLATE.md)
 
-Quizzes
+Quizzes (HCI_QUIZ_TEMPLATE.md)
 
 ---
 
@@ -515,7 +536,7 @@ Claude should recognize these commands.
 Example
 
 ```
-/create-lesson Malware
+/create-lesson Affordances
 ```
 
 Pipeline
@@ -662,10 +683,10 @@ update these specifications instead of creating exceptions.
 
 # Long-Term Vision
 
-CyberAtlas should become a reusable educational framework.
+This platform should become a reusable educational framework.
 
-Computer Security is only the first course.
+HCI is the first course.
 
-The platform should eventually support any technical subject simply by adding new content written in the Learning DSL.
+The platform should eventually support any technical subject simply by adding new content written in the Learning DSL and following the patterns in `docs/templates/`.
 
 The architecture should remain unchanged as new courses are added.
