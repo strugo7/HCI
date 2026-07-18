@@ -10,12 +10,12 @@ lesson: lesson-slug
 front: שאלה קצרה. רעיון אחד בלבד.
 back: תשובה קצרה. משפט או שניים, לא פסקה.
 concepts:
-  - Firewall
+  - Affordances
 
 ## Card
 
-front: מה ההבדל בין IDS ל-IPS?
-back: IDS מזהה ומתריע בלבד; IPS יושב על נתיב התעבורה וגם חוסם.
+front: מה ההבדל בין Affordance ל-Signifier?
+back: Affordance היא אפשרות הפעולה שהאובייקט מאפשר; Signifier הוא הרמז החזותי שמראה למשתמש היכן והיאך לבצע אותה.
 concepts:
-  - IDS
-  - IPS
+  - Affordances
+  - Signifiers

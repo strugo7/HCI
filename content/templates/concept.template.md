@@ -1,18 +1,18 @@
 ---
-id: firewall
-title: Firewall
-slug: firewall
+id: affordances
+title: Affordances
+slug: affordances
 aliases:
-  - חומת אש
-  - חומת-אש
+  - אפשרויות פעולה
+  - אפשרויות-פעולה
 tags:
-  - network-security
+  - interaction-design
 related:
-  - DMZ
-  - Defense in Depth
+  - Signifiers
+  - Mental Models
 ---
 
-# Firewall
+# Affordances
 
 :::definition
 מה הדבר הזה *הוא*. משפט אחד או שניים. מדויק, אובייקטיבי, בלי דוגמאות ובלי הסבר
@@ -28,7 +28,7 @@ related:
 ## הסבר טכני
 
 פסקה שעונה על "איך זה עובד?" — מנגנון, שכבה במודל, מגבלות, ומה זה *לא* עושה.
-כאן מותר להיכנס לעומק ולקשר למושגים אחרים כמו [[DMZ]].
+כאן מותר להיכנס לעומק ולקשר למושגים אחרים כמו [[Signifiers]].
 
 :::example
 מקרה קונקרטי מהעולם האמיתי. מערכת שהסטודנט מכיר, לא הנחה מופשטת.

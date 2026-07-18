@@ -1,6 +1,6 @@
 # QUIZ_TEMPLATE.md
 
-> CyberAtlas Quiz Template
+> HCI Quiz Template
 >
 > Version: 1.0
 
@@ -8,7 +8,7 @@
 
 # Purpose
 
-This template defines the standard format for every quiz question in CyberAtlas.
+This template defines the standard format for every quiz question in the HCI platform.
 
 Questions should evaluate understanding rather than memorization.
 
@@ -37,10 +37,10 @@ difficulty: medium
 estimatedTime: 45
 points: 5
 concepts:
-  - Firewall
-  - Defense in Depth
+  - Affordances
+  - Signifiers
 tags:
-  - perimeter
+  - interaction-design
 ```
 
 ---
@@ -58,7 +58,7 @@ Example
 ```md
 ## Question
 
-Which security control provides the greatest protection against unauthorized inbound traffic?
+Which property of an object communicates what actions a user can perform with it?
 ```
 
 ---
@@ -76,8 +76,9 @@ Example
 ```md
 ### Scenario
 
-A company has recently opened remote access for all employees using VPN.
-The security team wants to reduce the attack surface exposed to the Internet.
+A team has just released a mobile app where users report they cannot tell
+which elements on the screen are tappable.
+The design team wants to make the available actions clearer to users.
 ```
 
 ---
@@ -86,7 +87,7 @@ The security team wants to reduce the attack surface exposed to the Internet.
 
 ```md
 :::
-firewall-topology
+affordances-diagram
 :::
 ```
 
@@ -97,7 +98,7 @@ firewall-topology
 Embed an image anywhere in the question text or the scenario:
 
 ```md
-![[dmz-topology.png]]
+![[information-architecture.png]]
 ```
 
 The file must exist in `content/media/` or `content/assets/`. The embed is
@@ -122,13 +123,13 @@ D.
 Example
 
 ```md
-A. Install an IDS
+A. Cognitive Load
 
-B. Deploy a Firewall
+B. Affordance
 
-C. Disable DNS
+C. Persona
 
-D. Remove VPN
+D. Wireframe
 ```
 
 ---
@@ -154,13 +155,13 @@ Explain why the other answers are incorrect.
 Example
 
 ```md
-The Firewall filters incoming traffic before it reaches internal systems.
+אַפוֹרְדֶנְס (Affordance) היא אפשרות הפעולה שאובייקט מציע למשתמש, ולכן היא זו שמתקשרת אילו פעולות ניתן לבצע.
 
-IDS detects attacks but does not block them.
+עומס קוגניטיבי מתאר את המאמץ המנטלי הנדרש, ולא את אפשרות הפעולה.
 
-DNS is unrelated.
+פרסונה היא ייצוג של משתמש טיפוסי ואינה תכונה של אובייקט.
 
-Removing VPN does not solve the original problem.
+Wireframe הוא שרטוט מבנה של מסך ואינו מתאר אפשרות פעולה של רכיב.
 ```
 
 ---
@@ -175,7 +176,7 @@ Example
 
 ```yaml
 objective:
-Understand the purpose of perimeter security.
+Understand the purpose of affordances in interaction design.
 ```
 
 ---
@@ -245,11 +246,11 @@ hard
 ```yaml
 concepts:
 
-- Firewall
+- Affordances
 
-- DMZ
+- Signifiers
 
-- IDS
+- Mental Models
 ```
 
 ---
@@ -266,7 +267,7 @@ Example
 
 ```yaml
 misconception:
-Students often confuse IDS with IPS.
+Students often confuse affordances with signifiers.
 ```
 
 ---
@@ -279,7 +280,7 @@ AI should:
 - Use plausible distractors.
 - Test conceptual understanding.
 - Avoid trivia.
-- Use cybersecurity terminology correctly.
+- Use HCI and UX terminology correctly.
 - Ensure only one answer is correct.
 
 ---
@@ -294,49 +295,49 @@ difficulty: medium
 points: 5
 estimatedTime: 60
 concepts:
-  - Firewall
-  - Perimeter Security
+  - Affordances
+  - Signifiers
 cognitive: analyze
 type: scenario
 ---
 
 ## Question
 
-Which security control should be deployed first to reduce unauthorized inbound network traffic?
+Which design change should be applied first to help users understand which element on the screen is clickable?
 
 ### Scenario
 
-A small company is exposing a new web application to the Internet.
+A small company has released a new web application to its customers.
 
-The application contains sensitive customer information.
+Users report they cannot tell which items on the page are interactive.
 
 ### Answers
 
-A. Install an IDS
+A. Add a [[Persona]]
 
-B. Deploy a Firewall
+B. Add a clear [[Signifiers|signifier]] such as an underline or button styling
 
-C. Disable DNS
+C. Reduce the [[Cognitive Load]]
 
-D. Remove HTTPS
+D. Create a [[Wireframe]]
 
 correct: B
 
 ### Explanation
 
-A Firewall filters unwanted traffic before it reaches the internal network.
+סיגניפייר (Signifier) הוא רמז חזותי כמו קו תחתון או עיצוב של כפתור, שמראה למשתמש היכן וכיצד לפעול, ולכן הוא הפתרון הישיר לבעיה.
 
-IDS only detects attacks.
+פרסונה היא ייצוג של משתמש טיפוסי ואינה משנה את המסך עצמו.
 
-DNS is unrelated.
+הפחתת עומס קוגניטיבי חשובה אך אינה מבהירה אילו רכיבים לחיצים.
 
-Removing HTTPS decreases security.
+Wireframe הוא שרטוט מבנה ואינו רמז אינטראקציה למשתמש הסופי.
 
 objective:
-Understand the role of perimeter security.
+Understand the role of signifiers in communicating affordances.
 
 misconception:
-Students often believe IDS blocks attacks.
+Students often believe an affordance is visible on its own, without a signifier.
 ```
 
 ---
