@@ -1,9 +1,13 @@
-# CyberAtlas
+# Human-Computer Interface Exam Prep
 
-> AI-powered knowledge platform for Computer Security education.
+> AI-powered learning platform for HCI & User Experience (Course 27203901).
 
-Educational content is written in **Hebrew** (technology names stay in English).
-The interface is **RTL-first**.
+A professional exam-prep resource for students preparing for the university HCI
+exam, built on a markdown source of truth with lessons, flashcards, and
+practice quizzes.
+
+Educational content is written in **Hebrew** (HCI terminology stays in English);
+the exam itself is in English. The interface is **RTL-first**.
 
 ---
 
@@ -62,13 +66,30 @@ defined in `packages/core/src/directives.ts`.
 
 ## Status
 
-Phase 0. The scaffold, the typed contracts, and the RTL app shell exist.
+Phase 1: HCI curriculum scaffolding. The scaffold, the typed contracts, and the
+RTL app shell exist, and the curriculum is mapped in
+[`content/curriculum.yaml`](content/curriculum.yaml) (11 units).
 
 The parser, renderer, graph, quiz engine and search are **typed contracts with
 unimplemented bodies** — they compile, and they throw if called. The content
-vault is empty apart from two templates.
+vault holds one worked lesson (`what-is-hci`) with the remaining units awaiting
+content.
 
-See [`docs/ROADMAP.md`](docs/ROADMAP.md) for what lands next.
+See [`docs/ROADMAP.md`](docs/ROADMAP.md) for the HCI curriculum timeline.
+
+---
+
+## Content templates
+
+New to authoring HCI content? Start from the templates in
+[`docs/templates/`](docs/templates/):
+
+| Template                                                                   | Use it for                                    |
+| -------------------------------------------------------------------------- | --------------------------------------------- |
+| [`HCI_LESSON_TEMPLATE.md`](docs/templates/HCI_LESSON_TEMPLATE.md)          | Lessons built from the lecturer's materials   |
+| [`HCI_QUIZ_TEMPLATE.md`](docs/templates/HCI_QUIZ_TEMPLATE.md)              | Multiple-choice practice questions            |
+| [`HCI_FLASHCARD_TEMPLATE.md`](docs/templates/HCI_FLASHCARD_TEMPLATE.md)    | Spaced-repetition study cards                 |
+| [`HCI_CONCEPTS_TEMPLATE.md`](docs/templates/HCI_CONCEPTS_TEMPLATE.md)      | Knowledge-graph concept definitions           |
 
 ---
 
