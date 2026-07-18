@@ -25,15 +25,9 @@ Technical terms should remain in English where appropriate.
 
 Examples:
 
-Firewall
-
-IDS
-
-IPS
-
-Cloud
-
-TCP/IP
+UX
+UI
+Persona
 
 ---
 

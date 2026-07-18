@@ -6,11 +6,11 @@
 
 # Obsidian community plugins — vendored 3rd-party code, and the Local REST API
 # plugin's data.json holds the API key AND an RSA private key
-content/.obsidian/plugins/
+**/.obsidian/plugins/
 
 # Obsidian local state
-content/.obsidian/workspace.json
-content/.obsidian/workspace-mobile.json
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
 
 # Dependencies
 node_modules/
