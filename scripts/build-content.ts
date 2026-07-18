@@ -46,7 +46,7 @@ const PUBLIC_ASSET_DIR = path.join(ROOT, 'apps/web/public/content-media');
  * Lessons the app actually ships today. An error anywhere in the vault is
  * printed; an error in one of *these* fails the build.
  */
-const MUST_BUILD: readonly string[] = ['cyberspace'];
+const MUST_BUILD: readonly string[] = ['what-is-hci'];
 
 /**
  * A concept's definition as plain text.
@@ -203,7 +203,7 @@ async function main(): Promise<void> {
   if (assets.size > 0) {
     await mkdir(PUBLIC_ASSET_DIR, { recursive: true });
     for (const src of assets) {
-      // src is vault-relative ("media/CIA Triangle.png"); it flattens to a
+      // src is vault-relative ("media/Mental Model Diagram.png"); it flattens to a
       // single served directory, which is why asset names must be unique.
       await copyFile(path.join(CONTENT_DIR, src), path.join(PUBLIC_ASSET_DIR, path.basename(src)));
     }
@@ -233,7 +233,7 @@ async function main(): Promise<void> {
   await writeFile(path.join(OUT_DIR, 'graph.json'), JSON.stringify(graph), 'utf8');
 
   // One file per quiz and per deck, for the same reason lessons get one each:
-  // opening the cyberspace quiz must not download the other thirty-six.
+  // opening the usability quiz must not download the other thirty-six.
   for (const quiz of quizzes) {
     await writeFile(path.join(OUT_DIR, 'quizzes', `${quiz.id}.json`), JSON.stringify(quiz), 'utf8');
   }
@@ -289,7 +289,7 @@ async function main(): Promise<void> {
           definition: definitionText(c),
           appearsIn: c.appearsIn,
           // The glossary must be findable by every name the concept goes by —
-          // a student searching "חומת אש" is looking for Firewall. These are
+          // a student searching "שמישות" is looking for Usability. These are
           // the same keys the parser resolves `[[links]]` against.
           aliases: c.frontmatter.aliases,
           tags: c.frontmatter.tags,

@@ -19,12 +19,12 @@ export interface LessonBundle {
 export interface ParseContext {
   /**
    * Every writable form of a concept → its canonical slug.
-   * Keys are slugified, so `[[Cyberspace]]`, `[[cyberspace]]` and the alias
-   * `[[מרחב הסייבר]]` all resolve to the one concept that owns the definition.
+   * Keys are slugified, so `[[Usability]]`, `[[usability]]` and the alias
+   * `[[שמישות]]` all resolve to the one concept that owns the definition.
    */
   readonly concepts: ReadonlyMap<string, string>;
   /**
-   * File name → vault-relative path, so `![[CIA Triangle.png]]` can be both
+   * File name → vault-relative path, so `![[Mental Model Diagram.png]]` can be both
    * checked and resolved. An embed of a file the vault does not hold is a
    * build error, not a broken image a student finds.
    */

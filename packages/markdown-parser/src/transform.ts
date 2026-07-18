@@ -30,10 +30,10 @@ export interface TransformContext {
   readonly ids: IdGenerator;
   /**
    * Slugified concept title or alias → canonical concept slug.
-   * `[[מרחב הסייבר]]` and `[[Cyberspace]]` must land on the same concept.
+   * `[[שמישות]]` and `[[Usability]]` must land on the same concept.
    */
   readonly concepts: ReadonlyMap<string, string>;
-  /** File name → vault-relative path, e.g. "CIA Triangle.png" → "media/CIA Triangle.png". */
+  /** File name → vault-relative path, e.g. "Mental Model Diagram.png" → "media/Mental Model Diagram.png". */
   readonly assets: ReadonlyMap<string, string>;
   /** Collected, never thrown. One pass fixes a whole file. */
   readonly diagnostics: Diagnostic[];
@@ -111,11 +111,11 @@ export function resolveConcept(
  * Inline content
  * ------------------------------------------------------------------ */
 
-/** `[[Firewall]]` or `[[Firewall|חומת אש]]`. */
+/** `[[Affordances]]` or `[[Affordances|אפשרויות פעולה]]`. */
 const WIKI_LINK = /(?<!!)\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
 
 /**
- * `![[CIA Triangle.png]]` or `![[CIA Triangle.png|כיתוב]]` — an asset that
+ * `![[Mental Model Diagram.png]]` or `![[Mental Model Diagram.png|כיתוב]]` — an asset that
  * lives in the vault. This is the only way content points at a real file:
  * the author names something `content/media` already holds, and the build
  * fails if it does not.
@@ -549,7 +549,7 @@ function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | n
           ctx,
           'error',
           DIAGNOSTIC_CODES.MISSING_REQUIRED_FIELD,
-          `":::${name}" requires a ref attribute, e.g. :::${name}{ref="cyberspace-quiz"}.`,
+          `":::${name}" requires a ref attribute, e.g. :::${name}{ref="usability-quiz"}.`,
           node,
         );
         return null;

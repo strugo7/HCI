@@ -69,7 +69,7 @@ export interface CompiledVault {
 /**
  * Index the vault's assets by bare file name.
  *
- * Authors write `![[CIA Triangle.png]]`, never a path — the vault's directory
+ * Authors write `![[Mental Model Diagram.png]]`, never a path — the vault's directory
  * layout is not something educational content should have to know.
  */
 async function indexAssets(): Promise<Map<string, string>> {
@@ -241,7 +241,7 @@ export async function compileVault(): Promise<CompiledVault> {
       });
       diagnostics.push(...deck.diagnostics);
       // A lesson points at its cards by its own id, so that is what they are
-      // keyed by — see `:::flashcards{ref="cyberspace"}`.
+      // keyed by — see `:::flashcards{ref="usability"}`.
       if (deck.data) {
         decks.push({ id, lesson: id, title: title ?? id, cards: deck.data });
       }

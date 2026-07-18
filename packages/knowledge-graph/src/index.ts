@@ -18,13 +18,13 @@ export type NodeKind = z.infer<typeof NodeKindSchema>;
 
 export const GraphNodeSchema = z.object({
   /**
-   * Unique across the whole graph: `concept:firewall`, `lesson:firewall`.
+   * Unique across the whole graph: `concept:affordances`, `lesson:affordances`.
    *
    * A concept slug and a lesson id are drawn from the same alphabet and
    * routinely collide — twenty-one of them do today, because a lesson is
    * usually named after the concept it teaches. They are different nodes, so
    * they need different identities; keying a node by the bare slug silently
-   * merged the two and pointed every `[[Firewall]]` edge at the *lesson*.
+   * merged the two and pointed every `[[Affordances]]` edge at the *lesson*.
    */
   id: z.string().min(1),
   kind: NodeKindSchema,
@@ -122,7 +122,7 @@ function edgeKey(edge: GraphEdge): string {
  * `related` is symmetric, so it is stored once in a canonical direction.
  *
  * Authors write relatedness from whichever side they happened to be editing:
- * `firewall.md` lists DMZ, but `dmz.md` may not list Firewall. Treating the
+ * `affordances.md` lists Information Architecture, but `information-architecture.md` may not list Affordances. Treating the
  * pair as undirected means the student sees the relation from both concepts
  * and the author cannot forget a direction — which is the whole reason the
  * graph is derived rather than typed.
@@ -304,7 +304,7 @@ export function buildGraph(
  *
  * The `concept:` / `lesson:` prefix exists so the two id spaces cannot collide
  * inside the graph. It is an implementation detail of identity, and it stops
- * at this boundary — a caller asks about "firewall" and gets back "firewall".
+ * at this boundary — a caller asks about "affordances" and gets back "affordances".
  */
 function refOf(nodeId: string): string {
   return nodeId.slice(nodeId.indexOf(':') + 1);

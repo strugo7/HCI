@@ -22,7 +22,7 @@ import type { Diagnostic, Exam, Lesson, Question } from '@cyberatlas/core';
 
 /**
  * A standalone A–E token, in the sense a student would read as an option
- * letter. Letters inside words (WAF), compounds (C&C, E-mail) and numbers'
+ * letter. Letters inside words (UCD), compounds (Q&A, E-mail) and numbers'
  * neighbors are not references.
  */
 const LETTER_REF = /(?<![A-Za-z0-9&])[A-E](?![A-Za-z0-9&]|-[A-Za-z])/;
@@ -101,9 +101,9 @@ export function lintExams(
 
   // Which lesson owns each concept — the *most specific* claimant, i.e. the
   // lesson with the fewest concepts that lists it. Survey lessons
-  // (defense-in-depth lists nearly every defensive concept) would otherwise
+  // (design-thinking lists nearly every design concept) would otherwise
   // swallow ownership of everything they mention, and a question spanning
-  // firewall + DMZ + WAF would look single-lesson. The owner's identity is
+  // affordances + information-architecture + usability would look single-lesson. The owner's identity is
   // internal to this check; what matters is that two concepts held by two
   // *focused* lessons register as breadth.
   const conceptCount = new Map(lessons.map((lesson) => [lesson.id, lesson.concepts.length]));

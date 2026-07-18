@@ -1,13 +1,15 @@
 import {
-  Bug,
-  Crosshair,
-  Fingerprint,
-  Radar,
-  Server,
-  Shield,
-  ShieldCheck,
-  Siren,
-  Swords,
+  BookOpen,
+  Brain,
+  ClipboardCheck,
+  Eye,
+  Gauge,
+  Lightbulb,
+  MessageSquareText,
+  Network,
+  Palette,
+  PencilRuler,
+  Users,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -19,17 +21,19 @@ import {
  * index. This file must never grow a second copy of any of it.
  */
 const UNIT_ICONS: Record<string, LucideIcon> = {
-  foundations: Shield,
-  malware: Bug,
-  'attack-anatomy': Crosshair,
-  'applied-attack': Swords,
-  'defense-principles': ShieldCheck,
-  'identity-access': Fingerprint,
-  'ids-ips': Radar,
-  'perimeter-dmz': Server,
-  'incident-response-unit': Siren,
+  introduction: BookOpen,
+  'cognitive-psychology': Brain,
+  'ethnographic-research': Eye,
+  'personas-and-scenarios': Users,
+  'information-architecture': Network,
+  'design-rules': Palette,
+  'examine-concept': PencilRuler,
+  'design-thinking': Lightbulb,
+  usability: Gauge,
+  'usability-testing': ClipboardCheck,
+  'micro-copy': MessageSquareText,
 };
 
 export function unitIcon(unitId: string): LucideIcon {
-  return UNIT_ICONS[unitId] ?? Shield;
+  return UNIT_ICONS[unitId] ?? BookOpen;
 }

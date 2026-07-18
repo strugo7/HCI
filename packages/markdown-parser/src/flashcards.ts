@@ -10,7 +10,7 @@
  *   front: …
  *   back: …
  *   concepts:
- *     - Cyberspace
+ *     - Usability
  */
 import {
   DIAGNOSTIC_CODES,
@@ -103,7 +103,7 @@ export function parseFlashcards(source: string, ctx: ParseContext): FlashcardsPa
     }
 
     const candidate = {
-      // Positional, and stable across rebuilds: `cyberspace-flashcards/card-001`.
+      // Positional, and stable across rebuilds: `usability-flashcards/card-001`.
       id: tctx.ids.next('card'),
       type: 'flashcard',
       front: resolveText(fields.get('front') ?? '', tctx, at),

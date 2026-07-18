@@ -70,11 +70,11 @@ describe('layoutGraph', () => {
   it('carries the unit through, so the graph can be coloured by it', () => {
     const graph: KnowledgeGraph = {
       ...GRAPH,
-      nodes: [{ ...GRAPH.nodes[0]!, unit: 'malware' }],
+      nodes: [{ ...GRAPH.nodes[0]!, unit: 'cognitive-psychology' }],
       edges: [],
     };
 
-    expect(layoutGraph(graph).nodes[0]?.unit).toBe('malware');
+    expect(layoutGraph(graph).nodes[0]?.unit).toBe('cognitive-psychology');
   });
 
   it('lays the same graph out identically every time', () => {

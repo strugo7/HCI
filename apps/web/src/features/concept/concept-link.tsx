@@ -3,7 +3,7 @@
  *
  * The point of a concept reference is that the definition lives in exactly one
  * place. That is an architectural virtue and a reading problem: a student who
- * has forgotten what a DMZ is should not have to leave the sentence to find
+ * has forgotten what an affordance is should not have to leave the sentence to find
  * out. The hover card resolves that — the definition comes to the link, and the
  * student stays where they were.
  *

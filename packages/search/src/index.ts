@@ -5,8 +5,8 @@
  *
  * The index is built at compile time and shipped as data, so search does not
  * pay a parse cost in the browser. Must handle Hebrew (no stemmer, RTL) and
- * Latin technical terms in the same query — a student will type "פיירוול"
- * and "Firewall" interchangeably.
+ * Latin technical terms in the same query — a student will type "שמישות"
+ * and "Usability" interchangeably.
  *
  * Status: contracts defined, implementation pending.
  */

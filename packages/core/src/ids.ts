@@ -10,7 +10,7 @@
  * Slugify a concept title into its canonical lookup key.
  *
  * Hebrew is preserved as-is — only Latin text is case-folded, since Hebrew
- * has no case. `[[Firewall]]` and `[[firewall]]` must resolve to one concept.
+ * has no case. `[[Affordances]]` and `[[affordances]]` must resolve to one concept.
  */
 export function slugify(input: string): string {
   return input
@@ -25,7 +25,7 @@ export function slugify(input: string): string {
 /**
  * Every key a written concept name may be found under, in priority order.
  *
- * Prose names a concept the way prose does — "Web Application Firewall (WAF)" —
+ * Prose names a concept the way prose does — "Information Architecture (IA)" —
  * while the concept file registers the full name and the acronym as two
  * separate aliases, because those are the two ways it is written on its own.
  * The combined form is decomposed here rather than being enumerated as a third

@@ -47,16 +47,16 @@ function unitOfLesson(graph: KnowledgeGraph, id: string): string | null | undefi
 }
 
 const UNITS: GraphUnit[] = [
-  { id: 'foundations', title: 'יסודות', lessons: ['cia'] },
-  { id: 'malware', title: 'נוזקות', lessons: ['virus', 'worm', 'trojan-horse'] },
+  { id: 'introduction', title: 'יסודות', lessons: ['what-is-hci'] },
+  { id: 'cognitive-psychology', title: 'פסיכולוגיה קוגניטיבית', lessons: ['attention', 'memory', 'perception'] },
 ];
 
 describe('unit assignment', () => {
   it('places a lesson in the unit that lists it', () => {
-    const graph = buildGraph([lesson('cia'), lesson('virus')], [], UNITS);
+    const graph = buildGraph([lesson('what-is-hci'), lesson('attention')], [], UNITS);
 
-    expect(unitOfLesson(graph, 'cia')).toBe('foundations');
-    expect(unitOfLesson(graph, 'virus')).toBe('malware');
+    expect(unitOfLesson(graph, 'what-is-hci')).toBe('introduction');
+    expect(unitOfLesson(graph, 'attention')).toBe('cognitive-psychology');
   });
 
   it('leaves a lesson no unit claims unplaced', () => {
@@ -68,49 +68,49 @@ describe('unit assignment', () => {
   it('places a concept in the unit most of its lessons belong to', () => {
     const graph = buildGraph(
       [
-        lesson('virus', ['payload']),
-        lesson('worm', ['payload']),
-        lesson('trojan-horse', ['payload']),
-        lesson('cia', ['payload']),
+        lesson('attention', ['cognitive-load']),
+        lesson('memory', ['cognitive-load']),
+        lesson('perception', ['cognitive-load']),
+        lesson('what-is-hci', ['cognitive-load']),
       ],
-      [concept('payload')],
+      [concept('cognitive-load')],
       UNITS,
     );
 
-    // Three malware lessons against one foundations lesson.
-    expect(unitOfConcept(graph, 'payload')).toBe('malware');
+    // Three cognitive-psychology lessons against one introduction lesson.
+    expect(unitOfConcept(graph, 'cognitive-load')).toBe('cognitive-psychology');
   });
 
   it('breaks a tie by curriculum order, not by the order the content compiled', () => {
-    const lessons = [lesson('virus', ['shared']), lesson('cia', ['shared'])];
+    const lessons = [lesson('attention', ['shared']), lesson('what-is-hci', ['shared'])];
     const concepts = [concept('shared')];
 
-    // One vote each. `foundations` comes first in the curriculum, so it wins —
-    // even though the malware lesson was compiled first.
-    expect(unitOfConcept(buildGraph(lessons, concepts, UNITS), 'shared')).toBe('foundations');
+    // One vote each. `introduction` comes first in the curriculum, so it wins —
+    // even though the cognitive-psychology lesson was compiled first.
+    expect(unitOfConcept(buildGraph(lessons, concepts, UNITS), 'shared')).toBe('introduction');
 
     // Reverse the curriculum and the answer must follow it. This is what proves
     // the rule is curriculum order, and not something incidental about the input.
     const reversed = [...UNITS].reverse();
-    expect(unitOfConcept(buildGraph(lessons, concepts, reversed), 'shared')).toBe('malware');
+    expect(unitOfConcept(buildGraph(lessons, concepts, reversed), 'shared')).toBe('cognitive-psychology');
   });
 
   it('leaves a concept no lesson references unplaced', () => {
-    const graph = buildGraph([lesson('cia')], [concept('lonely')], UNITS);
+    const graph = buildGraph([lesson('what-is-hci')], [concept('lonely')], UNITS);
 
     expect(unitOfConcept(graph, 'lonely')).toBeNull();
   });
 
   it('does not let relatedness place a concept — only teaching does', () => {
-    // `lonely` is related to `taught`, which lives in foundations. Being
+    // `lonely` is related to `taught`, which lives in introduction. Being
     // related to something taught is not the same as being taught.
     const graph = buildGraph(
-      [lesson('cia', ['taught'])],
+      [lesson('what-is-hci', ['taught'])],
       [concept('taught'), concept('lonely', ['taught'])],
       UNITS,
     );
 
-    expect(unitOfConcept(graph, 'taught')).toBe('foundations');
+    expect(unitOfConcept(graph, 'taught')).toBe('introduction');
     expect(unitOfConcept(graph, 'lonely')).toBeNull();
   });
 
@@ -118,14 +118,14 @@ describe('unit assignment', () => {
     const graph = buildGraph([], [], UNITS);
 
     expect(graph.units).toEqual([
-      { id: 'foundations', title: 'יסודות' },
-      { id: 'malware', title: 'נוזקות' },
+      { id: 'introduction', title: 'יסודות' },
+      { id: 'cognitive-psychology', title: 'פסיכולוגיה קוגניטיבית' },
     ]);
   });
 
   it('builds the same graph twice, byte for byte', () => {
-    const lessons = [lesson('virus', ['payload']), lesson('cia', ['payload'])];
-    const concepts = [concept('payload')];
+    const lessons = [lesson('attention', ['cognitive-load']), lesson('what-is-hci', ['cognitive-load'])];
+    const concepts = [concept('cognitive-load')];
 
     const a = JSON.stringify(buildGraph(lessons, concepts, UNITS));
     const b = JSON.stringify(buildGraph(lessons, concepts, UNITS));

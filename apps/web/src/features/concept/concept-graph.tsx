@@ -135,7 +135,7 @@ export function ConceptGraph({ graph }: ConceptGraphProps): ReactNode {
    * Chip id → hue index.
    *
    * A hue means "the Nth unit you selected", numbered in curriculum order — so
-   * selecting `malware` alone always paints it the same colour, and the map does
+   * selecting `cognitive-load` alone always paints it the same colour, and the map does
    * not repaint itself just because the student added a second unit above it.
    */
   const hues = useMemo(() => {

@@ -10,27 +10,27 @@ function node(id: string, unit: string | null): GraphNode {
 }
 
 /**
- *   lesson:virus (malware)     ──references──▶ concept:payload (malware)
- *   lesson:cia (foundations)   ──references──▶ concept:triad (foundations)
- *   concept:payload            ──related─────▶ concept:triad
+ *   lesson:attention (cognitive-psychology)  ──references──▶ concept:cognitive-load (cognitive-psychology)
+ *   lesson:what-is-hci (introduction)        ──references──▶ concept:mental-models (introduction)
+ *   concept:cognitive-load                   ──related─────▶ concept:mental-models
  *   concept:loose (unplaced), connected to nothing
  */
 const GRAPH: KnowledgeGraph = {
   nodes: [
     node('concept:loose', null),
-    node('concept:payload', 'malware'),
-    node('concept:triad', 'foundations'),
-    node('lesson:cia', 'foundations'),
-    node('lesson:virus', 'malware'),
+    node('concept:cognitive-load', 'cognitive-psychology'),
+    node('concept:mental-models', 'introduction'),
+    node('lesson:what-is-hci', 'introduction'),
+    node('lesson:attention', 'cognitive-psychology'),
   ],
   edges: [
-    { source: 'concept:payload', target: 'concept:triad', kind: 'related' },
-    { source: 'lesson:cia', target: 'concept:triad', kind: 'references' },
-    { source: 'lesson:virus', target: 'concept:payload', kind: 'references' },
+    { source: 'concept:cognitive-load', target: 'concept:mental-models', kind: 'related' },
+    { source: 'lesson:what-is-hci', target: 'concept:mental-models', kind: 'references' },
+    { source: 'lesson:attention', target: 'concept:cognitive-load', kind: 'references' },
   ],
   units: [
-    { id: 'foundations', title: 'יסודות' },
-    { id: 'malware', title: 'נוזקות' },
+    { id: 'introduction', title: 'יסודות' },
+    { id: 'cognitive-psychology', title: 'פסיכולוגיה קוגניטיבית' },
   ],
 };
 
@@ -39,7 +39,7 @@ const ids = (graph: KnowledgeGraph): string[] => graph.nodes.map((n) => n.id).so
 
 describe('allChips', () => {
   it('is the curriculum units in order, with the unplaced last', () => {
-    expect(allChips(GRAPH)).toEqual(['foundations', 'malware', UNASSIGNED]);
+    expect(allChips(GRAPH)).toEqual(['introduction', 'cognitive-psychology', UNASSIGNED]);
   });
 });
 
@@ -53,7 +53,7 @@ describe('isFiltering', () => {
   });
 
   it('is true for a strict subset', () => {
-    expect(isFiltering(GRAPH, new Set(['malware']))).toBe(true);
+    expect(isFiltering(GRAPH, new Set(['cognitive-psychology']))).toBe(true);
   });
 });
 
@@ -66,17 +66,17 @@ describe('visibleGraph — the unit filter', () => {
   });
 
   it('keeps only the selected unit', () => {
-    const visible = visibleGraph(GRAPH, { units: new Set(['malware']), focus: null });
+    const visible = visibleGraph(GRAPH, { units: new Set(['cognitive-psychology']), focus: null });
 
-    expect(ids(visible)).toEqual(['concept:payload', 'lesson:virus']);
+    expect(ids(visible)).toEqual(['concept:cognitive-load', 'lesson:attention']);
   });
 
   it('drops an edge whose other end is hidden', () => {
-    const visible = visibleGraph(GRAPH, { units: new Set(['malware']), focus: null });
+    const visible = visibleGraph(GRAPH, { units: new Set(['cognitive-psychology']), focus: null });
 
-    // payload↔triad is `related`, but triad lives in foundations and is gone.
+    // cognitive-load↔mental-models is `related`, but mental-models lives in introduction and is gone.
     expect(visible.edges).toEqual([
-      { source: 'lesson:virus', target: 'concept:payload', kind: 'references' },
+      { source: 'lesson:attention', target: 'concept:cognitive-load', kind: 'references' },
     ]);
   });
 
@@ -87,7 +87,7 @@ describe('visibleGraph — the unit filter', () => {
   });
 
   it('keeps the units on the visible graph, so the chips do not vanish with the nodes', () => {
-    const visible = visibleGraph(GRAPH, { units: new Set(['malware']), focus: null });
+    const visible = visibleGraph(GRAPH, { units: new Set(['cognitive-psychology']), focus: null });
 
     expect(visible.units).toEqual(GRAPH.units);
   });
@@ -95,29 +95,30 @@ describe('visibleGraph — the unit filter', () => {
 
 describe('visibleGraph — focus', () => {
   it('collapses to the node and its one-hop neighbourhood', () => {
-    const visible = visibleGraph(GRAPH, { units: ALL, focus: 'concept:triad' });
+    const visible = visibleGraph(GRAPH, { units: ALL, focus: 'concept:mental-models' });
 
-    expect(ids(visible)).toEqual(['concept:payload', 'concept:triad', 'lesson:cia']);
+    expect(ids(visible)).toEqual(['concept:cognitive-load', 'concept:mental-models', 'lesson:what-is-hci']);
   });
 
   it('intersects with the filter rather than overriding it', () => {
-    // triad's neighbours are payload (malware) and cia (foundations). With only
-    // foundations selected, payload stays hidden — focus reveals what the filter
-    // already allows, it does not reach past it.
+    // mental-models's neighbours are cognitive-load (cognitive-psychology) and
+    // what-is-hci (introduction). With only introduction selected, cognitive-load
+    // stays hidden — focus reveals what the filter already allows, it does not
+    // reach past it.
     const visible = visibleGraph(GRAPH, {
-      units: new Set(['foundations']),
-      focus: 'concept:triad',
+      units: new Set(['introduction']),
+      focus: 'concept:mental-models',
     });
 
-    expect(ids(visible)).toEqual(['concept:triad', 'lesson:cia']);
+    expect(ids(visible)).toEqual(['concept:mental-models', 'lesson:what-is-hci']);
   });
 
   it('ignores a focus on a node the filter has hidden', () => {
     const visible = visibleGraph(GRAPH, {
-      units: new Set(['foundations']),
-      focus: 'concept:payload',
+      units: new Set(['introduction']),
+      focus: 'concept:cognitive-load',
     });
 
-    expect(ids(visible)).toEqual(['concept:triad', 'lesson:cia']);
+    expect(ids(visible)).toEqual(['concept:mental-models', 'lesson:what-is-hci']);
   });
 });

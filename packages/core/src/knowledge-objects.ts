@@ -26,10 +26,10 @@ export type SourceLocation = z.infer<typeof SourceLocationSchema>;
  * Inline content
  * ------------------------------------------------------------------ */
 
-/** `[[Firewall]]` — resolved to a concept slug at parse time. */
+/** `[[Affordances]]` — resolved to a concept slug at parse time. */
 export const ConceptReferenceSchema = KnowledgeObjectBaseSchema.extend({
   type: z.literal('concept-reference'),
-  /** Slug of the target concept, e.g. "firewall". */
+  /** Slug of the target concept, e.g. "affordances". */
   target: z.string().min(1),
   /** The text as written, which may differ from the slug. */
   label: z.string().min(1),
@@ -132,8 +132,8 @@ export type Callout = z.infer<typeof CalloutSchema>;
  * diagram | image | animation | video.
  * `description` is what the author wants drawn. `src` stays null until an
  * asset is produced for it; once the asset exists in the vault, the directive
- * names it (`:::animation{src="dns.html"}`) or the author embeds it
- * (`![[dns.html]]`) and `src` carries its vault-relative path.
+ * names it (`:::animation{src="think-aloud.html"}`) or the author embeds it
+ * (`![[think-aloud.html]]`) and `src` carries its vault-relative path.
  */
 export const MediaSchema = KnowledgeObjectBaseSchema.extend({
   type: z.literal('media'),
@@ -238,7 +238,7 @@ export const LessonFrontmatterSchema = z.object({
    */
   description: z.string().optional(),
   lessonNumber: z.number().int().positive().optional(),
-  course: z.string().default('computer-security'),
+  course: z.string().default('hci-course'),
   category: z.string().optional(),
   difficulty: DifficultySchema.default('medium'),
   /** Minutes. */

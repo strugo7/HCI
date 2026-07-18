@@ -2,7 +2,7 @@
  * concept file → Concept.
  *
  * A concept owns its definition. Lessons link to it and never restate it,
- * so this parser is also what makes `[[Firewall]]` resolvable at all.
+ * so this parser is also what makes `[[Affordances]]` resolvable at all.
  */
 import matter from 'gray-matter';
 

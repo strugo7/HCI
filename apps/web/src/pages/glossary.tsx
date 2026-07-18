@@ -5,7 +5,7 @@
  * Opening this page must not download a single concept body.
  *
  * A concept is found by any name it goes by. A student who knows the term as
- * "חומת אש" and a student who knows it as "Firewall" are looking for the same
+ * "שמישות" and a student who knows it as "Usability" are looking for the same
  * file, so the search matches the concept's aliases — the same keys the parser
  * resolves `[[links]]` against.
  */
@@ -75,7 +75,7 @@ export default function GlossaryPage(): ReactNode {
           icon={Library}
           title="אין עדיין מושגים"
           description="כל קובץ תחת content/concepts הופך למושג יחיד ולצומת בגרף הידע."
-          hint="content/concepts/firewall.md"
+          hint="content/concepts/usability.md"
         />
       </>
     );

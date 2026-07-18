@@ -260,7 +260,7 @@ export function quizzesIndex(): readonly LessonMeta[] {
 /**
  * A vault-relative asset path → the URL the app serves it from.
  *
- * Content names files ("media/CIA Triangle.png"); it does not know how this
+ * Content names files ("media/Mental Model Diagram.png"); it does not know how this
  * app happens to serve them. That translation belongs here, and nowhere in
  * the parser or in the content itself.
  */

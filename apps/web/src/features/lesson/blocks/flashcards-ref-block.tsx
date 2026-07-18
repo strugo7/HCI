@@ -11,7 +11,7 @@ interface FlashcardsRefBlockProps {
 }
 
 /**
- * A lesson points at its deck by its own id — see `:::flashcards{ref="cyberspace"}`
+ * A lesson points at its deck by its own id — see `:::flashcards{ref="usability"}`
  * — which is what the deck route is keyed by.
  */
 export function FlashcardsRefBlock({ block }: FlashcardsRefBlockProps): ReactNode {
