@@ -2,29 +2,31 @@
 
 ## Question
 
-A company wants to expose a public web server while preventing attackers from directly accessing its internal network.
+A mobile banking app shows a large, colorful button that looks pressable, but tapping it does nothing — it is only decorative.
 
-Which architecture provides the best protection?
+Which HCI problem does this best illustrate?
 
 ### Answers
 
-A. Place the web server inside the employee LAN.
+A. A false affordance — the design suggests an action that is not actually available.
 
-B. Place the web server inside a DMZ protected by a firewall.
+B. A high cognitive load caused by too much information on screen.
 
-C. Disable firewall inspection for HTTP traffic.
+C. A violation of the "recognition rather than recall" heuristic.
 
-D. Publish the employee workstations to the Internet.
+D. A poor mental model of the banking domain.
 
 Correct Answer:
 
-B
+A
 
 Explanation:
 
-A DMZ isolates public-facing services from the internal network.
-
-Even if the server is compromised, attackers must still bypass another security boundary.
+מדובר ב-False Affordance (אפורדנס שגוי): צורת הכפתור מרמזת על אפשרות פעולה
+(לחיצה) שאינה קיימת בפועל, ולכן המשתמש מנסה לפעול ונכשל. האפשרות שמדברת על עומס
+קוגניטיבי (Cognitive Load) עוסקת בכמות המידע ולא ברמז מטעה; האפשרות על
+"זיהוי מול היזכרות" עוסקת בזיכרון ולא באפשרות פעולה; והאפשרות על מודל מנטלי
+עוסקת בציפיות המשתמש מהתחום, לא ברמז הוויזואלי של הרכיב.
 
 Difficulty:
 
@@ -32,6 +34,6 @@ Medium
 
 Concepts:
 
-- Firewall
-- DMZ
-- Perimeter Security
+- [[Affordances]]
+- [[Signifiers]]
+- [[Mental Models]]
