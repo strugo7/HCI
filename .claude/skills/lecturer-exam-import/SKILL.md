@@ -1,6 +1,6 @@
 ---
 name: lecturer-exam-import
-description: Transcribe a lecturer's real past exam (scanned PDF in content/quizzes) into a gradeable CyberAtlas exam under content/exams/lecturer — verbatim questions and distractors, shuffled option order, our own explanations, and diagrams pulled from content/media. Use when asked to import, transcribe, or rebuild an original exam (מבחן מרצה) from the scanned papers.
+description: Transcribe a lecturer's real past HCI exam (scanned PDF in content/quizzes) into a gradeable exam under content/exams/lecturer — verbatim questions and distractors, shuffled option order, our own explanations, and diagrams pulled from content/media. Use when asked to import, transcribe, or rebuild an original exam (מבחן מרצה) from the scanned papers.
 ---
 
 # Lecturer Exam Import
@@ -54,16 +54,16 @@ Scans are blurry. When a word or a whole option is genuinely unclear, transcribe
 
 ## Step 2 — Images: look in `content/media/` FIRST
 
-When a question has a figure, **check `content/media/` before extracting anything**. The 2023 figures are already cropped and named:
+When a question has a figure, **check `content/media/` before extracting anything**. Cropped figures follow a stable naming pattern, for example:
 
 | question | asset |
 |---|---|
-| Q5 — component X between A and B | `exam-2023-topology-abx.png` |
-| Q7 — spear-phishing flow | `exam-2023-phishing-flow.png` |
-| Q8 — Bob / Alice / Darth | `exam-2023-bob-alice.png` |
-| Q12 — Enterprise WAN | `exam-2023-enterprise-wan.png` |
-| Q18 — DMZ options A/B/C | `exam-2023-dmz-options.png` |
-| Q19 — linear DMZ | `exam-2023-dmz-linear.png` |
+| Q5 — wireframe with element X between A and B | `exam-2024-wireframe-abx.png` |
+| Q7 — usability-test setup (moderator/participant) | `exam-2024-usability-setup.png` |
+| Q8 — user journey map | `exam-2024-journey-map.png` |
+| Q12 — information-architecture tree | `exam-2024-ia-tree.png` |
+| Q18 — navigation options A/B/C | `exam-2024-nav-options.png` |
+| Q19 — card-sort grouping | `exam-2024-card-sort.png` |
 
 Embed with `![[file.png]]` in the prompt or the scenario. A file the vault does not hold is a **build error**, not a broken image the student discovers. Only crop from the PDF if the asset is genuinely missing.
 
@@ -92,7 +92,10 @@ and keep the original order (so `Correct: A`). `shuffleAnswers()` honours the fl
 
 ### Option count is whatever the paper says
 
-2023 uses four options; 2024–25 use five. 2023 Q19 is the lone five-option question in an otherwise four-option paper. `answers` is `min(4).max(5)` — do not force uniformity by deleting an option the lecturer wrote.
+Transcribe the option count the paper actually shows — a paper may mix
+four-option and five-option questions. `answers` is `min(4).max(5)` — do not
+force uniformity by deleting an option the lecturer wrote or padding one they
+did not.
 
 ---
 
@@ -104,10 +107,10 @@ The lecturer published none. Write one per question, plus a `Learning Objective`
 
 - ❌ "תשובה א׳ נכונה"
 - ❌ "אפשרות B מתארת…"
-- ✅ "האפשרות שמתארת יירוט פסיבי…"
-- ✅ "הארכיטקטורה עם שתי חומות אש ו-DMZ ביניהן…"
+- ✅ "האפשרות שמתארת Affordance שגוי…"
+- ✅ "העיצוב שבו כפתור הפעולה הראשי ממוקם מחוץ לשדה הראייה…"
 
-This bites hardest on diagram questions whose options legitimately say "נקודה B" or "אפשרות A" — those are *diagram labels*, and you still must paraphrase them in the explanation ("הנקודה שבין ענן האינטרנט לבין מטה הארגון").
+This bites hardest on diagram questions whose options legitimately say "נקודה B" or "אפשרות A" — those are *diagram labels*, and you still must paraphrase them in the explanation ("הרכיב שממוקם בראש מסך ההזמנה").
 
 `scripts/lib/exam-lint.ts` enforces this in **both alphabets**. Rule 1 applies to lecturer exams; rules 2 and 3 do not.
 

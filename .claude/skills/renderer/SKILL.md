@@ -103,11 +103,11 @@ Accordion
 
 When encountering
 
-[[Firewall]]
+[[Affordances]]
 
 Render
 
-<ConceptReference slug="firewall" />
+<ConceptReference slug="affordances" />
 
 Never render raw markdown links.
 
