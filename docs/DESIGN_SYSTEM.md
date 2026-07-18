@@ -7,7 +7,7 @@
 
 # Purpose
 
-This document defines how CyberAtlas looks, reads, and behaves.
+This document defines how the HCI platform looks, reads, and behaves.
 
 The design system is the visual half of one rule:
 
@@ -52,9 +52,9 @@ References:
 
 ## Explicitly Not This
 
-The platform teaches Computer Security.
+The platform teaches Human-Computer Interaction.
 
-It does **not** perform Computer Security.
+It does **not** perform it.
 
 Forbidden:
 
@@ -186,7 +186,7 @@ Heebo is the only text face.
 
 It covers **Hebrew and Latin in one family**, so a line like:
 
-> חומת אש (Firewall) מסננת תעבורה נכנסת
+> הרכיב מציג Affordance ברור למשתמש
 
 keeps a single vertical rhythm, a single x-height, and a single weight axis across both scripts.
 
@@ -261,7 +261,7 @@ Headings get **tighter** leading than body. Body gets the room.
 
 ## Technical Terms in Hebrew Prose
 
-Latin technology names stay in English: `Firewall`, `DNS`, `TCP/IP`, `OAuth`.
+Latin technical terms stay in English: `Affordance`, `Usability`, `UI/UX`, `Persona`.
 
 They are never transliterated into Hebrew characters.
 
@@ -278,8 +278,8 @@ The renderer wraps them in `.tech-term`:
 Without isolation, the Unicode bidi algorithm drags adjacent punctuation across the term:
 
 ```
-Intended:  ...התעבורה נבדקת על ידי Firewall.
-Rendered:  ...התעבורה נבדקת על ידי .Firewall
+Intended:  ...הרכיב מציג למשתמש Affordance.
+Rendered:  ...הרכיב מציג למשתמש .Affordance
 ```
 
 The period jumps to the wrong side of the word.
@@ -448,7 +448,7 @@ The mapping lives in the renderer's `BlockRegistry` (`packages/markdown-renderer
 | `references` | `:::references` | **References** | Plain list in `--muted-foreground`. Lowest visual weight on the page. |
 | `quiz-reference` | `:::quiz{ref=…}` | **QuizCard** | A card that *links to* the quiz. It never inlines quiz content. |
 | `flashcards-reference` | `:::flashcards{ref=…}` | **Flashcard** deck entry | Links to the deck. |
-| `concept-reference` | `[[Firewall]]` | **ConceptReference** chip | Inline chip: subtle background, `rounded-sm`, Radix HoverCard revealing the concept's definition, links to `/glossary/:slug`. |
+| `concept-reference` | `[[Affordance]]` | **ConceptReference** chip | Inline chip: subtle background, `rounded-sm`, Radix HoverCard revealing the concept's definition, links to `/glossary/:slug`. |
 | `heading` · `paragraph` · `list` · `table` · `code` | plain Markdown | Prose primitives | Styled by `.prose-lesson`. No component chrome. |
 
 ---
@@ -538,7 +538,7 @@ Tab order must match **visual** RTL order. This is the concrete reason `flex-row
 - Meaningful icons get an `aria-label`. Icons beside a text label get `aria-hidden="true"`.
 - Pages set `lang="he"` and `dir="rtl"`. Latin technical spans set `lang="en"`.
 
-That last point matters: without `lang="en"`, a screen reader tries to pronounce "Firewall" with Hebrew phonetics.
+That last point matters: without `lang="en"`, a screen reader tries to pronounce "Affordance" with Hebrew phonetics.
 
 ---
 

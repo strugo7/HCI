@@ -1,6 +1,6 @@
 # AI_AUTHORING_GUIDE.md
 
-> CyberAtlas AI Authoring Guide
+> HCI Platform AI Authoring Guide
 >
 > Status: Draft
 >
@@ -10,7 +10,7 @@
 
 # Purpose
 
-This document defines how AI systems generate educational content for CyberAtlas.
+This document defines how AI systems generate educational content for this platform.
 
 The goal is to ensure that every lesson follows the same educational philosophy, writing style, structure, and quality standards.
 
@@ -90,21 +90,21 @@ vocabulary lives in `LEARNING_DSL.md`, mirroring
 Example
 
 ````md
-# Firewall
+# Affordances
 
 :::definition
-Firewall הוא רכיב אבטחה המסנן תעבורת רשת על בסיס מערכת כללים מוגדרת מראש.
+Affordance הוא מאפיין של אובייקט או רכיב ממשק שמרמז למשתמש כיצד ניתן להשתמש בו — ידית מזמינה משיכה, כפתור מזמין לחיצה.
 :::
 
 :::example
-חברה מגדירה Firewall שחוסם תעבורה נכנסת ממדינות שאין לה בהן פעילות עסקית.
+כפתור מוגבה עם צל בממשק מרמז שניתן ללחוץ עליו, בעוד שדה קלט עם מסגרת שקועה מרמז שאפשר להקליד בתוכו.
 :::
 
 :::warning
-Firewall אינו Antivirus. הוא מסנן תעבורה, ואינו מזהה קבצים זדוניים.
+Affordance אינו Signifier. ה-Affordance הוא היכולת לפעולה עצמה, ואילו ה-Signifier הוא הרמז החזותי שמסמן למשתמש שהפעולה קיימת.
 :::
 
-ראו [[DMZ]] ו-[[Defense in Depth]]
+ראו [[Information Architecture]] ו-[[Human-Centered Design]]
 ````
 
 ---
@@ -163,8 +163,8 @@ The structure should remain consistent across all lessons.
 
 # Writing Style
 
-**Educational content is written in Hebrew.** Technology names stay in English
-and are never translated — `Firewall`, `DNS`, `TCP/IP`, `OAuth`, `Cloud`.
+**Educational content is written in Hebrew.** Technology and discipline names stay
+in English and are never translated — `Affordances`, `Usability`, `UI/UX`, `Persona`, `Wireframe`.
 
 > Earlier versions of this guide said "write in English." That was wrong, and it
 > contradicted `CONTENT_SPEC.md` and every lesson actually in the vault.
@@ -212,13 +212,13 @@ Lessons reference concepts.
 Correct:
 
 ```md
-[[Firewall]]
+[[Affordances]]
 ```
 
 Incorrect:
 
 ```md
-Firewall is...
+Affordances are...
 ```
 
 unless introducing the concept for the first time through its dedicated Concept page.
@@ -233,11 +233,11 @@ Prefer real-world scenarios.
 
 Good example:
 
-> A company firewall blocks incoming traffic from unknown countries.
+> Slack's paperclip icon affords attaching a file, signaling the action before the user clicks.
 
 Poor example:
 
-> Imagine a magical wall protecting data.
+> Imagine a magical button that just knows what the user wants.
 
 ---
 
@@ -250,8 +250,8 @@ Example
 
 ````md
 :::diagram
-תרשים זרימה של מנה (packet) העוברת דרך Firewall: המנה מגיעה, נבדקת מול טבלת
-הכללים, ואז מועברת לרשת הפנימית או נחסמת ונרשמת ביומן.
+תרשים המדגים Affordance בממשק: המשתמש רואה כפתור מוגבה עם צל, מזהה אותו כרכיב
+לחיץ, מרחף מעליו ומקבל משוב חזותי, ולוחץ — כך המאפיין החזותי מוביל לפעולה הנכונה.
 :::
 ````
 
@@ -286,13 +286,13 @@ Good:
 Front
 
 ```
-What is Defense in Depth?
+What is Human-Centered Design?
 ```
 
 Back
 
 ```
-A security strategy that uses multiple layers of protection.
+A design process that puts user needs first throughout development.
 ```
 
 Avoid long paragraphs.
@@ -317,11 +317,11 @@ Exercises should encourage application.
 
 Good:
 
-> Design a secure network for a small company.
+> Redesign a checkout flow for a small online store to reduce cognitive load.
 
 Poor:
 
-> Rewrite the definition of a firewall.
+> Rewrite the definition of an affordance.
 
 ---
 
@@ -332,11 +332,11 @@ Whenever a lesson references another concept, use Obsidian links.
 Example
 
 ```md
-[[CIA Triad]]
+[[Mental Models]]
 
-[[Firewall]]
+[[Affordances]]
 
-[[DNS]]
+[[Usability]]
 ```
 
 Never duplicate explanations that already exist elsewhere.
@@ -387,13 +387,13 @@ Whenever possible, connect theory to practice.
 
 Examples:
 
-- Enterprise networks
-- Cloud environments
-- Home Wi-Fi
-- Banking systems
-- Healthcare
-- Government
-- Industrial systems
+- Mobile apps
+- E-commerce websites
+- Operating systems
+- Banking apps
+- Healthcare interfaces
+- Government service portals
+- In-car dashboards
 
 Students should understand where concepts are actually used.
 
@@ -405,13 +405,13 @@ AI should identify places where visuals improve learning.
 
 Examples:
 
-- Network topology
-- TCP/IP layers
-- Packet flow
-- Authentication process
-- Firewall rules
-- Attack lifecycle
-- Encryption flow
+- User flows
+- Information architecture trees
+- Wireframe layouts
+- Task analysis diagrams
+- Affordance and signifier mapping
+- Design thinking lifecycle
+- Usability testing process
 
 AI suggests diagrams.
 
@@ -491,4 +491,4 @@ The Golden Lesson serves as the reference implementation for all future lessons.
 - Presentation belongs to the renderer.
 - Consistency is more important than creativity.
 - Understanding is more important than memorization.
-- Content must remain reusable across courses and future versions of CyberAtlas.
+- Content must remain reusable across courses and future versions of this platform.

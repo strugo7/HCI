@@ -73,7 +73,7 @@ A course contains lessons.
 Example
 
 ```
-Computer Security
+Human-Computer Interaction
 ```
 
 ---
@@ -85,13 +85,13 @@ A lesson teaches one major subject.
 Examples
 
 ```
-Cyberspace
+Human-Computer Interaction
 
-Malware
+Cognitive Load
 
-Firewall
+Affordances
 
-Identity Management
+Usability Testing
 ```
 
 Each lesson contains
@@ -114,13 +114,13 @@ A section teaches ONE concept.
 Good
 
 ```
-What is Cyberspace?
+What is Human-Computer Interaction?
 ```
 
 Bad
 
 ```
-Cyberspace, Internet, Cloud and Firewalls
+HCI, Usability, Mental Models and Affordances
 ```
 
 Never teach multiple unrelated concepts inside one section.
@@ -134,15 +134,15 @@ A topic is a subsection.
 Example
 
 ```
-Cyberspace
+Usability
 
 ↓
 
-Physical Layer
+Learnability
 
 ↓
 
-Hardware Components
+Onboarding Cues
 ```
 
 ---
@@ -196,21 +196,21 @@ Every important concept exists exactly once.
 Examples
 
 ```
-Firewall
+Affordances
 
-Router
+Feedback
 
-DNS
+Usability
 
-Cloud
+Consistency
 
-Availability
+Learnability
 
-Integrity
+Efficiency
 
-Confidentiality
+Memorability
 
-Payload
+Signifiers
 ```
 
 Concepts live inside
@@ -301,7 +301,7 @@ Instead describe
 - important elements
 
 An image that already exists is a different case: put the file in
-`content/media` and embed it by name — `![[CIA Triangle.png|caption]]`. The
+`content/media` and embed it by name — `![[Mental Model Diagram.png|caption]]`. The
 build fails if the file is not there. See `LEARNING_DSL.md`.
 
 ---
@@ -338,11 +338,11 @@ Every difficult topic should include common misunderstandings.
 
 Example
 
-Firewall ≠ Antivirus
+Affordances ≠ Signifiers
 
-Internet ≠ Cyberspace
+Usability ≠ User Experience
 
-Authentication ≠ Authorization
+Efficiency ≠ Learnability
 
 ---
 
@@ -417,15 +417,15 @@ Keep English names for technologies.
 
 Examples
 
-Firewall
+Usability
 
-DNS
+Affordance
 
-TCP/IP
+Wireframe
 
-Cloud
+Onboarding
 
-OAuth
+Persona
 
 Never translate technology names unnecessarily.
 
@@ -476,8 +476,8 @@ media directive — `:::diagram`, `:::image`, `:::animation` or `:::video`.
 
 ````md
 :::diagram
-תרשים המראה את שכבות מודל TCP/IP, מהשכבה הפיזית ועד שכבת האפליקציה, עם דוגמה
-לפרוטוקול אחד בכל שכבה.
+תרשים המראה את שבעת שלבי הפעולה של נורמן (Norman's Seven Stages of Action),
+מהיווצרות המטרה ועד הערכת התוצאה, עם דוגמה למחשבה של המשתמש בכל שלב.
 :::
 ````
 
@@ -512,11 +512,11 @@ Always reference concepts using Obsidian links.
 Example
 
 ```
-[[Firewall]]
+[[Affordances]]
 
-[[DNS]]
+[[Usability]]
 
-[[Cloud]]
+[[Mental Models]]
 ```
 
 Never use Markdown links.

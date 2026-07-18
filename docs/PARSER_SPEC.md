@@ -1,6 +1,6 @@
 # PARSER_SPEC.md
 
-> CyberAtlas Parser Specification
+> The HCI Platform Parser Specification
 >
 > Status: Draft
 >
@@ -101,21 +101,21 @@ Example `lesson.md`:
 ````md
 ---
 id: lesson-01
-title: מהו מרחב הסייבר?
-course: computer-security
+title: מהי שמישות?
+course: hci
 ---
 
-# מהו מרחב הסייבר?
+# מהי שמישות?
 
 :::definition
-מרחב הסייבר הוא כלל הסביבה הדיגיטלית המאפשרת למחשבים ולמערכות לתקשר.
+שמישות היא המידה שבה משתמשים יכולים ללמוד ממשק, להשתמש בו ביעילות ולהפיק ממנו שביעות רצון.
 :::
 
 :::example
-האינטרנט הוא רכיב אחד בתוך מרחב הסייבר.
+תפריט ניווט ברור הוא רכיב אחד התורם לשמישות של אתר.
 :::
 
-ראו [[Firewall]]
+ראו [[Affordances]]
 ````
 
 ---
@@ -130,15 +130,15 @@ Example
 {
   "type": "lesson",
   "id": "lesson-01",
-  "title": "Introduction to Cyberspace",
+  "title": "Introduction to Affordances",
   "sections": [
     {
       "type": "definition",
-      "content": "Cyberspace is..."
+      "content": "An affordance is..."
     },
     {
       "type": "example",
-      "content": "The Internet is part of Cyberspace."
+      "content": "A button affords pressing."
     }
   ]
 }
@@ -188,7 +188,7 @@ Example
 
 ````md
 :::definition
-מרחב הסייבר הוא כלל הסביבה הדיגיטלית...
+אפורדנס הוא תכונה של אובייקט המרמזת כיצד להשתמש בו...
 :::
 ````
 
@@ -229,7 +229,7 @@ Resolve Obsidian links.
 Example
 
 ```md
-[[Firewall]]
+[[Affordances]]
 ```
 
 ↓
@@ -237,7 +237,7 @@ Example
 ```json
 {
     "type":"concept-reference",
-    "target":"firewall"
+    "target":"affordances"
 }
 ```
 
@@ -347,8 +347,8 @@ Example
 ```yaml
 ---
 id: lesson-01
-title: Introduction to Cyberspace
-course: computer-security
+title: Introduction to Affordances
+course: hci
 order: 1
 ---
 ```
@@ -400,10 +400,10 @@ Example
 
 ````md
 ::::example
-חברה מגדירה Firewall שחוסם תעבורה נכנסת ממדינות לא מוכרות.
+כפתור בעל בליטה תלת-ממדית מספק אפורדנס נתפס שמרמז למשתמש שניתן ללחוץ עליו.
 
 :::important
-חסימה גיאוגרפית אינה מספיקה כשלעצמה.
+אפורדנס נתפס אינו מספיק כשלעצמו; נדרש גם סימן מובחן (signifier) שמסמן היכן לפעול.
 :::
 ::::
 ````
@@ -419,17 +419,17 @@ Concepts are referenced using Obsidian syntax.
 Example
 
 ```md
-[[Firewall]]
+[[Affordances]]
 ```
 
 Parser resolves
 
 ```
-Firewall
+Affordances
 
 ↓
 
-concepts/firewall.md
+concepts/affordances.md
 ```
 
 Generated object
@@ -437,7 +437,7 @@ Generated object
 ```json
 {
     "type":"concept-reference",
-    "target":"firewall"
+    "target":"affordances"
 }
 ```
 
@@ -450,7 +450,7 @@ Missing concepts generate validation errors.
 Images
 
 ```md
-![[firewall.png]]
+![[norman-door.png]]
 ```
 
 ↓
@@ -458,7 +458,7 @@ Images
 ```json
 {
     "type":"image",
-    "src":"assets/firewall.png"
+    "src":"assets/norman-door.png"
 }
 ```
 
@@ -541,7 +541,7 @@ Lesson 01
 
 ↓
 
-Firewall
+Affordances
 
 ↓
 
@@ -553,7 +553,7 @@ Output
 ```json
 {
     "source":"lesson-01",
-    "target":"firewall",
+    "target":"affordances",
     "type":"references"
 }
 ```

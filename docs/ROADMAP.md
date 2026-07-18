@@ -408,9 +408,9 @@ Only `lesson.template.md` and `quiz.template.md` have content.
 | **Raw HTML `<details>` / `<summary>`** | The "בדקו את עצמכם" section | `LEARNING_DSL.md`: "Never generate HTML." Self-checks must be `:::selfcheck`. The collapse behavior is the **renderer's** decision, not the content's. |
 | **ASCII diagram in a fenced block** | The "המחשה" section | `LEARNING_DSL.md`: "Never create ASCII diagrams." Must become `:::diagram` containing a *description* of the intended visual. The ASCII box also renders incorrectly in RTL. |
 | **Zero DSL directives** | Whole file | No `:::objectives`, `:::definition`, `:::example`, `:::keypoints`, `:::summary`. Content is carried in plain headings and `**bold**`, which erases the semantics the renderer needs. |
-| **Blockquote used as an `:::important`** | "כל אינטרנט הוא חלק ממרחב הסייבר…" | A `>` quote is presentation. `:::important` is intent. |
+| **Blockquote used as an `:::important`** | "כל שמישות כוללת שימושיות…" | A `>` quote is presentation. `:::important` is intent. |
 | **Bare `✔` checkmarks** | "נקודות חשובות לזכור" | Should be `:::keypoints`. Typographic characters are not a data structure. |
-| **No `[[concept]]` links** | Whole file | `Cyberspace`, `Internet`, `IoT`, `Router` are all mentioned as prose. None link. The knowledge graph would see zero edges from this lesson. |
+| **No `[[concept]]` links** | Whole file | `Affordances`, `Usability`, `Mental Models`, `Signifiers` are all mentioned as prose. None link. The knowledge graph would see zero edges from this lesson. |
 
 **Action (Phase 1, blocking):**
 
