@@ -91,19 +91,21 @@ units:
 
   # ------------------------------------------------------------------
   # 6 — עיצוב ויזואלי ומטאפורות
-  # - id: design-rules
-  #   title: "נושא 6: כללי עיצוב — אסתטיקה ופונקציונליות"
-  #   description: עקרונות ויזואליים (איזון, חזרתיות, מקצב) והשימוש במטאפורות ואנלוגיות כדי לקצר את עקומת הלמידה.
-  #   source: Design roles.pptx
-  #   weight: 5.0
-  #   status: planned
-  #   note: >
-  #     כיצד המוח מעבד ויזואליה. דגש על כך שמטאפורות (כמו אייקון של "פח אשפה" למחיקת קבצים) נשענות
-  #     על מודלים מהעולם הפיזי ומונעות פחד מטכנולוגיה חדשה.
-  #   lessons:
-  #     - core-visual-principles   # 9 עקרונות (Balance, Emphasis, Pattern, Proportion, Unity, וכו')
-  #     - metaphors-and-analogies  # גישור על הפער בין המערכת לעולם האמיתי
-  #     - typography-and-whitespace # היררכיה טקסטואלית נכונה והסכנה ב"קירות טקסט"
+  - id: design-rules
+    title: "נושא 6: כללי עיצוב — אסתטיקה ופונקציונליות"
+    description: עקרונות ויזואליים (איזון, חזרתיות, מקצב) והשימוש במטאפורות ואנלוגיות כדי לקצר את עקומת הלמידה.
+    source: Design roles.pptx, Copy of HCI.pdf (עמ' 32–34)
+    weight: 5.0
+    status: ready
+    note: >
+      כיצד המוח מעבד ויזואליה. דגש על כך שמטאפורות (כמו אייקון של "פח אשפה" למחיקת קבצים) נשענות
+      על מודלים מהעולם הפיזי ומונעות פחד מטכנולוגיה חדשה.
+      9 עקרונות העיצוב: Balance, Emphasis, Movement, Pattern, Repetition, Proportion, Rhythm, Variety, Unity.
+      Clippy — דוגמה לכישלון מטאפורי. Nest Thermostat — דוגמה לאנלוגיה מוצלחת.
+    lessons:
+      - core-visual-principles   # 5 אלמנטים + 9 עקרונות (Balance, Emphasis, Pattern, Proportion, Unity, וכו')
+      - metaphors-and-analogies  # גישור על הפער בין המערכת לעולם האמיתי (Clippy, Pinterest, Nest)
+      - typography-and-whitespace # היררכיה טקסטואלית נכונה והסכנה ב"קירות טקסט"
 
   # ------------------------------------------------------------------
   # 7 — בניית השלד למערכת
