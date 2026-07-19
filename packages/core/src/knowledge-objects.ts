@@ -88,8 +88,10 @@ export const ListSchema = KnowledgeObjectBaseSchema.extend({
 
 export const TableSchema = KnowledgeObjectBaseSchema.extend({
   type: z.literal('table'),
-  headers: z.array(z.string()),
-  rows: z.array(z.array(z.string())),
+  // Cells are inline content, not plain strings: a `[[concept]]` written in a
+  // table must resolve to a link exactly as it does in a paragraph.
+  headers: z.array(z.array(InlineSchema)),
+  rows: z.array(z.array(z.array(InlineSchema))),
 });
 
 export const CodeSchema = KnowledgeObjectBaseSchema.extend({

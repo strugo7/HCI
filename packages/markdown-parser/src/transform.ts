@@ -172,11 +172,32 @@ function splitWikiLinks(value: string, ctx: TransformContext, node: Positioned):
 }
 
 /**
+ * A `strong` / `emphasis` node → its inline runs, with `[[links]]` resolved.
+ *
+ * The Inline schema is deliberately shallow, so a concept link inside bold
+ * text can't stay bold — but it still has to *resolve*. The emphasised text
+ * flattens to a string, splits on wiki-links, and every plain run keeps the
+ * emphasis while every link becomes a concept reference. A bare `**bold**`
+ * with no link is unchanged: one emphasised run, exactly as before.
+ */
+function emphasized(
+  kind: 'strong' | 'emphasis',
+  node: PhrasingContent,
+  ctx: TransformContext,
+): Inline[] {
+  return splitWikiLinks(mdastToString(node), ctx, node).flatMap((piece): Inline[] => {
+    if (piece.type === 'concept-reference') return [piece];
+    return piece.value === '' ? [] : [{ type: kind, value: piece.value }];
+  });
+}
+
+/**
  * Phrasing content → Inline objects.
  *
- * `strong`, `emphasis` and `inlineCode` flatten to their text: the Inline
- * schema is deliberately shallow, because a bold concept link inside an
- * italic caption is presentation, not knowledge.
+ * `inlineCode` flattens to its literal text. `strong` and `emphasis` flatten
+ * too — the Inline schema is deliberately shallow — but any `[[link]]` inside
+ * them still resolves to a concept reference (see `emphasized`), because a
+ * bold concept link is presentation the schema drops, not a link it discards.
  */
 export function inlinesFrom(
   nodes: readonly PhrasingContent[],
@@ -190,10 +211,10 @@ export function inlinesFrom(
         out.push(...splitWikiLinks(node.value, ctx, node));
         break;
       case 'strong':
-        out.push({ type: 'strong', value: mdastToString(node) });
+        out.push(...emphasized('strong', node, ctx));
         break;
       case 'emphasis':
-        out.push({ type: 'emphasis', value: mdastToString(node) });
+        out.push(...emphasized('emphasis', node, ctx));
         break;
       case 'inlineCode':
         out.push({ type: 'inline-code', value: node.value });
@@ -592,11 +613,14 @@ function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | n
 
 function tableToBlock(node: Table, ctx: TransformContext): Block {
   const [head, ...body] = node.children;
+  // Cells run through the same inline pipeline as prose, so a `[[concept]]`
+  // resolves to a reference (and records its graph edge) instead of surviving
+  // as literal `[[...]]` text — the one block type that used to skip this.
   return {
     id: ctx.ids.next('table'),
     type: 'table',
-    headers: (head?.children ?? []).map((cell) => mdastToString(cell).trim()),
-    rows: body.map((row) => row.children.map((cell) => mdastToString(cell).trim())),
+    headers: (head?.children ?? []).map((cell) => inlinesFrom(cell.children, ctx)),
+    rows: body.map((row) => row.children.map((cell) => inlinesFrom(cell.children, ctx))),
   };
 }
 
