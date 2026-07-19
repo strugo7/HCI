@@ -1,35 +1,40 @@
 /**
- * Lessons index — every lesson the vault compiled, in course order.
+ * Lessons index — every compiled lesson, grouped by its unit in course order.
  *
- * Reads the metadata index only: opening this page must not download a single
- * lesson body.
+ * A flat grid hides the course's spine; grouping by unit shows the sequence and
+ * where each lesson sits in it. Reads the metadata index only — opening this
+ * page downloads no lesson bodies.
  */
-import { BookOpen, Clock } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 
+import { LessonRow } from '@/features/curriculum/lesson-row';
 import { EmptyState } from '@/shared/components/empty-state';
-import { PageHeader } from '@/shared/components/page-header';
-import { Card } from '@/shared/components/ui/card';
-import { lessonIndex } from '@/shared/content/content';
-import { lessonPath } from '@/router/routes';
+import { lessonsInUnit, unitIndex } from '@/shared/content/content';
 
-const DIFFICULTY_LABELS: Record<string, string> = {
-  easy: 'קל',
-  medium: 'בינוני',
-  hard: 'מתקדם',
-};
+function LessonsHeader(): ReactNode {
+  return (
+    <header className="mb-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+        ספריית תוכן
+      </p>
+      <h1 className="mt-3 text-4xl font-extrabold tracking-tight">שיעורים</h1>
+      <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+        כל שיעור מלמד נושא מרכזי אחד ומרכיב אותו ממושגים קיימים — מקובצים לפי נושא,
+        בסדר הלימוד של הקורס.
+      </p>
+    </header>
+  );
+}
 
 export default function LessonsPage(): ReactNode {
-  const lessons = lessonIndex();
+  const units = unitIndex();
+  const hasAnyLesson = units.some((unit) => lessonsInUnit(unit).length > 0);
 
-  if (lessons.length === 0) {
+  if (!hasAnyLesson) {
     return (
       <>
-        <PageHeader
-          title="שיעורים"
-          description="כל שיעור מלמד נושא מרכזי אחד, ומרכיב אותו ממושגים קיימים."
-        />
+        <LessonsHeader />
         <EmptyState
           icon={BookOpen}
           title="אין עדיין שיעורים"
@@ -42,42 +47,46 @@ export default function LessonsPage(): ReactNode {
 
   return (
     <>
-      <PageHeader
-        title="שיעורים"
-        description="כל שיעור מלמד נושא מרכזי אחד, ומרכיב אותו ממושגים קיימים."
-      />
+      <LessonsHeader />
 
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {lessons.map((lesson) => (
-          <li key={lesson.id}>
-            <Link to={lessonPath(lesson.id)} className="block h-full">
-              <Card className="flex h-full flex-col gap-3 p-5 transition-colors hover:border-primary/40 hover:bg-muted/40">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  {lesson.lessonNumber !== null ? (
-                    <span className="rounded-md bg-muted px-1.5 py-0.5 font-medium">
-                      שיעור {lesson.lessonNumber}
-                    </span>
-                  ) : null}
-                  {lesson.category !== null ? <span>{lesson.category}</span> : null}
-                </div>
+      <div className="space-y-10">
+        {units.map((unit, unitIdx) => {
+          const lessons = lessonsInUnit(unit);
+          const pending = unit.lessons.length - lessons.length;
 
-                <h2 className="text-lg font-semibold leading-snug">{lesson.title}</h2>
+          return (
+            <section key={unit.id} aria-labelledby={`unit-${unit.id}`}>
+              {/* Unit divider — the big gold number carries the sequence */}
+              <div className="mb-4 flex items-baseline gap-3 border-b-2 border-foreground pb-3">
+                <span className="text-3xl font-extrabold tabular-nums leading-none tracking-tight text-gold">
+                  {String(unitIdx + 1).padStart(2, '0')}
+                </span>
+                <h2
+                  id={`unit-${unit.id}`}
+                  className="text-lg font-bold leading-tight tracking-tight"
+                >
+                  {unit.title}
+                </h2>
+                <span className="ms-auto shrink-0 text-sm font-medium text-muted-foreground">
+                  {unit.weight}% מהמבחן
+                </span>
+              </div>
 
-                <div className="mt-auto flex items-center gap-3 text-xs text-muted-foreground">
-                  {lesson.estimatedTime !== null ? (
-                    <span className="inline-flex items-center gap-1">
-                      <Clock className="size-3.5" aria-hidden />
-                      {lesson.estimatedTime} דק׳
-                    </span>
-                  ) : null}
-                  <span>{DIFFICULTY_LABELS[lesson.difficulty] ?? lesson.difficulty}</span>
-                  <span>{lesson.sectionCount} פרקים</span>
-                </div>
-              </Card>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              <div className="space-y-2.5">
+                {lessons.map((lesson, i) => (
+                  <LessonRow key={lesson.id} lesson={lesson} step={i + 1} />
+                ))}
+                {pending > 0 ? (
+                  <p className="px-1 pt-1 text-sm text-muted-foreground">
+                    {lessons.length > 0 ? 'עוד ' : ''}
+                    {pending} {pending === 1 ? 'שיעור' : 'שיעורים'} בהכנה
+                  </p>
+                ) : null}
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </>
   );
 }

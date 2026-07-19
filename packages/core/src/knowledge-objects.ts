@@ -140,6 +140,12 @@ export const MediaSchema = KnowledgeObjectBaseSchema.extend({
   variant: z.enum(MEDIA_DIRECTIVES),
   description: z.string().min(1),
   src: z.string().nullable(),
+  /**
+   * Deterministic diagram source the renderer draws at runtime — today, Mermaid.
+   * A `:::diagram` whose body carries a ```mermaid fenced block is rendered from
+   * this source, no asset file involved. null for every other media block.
+   */
+  source: z.string().nullable(),
   alt: z.string().nullable(),
   /** Rendered height in px for framed media (animations). null → renderer default. */
   height: z.number().int().positive().nullable(),

@@ -414,6 +414,23 @@ function resolveMediaSrc(
   return { src: path, height, width };
 }
 
+/** A fenced ```mermaid code block inside a directive body. */
+function isMermaidCode(node: RootContent): node is RootContent & { value: string } {
+  return node.type === 'code' && (node as { lang?: string | null }).lang === 'mermaid';
+}
+
+/** The directive's children with any ```mermaid fence removed — the prose that frames it. */
+function nonMermaidChildren(children: readonly RootContent[]): RootContent[] {
+  return children.filter((child) => !isMermaidCode(child));
+}
+
+/** The Mermaid source of the first ```mermaid fence in a `:::diagram`, or null. */
+function extractMermaid(node: DirectiveNode): string | null {
+  const fence = node.children.find(isMermaidCode);
+  const source = fence?.value.trim();
+  return source ? source : null;
+}
+
 function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | null {
   const { name } = node;
 
@@ -465,7 +482,14 @@ function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | n
     case 'image':
     case 'animation':
     case 'video': {
-      const description = mdastToString(node as unknown as RootContent).trim();
+      // A `:::diagram` may carry a fenced ```mermaid block: deterministic
+      // source the renderer draws at runtime, no asset file. The prose around
+      // it stays the description (and the accessible fallback).
+      const source = name === 'diagram' ? extractMermaid(node) : null;
+      const prose = source
+        ? mdastToString({ ...node, children: nonMermaidChildren(node.children) } as unknown as RootContent)
+        : mdastToString(node as unknown as RootContent);
+      const description = prose.trim();
       if (description === '') {
         report(
           ctx,
@@ -486,6 +510,7 @@ function directiveToBlock(node: DirectiveNode, ctx: TransformContext): Block | n
         // Without src, the content only describes — an asset may be produced
         // later. With src, it names a file the vault already holds.
         src: resolved.src,
+        source,
         alt: null,
         height: resolved.height,
         width: resolved.width,
@@ -609,6 +634,7 @@ function extractEmbeds(node: Paragraph, ctx: TransformContext): { media: Block[]
         variant: variantOfFile(file.trim()),
         description: caption?.trim() ?? file.trim(),
         src: path,
+        source: null,
         alt: caption?.trim() ?? null,
         height: null,
         width: null,

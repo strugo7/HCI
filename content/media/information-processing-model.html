@@ -1,0 +1,181 @@
+<!doctype html>
+<!--
+  מודל עיבוד המידע האנושי — קלט → עיבוד → פלט.
+  אנימציה עצמאית (ללא תלות חיצונית) לבלוק :::animation בשיעור הפסיכולוגיה הקוגניטיבית.
+  חוזה: קוראת ?theme ו-?reducedMotion, מנגנת מעצמה, RTL, מכבדת prefers-reduced-motion.
+-->
+<html dir="rtl" lang="he">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>מודל עיבוד המידע האנושי</title>
+    <style>
+      :root {
+        --bg: #ffffff; --fg: #0f172a; --muted: #64748b;
+        --accent: #4f46e5; --accent-soft: #4f46e51a;
+        --surface: #f8fafc; --border: #e2e8f0;
+        --input: #0ea5e9; --process: #8b5cf6; --output: #10b981;
+      }
+      :root[data-theme='dark'] {
+        --bg: #0b1120; --fg: #e2e8f0; --muted: #94a3b8;
+        --accent: #818cf8; --accent-soft: #818cf825;
+        --surface: #131c30; --border: #2a3852;
+        --input: #38bdf8; --process: #a78bfa; --output: #34d399;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; }
+      body {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 14px; background: var(--bg); color: var(--fg);
+        font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        padding: 20px; overflow: hidden;
+      }
+      .pipe {
+        position: relative; /* עוגן ל-packet המוחלט */
+        display: flex; align-items: stretch; justify-content: center;
+        gap: 10px; width: 100%; max-width: 640px;
+      }
+      .stage {
+        position: relative; flex: 1; min-width: 0;
+        border-radius: 16px; padding: 16px 12px; text-align: center;
+        background: var(--surface); border: 2px solid var(--border);
+        opacity: 0.5; transform: translateY(4px) scale(0.98);
+        transition: opacity .5s ease, transform .5s ease, border-color .5s ease, box-shadow .5s ease;
+      }
+      .stage .kicker { font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--muted); }
+      .stage h3 { margin: 4px 0 6px; font-size: 17px; }
+      .stage p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
+      .stage.active {
+        opacity: 1; transform: translateY(0) scale(1);
+      }
+      .stage[data-stage='input'].active  { border-color: var(--input);  box-shadow: 0 10px 30px -14px var(--input); }
+      .stage[data-stage='process'].active{ border-color: var(--process);box-shadow: 0 10px 30px -14px var(--process); }
+      .stage[data-stage='output'].active { border-color: var(--output); box-shadow: 0 10px 30px -14px var(--output); }
+
+      .substeps { margin-top: 10px; display: grid; gap: 5px; }
+      .substep {
+        font-size: 11px; padding: 5px 6px; border-radius: 8px;
+        background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+        opacity: 0.35; transform: scale(0.97);
+        transition: opacity .35s ease, transform .35s ease, color .35s ease, border-color .35s ease;
+      }
+      .substep.lit { opacity: 1; transform: scale(1); color: var(--fg); border-color: var(--process); }
+
+      .arrow { display: flex; align-items: center; color: var(--muted); font-size: 26px; opacity: 0.55; }
+
+      /* חבילת המידע שזורמת בצינור */
+      .packet {
+        position: absolute; top: 50%; right: 0;
+        width: 14px; height: 14px; margin-top: -7px; border-radius: 50%;
+        background: var(--accent); box-shadow: 0 0 0 6px var(--accent-soft);
+        opacity: 0; transition: right 1s cubic-bezier(.5,0,.5,1), opacity .3s ease;
+        pointer-events: none;
+      }
+      /* תווית "צוואר בקבוק" מעל שלב העיבוד */
+      .bottleneck {
+        position: absolute; inset-inline-start: 50%; top: -12px; transform: translateX(50%);
+        font-size: 10px; font-weight: 700; color: var(--process);
+        background: var(--bg); padding: 1px 8px; border-radius: 999px;
+        border: 1px solid var(--process); white-space: nowrap;
+        opacity: 0; transition: opacity .4s ease;
+      }
+      .stage[data-stage='process'].active .bottleneck { opacity: 1; }
+
+      .caption { font-size: 12px; color: var(--muted); min-height: 16px; text-align: center; }
+
+      :root[data-motion='reduce'] .stage,
+      :root[data-motion='reduce'] .substep { transition: none; opacity: 1; transform: none; }
+      :root[data-motion='reduce'] .substep { color: var(--fg); }
+      :root[data-motion='reduce'] .packet { display: none; }
+    </style>
+  </head>
+  <body>
+    <div class="pipe" id="pipe">
+      <!-- הצינור זורם ימין→שמאל: קלט (ימין) → עיבוד → פלט (שמאל), טבעי לעברית -->
+      <div class="stage" data-stage="input">
+        <div class="kicker">שלב 1</div>
+        <h3>קלט</h3>
+        <p>העין והאוזן קולטות גירוי מהמסך</p>
+      </div>
+      <div class="arrow">←</div>
+      <div class="stage" data-stage="process">
+        <span class="bottleneck">צוואר בקבוק</span>
+        <div class="kicker">שלב 2</div>
+        <h3>עיבוד</h3>
+        <div class="substeps">
+          <div class="substep" data-sub="0">סינון בקשב</div>
+          <div class="substep" data-sub="1">פירוש בתפיסה</div>
+          <div class="substep" data-sub="2">אחסון בזיכרון</div>
+        </div>
+      </div>
+      <div class="arrow">←</div>
+      <div class="stage" data-stage="output">
+        <div class="kicker">שלב 3</div>
+        <h3>פלט</h3>
+        <p>קבלת החלטה וביצוע פעולה</p>
+      </div>
+      <div class="packet" id="packet"></div>
+    </div>
+    <div class="caption" id="caption"></div>
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const root = document.documentElement;
+      root.dataset.theme = params.get('theme') === 'dark' ? 'dark' : 'light';
+      const reduced =
+        params.get('reducedMotion') === '1' ||
+        matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const stages = [...document.querySelectorAll('.stage')];
+      const subs = [...document.querySelectorAll('.substep')];
+      const packet = document.getElementById('packet');
+      const caption = document.getElementById('caption');
+      const captions = [
+        'הגירוי נקלט דרך החושים',
+        'הקשב מסנן את מה שרלוונטי',
+        'התפיסה מפרשת ומעניקה משמעות',
+        'המידע נאגר בזיכרון',
+        'המערכת מחליטה ופועלת',
+      ];
+
+      function setActive(idx) {
+        stages.forEach((s, n) => s.classList.toggle('active', n === idx));
+      }
+
+      // מצב reduced-motion: תרשים סטטי מלא, ללא תנועה
+      if (reduced) {
+        root.dataset.motion = 'reduce';
+        stages.forEach((s) => s.classList.add('active'));
+        caption.textContent = 'קלט ← עיבוד (סינון, פירוש, אחסון) ← פלט';
+      } else {
+        // מיקום החבילה ביחס למרכז שלב לפי אינדקס (ימין=קלט, שמאל=פלט)
+        function packetTo(stageEl) {
+          const pipe = document.getElementById('pipe').getBoundingClientRect();
+          const box = stageEl.getBoundingClientRect();
+          const centerFromRight = pipe.right - (box.left + box.width / 2);
+          packet.style.right = centerFromRight - 7 + 'px';
+        }
+
+        const timeline = [
+          () => { setActive(0); packet.style.opacity = '1'; packetTo(stages[0]); caption.textContent = captions[0]; },
+          () => { setActive(1); packetTo(stages[1]); subs[0].classList.add('lit'); caption.textContent = captions[1]; },
+          () => { subs[1].classList.add('lit'); caption.textContent = captions[2]; },
+          () => { subs[2].classList.add('lit'); caption.textContent = captions[3]; },
+          () => { setActive(2); packetTo(stages[2]); caption.textContent = captions[4]; },
+          () => { packet.style.opacity = '0'; subs.forEach((s) => s.classList.remove('lit')); caption.textContent = ''; },
+        ];
+        const delays = [400, 1300, 900, 900, 1300, 900];
+
+        let step = 0;
+        function run() {
+          timeline[step]();
+          const wait = delays[step];
+          step = (step + 1) % timeline.length;
+          setTimeout(run, wait);
+        }
+        // התחלה אחרי שהפריסה יציבה (כדי שמדידות ה-packet יהיו נכונות)
+        requestAnimationFrame(() => setTimeout(run, 150));
+      }
+    </script>
+  </body>
+</html>

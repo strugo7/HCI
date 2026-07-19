@@ -10,7 +10,6 @@ import type { ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { LessonRow } from '@/features/curriculum/lesson-row';
-import { unitIcon } from '@/features/curriculum/units';
 import { examPath, ROUTES } from '@/router/routes';
 import { EmptyState } from '@/shared/components/empty-state';
 import { examsIndex, lessonsInUnit, unitById, unitIndex } from '@/shared/content/content';
@@ -31,7 +30,6 @@ export default function UnitPage(): ReactNode {
   }
 
   const lessons = lessonsInUnit(unit);
-  const Icon = unitIcon(unit.id);
   const index = unitIndex().findIndex((u) => u.id === unit.id) + 1;
   const exam = examsIndex().find((e) => e.unit === unit.id) ?? null;
 
@@ -46,21 +44,21 @@ export default function UnitPage(): ReactNode {
         כל הנושאים
       </Link>
 
-      <header className="mb-8 space-y-4">
+      <header className="mb-8">
         <div className="flex items-start gap-4">
-          <div className="shrink-0 rounded-lg bg-secondary p-3">
-            <Icon className="size-6 text-secondary-foreground" aria-hidden />
-          </div>
-          <div className="space-y-1.5">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              יחידה {index}
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight">{unit.title}</h1>
+          <span
+            aria-hidden
+            className="text-5xl font-extrabold leading-none tracking-tight tabular-nums text-gold"
+          >
+            {String(index).padStart(2, '0')}
+          </span>
+          <div className="space-y-2 pt-0.5">
+            <h1 className="text-3xl font-bold tracking-tight">{unit.title}</h1>
             <p className="max-w-2xl leading-relaxed text-muted-foreground">{unit.description}</p>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 text-xs">
+        <div className="mt-5 flex flex-wrap items-center gap-2 text-xs">
           <span className="rounded-md bg-muted px-2 py-1 font-medium text-muted-foreground">
             {lessons.length} שיעורים
           </span>
@@ -105,10 +103,10 @@ export default function UnitPage(): ReactNode {
           </h2>
           <Link
             to={examPath(exam.id)}
-            className="flex items-start gap-4 rounded-lg border-2 border-primary/30 bg-card p-5 shadow-sm transition-colors hover:border-primary/60 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex items-start gap-4 rounded-lg border-2 border-gold/30 bg-card p-5 shadow-sm transition-colors hover:border-gold/60 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
-            <div className="shrink-0 rounded-lg bg-primary/10 p-3">
-              <GraduationCap className="size-6 text-primary" aria-hidden />
+            <div className="shrink-0 rounded-lg bg-gold-tint p-3">
+              <GraduationCap className="size-6 text-gold" aria-hidden />
             </div>
             <div className="space-y-1">
               <p className="font-semibold leading-snug">{exam.title}</p>

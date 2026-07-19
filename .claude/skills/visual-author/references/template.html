@@ -1,0 +1,76 @@
+<!doctype html>
+<!--
+  Platform animation template — a self-contained three-step process highlight.
+  Copy to content/media/<name>.html and replace the stage content.
+  Contract: reads ?theme & ?reducedMotion, auto-plays, RTL, no dependencies.
+-->
+<html dir="rtl" lang="he">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #ffffff; --fg: #0f172a; --muted: #64748b;
+        --accent: #4f46e5; --surface: #f1f5f9; --border: #e2e8f0;
+      }
+      :root[data-theme='dark'] {
+        --bg: #0b1120; --fg: #e2e8f0; --muted: #94a3b8;
+        --accent: #818cf8; --surface: #1e293b; --border: #334155;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; }
+      body {
+        display: flex; align-items: center; justify-content: center;
+        background: var(--bg); color: var(--fg);
+        font-family: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+      }
+      .flow { display: flex; align-items: center; gap: 12px; padding: 24px; }
+      .stage {
+        min-width: 130px; padding: 18px 16px; border-radius: 14px;
+        background: var(--surface); border: 2px solid var(--border);
+        text-align: center; opacity: 0.45; transform: scale(0.96);
+        transition: opacity .45s ease, transform .45s ease, border-color .45s ease;
+      }
+      .stage.active {
+        opacity: 1; transform: scale(1); border-color: var(--accent);
+        box-shadow: 0 8px 24px -12px var(--accent);
+      }
+      .stage h3 { margin: 0 0 4px; font-size: 15px; }
+      .stage p { margin: 0; font-size: 12px; color: var(--muted); }
+      .arrow { color: var(--muted); font-size: 22px; opacity: 0.6; }
+      /* Reduced motion: everything settles on, nothing animates. */
+      :root[data-motion='reduce'] .stage { transition: none; opacity: 1; transform: none; }
+    </style>
+  </head>
+  <body>
+    <div class="flow" id="flow">
+      <div class="stage" data-step><h3>קלט</h3><p>מה שנכנס למערכת</p></div>
+      <div class="arrow">←</div>
+      <div class="stage" data-step><h3>עיבוד</h3><p>מה שקורה בפנים</p></div>
+      <div class="arrow">←</div>
+      <div class="stage" data-step><h3>פלט</h3><p>מה שיוצא החוצה</p></div>
+    </div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const root = document.documentElement;
+      root.dataset.theme = params.get('theme') === 'dark' ? 'dark' : 'light';
+      const reduced =
+        params.get('reducedMotion') === '1' ||
+        matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const steps = [...document.querySelectorAll('[data-step]')];
+      if (reduced) {
+        root.dataset.motion = 'reduce';
+        steps.forEach((s) => s.classList.add('active'));
+      } else {
+        let i = 0;
+        const tick = () => {
+          steps.forEach((s, n) => s.classList.toggle('active', n === i));
+          i = (i + 1) % steps.length;
+        };
+        tick();
+        setInterval(tick, 1100);
+      }
+    </script>
+  </body>
+</html>

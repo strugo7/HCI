@@ -103,8 +103,14 @@ export function LessonPageLayout({ lesson }: LessonPageLayoutProps): ReactNode {
           concepts={lesson.concepts}
         />
 
-        {/* Main content */}
-        <div ref={mainRef} className="min-w-0 flex-1">
+        {/*
+          Main content. `prose-lesson` caps the whole column at the reading
+          measure (72ch at 17px / 1.85), so every block — definitions,
+          examples, callouts, self-checks, headings — shares one reading
+          column instead of stretching to the full stretched page width.
+          Line length is the single biggest lever on Hebrew legibility.
+        */}
+        <div ref={mainRef} className="prose-lesson min-w-0 flex-1">
           {sections.map((section, i) => (
             <LessonSection key={section.id} section={section} index={i} />
           ))}

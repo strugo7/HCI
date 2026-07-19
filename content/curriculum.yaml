@@ -1,15 +1,15 @@
 course: hci-course
 courseCode: 27203901 # (קוד קורס לדוגמה, תוכל לשנות למה שתרצה)
-courseTitle: מנשק אדם-מחשב וחוויית משתמש (HCI)
+courseTitle: "מנשק אדם-מחשב וחוויית משתמש (HCI)"
 
 units:
 
   # ------------------------------------------------------------------
   # 1 — מבוא ויסודות התחום
   - id: introduction
-    title: נושא 1: מבוא — יסודות מנשק אדם-מחשב
+    title: "נושא 1: מבוא — יסודות מנשק אדם-מחשב"
     description: היכרות עם התחום, ההבדלים בין UI, UX ו-HCI, ומבוא לעיצוב ממוקד-משתמש (UCD).
-    source: Introduction.pptx, HCI.pdf
+    source: Introduction.pptx, Principles of Human-Centered Design (Don Norman).html, Don Norman The Design of Everyday Things.html
     weight: 5.0
     status: ready
     note: >
@@ -23,45 +23,44 @@ units:
   # ------------------------------------------------------------------
   # 2 — הבנת המשתמש והמוח האנושי
   - id: cognitive-psychology
-    title: נושא 2: פסיכולוגיה קוגניטיבית — המוח מאחורי הממשק
+    title: "נושא 2: פסיכולוגיה קוגניטיבית — המוח מאחורי הממשק"
     description: הבנת עיבוד המידע האנושי, עומס קוגניטיבי, מודלים מנטליים, זיהוי מול היזכרות והשלמת תבניות.
-    source: פסיכולוגיה קוגנטיבית.pptx, cognitive load theory.pdf
+    source: פסיכולוגיה קוגנטיבית.pptx, cognitive load theory.pdf, cognitive load theory and problem solving.pdf, Cognitive Processes.pps
     weight: 10.0
     status: ready
     note: >
       נושא קריטי המסביר את מגבלות הזיכרון של המשתמש. חובה להכיר את ההבדל בין Recognition (זיהוי) ל-Recall (היזכרות),
-      את מודל עיבוד המידע של וויקנס, ואת ההשלכות של Inattentional Blindness (עיוורון קשבי) על עיצוב ממשקים.
+      את מודל עיבוד המידע, ואת ההשלכות של Inattentional Blindness (עיוורון קשבי) על עיצוב ממשקים.
     lessons:
-      - information-processing-model # קלט, תפיסה, זיכרון (לטווח קצר/ארוך) והחלטה
-      - cognitive-load           # עומס קוגניטיבי ועייפות החלטות
-      - inattentional-blindness  # עיוורון קשבי והשלמת תבניות (Closure / משולש קניצה)
-      - recognition-vs-recall    # ההבדל בין זיהוי (קל) להיזכרות (דורש מאמץ)
-      - mental-models            # מודלים מנטליים: הציפיות הקיימות של המשתמשים
+      - cognitive-psychology       # שיעור עוגן: מודל עיבוד המידע, תפיסה, קשב, זיכרון ועומס קוגניטיבי
+      # - inattentional-blindness  # העמקה: עיוורון קשבי והשלמת תבניות (Closure / משולש קניצה) (עתידי)
+      # - recognition-vs-recall    # העמקה: ההבדל בין זיהוי (קל) להיזכרות (דורש מאמץ) (עתידי)
+      # - mental-models            # העמקה: מודלים מנטליים — הציפיות הקיימות של המשתמשים (עתידי)
 
   # ------------------------------------------------------------------
   # 3 — יציאה לשטח: מחקר ותצפיות
   - id: ethnographic-research
-    title: נושא 3: מחקר אתנוגרפי — חקר משתמשים בסביבתם הטבעית
+    title: "נושא 3: מחקר אתנוגרפי — חקר משתמשים בסביבתם הטבעית"
     description: שיטות תצפית וראיונות, מסגרת AEIOU לחקירת הקשר, והפער בין התנהגות מדווחת בפועל.
-    source: Ethnographic research.pptx, Ethnography. Principles in practice.pdf
+    source: _What is an ethnographic research.pptx, Ethnographic Interview.pptx, Ethnography. Principles in practice.pdf, No More Circling Around the Block - Innovation in Parking Systems.pdf
     weight: 15.0
     status: ready
     note: >
       נושא בעל משקל כבד למבחן (צפויה שאלה על ראיון/תצפית בקונטקסט).
       חשוב להפריד בצורה מוחלטת בין תצפית (עובדות אובייקטיביות) לפרשנות (הנחות סובייקטיביות).
-      פער החדשנות: ההבדל בין מה שאנשים אומרים למה שהם עושים.
+      פער החדשנות: ההבדל בין מה שאנשים אומרים למה שהם עושים באמת.
     lessons:
       - the-innovation-blind-spot # מה שאנשים אומרים לעומת מה שהם עושים באמת
       - observation-vs-interpretation # תצפית אובייקטיבית (עובדות) מול פרשנות (הנחות)
-      - aeiou-framework          # ניתוח הקשר: Activities, Environments, Interactions, Objects, Users
-      - interviews-and-context   # תצפית משתתפת, רפלקסיביות ושומרי סף (Gatekeepers)
+      - aeiou-framework # ניתוח הקשר: Activities, Environments, Interactions, Objects, Users
+      - interviews-and-context # תצפית משתתפת, רפלקסיביות ושומרי סף (Gatekeepers)
 
   # ------------------------------------------------------------------
   # 4 — אפיון המשתמשים (מיפוי הדאטה)
   - id: personas-and-scenarios
-    title: נושא 4: פרסונות ותרחישים — האנשת נתוני המחקר
+    title: "נושא 4: פרסונות ותרחישים — האנשת נתוני המחקר"
     description: ייצוג משתמשי יעד באמצעות פרסונות, כתיבת תרחישי שימוש ליניאריים ומיפוי מסע לקוח.
-    source: Personas and Scenarios.pptx
+    source: Personas and Scenarios.pptx, Multiple choice questions.docx, Templete.doc
     weight: 10.0
     status: ready
     note: >
@@ -74,117 +73,114 @@ units:
 
   # ------------------------------------------------------------------
   # 5 — איך אנחנו מארגנים את המידע?
-  - id: information-architecture
-    title: נושא 5: ארכיטקטורת מידע (IA) — ארגון וניווט
-    description: תכנון המבנה הלוגי של המערכת, מודל LATCH לארגון המידע, ושיטות למיון מידע להפחתת עומס קוגניטיבי.
-    source: IA.pptx, LATCH.pptx, Info_Architecture__Nav (1).mp4
-    weight: 10.0
-    status: ready
-    note: >
-      לזכור את 3 עמודי התווך של IA: אונטולוגיה (תיוג), טקסונומיה (קטגוריות) וכוריאוגרפיה (המבנה במרחב).
-      זהו גם השלב שבו נכנסת שיטת Card Sorting (מיון פתוח וסגור) כדי לאבחן מודלים מנטליים.
-    lessons:
-      - ia-pillars               # Ontology, Taxonomy, Choreography (דוגמת איקאה)
-      - latch-model              # 5 הדרכים: Location, Alphabet, Time, Category, Hierarchy
-      - card-sorting             # שיטת מחקר לארגון מידע (פתוח מול סגור)
-      - navigation-and-search    # מציאוּת (Findability) ומצבי חיפוש מידע במערכת
+  # - id: information-architecture
+  #   title: "נושא 5: ארכיטקטורת מידע (IA) — ארגון וניווט"
+  #   description: תכנון המבנה הלוגי של המערכת, מודל LATCH לארגון המידע, ושיטות למיון מידע להפחתת עומס קוגניטיבי.
+  #   source: IA.pptx, LATCH.pptx, ארכיטקטורת מידע - מצגת (הרצאה מצולמת).pptx, Card Sorting.docx
+  #   weight: 10.0
+  #   status: planned
+  #   note: >
+  #     לזכור את 3 עמודי התווך של IA: אונטולוגיה (תיוג), טקסונומיה (קטגוריות) וכוריאוגרפיה (המבנה במרחב).
+  #     זהו גם השלב שבו נכנסת שיטת Card Sorting (מיון פתוח וסגור) כדי לאבחן מודלים מנטליים.
+  #   lessons:
+  #     - ia-pillars               # Ontology, Taxonomy, Choreography (דוגמת איקאה)
+  #     - latch-model              # 5 הדרכים: Location, Alphabet, Time, Category, Hierarchy
+  #     - card-sorting             # שיטת מחקר לארגון מידע (פתוח מול סגור)
+  #     - navigation-and-search    # מציאוּת (Findability) ומצבי חיפוש מידע במערכת
 
   # ------------------------------------------------------------------
   # 6 — עיצוב ויזואלי ומטאפורות
-  - id: design-rules
-    title: נושא 6: כללי עיצוב — אסתטיקה ופונקציונליות
-    description: עקרונות ויזואליים (איזון, חזרתיות, מקצב) והשימוש במטאפורות ואנלוגיות כדי לקצר את עקומת הלמידה.
-    source: Design roles.pptx
-    weight: 5.0
-    status: ready
-    note: >
-      כיצד המוח מעבד ויזואליה. דגש על כך שמטאפורות (כמו אייקון של "פח אשפה" למחיקת קבצים) נשענות
-      על מודלים מהעולם הפיזי ומונעות פחד מטכנולוגיה חדשה.
-    lessons:
-      - core-visual-principles   # 9 עקרונות (Balance, Emphasis, Pattern, Proportion, Unity, וכו')
-      - metaphors-and-analogies  # גישור על הפער בין המערכת לעולם האמיתי
-      - typography-and-whitespace # היררכיה טקסטואלית נכונה והסכנה ב"קירות טקסט"
+  # - id: design-rules
+  #   title: "נושא 6: כללי עיצוב — אסתטיקה ופונקציונליות"
+  #   description: עקרונות ויזואליים (איזון, חזרתיות, מקצב) והשימוש במטאפורות ואנלוגיות כדי לקצר את עקומת הלמידה.
+  #   source: Design roles.pptx
+  #   weight: 5.0
+  #   status: planned
+  #   note: >
+  #     כיצד המוח מעבד ויזואליה. דגש על כך שמטאפורות (כמו אייקון של "פח אשפה" למחיקת קבצים) נשענות
+  #     על מודלים מהעולם הפיזי ומונעות פחד מטכנולוגיה חדשה.
+  #   lessons:
+  #     - core-visual-principles   # 9 עקרונות (Balance, Emphasis, Pattern, Proportion, Unity, וכו')
+  #     - metaphors-and-analogies  # גישור על הפער בין המערכת לעולם האמיתי
+  #     - typography-and-whitespace # היררכיה טקסטואלית נכונה והסכנה ב"קירות טקסט"
 
   # ------------------------------------------------------------------
   # 7 — בניית השלד למערכת
-  - id: examine-concept
-    title: נושא 7: בחינת הקונספט — שרטוט ואבות טיפוס
-    description: המעבר מאפיון לעיצוב ראשוני: שרטוטי Wireframes נטולי עיצוב וכלים להצגת אב-טיפוס (Prototype).
-    source: Examine the Concept.pptx
-    weight: 5.0
-    status: ready
-    note: >
-      יש לזכור ש-Wireframe נעשה בשחור-לבן ללא הסחות דעת ויזואליות או עיצוביות, ומטרתו היחידה היא 
-      לאשש את ארכיטקטורת המידע והמבנה הפונקציונלי.
-    lessons:
-      - wireframing              # שרטוט שלד המערכת (Low-Fidelity)
-      - prototyping              # יצירת אב-טיפוס אינטראקטיבי
-      - concept-validation       # בחינת הקונספט עם משתמשים ובעלי עניין
+  # - id: examine-concept
+  #   title: "נושא 7: בחינת הקונספט — שרטוט ואבות טיפוס"
+  #   description: "המעבר מאפיון לעיצוב ראשוני: שרטוטי Wireframes נטולי עיצוב וכלים להצגת אב-טיפוס (Prototype)."
+  #   source: Examine the Concept.pptx
+  #   weight: 5.0
+  #   status: planned
+  #   note: >
+  #     יש לזכור ש-Wireframe נעשה בשחור-לבן ללא הסחות דעת ויזואליות או עיצוביות, ומטרתו היחידה היא 
+  #     לאשש את ארכיטקטורת המידע והמבנה הפונקציונלי.
+  #   lessons:
+  #     - wireframing              # שרטוט שלד המערכת (Low-Fidelity)
+  #     - prototyping              # יצירת אב-טיפוס אינטראקטיבי
+  #     - concept-validation       # בחינת הקונספט with משתמשים ובעלי עניין
 
   # ------------------------------------------------------------------
   # 8 — התהליך הכולל
-  - id: design-thinking
-    title: נושא 8: חשיבה עיצובית (Design Thinking) — התהליך האיטרטיבי
-    description: מתודולוגיה מעגלית לפתרון בעיות המורכבת מאמפתיה, הגדרת בעיה, רעיונאות, בניית אב-טיפוס ובדיקות.
-    source: The Wallet Challange.pptx, HCI.pdf
-    weight: 10.0
-    status: ready
-    note: >
-      התהליך אינו ליניארי, אלא מעגלי (איטרטיבי). התחנה הראשונה היא תמיד **אמפתיה** — הבנת הצרכים
-      והרגשות האמיתיים של המשתמש (כמו בדוגמת אדריכל הפנים שלא שואל 'איזה צבע תרצה?', אלא חוקר את ההרגלים).
-    lessons:
-      - empathy-and-define       # אמפתיה למשתמש והגדרת ה-Problem Statement
-      - ideation-phase           # העלאת רעיונות ללא שיפוטיות
-      - build-and-test           # בניית פתרון (Prototype) ובחינתו המיידית לקבלת משוב (Feedback)
+  # - id: design-thinking
+  #   title: "נושא 8: חשיבה עיצובית (Design Thinking) — התהליך האיטרטיבי"
+  #   description: מתודולוגיה מעגלית לפתרון בעיות המורכבת מאמפתיה, הגדרת בעיה, רעיונאות, בניית אב-טיפוס ובדיקות.
+  #   source: The Wallet Challange.pptx
+  #   weight: 10.0
+  #   status: planned
+  #   note: >
+  #     התהליך אינו ליניארי, אלא מעגלי (איטרטיבי). התחנה הראשונה היא תמיד **אמפתיה** — הבנת הצרכים
+  #     והרגשות האמיתיים של המשתמש (כמו בדוגמת אדריכל הפנים שלא שואל 'איזה צבע תרצה?', אלא חוקר את ההרגלים).
+  #   lessons:
+  #     - empathy-and-define       # אמפתיה למשתמש והגדרת ה-Problem Statement
+  #     - ideation-phase           # העלאת רעיונות ללא שיפוטיות
+  #     - build-and-test           # בניית פתרון (Prototype) ובחינתו המיידית לקבלת משוב (Feedback)
 
   # ------------------------------------------------------------------
   # 9 — הערכת המערכת: שימושיות לעומת שמישות
-  - id: usability
-    title: נושא 9: שמישות (Usability) — ממדי ההצלחה של הממשק
-    description: 5 ממדי השמישות של ממשק, ההבדל בין Utility ל-Usability והמשמעות להצלחת הפרויקט.
-    source: Usability definitions.pptx, HCI_עברית.pdf
-    weight: 10.0
-    status: ready
-    note: >
-      נושא חשוב מאוד שיופיע במבחן. עליכם לדעת את ההבחנה של יעקב נילסן: שימושיות (Utility) = האם זה פותר צורך/עושה את העבודה?
-      שמישות (Usability) = האם אנשים מסוגלים להבין איך להשתמש בזה? אם נכשלים באחד, המערכת נכשלת. (Usefulness = Utility + Usability).
-    lessons:
-      - utility-vs-usability     # ההבדל הקריטי להבטחת ערך המערכת (Usefulness)
-      - the-five-dimensions      # למידות, יעילות, שגיאות, זכירות ושביעות רצון (Learnability, Efficiency, Errors, Memorability, Satisfaction)
-      - effectiveness-vs-efficiency # עמידה במשימה (אפקטיביות) מול הזמן והמאמץ לביצוע (יעילות)
+  # - id: usability
+  #   title: "נושא 9: שמישות (Usability) — ממדי ההצלחה של הממשק"
+  #   description: 5 ממדי השמישות של ממשק, ההבדל בין Utility ל-Usability והמשמעות להצלחת הפרויקט.
+  #   source: Usability definitions.pptx, Usability.pptx
+  #   weight: 10.0
+  #   status: planned
+  #   note: >
+  #     נושא חשוב מאוד שיופיע במבחן. עליכם לדעת את ההבחנה של יעקב נילסן: שימושיות (Utility) = האם זה פותר צורך/עושה את העבודה?
+  #     שמישות (Usability) = האם אנשים מסוגלים להבין איך להשתמש בזה? אם נכשלים באחד, המערכת נכשלת. (Usefulness = Utility + Usability).
+  #   lessons:
+  #     - utility-vs-usability     # ההבדל הקריטי להבטחת ערך המערכת (Usefulness)
+  #     - the-five-dimensions      # למידות, יעילות, שגיאות, זכירות ושביעות רצון (Learnability, Efficiency, Errors, Memorability, Satisfaction)
+  #     - effectiveness-vs-efficiency # עמידה במשימה (אפקטיביות) מול הזמן והמאמץ לביצוע (יעילות)
 
   # ------------------------------------------------------------------
   # 10 — איך אנחנו בודקים את עצמנו
-  - id: usability-testing
-    title: נושא 10: בדיקות שמישות (Usability Testing) ו-10 ההיוריסטיקות
-    description: מציאת כשלי שמישות באמצעות משתמשים אמיתיים אל מול הערכה של מומחים לפי 10 ההיוריסטיקות של יעקב נילסן.
-    source: מנשקי אדם מחשב - בדיקת שמישות מידע ונתונים.mp4
-    weight: 15.0
-    status: ready
-    note: >
-      מהווה נתח עצום מחומר המבחן (יחד עם מחקר שטח: כ-40% מהבחינה). חובה להכיר את ההבדל בין מחקר אמפירי (עם משתמשים) לאנליטי (מומחים בלבד).
-      יש לזכור את תפקידי הבדיקה: מנחה (Moderator), צופה ומשתתף (תוך עידוד Think-aloud), ואת כלל 5 המשתמשים (שחושפים 85% מהבעיות).
-    lessons:
-      - empirical-vs-analytical  # הערכה עם נתוני משתמשים לעומת ניתוח מומחים (Cognitive Walkthrough)
-      - nielsens-10-heuristics   # 10 ההיוריסטיקות (כגון: סטטוס המערכת, מניעת שגיאות, חופש פעולה)
-      - conducting-the-test      # מונחה/לא מונחה, פנים-אל-פנים/מרחוק ותפקיד ה-Think-aloud
-      - the-5-user-rule          # חוק ה-5 משתמשים ולמה לא צריך יותר כדי לגלות תקלות משמעותיות
+  # - id: usability-testing
+  #   title: "נושא 10: בדיקות שמישות (Usability Testing) ו-10 ההיוריסטיקות"
+  #   description: מציאת כשלי שמישות באמצעות משתמשים אמיתיים אל מול הערכה של מומחים לפי 10 ההיוריסטיקות של יעקב נילסן.
+  #   source: usability-test-plan.docx, report-template-usability-test_0.docx, ux-process-materials-checklist.docx
+  #   weight: 15.0
+  #   status: planned
+  #   note: >
+  #     מהווה נתח עצום מחומר המבחן (יחד עם מחקר שטח: כ-40% מהבחינה). חובה להכיר את ההבדל בין מחקר אמפירי (עם משתמשים) לאנליטי (מומחים בלבד).
+  #     יש לזכור את תפקידי הבדיקה: מנחה (Moderator), צופה ומשתתף (תוך עידוד Think-aloud), ואת כלל 5 המשתמשים (שחושפים 85% מהבעיות).
+  #   lessons:
+  #     - empirical-vs-analytical  # הערכה עם נתוני משתמשים לעומת ניתוח מומחים (Cognitive Walkthrough)
+  #     - nielsens-10-heuristics   # 10 ההיוריסטיקות (כגון: סטטוס המערכת, מניעת שגיאות, חופש פעולה)
+  #     - conducting-the-test      # מונחה/לא מונחה, פנים-אל-פנים/מרחוק ותפקיד ה-Think-aloud
+  #     - the-5-user-rule          # חוק ה-5 משתמשים ולמה לא צריך יותר כדי לגלות תקלות משמעותיות
 
   # ------------------------------------------------------------------
   # 11 — המילים כחלק בלתי נפרד מהחוויה
-  - id: micro-copy
-    title: נושא 11: מיקרו-קופי (Micro Copy) — המילים שעושות את ההבדל
-    description: חשיבותו של הטקסט בממשק ליצירת הנעה, הנחיות, הפחתת חרדות וגישור פערים קוגניטיביים.
-    source: micro copy.pptx, microcopy.pptx
-    weight: 5.0
-    status: ready
-    note: >
-      המיקרו-קופי הוא כלי קריטי לשיפור השמישות (הופך ממשקים קרים לאנושיים ומפיג חששות).
-      יש לכתוב ב-Plain language (שפה נקייה, קצרה ופשוטה), להימנע מז'רגון מקצועי ולשדר למשתמש שהוא נמצא בסביבה מאובטחת ומכבדת (Inclusive writing).
-    lessons:
-      - role-of-microcopy        # הנעה, הנחיות ומתן משוב (אחרי הפעולה)
-      - reducing-friction        # הפחתת חרדות משתמש והמרת "קיר קוגניטיבי" לחוויה חלקה
-      - voice-tone-and-inclusion # כתיבה מכלילה, טון ושימוש במילים ללא ז'רגון מקצועי (Plain language)
-```
-
-האם הסילבוס מתאים לצרכים שלך או שתרצה שאשנה את הפורמט/אדייק משקלים עבור חלק מהנושאים?
+  # - id: micro-copy
+  #   title: "נושא 11: מיקרו-קופי (Micro Copy) — המילים שעושות את ההבדל"
+  #   description: חשיבותו של הטקסט בממשק ליצירת הנעה, הנחיות, הפחתת חרדות וגישור פערים קוגניטיביים.
+  #   source: micro copy.pptx
+  #   weight: 5.0
+  #   status: planned
+  #   note: >
+  #     המיקרו-קופי הוא כלי קריטי לשיפור השמישות (הופך ממשקים קרים לאנושיים ומפיג חששות).
+  #     יש לכתוב ב-Plain language (שפה נקייה, קצרה ופשוטה), להימנע מז'רגון מקצועי ולשדר למשתמש שהוא נמצא בסביבה מאובטחת ומכבדת (Inclusive writing).
+  #   lessons:
+  #     - role-of-microcopy        # הנעה, הנחיות ומתן משוב (אחרי הפעולה)
+  #     - reducing-friction        # הפחתת חרדות משתמש והמרת "קיר קוגניטיבי" לחוויה חלקה
+  #     - voice-tone-and-inclusion # כתיבה מכלילה, טון ושימוש במילים ללא ז'רגון מקצועי (Plain language)

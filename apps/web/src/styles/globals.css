@@ -6,7 +6,9 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* A whisper of warmth in the ground — paper, not clinical white. Cards stay
+       pure white so they lift off the paper. */
+    --background: 40 25% 98%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -33,6 +35,17 @@
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 222 47% 25%;
+
+    /* Shadow color — the base navy, spent at low alpha for elevation. Never a
+       raw rgba(): shadows track the theme through this token. */
+    --shadow-color: 222 47% 11%;
+
+    /* Signature accent for entry surfaces (home, lessons index). Deep enough to
+       clear 3:1 as large text on paper; only ever used on large text, fills,
+       and non-text accents — never small body text, never a callout. */
+    --gold: 36 80% 44%;
+    --gold-foreground: 30 60% 15%;
+    --gold-tint: 40 82% 94%;
 
     /* Callout colors, named by teaching intent rather than by hue. */
     --learn-definition: 217 91% 60%;
@@ -110,6 +123,15 @@
     --border: 217 33% 20%;
     --input: 217 33% 20%;
     --ring: 213 27% 84%;
+
+    /* Darker than any surface, so the rare dark-mode shadow still reads.
+       Elevation in dark mode is carried mostly by surface lightness, not this. */
+    --shadow-color: 222 60% 2%;
+
+    /* Lifted for the dark ground, same reason the learn colors lift. */
+    --gold: 40 88% 62%;
+    --gold-foreground: 30 60% 12%;
+    --gold-tint: 38 40% 16%;
 
     /* Lifted lightness so callouts stay legible on a dark surface. */
     --learn-definition: 217 91% 68%;

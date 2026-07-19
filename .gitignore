@@ -45,3 +45,5 @@ apps/web/public/content-media/
 # Vite dep cache and TS build info — machine-local build artifacts
 apps/web/.vite/
 *.tsbuildinfo
+
+/content/sources

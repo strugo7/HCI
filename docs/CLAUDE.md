@@ -11,7 +11,7 @@ Version: 1.0
 # HCI Domain Context
 
 This platform teaches **Human-Computer Interaction & User Experience**
-(University Course 27203901) — not security. When writing content:
+(University Course 27203901) When writing content:
 
 ## Core HCI Concepts
 

@@ -84,6 +84,18 @@ Nothing else is allowed on the page.
 
 ---
 
+## Two Surfaces
+
+Not every screen has the same job, so not every screen carries the same restraint.
+
+**Reading surfaces** — the lesson, the concept, anything whose job is to be *read* — obey the rules above strictly. Calm, content-loud, no accent hue, no hero. The reading measure and the six learn colors are the whole visual vocabulary.
+
+**Entry surfaces** — the home page and the lessons index, whose job is to *orient and invite* — may carry more presence: a hero, larger display type, the signature accent, and considered depth. This is not license to decorate; every element still earns its place. But an entry surface that looks like a lesson page has failed at its job, and a course that teaches design should look, at its front door, like it was designed.
+
+The line is the job of the screen, not the mood of the moment.
+
+---
+
 # Color System
 
 ## Tokens
@@ -100,7 +112,7 @@ A component that hardcodes a hex value is a bug.
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `--background` | `0 0% 100%` | `222 47% 8%` | Page surface |
+| `--background` | `40 25% 98%` | `222 47% 8%` | Page surface — a warm off-white (paper), not clinical white |
 | `--foreground` | `222 47% 11%` | `210 40% 96%` | Body text |
 | `--card` | `0 0% 100%` | `222 44% 11%` | Card surface |
 | `--card-foreground` | `222 47% 11%` | `210 40% 96%` | Card text |
@@ -143,6 +155,28 @@ Rules:
 - Nothing outside a callout may use a learn color.
 - Never introduce a seventh callout color to make a lesson "pop".
 - Adding a callout variant is a DSL change first (`LEARNING_DSL.md` → `packages/core`), not a CSS change.
+
+---
+
+## The Signature Accent (Gold)
+
+One warm gold, the course's signature. It pairs with the navy the way ink pairs with a gilt edge — academic, confident, and unmistakably *not* one of the AI-default landing-page looks.
+
+| Token | Light | Dark | Role |
+|---|---|---|---|
+| `--gold` | `36 80% 44%` | `40 88% 62%` | The accent itself |
+| `--gold-foreground` | `30 60% 15%` | `30 60% 12%` | Text/icon on a gold fill |
+| `--gold-tint` | `40 82% 94%` | `38 40% 16%` | A wash for subtle gold backgrounds |
+
+Gold lives on **entry surfaces only** (see Two Surfaces). It never appears on a reading surface and it is **never a callout color** — the six learn colors own teaching intent, and gold owns brand presence; the two never mix.
+
+Because gold is a mid-tone, it is disciplined about contrast:
+
+- **Large text only** (headline accent words, the oversized unit numerals) — where it clears WCAG AA large (3:1). Never small body text or labels.
+- **Fills** — the primary CTA (`--gold` fill, `--gold-foreground` text), which clears AA comfortably.
+- **Non-text accents** — node dots, weight bars, hairline rules, focus rings.
+
+If you reach for gold on a small label, you have reached for the wrong tool — use `--muted-foreground`.
 
 ---
 
@@ -210,6 +244,8 @@ Monospace is never a UI font here.
 ```
 
 Three numbers, each deliberate.
+
+**Apply the measure to the content column, not to each paragraph.** The whole lesson column carries `.prose-lesson`, so every block — prose, callouts, definitions, examples, self-checks, headings — shares one reading column. Applied per-paragraph, the prose wraps at 72ch but cards and callouts are free to stretch to the full (stretched) page width, and the column loses its spine. Applied once on the column, everything inherits the measure — and `ch` is measured at the correct 17px.
 
 ### Why 72ch and not 65ch
 
@@ -328,6 +364,54 @@ Whitespace is a feature. When a page feels crowded, the fix is more space — ne
 
 ---
 
+# Elevation & Shadow
+
+Elevation tells the eye what floats above what. It is spent sparingly — a calm reading surface is mostly flat.
+
+## Light mode
+
+| Level | Utility | Use |
+|---|---|---|
+| Flat | *(none)* | The default. A card at rest sits on the page with a hairline `border`, not a shadow. |
+| Raised | `shadow-sm` | A panel grouped above the surface — the lesson TOC, a sticky sidebar. |
+| Overlay | `shadow-md` | Content that genuinely floats: popovers, hover cards, the mobile sheet, the hover-lift on a clickable card. |
+
+Nothing heavier than `shadow-md`. A drop shadow the size of the card reads as a box, not a lift.
+
+## Dark mode
+
+Shadows are nearly invisible on a dark surface, so **elevation is carried by surface lightness, not shadow** — `--card` sits above `--background` (see Dark Mode). A shadow in dark mode is the exception, not the rule.
+
+## The one rule
+
+Never author a raw `box-shadow` with a hardcoded `rgba()`. Shadow color is a token:
+
+```css
+/* Correct: the shadow tracks the theme. */
+box-shadow: 0 4px 12px hsl(var(--shadow-color) / 0.08);
+```
+
+`--shadow-color` is the base navy in light and near-black in dark, so the same rule reads correctly in both themes. A hardcoded `rgba(0, 0, 0, …)` is a bug for the same reason a hardcoded hex is.
+
+---
+
+# Layering (z-index)
+
+A small, fixed scale. A z-index outside it is a bug — two things fighting for the top usually means one of them should not be fixed at all.
+
+| Layer | z-index | Example |
+|---|---|---|
+| Base | `0` | Normal document flow |
+| Sticky | `10` | A TOC / sidebar that sticks while scrolling |
+| Overlay | `20` | Dropdowns, hover cards, tooltips |
+| Header | `30` | The app header, when it is sticky |
+| Reading progress | `50` | The thin top progress bar — above chrome, and `pointer-events: none` so it never intercepts a click |
+| Modal | Radix-managed | Dialogs and the mobile sheet portal their own stacking; do not hand-pick a number that competes with it |
+
+Do not invent intermediate values (`z-40`, `z-[999]`). If two elements collide, decide which layer each belongs to.
+
+---
+
 # RTL
 
 > This is the section that breaks the app if ignored.
@@ -441,7 +525,7 @@ The mapping lives in the renderer's `BlockRegistry` (`packages/markdown-renderer
 | `callout` · `tip` | `:::tip` | **Callout** `variant="tip"` | Tinted band, `--learn-tip`, icon + label טיפ. Lowest visual weight of the three. |
 | `media` · `diagram` | `:::diagram` | **DiagramPlaceholder** | Dashed-border panel rendering the author's *description* of the intended visual. Exists because content describes visuals rather than embedding them: `src` stays null until an asset is produced. **Never renders ASCII art.** |
 | `media` · `image` / `animation` / `video` | `:::image` etc. | **DiagramPlaceholder** (variant) | Same contract: description now, asset later. |
-| `selfcheck` | `:::selfcheck` | **SelfCheck** | Question always visible; answer behind a Radix Collapsible with `aria-expanded` / `aria-controls`. **Never `<details>`** — that is HTML in content, which the DSL forbids. |
+| `selfcheck` | `:::selfcheck` | **SelfCheck** | Question always visible; answer behind a disclosure. The contract is `aria-expanded` + `aria-controls` on the trigger and a labelled `role="region"` for the answer — met either by a Radix Collapsible or by a native `<button>` carrying those attributes (a native button already gives `Enter`/`Space` + focus, so this one trivial disclosure needs no dependency). **Never `<details>`** — that is HTML in content, which the DSL forbids. |
 | `objectives` | `:::objectives` | **KeyPoints** `variant="objectives"` | Checklist at the top of a lesson. |
 | `keypoints` | `:::keypoints` | **KeyPoints** | Compact checklist closing a section. |
 | `summary` | `:::summary` | **Summary** | Muted card. Closes the lesson. |
@@ -468,6 +552,24 @@ The mapping lives in the renderer's `BlockRegistry` (`packages/markdown-renderer
 - Components receive **exactly their own block** (`BlockComponentProps<T>`) and nothing else.
 - A component never reaches for content it was not handed.
 - Components build on **shadcn/ui + Radix** primitives. Radix supplies the accessibility contract for free — never hand-roll a Collapsible, Dialog, or RadioGroup.
+
+---
+
+# Content States
+
+Loading, empty, and error are **designed states**, not gaps. Every page that fetches or lists content designs all three. This is a Definition-of-Done item, per `CLAUDE.md`.
+
+| State | Component | Rule |
+|---|---|---|
+| Loading | **PageSkeleton** | Skeleton blocks that mirror the *shape* of the content to come (title bar, then card grid), in `--muted`. Never a bare spinner, and never a layout jump when the content settles in. |
+| Empty | **EmptyState** | An icon, a plain title, and a sentence naming *what is missing and how to produce it* (e.g. the `pnpm content:build` hint). It never fakes data to look full. |
+| Error / not-found | **EmptyState** (variant) | Says what went wrong in the student's language and offers the way back. A missing lesson names the id it looked for. |
+
+Rules:
+
+- **Never fake data.** A grid of lorem cards is worse than an honest empty state — it teaches the student to distrust the interface.
+- **The skeleton mirrors the real layout**, so content arriving causes no reflow.
+- Empty and error copy is UI chrome (Hebrew) and lives in the component — never in `content/`.
 
 ---
 

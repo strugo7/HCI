@@ -55,6 +55,14 @@ export default {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
+        // The signature accent — an entry-surface hue (home, lessons index),
+        // never a reading-surface or callout color. Used only on large text,
+        // backgrounds, and non-text accents so it always clears WCAG.
+        gold: {
+          DEFAULT: 'hsl(var(--gold))',
+          foreground: 'hsl(var(--gold-foreground))',
+          tint: 'hsl(var(--gold-tint))',
+        },
         // Semantic colors for DSL callouts. Named by intent, not by hue, so a
         // rebrand never means editing a renderer component.
         learn: {

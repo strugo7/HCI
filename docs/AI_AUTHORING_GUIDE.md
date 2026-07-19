@@ -173,6 +173,8 @@ in English and are never translated — `Affordances`, `Usability`, `UI/UX`, `Pe
 
 Use:
 
+- **Lecturer Tone:** Write all content in the voice of the course lecturer/professor. Address the students directly (e.g., "בואו נבחן", "כאשר אנו מעצבים") with authoritative, clear, and engaging pedagogy.
+- **Direct Explanations:** Explain methodologies and templates directly as your own curriculum. Never make meta-references to slide numbers, presentations, or specific source file names (e.g., do NOT write "מתוך שקופית 25" or "במצגת של הקורס" or "מתוך קובץ Templete.doc").
 - Short paragraphs
 - Simple language
 - Active voice
@@ -182,6 +184,7 @@ Use:
 Avoid:
 
 - Academic jargon
+- Meta-references to course sources, slides, or internal asset filenames (keep the lecturer illusion intact)
 - Long introductions
 - Unnecessary repetition
 - Decorative language

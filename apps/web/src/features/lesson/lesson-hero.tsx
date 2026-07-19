@@ -1,8 +1,8 @@
 /**
- * Lesson hero header — matching the design's top section.
+ * Lesson hero header — the top section of a lesson.
  *
- * Shows: breadcrumbs, title, description, "מתחילים" CTA, reading time badge,
- * and the Aegis logo.
+ * Shows: breadcrumb trail, title, description, "מתחילים" CTA, reading-time
+ * badge, and difficulty badge.
  */
 import { BookOpen, ChevronLeft, Clock, PlayCircle } from 'lucide-react';
 import type { ReactNode } from 'react';
