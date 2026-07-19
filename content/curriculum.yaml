@@ -141,36 +141,36 @@ units:
 
   # ------------------------------------------------------------------
   # 9 — הערכת המערכת: שימושיות לעומת שמישות
-  # - id: usability
-  #   title: "נושא 9: שמישות (Usability) — ממדי ההצלחה של הממשק"
-  #   description: 5 ממדי השמישות של ממשק, ההבדל בין Utility ל-Usability והמשמעות להצלחת הפרויקט.
-  #   source: Usability definitions.pptx, Usability.pptx
-  #   weight: 10.0
-  #   status: planned
-  #   note: >
-  #     נושא חשוב מאוד שיופיע במבחן. עליכם לדעת את ההבחנה של יעקב נילסן: שימושיות (Utility) = האם זה פותר צורך/עושה את העבודה?
-  #     שמישות (Usability) = האם אנשים מסוגלים להבין איך להשתמש בזה? אם נכשלים באחד, המערכת נכשלת. (Usefulness = Utility + Usability).
-  #   lessons:
-  #     - utility-vs-usability     # ההבדל הקריטי להבטחת ערך המערכת (Usefulness)
-  #     - the-five-dimensions      # למידות, יעילות, שגיאות, זכירות ושביעות רצון (Learnability, Efficiency, Errors, Memorability, Satisfaction)
-  #     - effectiveness-vs-efficiency # עמידה במשימה (אפקטיביות) מול הזמן והמאמץ לביצוע (יעילות)
+  - id: usability
+    title: "נושא 9: שמישות (Usability) — ממדי ההצלחה של הממשק"
+    description: 5 ממדי השמישות של ממשק, ההבדל בין Utility ל-Usability והמשמעות להצלחת הפרויקט.
+    source: Usability definitions.pptx, Usability.pptx
+    weight: 10.0
+    status: ready
+    note: >
+      נושא חשוב מאוד שיופיע במבחן. עליכם לדעת את ההבחנה של יעקב נילסן: שימושיות (Utility) = האם זה פותר צורך/עושה את העבודה?
+      שמישות (Usability) = האם אנשים מסוגלים להבין איך להשתמש בזה? אם נכשלים באחד, המערכת נכשלת. (Usefulness = Utility + Usability).
+    lessons:
+      - utility-vs-usability     # ההבדל הקריטי להבטחת ערך המערכת (Usefulness)
+      - the-five-dimensions      # למידות, יעילות, שגיאות, זכירות ושביעות רצון (Learnability, Efficiency, Errors, Memorability, Satisfaction)
+      - effectiveness-vs-efficiency # עמידה במשימה (אפקטיביות) מול הזמן והמאמץ לביצוע (יעילות)
 
   # ------------------------------------------------------------------
   # 10 — איך אנחנו בודקים את עצמנו
-  # - id: usability-testing
-  #   title: "נושא 10: בדיקות שמישות (Usability Testing) ו-10 ההיוריסטיקות"
-  #   description: מציאת כשלי שמישות באמצעות משתמשים אמיתיים אל מול הערכה של מומחים לפי 10 ההיוריסטיקות של יעקב נילסן.
-  #   source: usability-test-plan.docx, report-template-usability-test_0.docx, ux-process-materials-checklist.docx
-  #   weight: 15.0
-  #   status: planned
-  #   note: >
-  #     מהווה נתח עצום מחומר המבחן (יחד עם מחקר שטח: כ-40% מהבחינה). חובה להכיר את ההבדל בין מחקר אמפירי (עם משתמשים) לאנליטי (מומחים בלבד).
-  #     יש לזכור את תפקידי הבדיקה: מנחה (Moderator), צופה ומשתתף (תוך עידוד Think-aloud), ואת כלל 5 המשתמשים (שחושפים 85% מהבעיות).
-  #   lessons:
-  #     - empirical-vs-analytical  # הערכה עם נתוני משתמשים לעומת ניתוח מומחים (Cognitive Walkthrough)
-  #     - nielsens-10-heuristics   # 10 ההיוריסטיקות (כגון: סטטוס המערכת, מניעת שגיאות, חופש פעולה)
-  #     - conducting-the-test      # מונחה/לא מונחה, פנים-אל-פנים/מרחוק ותפקיד ה-Think-aloud
-  #     - the-5-user-rule          # חוק ה-5 משתמשים ולמה לא צריך יותר כדי לגלות תקלות משמעותיות
+  - id: usability-testing
+    title: "נושא 10: בדיקות שמישות (Usability Testing) ו-10 ההיוריסטיקות"
+    description: מציאת כשלי שמישות באמצעות משתמשים אמיתיים אל מול הערכה של מומחים לפי 10 ההיוריסטיקות של יעקב נילסן.
+    source: usability-test-plan.docx, report-template-usability-test_0.docx, ux-process-materials-checklist.docx
+    weight: 15.0
+    status: ready
+    note: >
+      מהווה נתח עצום מחומר המבחן (יחד עם מחקר שטח: כ-40% מהבחינה). חובה להכיר את ההבדל בין מחקר אמפירי (עם משתמשים) לאנליטי (מומחים בלבד).
+      יש לזכור את תפקידי הבדיקה: מנחה (Moderator), צופה ומשתתף (תוך עידוד Think-aloud), ואת כלל 5 המשתמשים (שחושפים 85% מהבעיות).
+    lessons:
+      - empirical-vs-analytical  # הערכה עם נתוני משתמשים לעומת ניתוח מומחים (Cognitive Walkthrough)
+      - nielsens-10-heuristics   # 10 ההיוריסטיקות (כגון: סטטוס המערכת, מניעת שגיאות, חופש פעולה)
+      - conducting-the-test      # מונחה/לא מונחה, פנים-אל-פנים/מרחוק ותפקיד ה-Think-aloud
+      - the-5-user-rule          # חוק ה-5 משתמשים ולמה לא צריך יותר כדי לגלות תקלות משמעותיות
 
   # ------------------------------------------------------------------
   # 11 — המילים כחלק בלתי נפרד מהחוויה
