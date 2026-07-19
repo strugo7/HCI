@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+  <!-- HCI · Beyond Pixels mark — symbol-only (favicon). Navy square, gold dots.
+       Gold brightens in dark UIs to match the design system's dark-mode token. -->
+  <style>
+    .gold { fill: hsl(36 80% 44%); }
+    @media (prefers-color-scheme: dark) { .gold { fill: hsl(40 88% 62%); } }
+  </style>
+  <rect width="56" height="56" rx="12" fill="hsl(222 47% 11%)" />
+  <circle class="gold" cx="16" cy="40" r="6" />
+  <circle class="gold" cx="29" cy="27" r="6" />
+  <circle class="gold" cx="42" cy="16" r="6" />
+</svg>

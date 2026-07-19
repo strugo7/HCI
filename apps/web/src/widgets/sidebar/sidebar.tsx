@@ -1,8 +1,9 @@
-import { MousePointer2, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { ROUTES } from '@/router/routes';
+import { Logo, LogoMark } from '@/shared/components/logo';
 import {
   Sidebar,
   SidebarContent,
@@ -61,21 +62,12 @@ export function AppSidebar(): ReactNode {
       <SidebarHeader className="gap-3">
         <Link
           to={ROUTES.dashboard}
+          aria-label="HCI · Beyond Pixels — לדף הבית"
           className="flex items-center gap-2.5 rounded-md px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <div className="relative shrink-0">
-            <div className="grid size-9 place-items-center rounded-lg bg-primary">
-              <MousePointer2 className="size-4 text-primary-foreground" aria-hidden />
-            </div>
-            <span
-              aria-hidden
-              className="absolute -end-0.5 -top-0.5 size-2.5 rounded-full bg-gold ring-2 ring-card"
-            />
-          </div>
-          <div className="leading-tight group-data-[collapsible=icon]:hidden">
-            <p className="font-semibold">מנשק אדם-מחשב</p>
-            <p className="text-xs text-muted-foreground">הכנה למבחן · HCI</p>
-          </div>
+          {/* Collapsed rail: the mark alone. Expanded: the full HCI lockup. */}
+          <LogoMark size={36} className="group-data-[collapsible=icon]:block hidden" />
+          <Logo variant="full" size={36} className="group-data-[collapsible=icon]:hidden" />
         </Link>
 
         <NavSearch />
