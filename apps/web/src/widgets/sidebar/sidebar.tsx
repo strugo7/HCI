@@ -13,6 +13,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/shared/components/ui/sidebar';
 
 import { NAV_ITEMS } from './nav-items';
@@ -56,6 +57,14 @@ function NavSearch(): ReactNode {
  */
 export function AppSidebar(): ReactNode {
   const isActive = useIsActive();
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  // On mobile the sidebar is a full-height drawer over the content, so a tap
+  // that navigates must also dismiss it — otherwise the destination page loads
+  // hidden behind the still-open drawer. No-op on desktop, where it's pinned.
+  const dismissOnMobile = (): void => {
+    if (isMobile) setOpenMobile(false);
+  };
 
   return (
     <Sidebar side="left" collapsible="icon">
@@ -63,6 +72,7 @@ export function AppSidebar(): ReactNode {
         <Link
           to={ROUTES.dashboard}
           aria-label="HCI · Beyond Pixels — לדף הבית"
+          onClick={dismissOnMobile}
           className="flex items-center gap-2.5 rounded-md px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           {/* Collapsed rail: the mark alone. Expanded: the full HCI lockup. */}
@@ -79,7 +89,7 @@ export function AppSidebar(): ReactNode {
             {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
               <SidebarMenuItem key={to}>
                 <SidebarMenuButton asChild isActive={isActive(to, end)} tooltip={label}>
-                  <Link to={to}>
+                  <Link to={to} onClick={dismissOnMobile}>
                     <Icon aria-hidden />
                     <span>{label}</span>
                   </Link>

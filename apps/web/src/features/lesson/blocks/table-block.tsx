@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 
 import type { Block } from '@cyberatlas/core';
 
+import { InlineRenderer } from './inline-renderer';
+
 interface TableBlockProps {
   readonly block: Extract<Block, { type: 'table' }>;
 }
@@ -17,7 +19,7 @@ export function TableBlock({ block }: TableBlockProps): ReactNode {
                 key={i}
                 className="px-4 py-3 text-start font-semibold text-foreground"
               >
-                {header}
+                <InlineRenderer inlines={header} />
               </th>
             ))}
           </tr>
@@ -30,7 +32,7 @@ export function TableBlock({ block }: TableBlockProps): ReactNode {
             >
               {row.map((cell, ci) => (
                 <td key={ci} className="px-4 py-3 text-foreground/80">
-                  {cell}
+                  <InlineRenderer inlines={cell} />
                 </td>
               ))}
             </tr>
