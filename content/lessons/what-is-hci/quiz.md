@@ -1,7 +1,7 @@
 ---
 id: what-is-hci-quiz
 lesson: what-is-hci
-title: "בוחן: יסודות מנשק אדם-מחשב"
+title: "Quiz: Foundations of Human-Computer Interaction"
 ---
 
 ## Question
@@ -15,22 +15,22 @@ points: 5
 concepts:
   - hci
 
-מהי המטרה המרכזית של תחום מנשק אדם-מחשב ([[hci]])?
+What is the primary goal of Human-Computer Interaction ([[hci]])?
 
 ### Answers
 
-A. אופטימיזציה של מהירות המעבד ומשאבי הזיכרון במערכות מחשב.
+A. Optimizing processor speed and memory resources in computer systems.
 
-B. עיצוב והערכה של מערכות אינטראקטיביות כך שיתאימו לצרכים וליכולות של האדם.
+B. Designing and evaluating interactive systems so that they fit human needs and capabilities.
 
-C. כתיבת קוד תוכנה נקי ללא שגיאות הידור.
+C. Writing clean software code free of compilation errors.
 
-D. יצירת אלמנטים גרפיים יפים בלבד עבור מסכי אפליקציה.
+D. Creating beautiful graphic elements only for application screens.
 
 Correct: B
 Explanation: תחום ה-HCI מציב את האדם במרכז ומטרתו לעצב ולהעריך מערכות אינטראקטיביות כך שיהיו מותאמות ליכולות, למגבלות ולצרכים של האדם. היבטים חזותיים (UI) או קוד נקי הם רק אמצעים ולא המטרה המרכזית, ושיפור חומרה שייך להנדסת מחשבים.
-Learning Objective: להגדיר מהו תחום ה-HCI ומטרתו המרכזית.
-Misconception: סטודנטים לעיתים מתבלבלים בין פיתוח תוכנה או עיצוב אסתטי גרידא לבין הדיסציפלינה המחקרית והמערכתית של HCI.
+Learning Objective: Define the field of HCI and its primary goal.
+Misconception: Students sometimes confuse the research and system discipline of HCI with pure software development or aesthetic design.
 
 ---
 
@@ -46,26 +46,26 @@ concepts:
   - ui
   - ux
 
-כיצד ניתן לאבחן את מצב המערכת מבחינת [[ui]] ו-[[ux]]?
+How can the system's state be diagnosed in terms of [[ui]] and [[ux]]?
 
 ### Scenario
 
-חברה השיקה אפליקציה חדשה להזמנת תורים לרופא. מסכי האפליקציה מעוצבים בצורה מרהיבה עם צבעים נעימים, גופנים קריאים וכפתורים ברורים מאוד. עם זאת, כאשר משתמש קובע תור, האפליקציה לא שולחת הודעת אישור או תזכורת, וכאשר המשתמש מגיע למרפאה מתברר שהתור שלו לא נשמר במערכת המרכזית של המשרד, מה שיוצר תסכול רב ללקוחות ורופאים כאחד.
+A company launched a new doctor appointment booking application. The app's screens are beautifully designed with pleasant colors, readable fonts, and very clear buttons. However, when a user books an appointment, the app does not send a confirmation message or reminder, and when the user arrives at the clinic, it turns out their appointment was not saved in the clinic's central system, causing great frustration for both customers and doctors.
 
 ### Answers
 
-A. המערכת סובלת מ-UI גרוע ומ-UX מצוין.
+A. The system suffers from poor UI and excellent UX.
 
-B. המערכת סובלת מ-UI גרוע ומ-UX גרוע.
+B. The system suffers from poor UI and poor UX.
 
-C. המערכת מציגה UI מצוין אך UX גרוע.
+C. The system displays excellent UI but poor UX.
 
-D. המערכת מציגה UI מצוין ו-UX מצוין.
+D. The system displays excellent UI and excellent UX.
 
 Correct: C
 Explanation: ה-UI (ממשק המשתמש) מצוין מכיוון שהמסכים מעוצבים בצורה מרהיבה, קריאה וברורה. עם זאת, ה-UX (חוויית המשתמש) גרוע מאוד, מכיוון שהתהליך הכולל נכשל – המשתמש לא מקבל פידבק (הודעת אישור), והמטרה הסופית שלו (קביעת תור מוצלחת והגעה למרפאה בראש שקט) לא הושגה, מה שמוביל לתסכול רב.
-Learning Objective: להבחין בין עיצוב ממשק (UI) לבין חוויית משתמש כוללת (UX).
-Misconception: סטודנטים נוטים לחשוב שאם הממשק נראה מעולה, אז חוויית המשתמש היא בהכרח טובה, ומתעלמים מהתהליך המלא ומתוצאת הקצה.
+Learning Objective: Distinguish between user interface (UI) design and the overall user experience (UX).
+Misconception: Students tend to think that if the interface looks great, the user experience is necessarily good, ignoring the full process and the end result.
 
 ---
 
@@ -80,23 +80,23 @@ points: 5
 concepts:
   - usability
 
-מבחינת שמישות ([[usability]]) ושימושיות (Utility), מה נכון לגבי המערכת?
+In terms of usability ([[usability]]) and utility (Utility), what is true about the system?
 
 ### Scenario
 
-מפתח תוכנה עיצב תוכנת ניהול מלאי לעסק שבה ניתן לעשות חיפוש מהיר של פריט בעזרת הקלדת קוד סורק. התוכנה מספקת את כל המידע הנדרש על המוצר. אולם, כאשר קופאי מקליד בטעות קוד לא נכון, התוכנה ננעלת, לא מציגה הודעת שגיאה ברורה, ומחייבת הפעלה מחדש של המערכת.
+A software developer designed inventory management software for a business where a quick item search can be performed by typing a scanner code. The software provides all the necessary product information. However, when a cashier accidentally types an incorrect code, the software locks up, does not display a clear error message, and requires restarting the system.
 
 ### Answers
 
-A. למערכת יש Usability גבוה אך Utility נמוך.
+A. The system has high Usability but low Utility.
 
-B. למערכת יש Usability גבוה ו-Utility גבוה.
+B. The system has high Usability and high Utility.
 
-C. למערכת יש Usability נמוך ו-Utility נמוך.
+C. The system has low Usability and low Utility.
 
-D. למערכת יש Usability נמוך אך Utility גבוה.
+D. The system has low Usability but high Utility.
 
 Correct: D
 Explanation: למערכת יש Utility (שימושיות) גבוה מכיוון שהיא מספקת את הפונקציונליות שהמשתמש צריך – היא מחפשת פריטים ומציגה את כל המידע הנדרש. עם זאת, ה-Usability (שמישות) שלה נמוך מאוד, מכיוון שמימד השגיאות (Errors) לוקה בחסר: טעות קטנה מקריסה את המערכת ואין דרך נוחה להתאושש מהשגיאה.
-Learning Objective: להבחין בין שמישות (Usability) לשימושיות (Utility) ולזהות כשלי טיפול בשגיאות.
-Misconception: סטודנטים מתקשים לעיתים להפריד בין "מה שהמערכת מסוגלת לעשות" (Utility) לבין "קלות התפעול והטיפול בבעיות" (Usability).
+Learning Objective: Distinguish between usability (Usability) and utility (Utility) and identify error handling failures.
+Misconception: Students sometimes find it difficult to separate 'what the system is capable of doing' (Utility) from 'ease of operation and error handling' (Usability).

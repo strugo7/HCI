@@ -32,10 +32,10 @@ units:
       נושא קריטי המסביר את מגבלות הזיכרון של המשתמש. חובה להכיר את ההבדל בין Recognition (זיהוי) ל-Recall (היזכרות),
       את מודל עיבוד המידע, ואת ההשלכות של Inattentional Blindness (עיוורון קשבי) על עיצוב ממשקים.
     lessons:
-      - cognitive-psychology       # שיעור עוגן: מודל עיבוד המידע, תפיסה, קשב, זיכרון ועומס קוגניטיבי
-      # - inattentional-blindness  # העמקה: עיוורון קשבי והשלמת תבניות (Closure / משולש קניצה) (עתידי)
-      # - recognition-vs-recall    # העמקה: ההבדל בין זיהוי (קל) להיזכרות (דורש מאמץ) (עתידי)
-      # - mental-models            # העמקה: מודלים מנטליים — הציפיות הקיימות של המשתמשים (עתידי)
+      - cognitive-psychology
+      - inattentional-blindness
+      - recognition-vs-recall
+      - mental-models
 
   # ------------------------------------------------------------------
   # 3 — יציאה לשטח: מחקר ותצפיות
@@ -73,20 +73,21 @@ units:
 
   # ------------------------------------------------------------------
   # 5 — איך אנחנו מארגנים את המידע?
-  # - id: information-architecture
-  #   title: "נושא 5: ארכיטקטורת מידע (IA) — ארגון וניווט"
-  #   description: תכנון המבנה הלוגי של המערכת, מודל LATCH לארגון המידע, ושיטות למיון מידע להפחתת עומס קוגניטיבי.
-  #   source: IA.pptx, LATCH.pptx, ארכיטקטורת מידע - מצגת (הרצאה מצולמת).pptx, Card Sorting.docx
-  #   weight: 10.0
-  #   status: planned
-  #   note: >
-  #     לזכור את 3 עמודי התווך של IA: אונטולוגיה (תיוג), טקסונומיה (קטגוריות) וכוריאוגרפיה (המבנה במרחב).
-  #     זהו גם השלב שבו נכנסת שיטת Card Sorting (מיון פתוח וסגור) כדי לאבחן מודלים מנטליים.
-  #   lessons:
-  #     - ia-pillars               # Ontology, Taxonomy, Choreography (דוגמת איקאה)
-  #     - latch-model              # 5 הדרכים: Location, Alphabet, Time, Category, Hierarchy
-  #     - card-sorting             # שיטת מחקר לארגון מידע (פתוח מול סגור)
-  #     - navigation-and-search    # מציאוּת (Findability) ומצבי חיפוש מידע במערכת
+  - id: information-architecture
+    title: "נושא 5: ארכיטקטורת מידע (IA) — ארגון וניווט"
+    description: תכנון המבנה הלוגי של המערכת, מודל LATCH לארגון המידע, ושיטות למיון מידע להפחתת עומס קוגניטיבי.
+    source: IA.pptx, LATCH.pptx, ארכיטקטורת מידע - מצגת (הרצאה מצולמת).pptx, Card Sorting.docx
+    weight: 10.0
+    status: ready
+    note: >
+      לזכור את 3 עמודי התווך של IA: אונטולוגיה (תיוג), טקסונומיה (קטגוריות) וכוריאוגרפיה (המבנה במרחב).
+      זהו גם השלב שבו נכנסת שיטת Card Sorting (מיון פתוח וסגור) כדי לאבחן מודלים מנטליים.
+    lessons:
+      - ia-pillars               # Ontology, Taxonomy, Choreography (דוגמת איקאה)
+      - latch-model              # 5 הדרכים: Location, Alphabet, Time, Category, Hierarchy
+      - card-sorting             # שיטת מחקר לארגון מידע (פתוח מול סגור)
+      - navigation-and-search    # מציאוּת (Findability) ומצבי חיפוש מידע במערכת
+
 
   # ------------------------------------------------------------------
   # 6 — עיצוב ויזואלי ומטאפורות

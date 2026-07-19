@@ -1,7 +1,7 @@
 ---
 id: the-innovation-blind-spot-quiz
 lesson: the-innovation-blind-spot
-title: "בוחן: פער החדשנות ומחקר אתנוגרפי"
+title: "Quiz: The Innovation Blind Spot and Ethnographic Research"
 ---
 
 ## Question
@@ -15,22 +15,22 @@ points: 5
 concepts:
   - ethnographic-research
 
-כיצד מגדיר תחום ה-HCI את יחסו של החוקר האתנוגרפי כלפי משתמשי הקצה במהלך המחקר?
+How does the field of HCI define the ethnographic researcher's relationship towards end users during research?
 
 ### Answers
 
-A. החוקר מגיע לשטח כבוחן מומחה המודד את זמני הביצוע של משתמשים ומצביע על שגיאותיהם.
+A. The researcher arrives in the field as an expert evaluator who measures users' performance times and points out their errors.
 
-B. החוקר מגיע לשטח כ"שוליה" השואף ללמוד מהמשתמשים על שגרת יומם והרגליהם ("לומדים מאנשים").
+B. The researcher arrives in the field as an "apprentice" seeking to learn from users about their daily routine and habits ("learning from people").
 
-C. החוקר מגיע לשטח כדי להכשיר את המשתמשים כיצד להפעיל את המערכת בצורה נכונה.
+C. The researcher arrives in the field to train users on how to operate the system correctly.
 
-D. החוקר משמש כשותף סביל בלבד אשר מתעד נתונים סטטיסטיים ללא שיחה או מגע עם המשתמשים.
+D. The researcher serves only as a passive observer who records statistical data without conversation or contact with users.
 
 Correct: B
 Explanation: הכלל הבסיסי במחקר אתנוגרפי הוא שהחוקר בא ללמוד מהאנשים (כמו שוליה הלומד מבעל מקצוע), ולא לחקור אותם במובן של ניסוי מבוקר או הדרכתם (מה שפוסל את A, C ו-D).
-Learning Objective: להגדיר מהי culture ומהו ethnographic-research וכיצד הם קשורים לעיצוב ממשקים.
-Misconception: סטודנטים נוטים לבלבל בין אנתרופולוגיה/אתנוגרפיה לבין ניסויי מעבדה פסיכולוגיים שבהם החוקר שולט במשתנה ובוחן ביצועים.
+Learning Objective: Define what culture and ethnographic-research are and how they relate to interface design.
+Misconception: Students tend to confuse anthropology/ethnography with psychological lab experiments where the researcher controls variables and tests performance.
 
 ---
 
@@ -45,22 +45,22 @@ points: 5
 concepts:
   - innovation-blind-spot
 
-מהי הסיבה העיקרית להתרחשותו של "פער החדשנות" (Innovation Blind Spot) במחקר משתמשים?
+What is the primary reason for the occurrence of the "Innovation Blind Spot" in user research?
 
 ### Answers
 
-A. המשתמשים נוטים להסתיר מידע בכוונה כדי להכשיל את צוות הפיתוח.
+A. Users tend to intentionally hide information to foil the development team.
 
-B. משתמשים אינם יודעים לקרוא סקרים בצורה נכונה ולכן עונים תשובות שגויות.
+B. Users do not know how to read surveys correctly and therefore give incorrect answers.
 
-C. בני אדם מתקשים לדווח בצורה מודעת ומדויקת על פעולותיהם האוטומטיות (ידע סמוי) ומאפייניהם התרבותיים מחוץ להקשר האמיתי.
+C. Humans struggle to consciously and accurately report their automatic actions (tacit knowledge) and cultural traits outside the actual context.
 
-D. סקרים דיגיטליים אינם מפותחים מספיק טכנולוגית כדי לקלוט את תגובותיהם של המשתמשים.
+D. Digital surveys are not technologically advanced enough to capture user responses.
 
 Correct: C
 Explanation: פער החדשנות נובע מכך שדיווח עצמי של בני אדם מחוץ לקונטקסט (בסקרים או קבוצות מיקוד) סובל ממגבלות זיכרון, ידע סמוי (Tacit Knowledge) שמתבצע אוטומטית, ורצייה חברתית (שאיפה להציג מודל אידיאלי).
-Learning Objective: להסביר מהו innovation-blind-spot ומדוע דיווח עצמי נוטה להיכשל.
-Misconception: סטודנטים חושבים בטעות שהמשתמשים משקרים בכוונה בסקרים או שאיכות הסקרים גרועה מבחינה טכנית, במקום להבין שמדובר במגבלה קוגניטיבית אנושית במענה על שאלות מחוץ להקשר.
+Learning Objective: Explain what the innovation-blind-spot is and why self-reporting tends to fail.
+Misconception: Students mistakenly think that users intentionally lie on surveys or that surveys are technically poor, rather than understanding that this is a human cognitive limitation when answering questions outside of context.
 
 ---
 
@@ -76,23 +76,26 @@ concepts:
   - innovation-blind-spot
   - ethnographic-research
 
-צוות פיתוח של אפליקציה לניהול משימות לסטודנטים הפיץ סקר שבו נשאלו הסטודנטים: "האם תרצו לקבל התראות יומיות ב-8:00 בבוקר המפרטות את משימות היום?". 90% מהמשיבים ענו בחיוב. הצוות פיתח את הפיצ'ר, אך גילה שלאחר שבועיים רוב המשתמשים ביטלו את ההתראות. החברה החליטה לשלוח חוקר שיצפה בשגרת הבוקר של הסטודנטים בביתם (מחקר אתנוגרפי).
-איזה מהממצאים הבאים מתאר בצורה הטובה ביותר את פער החדשנות במקרה זה?
+Which of the following findings best describes the innovation blind spot in this case?
+
+### Scenario
+
+A development team for a student task management app distributed a survey asking: "Would you like to receive daily notifications at 8:00 AM listing your tasks for the day?". 90% of respondents answered positively. The team developed the feature but found that after two weeks, most users disabled the notifications. The company decided to send a researcher to observe students' morning routines at home (ethnographic research).
 
 ### Answers
 
-A. הסטודנטים דיווחו שהם אוהבים התראות יפות, אך המעצבים השתמשו בגופנים לא קריאים ובצבעים לא מושכים.
+A. Students reported that they like beautiful notifications, but designers used unreadable fonts and unappealing colors.
 
-B. הסטודנטים רצו לקבל התראות, אך המערכת לא נשלחה בזמן בשל תקלת קוד בשרת.
+B. Students wanted to receive notifications, but the system was not sent on time due to a server code error.
 
-C. הסטודנטים דיווחו על רצון לנהל את הבוקר שלהם בצורה מאורגנת (מודל אידיאלי), אך בפועל בשטח רובם מתעוררים בלחץ סמוך לשעה 9:00, וקבלת רשימת משימות ארוכה ב-8:00 בבוקר מעוררת בהם חרדה ותסכול.
+C. Students reported a desire to manage their morning in an organized way (ideal model), but in practice, most wake up in a rush close to 9:00 AM, and receiving a long list of tasks at 8:00 AM triggers anxiety and frustration.
 
-D. רוב הסטודנטים שנשאלו בסקר לא היו קהל היעד האמיתי של האפליקציה.
+D. Most students surveyed were not the actual target audience of the app.
 
 Correct: C
 Explanation: פער החדשנות מייצג את ההבדל בין המודל האידיאלי (הסטודנט שחושב שהוא קם מוקדם ומארגן את יומו) לבין התנהגות השטח האמיתית (לחץ והתעוררות מאוחרת שבהם ההתראה הופכת ממסייעת למטרידה). מחקר אתנוגרפי חושף את האילוץ וההקשר האמיתי הזה.
-Learning Objective: לנתח את מקרה הבוחן של מערכת החניה כמייצג את פער החדשנות (ובמקרה זה, יישום לרשת סטודנטים).
-Misconception: סטודנטים נוטים לייחס כשלי פיצ'ר לעיצוב חזותי (A) או תקלות קוד (B), במקום לאבחן כשלים בהתאמה למודל המנטלי ולאילוצים של המשתמש.
+Learning Objective: Analyze the parking system case study as representing the innovation blind spot (and in this case, applied to a student network).
+Misconception: Students tend to attribute feature failures to visual design (A) or code bugs (B), instead of diagnosing failures in alignment with the user's mental model and constraints.
 
 ---
 
@@ -107,20 +110,23 @@ points: 5
 concepts:
   - ethnographic-research
 
-חברה המפתחת קופה רושמת דיגיטלית לעגלות קניות בסופרמרקט עיצבה מסך מגע המותקן על ידית העגלה. הקוד פעל בצורה מושלמת במשרדי החברה. אולם, כאשר הושק המוצר בסופרמרקטים, המשתמשים נמנעו לחלוטין מלהשתמש בו כיוון שהם נאלצו להחזיק את העגלה ביד אחת ולהקליד ביד השנייה תוך כדי תנועה, מה שגרם לעגלות להיתקע במדפים ולמוצרים ליפול.
-כיצד ניתן לקשר מקרה זה למושג "החפצים הבלתי אפשריים" של ז'אק קארלמן?
+How can this case be linked to Jacques Carelman's concept of "impossible objects"?
+
+### Scenario
+
+A company developing a digital cash register for supermarket shopping carts designed a touch screen mounted on the cart handle. The code worked perfectly in the company's offices. However, when the product was launched in supermarkets, users completely avoided using it because they were forced to hold the cart with one hand and type with the other while moving, causing the carts to hit shelves and products to fall.
 
 ### Answers
 
-A. המוצר הוא "חפץ בלתי אפשרי" כיוון שהקוד שלו לא נכתב בצורה נכונה וגרם לקריסת המערכת.
+A. The product is an "impossible object" because its code was not written correctly, causing the system to crash.
 
-B. המוצר אינו "חפץ בלתי אפשרי" משום שעגלות קניות אינן נחשבות למוצרי טכנולוגיית מידע (IT).
+B. The product is not an "impossible object" because shopping carts are not considered information technology (IT) products.
 
-C. המוצר פונקציונלי מבחינה הנדסית (המסך עובד והתוכנה רצה), אך הוא הופך לבלתי שמיש ("קנקן תה למזוכיסטים") כיוון שהוא מתעלם לחלוטין מהפיזיולוגיה ומההקשר הדינמי של המשתמש בשטח (דחיפת עגלה בשתי ידיים).
+C. The product is functional from an engineering standpoint (the screen works and the software runs), but it becomes unusable ("a teapot for masochists") because it completely ignores the physiology and dynamic context of the user in the field (pushing a cart with both hands).
 
-D. המוצר הוא "חפץ בלתי אפשרי" כיוון שמעצבי ה-UI בחרו בצבעים שאינם מתאימים לתאורת הסופרמרקט.
+D. The product is an "impossible object" because UI designers chose colors that do not fit the supermarket lighting.
 
 Correct: C
 Explanation: "החפצים הבלתי אפשריים" של קארלמן (כמו הקנקן למזוכיסטים) מראים מוצרים שהם תקינים הנדסית אך אינם ניתנים לשימוש מעשי כיוון שהם מתעלמים מהאופן שבו הגוף האנושי וסביבת העבודה פועלים יחד. המקלדת הדינמית תוך כדי דחיפה היא הקפצה מושלמת של עיקרון זה למרחב הדיגיטלי.
-Learning Objective: לזהות כיצד עיצוב ללא הבנת הקשר השימוש מוביל ל"חפצים בלתי אפשריים" של ז'אק קארלמן.
-Misconception: סטודנטים לפעמים חושבים ש"חפץ בלתי אפשרי" הוא מוצר מקולקל הנדסית, במקום להבין שהכשל הוא בחוסר ההתאמה בין ההנדסה להתנהגות/פיזיולוגיה של האדם.
+Learning Objective: Identify how designing without understanding the context of use leads to Jacques Carelman's "impossible objects".
+Misconception: Students sometimes think an "impossible object" is a product that is engineering-wise broken, rather than understanding that the failure lies in the mismatch between engineering and human behavior/physiology.

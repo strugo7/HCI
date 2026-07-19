@@ -153,3 +153,6 @@ flowchart LR
 - הספר "About Face" מאת אלן קופר (Alan Cooper).
 - מאמרים על שימוש ב-Cultural Probes במחקר משתמשים (Bill Gaver et al.).
 :::
+
+:::quiz{ref="creating-personas-quiz"}
+:::

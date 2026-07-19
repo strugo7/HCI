@@ -73,7 +73,7 @@ export function QuestionCard({
         </span>
       </div>
 
-      <h2 className="max-w-[72ch] whitespace-pre-line text-xl font-semibold leading-relaxed">
+      <h2 className="max-w-[72ch] whitespace-pre-line text-left text-xl font-semibold leading-relaxed" dir="ltr">
         {question.prompt}
       </h2>
 
@@ -95,11 +95,12 @@ export function QuestionCard({
 
       {question.scenario !== null ? (
         <section
-          aria-label="תרחיש"
+          aria-label="Scenario"
           className="max-w-[72ch] rounded-lg border-s-4 border-s-learn-definition bg-learn-definition/5 p-5"
+          dir="ltr"
         >
-          <p className="mb-2 text-sm font-semibold text-learn-definition">תרחיש</p>
-          <p className="whitespace-pre-line text-[1.0625rem] leading-[1.85] text-card-foreground">
+          <p className="mb-2 text-left text-sm font-semibold text-learn-definition">Scenario</p>
+          <p className="whitespace-pre-line text-left text-[1.0625rem] leading-[1.85] text-card-foreground">
             {question.scenario}
           </p>
         </section>
@@ -110,7 +111,12 @@ export function QuestionCard({
         onValueChange={(value) => onSelect(value as AnswerKey)}
         disabled={checked}
         aria-label="אפשרויות התשובה"
-        className="max-w-[72ch] gap-3"
+        // Answers are text-base, the prompt above is text-xl. At an equal `ch`
+        // cap the boxes would render narrower than the prompt and, right-aligned
+        // in the RTL page, leave a gap on the left. 90ch here ≈ 72ch at text-xl,
+        // so the option boxes line up with the prompt's width.
+        className="max-w-[90ch] gap-3"
+        dir="ltr"
       >
         {answers.map((answer, position) => (
           <AnswerOption
@@ -148,12 +154,13 @@ export function QuestionCard({
             <section
               aria-label="המלכודת"
               className="rounded-lg border-s-4 border-s-learn-warning bg-learn-warning/5 p-5"
+              dir="ltr"
             >
-              <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-learn-warning">
+              <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-learn-warning" dir="rtl">
                 <TriangleAlert className="size-4" aria-hidden />
                 המלכודת שנפלת בה
               </p>
-              <p className="whitespace-pre-line text-[1.0625rem] leading-[1.85] text-card-foreground">
+              <p className="whitespace-pre-line text-left text-[1.0625rem] leading-[1.85] text-card-foreground">
                 {misconception}
               </p>
             </section>
@@ -201,22 +208,23 @@ function AnswerOption({
         showWrong && 'border-learn-warning bg-learn-warning/5',
         checked && !showCorrect && !showWrong && 'border-border opacity-60',
       )}
+      dir="ltr"
     >
       <RadioGroupItem value={answerKey} id={id} className="mt-1.5" />
 
-      <label htmlFor={id} className={cn('flex-1 leading-[1.85]', !checked && 'cursor-pointer')}>
+      <label htmlFor={id} className={cn('flex-1 text-left leading-[1.85]', !checked && 'cursor-pointer')}>
         <span className="me-2 font-semibold text-muted-foreground">{label}.</span>
         {text}
 
         {showCorrect ? (
-          <span className="ms-2 inline-flex items-center gap-1 whitespace-nowrap align-middle text-sm font-semibold text-learn-example">
+          <span className="ms-2 inline-flex items-center gap-1 whitespace-nowrap align-middle text-sm font-semibold text-learn-example" dir="rtl">
             <Check className="size-4" aria-hidden />
             התשובה הנכונה
           </span>
         ) : null}
 
         {showWrong ? (
-          <span className="ms-2 inline-flex items-center gap-1 whitespace-nowrap align-middle text-sm font-semibold text-learn-warning">
+          <span className="ms-2 inline-flex items-center gap-1 whitespace-nowrap align-middle text-sm font-semibold text-learn-warning" dir="rtl">
             <X className="size-4" aria-hidden />
             בחרת בזו
           </span>

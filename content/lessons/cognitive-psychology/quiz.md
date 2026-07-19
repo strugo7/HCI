@@ -1,7 +1,7 @@
 ---
 id: cognitive-psychology-quiz
 lesson: cognitive-psychology
-title: "בוחן: פסיכולוגיה קוגניטיבית — המוח מאחורי הממשק"
+title: "Quiz: Cognitive Psychology — The Mind Behind the Interface"
 ---
 
 ## Question
@@ -15,22 +15,22 @@ points: 5
 concepts:
   - recognition-vs-recall
 
-מדוע זיהוי (Recognition) נחשב למטלת זיכרון קלה יותר מהיזכרות (Recall)?
+Why is Recognition considered a easier memory task than Recall?
 
 ### Answers
 
-A. מכיוון שזיהוי אינו מערב את הזיכרון לטווח ארוך כלל.
+A. Because recognition does not involve long-term memory at all.
 
-B. מכיוון שבזיהוי האפשרות המוצגת משמשת כרמז (Cue) שמפעיל את הצ'אנק הרלוונטי בזיכרון.
+B. Because in recognition, the presented option serves as a cue that activates the relevant memory chunk.
 
-C. מכיוון שהיזכרות אפשרית רק אצל משתמשים מנוסים.
+C. Because recall is only possible for experienced users.
 
-D. מכיוון שזיהוי מהיר יותר רק כאשר יש פחות מחמש אפשרויות.
+D. Because recognition is faster only when there are fewer than five options.
 
 Correct: B
 Explanation: זיהוי קל יותר מפני שהאפשרות המוצגת על המסך משמשת כרמז (Cue) שמפעיל ישירות את הצ'אנק המתאים בזיכרון. בהיזכרות, לעומת זאת, המשתמש חייב לייצר את הרמז בעצמו וללא עזרה חיצונית — ולכן זו מטלה מאמצת יותר. זיהוי דורש זיכרון (ולכן A שגוי), אינו תלוי בניסיון המשתמש (C שגוי), וההבדל אינו תלוי במספר אפשרויות ספציפי (D שגוי).
-Learning Objective: להבחין בין זיהוי להיזכרות ולנמק מדוע זיהוי קל יותר.
-Misconception: סטודנטים מבלבלים בין "קל לזכור" לבין "לא מערב זיכרון"; זיהוי כן מערב זיכרון, אך נעזר ברמז חיצוני.
+Learning Objective: Distinguish between recognition and recall and explain why recognition is easier.
+Misconception: Students confuse 'easy to remember' with 'does not involve memory'; recognition does involve memory but relies on an external cue.
 
 ---
 
@@ -45,26 +45,26 @@ points: 5
 concepts:
   - recognition-vs-recall
 
-איזה שינוי מיישם בצורה הטובה ביותר את העיקרון "Recognition over Recall"?
+Which change best implements the 'Recognition over Recall' principle?
 
 ### Scenario
 
-אפליקציית העברות כספים דורשת מהמשתמש להקליד מהזיכרון את מספר חשבון הבנק המלא של הנמען בכל פעם שהוא רוצה להעביר כסף, גם אם כבר העביר לאותו נמען בעבר. משתמשים רבים מתלוננים על טעויות הקלדה ועל תסכול.
+A money transfer app requires the user to type from memory the recipient's full bank account number every time they want to transfer money, even if they have already transferred to that recipient in the past. Many users complain about typing errors and frustration.
 
 ### Answers
 
-A. להגדיל את שדה ההקלדה ולהוסיף גופן ברור יותר למספרים.
+A. Increase the input field size and add a clearer font for numbers.
 
-B. להוסיף הודעת אזהרה שמבקשת מהמשתמש לבדוק שוב את המספר שהקליד.
+B. Add a warning message asking the user to double-check the typed number.
 
-C. להציג רשימה של נמענים אחרונים ומועדפים שממנה המשתמש בוחר בלחיצה.
+C. Display a list of recent and favorite recipients from which the user selects with a click.
 
-D. לחלק את שדה מספר החשבון לשלושה שדות נפרדים.
+D. Split the account number field into three separate fields.
 
 Correct: C
 Explanation: הצגת רשימת נמענים אחרונים ומועדפים הופכת את המשימה מהיזכרות (לזכור מספר חשבון בעל-פה) לזיהוי (לבחור נמען מוכר מרשימה מוצגת) — זהו בדיוק העיקרון "Recognition over Recall". האפשרויות האחרות משפרות קריאוּת (A), מוסיפות עומס (B), או מיישמות צ'אנקינג (D) — כולן שיפורים אפשריים, אך אף אחת אינה מחליפה את ההיזכרות בזיהוי.
-Learning Objective: ליישם את עקרון Recognition over Recall כדי לשפר ממשק נתון.
-Misconception: סטודנטים בוחרים לעיתים בפתרונות שמקלים על ההקלדה במקום בפתרון שמבטל את הצורך להיזכר.
+Learning Objective: Apply the Recognition over Recall principle to improve a given interface.
+Misconception: Students sometimes choose solutions that make typing easier instead of a solution that eliminates the need to recall.
 
 ---
 
@@ -79,26 +79,26 @@ points: 5
 concepts:
   - attention
 
-איזה עיקרון קוגניטיבי מסביר בצורה הטובה ביותר את הבעיה בתרחיש?
+Which cognitive principle best explains the problem in this scenario?
 
 ### Scenario
 
-בטופס תשלום, כאשר כרטיס האשראי נדחה, מוצגת הודעת שגיאה בפס אפור-בהיר בראש העמוד. המשתמשים, שמרוכזים בכפתור "שלם עכשיו" שבתחתית המסך, לוחצים עליו שוב ושוב מבלי להבחין כלל בהודעה, ומדווחים ש"האתר תקוע".
+On a checkout form, when the credit card is declined, an error message is displayed in a light-gray banner at the top of the page. Users, who are focused on the 'Pay Now' button at the bottom of the screen, click it repeatedly without noticing the message at all, reporting that 'the site is stuck'.
 
 ### Answers
 
-A. עומס קוגניטיבי מיותר (Extraneous Load) שנובע מריבוי שדות.
+A. Extraneous cognitive load (Extraneous Load) resulting from too many fields.
 
-B. עיוורון קשבי (Inattentional Blindness) — המשתמש מפספס גירוי מחוץ למוקד הקשב שלו.
+B. Inattentional blindness (Inattentional Blindness) — the user misses a stimulus outside their focus of attention.
 
-C. עיבוד מלמעלה-למטה (Top-Down) שגורם למשתמש לראות משולש שאינו קיים.
+C. Top-Down processing that causes the user to see a triangle that does not exist.
 
-D. אפקט פיצול הקשב (Split-Attention) בין טקסט לתרשים.
+D. The split-attention effect (Split-Attention) between text and diagram.
 
 Correct: B
 Explanation: זהו מקרה מובהק של עיוורון קשבי: המשתמש מרוכז במשימה (הכפתור בתחתית) ולכן "מתעוור" להודעה הבולטת-לכאורה בראש העמוד. הבעיה מחריפה בגלל הניגודיות הנמוכה (אפור-בהיר). הפתרון הוא להציב את השגיאה במוקד המשימה ולהבליט אותה. האפשרויות האחרות מתארות תופעות קוגניטיביות אמיתיות אך לא רלוונטיות לתרחיש זה.
-Learning Objective: לנתח מצב עיצובי ולזהות עיוורון קשבי כגורם לכשל.
-Misconception: סטודנטים נוטים לייחס כל כשל ל"עומס קוגניטיבי" באופן גורף, ולא מזהים שהבעיה כאן היא ניתוב קשב.
+Learning Objective: Analyze a design situation and identify inattentional blindness as the cause of failure.
+Misconception: Students tend to attribute every failure to 'cognitive load' in a blanket way, failing to identify that the issue here is attention routing.
 
 ---
 
@@ -113,26 +113,26 @@ points: 5
 concepts:
   - cognitive-load
 
-מהי הדרך היעילה ביותר להפחית את העומס הקוגניטיבי בתרחיש?
+What is the most effective way to reduce cognitive load in this scenario?
 
 ### Scenario
 
-מערכת רישום לאוניברסיטה מציגה למשתמש טופס יחיד עם 40 שדות (פרטים אישיים, השכלה קודמת, בחירת קורסים ותשלום) בעמוד אחד ארוך. סטודנטים רבים מתבלבלים, מדלגים על שדות ונוטשים באמצע.
+A university registration system displays a single form with 40 fields (personal details, prior education, course selection, and payment) on a long page. Many students get confused, skip fields, and abandon the process midway.
 
 ### Answers
 
-A. להקטין את הגופן כדי שכל 40 השדות ייכנסו למסך אחד ללא גלילה.
+A. Reduce the font size so that all 40 fields fit on one screen without scrolling.
 
-B. להוסיף צבעים שונים לכל שדה כדי שכל אחד יבלוט בנפרד.
+B. Add different colors to each field so that each one stands out individually.
 
-C. לחלק את הטופס לצעדים לפי נושא (חשיפה הדרגתית) ולקבץ שדות קשורים יחד (צ'אנקינג).
+C. Divide the form into steps by topic (progressive disclosure) and group related fields together (chunking).
 
-D. להוסיף טקסט עזרה מפורט מתחת לכל אחד מ-40 השדות.
+D. Add detailed help text under each of the 40 fields.
 
 Correct: C
 Explanation: חלוקה לצעדים (חשיפה הדרגתית) וקיבוץ שדות קשורים (צ'אנקינג) מפחיתים את מספר הפריטים שזיכרון העבודה מתמודד איתם בכל רגע — בדיוק הדרך הנכונה להפחית עומס קוגניטיבי. הקטנת גופן (A) מגדילה את העומס החזותי, ריבוי צבעים (B) מוסיף רעש, וטקסט עזרה בכל שדה (D) הוא "מידע מועיל לכאורה" שמוסיף עומס מיותר — בדיוק מה ש-Sweller הזהיר מפניו.
-Learning Objective: ליישם צ'אנקינג וחשיפה הדרגתית כדי להפחית עומס קוגניטיבי.
-Misconception: סטודנטים חושבים שהוספת מידע או הבלטה תמיד עוזרת, ולא מזהים שמידע מיותר מגדיל עומס.
+Learning Objective: Apply chunking and progressive disclosure to reduce cognitive load.
+Misconception: Students think adding information or highlighting always helps, failing to recognize that redundant information increases cognitive load.
 
 ---
 
@@ -148,19 +148,19 @@ concepts:
   - perception
   - mental-models
 
-מה מתאר בצורה הטובה ביותר עיבוד תפיסתי "מלמעלה-למטה" (Top-Down)?
+What best describes Top-Down perceptual processing?
 
 ### Answers
 
-A. המוח בונה את התפיסה אך ורק מהגירוי הגולמי המגיע מהחושים, ללא ידע מוקדם.
+A. The brain constructs perception solely from raw sensory stimulus, without prior knowledge.
 
-B. המוח משלים ומפרש את הקלט החיצוני בעזרת ידע, ציפיות ומודלים מנטליים קודמים.
+B. The brain completes and interprets external input using prior knowledge, expectations, and mental models.
 
-C. תהליך שבו מידע עובר מהזיכרון לטווח ארוך אל הזיכרון לטווח קצר.
+C. A process where information moves from long-term memory to short-term memory.
 
-D. תהליך שבו ניגודיות גבוהה גורמת לגירוי להיקלט מהר יותר.
+D. A process where high contrast causes a stimulus to be perceived faster.
 
 Correct: B
 Explanation: עיבוד Top-Down הוא תהליך שבו הדעת משלימה ומפרשת את הקלט החיצוני באמצעות ידע וציפיות מוקדמות (המודל המנטלי) — כפי שממחיש משולש קניצה, שבו המוח "רואה" קווי מתאר שאינם קיימים. אפשרות A מתארת דווקא עיבוד "מלמטה-למעלה" (Bottom-Up). אפשרויות C ו-D מתארות תהליכי זיכרון ותפיסה אחרים ואינן קשורות להגדרה.
-Learning Objective: להסביר עיבוד Top-Down וכיצד הוא משפיע על קריאת ממשק.
-Misconception: סטודנטים מחליפים בין Top-Down (מהציפיות אל הגירוי) לבין Bottom-Up (מהגירוי אל הפירוש).
+Learning Objective: Explain Top-Down processing and how it affects interface reading.
+Misconception: Students swap Top-Down (from expectations to stimulus) and Bottom-Up (from stimulus to interpretation).

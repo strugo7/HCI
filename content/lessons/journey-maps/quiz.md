@@ -1,7 +1,7 @@
 ---
 id: journey-maps-quiz
 lesson: journey-maps
-title: "בוחן: מיפוי מסע לקוח וחוויה כוללת"
+title: "Quiz: Customer Journey Mapping and Overall Experience"
 ---
 
 ## Question
@@ -15,22 +15,22 @@ points: 5
 concepts:
   - journey-map
 
-מהי המטרה המרכזית של יצירת מפת מסע לקוח ([[journey-map]])?
+What is the primary goal of creating a customer journey map ([[journey-map]])?
 
 ### Answers
 
-A. להגדיר את לוחות הזמנים, תקציב הפיתוח ואבני הדרך של הפרויקט.
+A. Defining project schedules, development budgets, and milestones.
 
-B. להציג בצורה חזותית את החוויה המלאה (end-to-end experience) של המשתמש מול המוצר או השירות לאורך זמן.
+B. Visually presenting the end-to-end experience (end-to-end experience) of the user with the product or service over time.
 
-C. ליצור שרטוטי שלד (Wireframes) ראשוניים עבור מעצבי ממשק המשתמש.
+C. Creating initial wireframes (Wireframes) for user interface designers.
 
-D. לבצע בדיקת שמישות מעשית למציאת באגים בקוד של תוכנת המחשב.
+D. Conducting practical usability tests to find bugs in the computer program code.
 
 Correct: B
 Explanation: מטרתה של מפת מסע הלקוח היא לייצג באופן כרונולוגי וחזותי את החוויה המלאה שהמשתמש עובר מול הארגון והמוצר לאורך מחזור החיים השלם (מגילוי ועד שירות לקוחות). היא אינה מיועדת לניהול תקציב (A), שרטוט מסכים (C) או בדיקת באגים בקוד (D).
-Learning Objective: להגדיר מהי מפת מסע לקוח ומדוע היא מיוצגת ככלי חזותי כרונולוגי של חוויות המשתמש.
-Misconception: סטודנטים לעיתים מבלבלים בין תוכנית עבודה לפרויקט לבין מסע משתמש, או חושבים שמפת מסע היא כלי טכני לפיתוח מסכים בלבד.
+Learning Objective: Define what a customer journey map is and why it is represented as a chronological visual tool of user experiences.
+Misconception: Students sometimes confuse a project work plan with a user journey, or think that a journey map is a technical tool for screen development only.
 
 ---
 
@@ -45,22 +45,22 @@ points: 5
 concepts:
   - journey-map
 
-מה מהבאים מהווה אלמנט מרכזי במפת מסע לקוח ([[journey-map]])?
+Which of the following is a key element of a customer journey map ([[journey-map]])?
 
 ### Answers
 
-A. הפרסונות ונקודות המגע (Touchpoints) שלהן עם המוצר או השירות בשלבים השונים.
+A. Personas and their touchpoints (Touchpoints) with the product or service at different stages.
 
-B. דרישות מערכת טכנולוגיות מפורטות ומפרט של שרתי האחסון.
+B. Detailed technological system requirements and storage server specifications.
 
-C. ניתוח מתחרים עסקי מקיף ומודל ההכנסות של המוצר.
+C. Comprehensive business competitor analysis and the product's revenue model.
 
-D. הנחיות מותג (Brand guidelines) ופלטת הצבעים הלוגו של החברה.
+D. Brand guidelines (Brand guidelines) and the company's logo color palette.
 
 Correct: A
 Explanation: מפת מסע לקוח מתמקדת בפרסונה ובמפגשים שלה עם המותג/מערכת – הנקראים נקודות מגע (Touchpoints). מפרטים טכנולוגיים (B), ניתוח מתחרים (C) או ספרי מותג (D) הם חלקים חשובים בפרויקט אך אינם חלק ממרכיביה של מפת מסע לקוח.
-Learning Objective: לפרט ולהסביר את ארבעת המרכיבים המרכזיים של מפת מסע לקוח: שלבים (Stages), נקודות מגע (Touchpoints), רגשות (Emotions) והזדמנויות (Opportunities).
-Misconception: סטודנטים מתקשים לעיתים לזהות מה שייך למפת המסע ונוטים לכלול בה דרישות הנדסיות או עסקיות.
+Learning Objective: Detail and explain the four main components of a customer journey map: stages (Stages), touchpoints (Touchpoints), emotions (Emotions), and opportunities (Opportunities).
+Misconception: Students sometimes struggle to identify what belongs to a journey map and tend to include engineering or business requirements.
 
 ---
 
@@ -75,22 +75,22 @@ points: 5
 concepts:
   - journey-map
 
-כיצד מפת מסע לקוח ([[journey-map]]) מסייעת בשיפור חוויית המשתמש (UX) של מוצר או שירות?
+How does a customer journey map ([[journey-map]]) help improve the user experience (UX) of a product or service?
 
 ### Answers
 
-A. על ידי זיהוי נקודות תורפה ותסכול (Pain points) לאורך שלבי המסע, והצפת הזדמנויות מעשיות לשיפור.
+A. By identifying pain points and frustration (Pain points) along the journey stages, and surfacing actionable opportunities for improvement.
 
-B. על ידי הגבלת היקף הפרויקט וצמצום כמות התכונות שמפתחי התוכנה צריכים לממש.
+B. By limiting project scope and reducing the number of features developers need to implement.
 
-C. על ידי הגדרת קמפיינים שיווקיים ממוקדים לקידום המוצר ברשתות החברתיות.
+C. By defining targeted marketing campaigns to promote the product on social media.
 
-D. על ידי קביעת מודל התמחור האופטימלי של השירות כדי להגדיל את רווחי הארגון.
+D. By determining the optimal pricing model of the service to increase organizational profits.
 
 Correct: A
 Explanation: מפת המסע מאתרת נקודות תורפה רגשיות ותפקודיות (Pain points) לאורך המסע המלא של המשתמש, ובכך מאפשרת להציע פתרונות והזדמנויות לשיפור (Opportunities). היא אינה מיועדת לצמצום תכונות (B), הגדרת קמפיינים שיווקיים (C) או תמחור (D).
-Learning Objective: לנתח כיצד מפת מסע לקוח מסייעת באיתור נקודות תורפה (Pain points) ושיפור שמישות המערכת.
-Misconception: סטודנטים מתייחסים לעיתים למפת מסע ככלי שיווקי למכירות, בעוד שב-HCI היא כלי מחקרי ועיצובי לשיפור שמישות וחוויית משתמש.
+Learning Objective: Analyze how a customer journey map helps detect pain points (Pain points) and improve system usability.
+Misconception: Students sometimes treat a journey map as a sales marketing tool, whereas in HCI it is a research and design tool for improving usability and user experience.
 
 ---
 
@@ -106,19 +106,19 @@ concepts:
   - journey-map
   - persona
 
-מהו ההבדל המרכזי בין פרסונה ([[persona]]) לבין מפת מסע לקוח ([[journey-map]])?
+What is the primary difference between a persona ([[persona]]) and a customer journey map ([[journey-map]])?
 
 ### Answers
 
-A. פרסונה מייצגת דמות בדיונית של משתמש קצה, בעוד מפת מסע לקוח מציגה את רצף האינטראקציות והחוויות של אותה דמות מול השירות לאורך זמן.
+A. A persona represents a fictional character of an end user, while a customer journey map displays the sequence of interactions and experiences of that character with the service over time.
 
-B. פרסונה מתארת את היבטי ה-UI של המערכת, בעוד מפת מסע לקוח מתארת את המבנה הפנימי של בסיס הנתונים.
+B. A persona describes the UI aspects of the system, while a customer journey map describes the internal database structure.
 
-C. פרסונה היא כלי אנליטי לשיפור קוד המקור, בעוד מפת מסע לקוח היא כלי אמפירי לביצוע מבדקים סטטיסטיים בלבד.
+C. A persona is an analytical tool to improve source code, while a customer journey map is an empirical tool for statistical checks only.
 
-D. פרסונה עוסקת באסתטיקה ויזואלית ובחירת גופנים, בעוד מפת מסע לקוח עוסקת ברמת שביעות הרצון של מנהלי הפרויקט.
+D. A persona deals with visual aesthetics and font selection, while a customer journey map deals with project managers' satisfaction levels.
 
 Correct: A
 Explanation: פרסונה מתמקדת באפיון דמות המשתמש עצמו (מי המשתמש), בעוד שמפת מסע לקוח מלווה את הדמות הזו (הפרסונה) לאורך שלבי האינטראקציה הכרונולוגיים שלה עם המותג או השירות (מה היא חווה לאורך זמן). ההגדרות האחרות מעורבבות עם מושגים טכניים (B, C) או שגויות לחלוטין (D).
-Learning Objective: להבחין בצורה ברורה בין פרסונה, תרחיש משתמש ומפת מסע לקוח, ולהסביר את הקשר ביניהם.
-Misconception: סטודנטים לעיתים מתייחסים לשני הכלים כאל כלים נפרדים לחלוטין ומפספסים את העובדה שמפת מסע לקוח תמיד מבוססת על פרסונה ספציפית שנבנתה קודם לכן.
+Learning Objective: Clearly distinguish between a persona, a user scenario, and a customer journey map, and explain the connection between them.
+Misconception: Students sometimes treat the two tools as completely separate, missing the fact that a customer journey map is always based on a specific persona built beforehand.

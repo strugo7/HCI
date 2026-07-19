@@ -1,7 +1,7 @@
 ---
 id: aeiou-framework-quiz
 lesson: aeiou-framework
-title: "בוחן: מסגרת AEIOU לקטלוג שטח"
+title: "Quiz: AEIOU Framework for Field Cataloging"
 ---
 
 ## Question
@@ -15,21 +15,21 @@ points: 5
 concepts:
   - aeiou-framework
 
-מי פיתח את מסגרת AEIOU ומהי מטרתה המרכזית במחקר משתמשים?
+Who developed the AEIOU framework, and what is its primary purpose in user research?
 
 ### Answers
 
-A. יעקב נילסן; הערכת שמישות של אתרי אינטרנט באמצעות 10 חוקי אצבע קבועים.
+A. Jakob Nielsen; usability evaluation of websites using 10 fixed heuristics.
 
-B. ריק אי. רובינסון; סיווג וקטלוג שיטתי של נתוני שדה מורכבים מחקירות שטח כדי למנוע ראיית מנהרה ממוקדת-ממשק.
+B. Rick E. Robinson; systematic categorization and cataloging of complex field data from field investigations to prevent interface-centric tunnel vision.
 
-C. דון נורמן; הגדרת שבעת שלבי הפעולה של האדם בבואו לבצע משימה מול מערכת ממוחשבת.
+C. Don Norman; defining the human's seven stages of action when performing a task with a computerized system.
 
-D. אלן קופר; מידול מאפייני משתמשי הקצה באמצעות יצירת פרסונות חצי-פיקטיביות.
+D. Alan Cooper; modeling end-user characteristics by creating semi-fictional personas.
 
 Correct: B
 Explanation: מסגרת AEIOU פותחה על ידי ריק אי. רובינסון (ריק רובינסון ממעבדת E-Lab) במטרה לסווג נתוני שדה גולמיים לחמישה ממדים קבועים ולמנוע עיוורון הקשרי (ראיית מנהרה). נילסן פיתח את ההיוריסטיקות (A), נורמן את שלבי הפעולה (C), וקופר הוביל את מתודולוגיית הפרסונות (D).
-Learning Objective: להסביר את הרקע והמטרה של מסגרת AEIOU לפי ריק אי. רובינסון.
+Learning Objective: Explain the background and purpose of the AEIOU framework according to Rick E. Robinson.
 
 ---
 
@@ -44,22 +44,21 @@ points: 5
 concepts:
   - aeiou-framework
 
-חוקר מתעד את המשפט הבא במהלך תצפית בבית מרקחת: "הרוקח משתמש במדבקות ברקוד פיזיות ומדביק אותן על גבי מרשמי הנייר של החולים כדי לסמן שהם נופקו".
-תחת איזה רכיב במסגרת AEIOU יש לסווג את מדבקות הברקוד ומרשמי הנייר?
+A researcher records the following sentence during an observation in a pharmacy: "The pharmacist uses physical barcode stickers and sticks them onto patients' paper prescriptions to mark them as dispensed." Under which component of the AEIOU framework should the barcode stickers and paper prescriptions be classified?
 
 ### Answers
 
-A. Activities (פעילויות) – מכיוון שהרוקח עוסק בפעולת ההדבקה.
+A. Activities (Activities) – because the pharmacist is engaged in the act of sticking.
 
-B. Interactions (אינטראקציות) – מכיוון שהרוקח מתקשר עם המרשם הפיזי.
+B. Interactions (Interactions) – because the pharmacist interacts with the physical prescription.
 
-C. Objects (חפצים) – כיוון שמדובר בכלים ופתרונות פיזיים הנוכחים בשטח ומשרתים את זרימת העבודה.
+C. Objects (Objects) – because these are physical tools and solutions present in the field that serve the workflow.
 
-D. Environments (סביבות) – כיוון שהמרשמים והמדבקות נמצאים בתוך חלל בית המרקחת.
+D. Environments (Environments) – because the prescriptions and stickers are located within the pharmacy space.
 
 Correct: C
 Explanation: מדבקות ברקוד ומרשמי נייר הם כלים פיזיים (אביזרים/חפצים) הנוכחים בשטח העבודה – ולכן הם מסווגים תחת הרכיב Objects (O). הדבקתם עצמה היא פעילות (A), אך הכלים עצמם הם חפצים (C).
-Learning Objective: להגדיר ולפרט את חמשת הממדים במודל.
+Learning Objective: Define and detail the five dimensions of the model.
 
 ---
 
@@ -75,22 +74,25 @@ concepts:
   - aeiou-framework
   - contextual-inquiry
 
-מעצבים המפתחים אפליקציה לתיעוד משלוחי מזון עבור שליחי Wolt רצו לבדוק את הממשק. הם הזמינו את השליחים למשרדי החברה, נתנו להם טלפון עם האפליקציה וביקשו מהם לסמן "קיבלתי את המשלוח". הבדיקה עברה בהצלחה מהירה. עם זאת, בשטח, השליחים התלוננו שהם לא מצליחים להשתמש באפליקציה. החברה ביצעה חקירה בהקשר (Contextual Inquiry) באמצעות לוח AEIOU וגילתה שהשליחים רוכבים על קטנוע ברוח חזקה וגשם, מרכיבים קסדה מלאה, לובשים כפפות עור עבות ומחזיקים שקיות אוכל חמות.
-איזה מהממצאים מתאר את רכיב ה-Environment (סביבה) בלוח AEIOU שהתעלמו ממנו בבדיקת המשרד?
+Which of the findings describes the Environment (environment) component in the AEIOU framework that was ignored during the office testing?
+
+### Scenario
+
+Designers developing a food delivery tracking app for Wolt couriers wanted to test the interface. They invited the couriers to the company's offices, gave them a phone with the app, and asked them to mark "I received the delivery". The test was a quick success. However, in the field, couriers complained they couldn't use the app. The company conducted a contextual inquiry (Contextual Inquiry) using the AEIOU framework and found that the couriers ride scooters in strong wind and rain, wear full-face helmets, wear thick leather gloves, and hold hot food bags.
 
 ### Answers
 
-A. קסדת השליח ושקיות האוכל החמות המקשות על האחיזה.
+A. The courier's helmet and hot food bags that make gripping difficult.
 
-B. הרוח החזקה, הגשם, ורעשי הכביש ברחובות העיר.
+B. The strong wind, rain, and road noise in the city streets.
 
-C. כפתור "קיבלתי את המשלוח" שהיה קטן מדי למגע עם כפפות עור.
+C. The 'I received the delivery' button which was too small to touch with leather gloves.
 
-D. שליחי קטנוע מנוסים לעומת שליחי אופניים חשמליים מתחילים.
+D. Experienced scooter couriers vs. novice electric bicycle couriers.
 
 Correct: B
 Explanation: רכיב ה-Environments (E) מתאר את המרחב והחלל הפיזי על מגבלותיו (מזג אוויר, רוח, גשם, רעש תנועה ברחוב). הקסדה והשקיות שייכים ל-Objects (A), כפתור המגע וכפפות המשתמש שייכים להתנגשות U-O, והאבחנה בין סוגי השליחים שייכת ל-Users (D).
-Learning Objective: לנתח תצפיות שטח גולמיות ולסווג אותן בצורה נכונה לתוך ממדי ה-AEIOU.
+Learning Objective: Analyze raw field observations and classify them correctly into the AEIOU dimensions.
 
 ---
 
@@ -105,20 +107,23 @@ points: 5
 concepts:
   - aeiou-framework
 
-מפעל ייצור גדול השיק טאבלט דיגיטלי לרישום תקלות במכונות עבור פועלי הייצור. הטאבלט דרש מהפועלים להסיר את כפפות המגן העבות שלהם (בניגוד לתקנות הבטיחות במפעל) כדי להקליד דוח מפורט באזור רועש ומלא אבק, בעוד הם נאלצים להחזיק את הטאבלט בשתי ידיים כדי שלא ייפול. בעקבות כך, הפועלים העדיפו לרשום את התקלה בגיר גיר על גבי המכונה עצמה ולדווח רק בסוף המשמרת.
-אילו שני רכיבים של מודל AEIOU מתנגשים ומכשילים את שמישות הטאבלט במקרה זה?
+Which two components of the AEIOU model conflict and fail the usability of the tablet in this case?
+
+### Scenario
+
+A large manufacturing plant launched a digital tablet for machine fault reporting by production workers. The tablet required the workers to remove their thick protective gloves (contrary to safety regulations at the plant) to type a detailed report in a noisy, dusty area, while having to hold the tablet with both hands so it wouldn't fall. As a result, the workers preferred to write the fault with chalk on the machine itself and report only at the end of the shift.
 
 ### Answers
 
-A. התנגשות בין רכיב ה-Environments (רועש ומאובק) לבין רכיב ה-Interactions (התקשרות עם מנהל העבודה).
+A. A conflict between the Environments component (noisy and dusty) and the Interactions component (communication with the supervisor).
 
-B. התנגשות בין רכיב ה-Users (עובדים הנדרשים ללבוש כפפות מגן) לבין רכיב ה-Objects (טאבלט הדורש מגע אצבע חשופה והקלדה בשתי ידיים).
+B. A conflict between the Users component (workers required to wear protective gloves) and the Objects component (a tablet requiring bare-finger touch and typing with both hands).
 
-C. התנגשות בין רכיב ה-Activities (כתיבה בגיר) לבין רכיב ה-Interactions (החלפת משמרת).
+C. A conflict between the Activities component (chalk writing) and the Interactions component (shift change).
 
-D. התנגשות בין רכיב ה-Users (פועלי המפעל) לבין רכיב ה-Environments (אזור רועש ומאובק).
+D. A conflict between the Users component (factory workers) and the Environments component (noisy and dusty area).
 
 Correct: B
 Explanation: הכשל נובע ישירות מחוסר התאמה (התנגשות) בין מאפייני המשתמש בשטח (Users - עובדים שחייבים ללבוש כפפות מגן מסיבות בטיחותיות ועובדים בעמידה) לבין הכלי שתוכנן עבורם (Objects - מכשיר הדורש מגע ישיר של עור האצבע ומחייב החזקה בשתי ידיים ללא אפשרות תלייה או אחיזה נוחה). כתיבה בגיר היא פתרון עוקף (workaround) שנוצר בשל התנגשות זו.
-Learning Objective: לנתח כיצד שילוב הממדים עוזר לאתר כשלי שמישות וליצור פתרונות עיצוב מותאמי-הקשר.
-Misconception: סטודנטים נוטים לחשוב שהבעיה היא בעיצוב ממשק לקוי חזותית או בחוסר רצון של העובדים לשתף פעולה, במקום לזהות את ההתנגשות המערכתית בין אילוצי ה-User הפיזיים לכלי ה-Object שסופק לו.
+Learning Objective: Analyze how the integration of dimensions helps locate usability failures and create context-adjusted design solutions.
+Misconception: Students tend to think the problem is a visually poor interface design or the workers' lack of cooperation, rather than recognizing the systemic conflict between the physical User constraints and the Object tool provided to them.

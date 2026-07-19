@@ -118,3 +118,6 @@ flowchart TD
 - הספר "The Design of Everyday Things" מאת דון נורמן (Don Norman).
 - מאמרים של Nielsen Norman Group על בדיקות שמישות והערכה איטרטיבית.
 :::
+
+:::quiz{ref="human-centered-design-quiz"}
+:::

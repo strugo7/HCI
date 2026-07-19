@@ -133,3 +133,6 @@ version: 1
 - הספר "The Inmates Are Running the Asylum" מאת אלן קופר (Alan Cooper).
 - מאמרים על כתיבת תרחישים מבוססי משתמש (John Carroll, Scenario-Based Design).
 :::
+
+:::quiz{ref="user-scenarios-quiz"}
+:::

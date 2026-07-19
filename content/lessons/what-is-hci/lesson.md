@@ -162,3 +162,6 @@ answer: Utility (שימושיות) מייצגת את הפונקציות והיכ
 - הספר "The Design of Everyday Things" מאת דון נורמן.
 - הרצאות וידאו ומאמרי Jakob Nielsen על ממדי שמישות (Usability Engineering).
 :::
+
+:::quiz{ref="what-is-hci-quiz"}
+:::

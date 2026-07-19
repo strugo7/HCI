@@ -1,7 +1,7 @@
 ---
 id: observation-vs-interpretation-quiz
 lesson: observation-vs-interpretation
-title: "בוחן: תצפית מול פרשנות בשטח"
+title: "Quiz: Observation vs. Interpretation in the Field"
 ---
 
 ## Question
@@ -15,21 +15,21 @@ points: 5
 concepts:
   - observation-vs-interpretation
 
-מהם שלושת המאפיינים (parameters) המרכזיים שעל חוקר אתנוגרפי לתעד בעת תצפית שטח על משתמש?
+What are the three main parameters that an ethnographic researcher should document when observing a user in the field?
 
 ### Answers
 
-A. מה המשתמש אומר (ציטוטים), כיצד הוא מתנהג (פעולות פיזיות), ובאילו חפצים הוא משתמש (כלים).
+A. What the user says (quotes), how they behave (physical actions), and what artifacts they use (tools).
 
-B. גיל המשתמש, רמת ההכנסה שלו, והמגדר שלו.
+B. The user's age, income level, and gender.
 
-C. מהירות החיבור לרשת, גודל המסך הפיזי, וגרסת מערכת ההפעלה.
+C. Network connection speed, physical screen size, and operating system version.
 
-D. רמת האינטליגנציה של המשתמש, מידת שביעות הרצון שלו, ומידת שיתוף הפעולה שלו.
+D. The user's intelligence level, satisfaction, and level of cooperation.
 
 Correct: A
 Explanation: לפי המקובל במחקר אתנוגרפי (ובפרט במצגות הקורס), תצפית שטח מתמקדת בתיעוד שלושה מאפיינים: מה אנשים אומרים (Say), כיצד הם מתנהגים (Behave), ובאילו חפצים הם משתמשים (Use). פרמטרים דמוגרפיים (B) או נתוני חומרה יבשים (C) אינם בליבת התצפית האתנוגרפית, ומאפיינים כמו אינטליגנציה או שביעות רצון (D) הם פרשנויות ולא תצפיות ישירות.
-Learning Objective: לתאר כיצד מבצעים תצפית בשטח באמצעות שלושת המאפיינים.
+Learning Objective: Describe how to perform field observations using the three parameters.
 
 ---
 
@@ -44,21 +44,21 @@ points: 5
 concepts:
   - observation-vs-interpretation
 
-מדוע מומלץ להימנע מרישום פרשנויות (Interpretations) כעובדות במחברת השדה במהלך התצפית?
+Why is it recommended to avoid writing interpretations (Interpretations) as facts in the field notebook during observation?
 
 ### Answers
 
-A. כיוון שרישום פרשנות בשלב מוקדם עלול לגרום ל"עיוורון אישור" (Confirmation Bias) ולסנן עדויות חשובות אחרות בשטח.
+A. Because writing interpretations early on can lead to confirmation bias (Confirmation Bias) and filter out other important field evidence.
 
-B. כיוון שפרשנויות תופסות מקום רב מדי במחברת השדה ומאטות את קצב הרישום.
+B. Because interpretations take up too much space in the field notebook and slow down the recording pace.
 
-C. כיוון שמשתמשים עלולים להציץ במחברת השדה ולהיעלב מהפירוש שניתן למעשיהם.
+C. Because users might peek into the field notebook and be offended by the interpretation of their actions.
 
-D. כיוון ששלב הפרשנות אינו חלק מתהליך ה-HCI ואינו משפיע על עיצוב המערכת.
+D. Because the interpretation phase is not part of the HCI process and does not affect the system design.
 
 Correct: A
 Explanation: ערבוב פרשנויות בשלב התצפית מעוות את הנתונים ונועל את החוקר על הנחה מוקדמת (Confirmation Bias), מה שמונע ממנו לזהות פתרונות אחרים או להבין את הבעיה האמיתית.
-Learning Objective: לנתח את הסיכונים הכרוכים בערבוב תצפית ופרשנות בשלבי איסוף הנתונים.
+Learning Objective: Analyze the risks of mixing observation and interpretation during the data collection stages.
 
 ---
 
@@ -73,23 +73,23 @@ points: 5
 concepts:
   - observation-vs-interpretation
 
-חוקרת אתנוגרפית צופה בסטודנט המנסה להירשם לקורס דרך הפורטל האוניברסיטאי. במחברת השדה שלה היא רושמת את המשפט הבא: 
-"הסטודנט התבלבל משום שמבנה הניווט באתר מורכב מדי עבורו". 
-כיצד יש לסווג משפט זה?
+An ethnographic researcher observes a student trying to register for a course through the university portal. In her field notebook, she writes the following sentence:
+"The student got confused because the site's navigation structure is too complex for him".
+How should this sentence be classified?
 
 ### Answers
 
-A. תצפית אובייקטיבית נקייה – משום שניתן לראות בבירור שהסטודנט אינו מצליח להתקדם ברישום.
+A. A clean objective observation – because it can be clearly seen that the student is unable to proceed with registration.
 
-B. פרשנות סובייקטיבית – כיוון שהחוקרת מניחה הנחה לגבי מצבו הקוגניטיבי של הסטודנט ("התבלבל") והסיבה לכך ("מבנה הניווט מורכב").
+B. A subjective interpretation – because the researcher makes an assumption about the student's cognitive state ("got confused") and the reason for it ("navigation structure is complex").
 
-C. מדד שמישות (Usability Dimension) – כיוון שהמשפט מתאר את רמת הלמידות (Learnability) של הממשק.
+C. A usability dimension (Usability Dimension) – because the sentence describes the learnability (Learnability) of the interface.
 
-D. תיאור חפצים (Artifact Description) – כיוון שהמשפט מתייחס לאתר כחפץ פיזי בשימוש.
+D. An artifact description (Artifact Description) – because the sentence refers to the site as a physical object in use.
 
 Correct: B
 Explanation: המשפט מייצג פרשנות סובייקטיבית ולא תצפית. החוקרת לא יכולה "לראות" בחושיה את הבלבול או את המורכבות של הניווט בעיני הסטודנט; עליה לתעד עובדות (כגון: "המשתמש לחץ על שלוש לשוניות שונות, חזר לדף הבית, והניע את הסמן מצד לצד").
-Learning Objective: להבחין בצורה ברורה בין תצפית אובייקטיבית (עובדות) לפרשנות סובייקטיבית (הנחות).
+Learning Objective: Clearly distinguish between objective observation (facts) and subjective interpretation (assumptions).
 
 ---
 
@@ -104,20 +104,19 @@ points: 5
 concepts:
   - observation-vs-interpretation
 
-ארבעה חוקרים רשמו הערות במחברת השדה שלהם במהלך תצפית על אזרחים המשתמשים במכונת תשלום עצמית לחניה ברחוב.
-איזה מהרישומים הבאים מנוסח בצורה המקצועית והנכונה ביותר (כתצפית אובייקטיבית נקייה)?
+Four researchers took notes in their field notebooks during an observation of citizens using a street self-service parking payment machine. Which of the following records is formulated in the most professional and correct way (as a clean objective observation)?
 
 ### Answers
 
-A. חוקר א': "המשתמש הציג כרטיס אשראי, אך המכונה לא הייתה מספיק שמישה והקשת הקוד לקחה לו זמן רב".
+A. Researcher A: "The user presented a credit card, but the machine was not usable enough and entering the code took him a long time".
 
-B. חוקר ב': "המשתמש הרטיב את שפתיו, הניח את ידו על המצח, לחץ על מקש 5 פעמיים, ועצר למשך 8 שניות מבלי ללחוץ על מקש נוסף".
+B. Researcher B: "The user licked his lips, placed his hand on his forehead, pressed key 5 twice, and paused for 8 seconds without pressing another key".
 
-C. חוקר ג': "המשתמש התעצבן כיוון שלחצני המכונה קשים מדי ללחיצה עבור משתמשים בגילו".
+C. Researcher C: "The user got annoyed because the machine's buttons are too hard to press for users of his age".
 
-D. חוקר ד': "המשתמש ניסה לשלם אך התבלבל משלב הזנת מספר הרישוי של הרכב ועצר לחשוב".
+D. Researcher D: "The user tried to pay but got confused by the vehicle license plate entry step and stopped to think".
 
 Correct: B
 Explanation: רישום ב' הוא היחיד שמכיל תצפית אובייקטיבית ונקייה לחלוטין – הוא מתאר אך ורק עובדות פיזיות שניתן לראות ולשמוע (הרטיב שפתיים, הניח יד, לחץ על מקש 5, עצר ל-8 שניות). כל שאר האפשרויות מכילות מילים פרשניות שמתארות מצב פנימי או סיבה שלא ניתן לצפות בהן ישירות ("לא שמישה" ב-A, "התעצבן" ב-C, "התבלבל ועצר לחשוב" ב-D).
-Learning Objective: ליישם עקרונות כתיבה מקצועיים להפרדת עובדות מהנחות ברישומי שדה (Field Notes).
-Misconception: סטודנטים נוטים לחשוב שרישום התנהגות מפורטת (כמו הנחת יד או הרטבת שפתיים) הוא מיותר או לא מדעי, בעוד שזהו בדיוק התיעוד האובייקטיבי הגולמי שמונע הטיות במחקר אתנוגרפי.
+Learning Objective: Apply professional writing principles to separate facts from assumptions in field notes (Field Notes).
+Misconception: Students tend to think that recording detailed behavior (like placing a hand or licking lips) is unnecessary or unscientific, while this is exactly the raw objective documentation that prevents bias in ethnographic research.

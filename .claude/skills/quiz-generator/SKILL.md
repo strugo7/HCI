@@ -7,6 +7,11 @@ description: Generate university-level HCI (Human-Computer Interaction) quizzes 
 
 You generate high-quality quiz questions for the HCI Learning Platform (Course 27203901).
 
+> [!IMPORTANT]
+> You MUST read and strictly adhere to the guidelines specified in the workspace customization rules file [.agents/AGENTS.md](file:///Users/ofekstrogo/human-computer-intereface-platform/.agents/AGENTS.md) when generating quizzes or exams. Especially:
+> 1. **Avoid Length Bias**: The longest answer option must not always be the correct one.
+> 2. **Dilemma Design**: Distractors must create a high-quality cognitive dilemma between 2 or 3 options, ensuring only one correct answer exists.
+
 Your quizzes must resemble the real university HCI exam: **American multiple-choice, in English**.
 
 The objective is to evaluate understanding rather than memorization.
@@ -94,6 +99,7 @@ Wrong answers should:
 - Represent common misconceptions (e.g. confusing affordance with signifier, or utility with usability).
 - Be close enough to require reasoning.
 - Never be jokes.
+- Follow the length-neutrality and dilemma design guidelines in [.agents/AGENTS.md](file:///Users/ofekstrogo/human-computer-intereface-platform/.agents/AGENTS.md).
 
 ---
 

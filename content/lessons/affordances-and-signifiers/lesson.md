@@ -151,3 +151,6 @@ flowchart TD
 - סרטון הדרכה של Don Norman בנושא עיצוב חפצים יום-יומיים.
 - מאמרים של Nielsen Norman Group על שימוש בסיגניפיירים בממשקי ווב.
 :::
+
+:::quiz{ref="affordances-and-signifiers-quiz"}
+:::

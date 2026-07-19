@@ -1,7 +1,7 @@
 ---
 id: user-scenarios-quiz
 lesson: user-scenarios
-title: "בוחן: תרחישי משתמש וליניאריות"
+title: "Quiz: User Scenarios and Linearity"
 ---
 
 ## Question
@@ -15,22 +15,22 @@ points: 5
 concepts:
   - user-scenario
 
-מהו תרחיש משתמש ([[user-scenario]])?
+What is a user scenario ([[user-scenario]])?
 
 ### Answers
 
-A. רשימה של צעדים טכניים שהמערכת צריכה לבצע כדי לפעול.
+A. A list of technical steps that the system needs to perform in order to run.
 
-B. נרטיב סיפורי בדיוני המתאר כיצד משתמש מקיים אינטראקציה עם המערכת כדי להשיג מטרה.
+B. A fictional narrative describing how a user interacts with the system to achieve a goal.
 
-C. מסמך הנדסי המפרט את ארכיטקטורת בסיס הנתונים ומסדי הנתונים של המערכת.
+C. An engineering document detailing the database architecture and database schemas of the system.
 
-D. שרטוט שלד (Wireframe) המציג את מיקום הכפתורים בממשק המשתמש.
+D. A wireframe sketch showing the placement of buttons in the user interface.
 
 Correct: B
 Explanation: תרחיש משתמש הוא סיפור (נרטיב) המתאר זרימת פעולות של אדם המנסה להשיג מטרה בהקשר מסוים. הוא אינו מפרט הנדסי של המערכת (A, C) ואינו שרטוט מסך חזותי (D).
-Learning Objective: להגדיר מהו תרחיש משתמש וכיצד הוא מגדיר את התנהגות המוצר מנקודת המבט של הפרסונה.
-Misconception: סטודנטים מתבלבלים לעיתים בין תרחיש משתמש לבין תרחישי בדיקה (Test cases) או תרחישי שימוש הנדסיים (Use Cases) של מפתחים.
+Learning Objective: Define what a user scenario is and how it defines product behavior from the persona's perspective.
+Misconception: Students sometimes confuse a user scenario with test cases (Test cases) or developers' engineering use cases (Use Cases).
 
 ---
 
@@ -45,22 +45,22 @@ points: 5
 concepts:
   - user-scenario
 
-בעת יצירת תרחיש משתמש ([[user-scenario]]), מה צריך להיות המוקד המרכזי של הכותב?
+When creating a user scenario ([[user-scenario]]), what should be the writer's primary focus?
 
 ### Answers
 
-A. מגבלות המערכת, תקלות שרת ואילוצים טכנולוגיים של קוד המקור.
+A. System limitations, server failures, and technological constraints of the source code.
 
-B. היעדים, המשימות וההקשר של המשתמש (Goals, tasks, and context).
+B. The goals, tasks, and context of the user (Goals, tasks, and context).
 
-C. העלות הפיננסית של המוצר ואסטרטגיית התמחור של השוק.
+C. The financial cost of the product and market pricing strategy.
 
-D. בחירת ערכת הצבעים, הטיפוגרפיה והגופנים של ממשק המשתמש.
+D. The choice of color scheme, typography, and fonts for the user interface.
 
 Correct: B
 Explanation: תרחיש ממוקד בצרכי האדם, ולכן המוקד שלו הוא תיאור היעדים שהפרסונה רוצה להשיג, המשימות שהיא מבצעת וההקשר הסביבתי והרגשי שבו היא פועלת. היבטים טכניים (A), פיננסיים (C) או עיצוביים חזותיים (D) אינם במוקד של כתיבת התרחיש.
-Learning Objective: לפרט את ארבעת מרכיבי התרחיש: פרסונה, יעד, הקשר וצעדים.
-Misconception: סטודנטים נוטים לעיתים להכניס אילוצים טכניים של המערכת לתוך התרחיש במקום להתרכז בצרכי המשתמש.
+Learning Objective: Detail the four components of a scenario: persona, goal, context, and steps.
+Misconception: Students sometimes tend to insert technical system constraints into the scenario instead of focusing on user needs.
 
 ---
 
@@ -76,19 +76,19 @@ concepts:
   - user-scenario
   - persona
 
-כיצד תרחישי משתמש ([[user-scenario]]) מסייעים למעצבים בתהליך העיצוב של מערכת דיגיטלית?
+How do user scenarios ([[user-scenario]]) assist designers in the design process of a digital system?
 
 ### Answers
 
-A. הם מספקים דרך לאתר שגיאות תחביר (syntax errors) בקוד של צוות הפיתוח.
+A. They provide a way to detect syntax errors (syntax errors) in the development team's code.
 
-B. הם מחליפים את הצורך בבניית אבות-טיפוס (Prototypes) ובבדיקות שמישות.
+B. They replace the need for building prototypes (Prototypes) and usability testing.
 
-C. הם מעניקים הקשר (Context) לאופן שבו המוצר ישמש בפועל על ידי פרסונות ([[persona]]) ספציפיות.
+C. They provide context (Context) for how the product will actually be used by specific personas ([[persona]]).
 
-D. הם קובעים בצורה אוטומטית ונוקשה את גודל הכפתורים והצבעוניות של הממשק.
+D. They automatically and rigidly determine button sizes and interface colors.
 
 Correct: C
 Explanation: תרחישים נותנים הקשר מציאותי לשימוש במוצר על ידי הדמויות שפיתחנו (הפרסונות). הם עוזרים להבין כיצד הממשק יעבוד בפועל בסיטואציות יום-יומיות. הם אינם מאתרים באגים בקוד (A), אינם מחליפים אבות-טיפוס (B) ואינם קובעים צבעוניות או גודל כפתורים (D).
-Learning Objective: להסביר כיצד תרחישים משמשים לתקשורת, תיקוף מודלים והבעת דינמיקה (התנהגות מול מראה).
-Misconception: סטודנטים מתקשים לעיתים להבין כיצד תרחישים (טקסטואליים) מסייעים לעיצוב חזותי. המפתח הוא שהם מציגים את התנהגות (Behavior) המערכת, בעוד סקיצות מציגות את המראה (Appearance) שלה.
+Learning Objective: Explain how scenarios are used for communication, model validation, and expressing dynamics (behavior vs. appearance).
+Misconception: Students sometimes struggle to understand how textual scenarios assist visual design. The key is that they present system behavior (Behavior), whereas sketches present its appearance (Appearance).

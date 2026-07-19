@@ -139,3 +139,6 @@ answer: הוא מונע עיצוב של מערכות שהן פונקציונלי
 - ספר אנתרופולוגיה קלאסי: Margaret Mead, "Coming of Age in Samoa" (1928).
 - קטלוג עיצוב: Jacques Carelman, "Catalogue d'objets introuvables" (1969).
 :::
+
+:::quiz{ref="the-innovation-blind-spot-quiz"}
+:::

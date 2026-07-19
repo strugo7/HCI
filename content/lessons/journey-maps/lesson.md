@@ -121,3 +121,6 @@ flowchart TD
 - הספר "Mapping Experiences" מאת ג'יימס קאלבך (James Kalbach).
 - הנחיות וכלים למיפוי מסע לקוח (Nielsen Norman Group, Customer Journey Mapping).
 :::
+
+:::quiz{ref="journey-maps-quiz"}
+:::

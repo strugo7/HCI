@@ -1,7 +1,7 @@
 ---
 id: human-centered-design-quiz
 lesson: human-centered-design
-title: "בוחן: עיצוב ממוקד אדם ואיטרציה"
+title: "Quiz: Human-Centered Design and Iteration"
 ---
 
 ## Question
@@ -15,21 +15,21 @@ points: 5
 concepts:
   - human-centered-design
 
-מהו סדר הפעולות המחזורי הנכון של ארבע פעילויות הליבה של עיצוב ממוקד אדם (HCD) כפי שהן מוגדרות בתקן **ISO 9241-210**?
+What is the correct cyclical order of the four core activities of Human-Centered Design (HCD) as defined in the **ISO 9241-210** standard?
 
 ### Answers
 
-A. 1. הבנה ואפיון הקשר השימוש, 2. אפיון דרישות המשתמשים, 3. יצירת פתרונות עיצוב, 4. הערכת העיצוב אל מול הדרישות.
+A. 1. Understand and specify the context of use, 2. Specify the user requirements, 3. Produce design solutions, 4. Evaluate the design against requirements.
 
-B. 1. יצירת סקיצות ועיצוב מסכים, 2. הערכת העיצוב עם לקוחות, 3. כתיבת קוד המערכת, 4. שיווק והפצה למשתמשי הקצה.
+B. 1. Create sketches and screen designs, 2. Evaluate the design with clients, 3. Write the system code, 4. Market and distribute to end users.
 
-C. 1. פגישה עם מנהל הפרויקט, 2. אפיון טכנולוגי של מסד הנתונים, 3. בניית אב-טיפוס דיגיטלי, 4. תיקון שגיאות קוד.
+C. 1. Meet with the project manager, 2. Specify the database technology, 3. Build a digital prototype, 4. Fix code bugs.
 
-D. 1. סיעור מוחות למוצר, 2. פיתוח המערכת במלואה, 3. בדיקות איכות (QA), 4. שינוי דרישות לפי הצורך.
+D. 1. Product brainstorming, 2. Develop the system fully, 3. Quality assurance (QA) testing, 4. Change requirements as needed.
 
 Correct: A
 Explanation: תקן ISO 9241-210 קובע סדר עבודה איטרטיבי ברור: מתחילים בהבנת הקשר השימוש (מי, מה ואיפה), מתוכו גוזרים את דרישות המשתמש, מייצרים פתרונות עיצוביים (סקיצות ואבות טיפוס), ומעריכים אותם מול משתמשים. אם מתגלים כשלים, חוזרים חזרה לשלבים המוקדמים.
-Learning Objective: לנתח את ארבע הפעילויות המרכזיות של מחזור העיצוב לפי תקן ISO 9241-210.
+Learning Objective: Analyze the four key activities of the design cycle according to the ISO 9241-210 standard.
 Misconception: סטודנטים לעיתים חושבים שמתחילים מיד בשלב העיצוב (3) או שדרישות המערכת נקבעות לפני שמבינים את הקשר השימוש של המשתמשים בשטח.
 
 ---
@@ -45,21 +45,21 @@ points: 5
 concepts:
   - human-centered-design
 
-מדוע תהליך עיצוב איטרטיבי (מחזורי) נחשב לחסכוני ויעיל יותר בהשוואה לפיתוח קווי מסורתי (כמו מודל מפל המים - Waterfall)?
+Why is an iterative (cyclical) design process considered more cost-effective and efficient compared to traditional linear development (like the Waterfall model)?
 
 ### Answers
 
-A. כיוון שהוא מונע את הצורך בביצוע בדיקות קבלה ותמיכה טכנית לאחר שחרור המוצר.
+A. Because it eliminates the need for acceptance testing and technical support after product release.
 
-B. כיוון שקל וזול בהרבה לגלות ולתקן כשלי שמישות על גבי סקיצות ואבות-טיפוס בשלבים מוקדמים, מאשר לשנות קוד מורכב לאחר שהמערכת כבר פותחה במלואה.
+B. Because it is much easier and cheaper to discover and fix usability issues on sketches and prototypes in early stages, rather than modifying complex code after the system is fully developed.
 
-C. כיוון שהוא מגביל את מספר התכונות והפונקציות שהמשתמש יכול לבקש ומאיץ את תהליך כתיבת הקוד.
+C. Because it limits the number of features and functions the user can request and speeds up the coding process.
 
-D. כיוון שהוא מבטל את הצורך במחקר שטח ובדיקות עם משתמשים אמיתיים ומסתמך על השערות המעצב.
+D. Because it eliminates the need for field research and testing with real users and relies on the designer's assumptions.
 
 Correct: B
 Explanation: המנוע של HCD הוא איטרציה מוקדמת. מציאת כשלי שמישות באמצעות אבות-טיפוס זולים מנייר מאפשרת לתקן אותם בדקות בודדות. תיקון אותה שגיאה בשלב הפקה (Production) לאחר כתיבת הקוד הוא מורכב ביותר ועלול לעלות פי 100 יותר במשאבים וזמן.
-Learning Objective: להסביר את החשיבות של תהליך איטרטיבי (Iterative) בעיצוב ממשקים.
+Learning Objective: Explain the importance of an iterative (Iterative) process in interface design.
 Misconception: סטודנטים לעיתים מאמינים שאיטרציה (ביצוע חוזר של שלבים) מייקרת את הפרויקט בגלל ה"חזרה לאחור", אך ההפך הגמור הוא הנכון – היא מונעת אסונות כלכליים ומקצרת את זמן ההגעה למוצר שמיש.
 
 ---
@@ -75,23 +75,23 @@ points: 5
 concepts:
   - human-centered-design
 
-איזה מעקרונות ה-HCD של דון נורמן מתאר בצורה הטובה ביותר את התנהגות צוות העיצוב במקרה הבא?
+Which of Don Norman's HCD principles best describes the design team's behavior in the following case?
 
 ### Scenario
 
-מעצבי אפליקציית ניווט שמו לב שמשתמשים רבים נוטים ללחוץ בטעות על כפתור "ביטול נסיעה" במהלך נהיגה. במקום רק להגדיל את הכפתור או לשנות את צבעו, המעצבים יצאו לתצפיות שטח וגילו שהמשתמשים לוחצים עליו בטעות בזמן שהם מנסים להגדיל את המפה בגלל הקרבה הפיזית בין הכפתורים והרטט של הרכב. הצוות עיצב מחדש את זרימת הממשק כך שהכפתור מוקם רחוק מהאגודל ודורש החלקה (Swipe) במקום לחיצה רגילה.
+Navigation app designers noticed that many users tend to accidentally press the "Cancel Trip" button while driving. Instead of just making the button larger or changing its color, the designers went for field observations and discovered that users accidentally press it when trying to zoom in on the map due to the physical proximity of the buttons and the vibration of the vehicle. The team redesigned the interface flow so that the button is placed away from the thumb and requires a swipe (Swipe) instead of a regular press.
 
 ### Answers
 
-A. ראיית הכל כמערכת (Everything is a System).
+A. Everything is a System (Everything is a System).
 
-B. פתרון הבעיה השורשית (Solve the Root Problem).
+B. Solve the Root Problem (Solve the Root Problem).
 
-C. התערבויות קטנות ואיטרציה (Small Interventions & Iterate).
+C. Small Interventions & Iterate (Small Interventions & Iterate).
 
-D. התמקדות באנשים (Focus on People).
+D. Focus on People (Focus on People).
 
 Correct: B
 Explanation: הצוות לא הסתפק בפתרון סימפטומטי מהיר (כמו שינוי מראה הכפתור), אלא חקר לעומק באמצעות תצפיות שטח כדי להבין את הגורם האמיתי ללחיצות השגויות (השילוב של רטט הרכב ומיקום הכפתורים ביחס לאגודל), ופתר את הבעיה השורשית על ידי שינוי המיקום ושיטת האינטראקציה (מגבלה לוגית/פיזית).
-Learning Objective: לפרט את ארבעת עקרונות ה-HCD לפי דון נורמן.
+Learning Objective: Detail the four HCD principles according to Don Norman.
 Misconception: סטודנטים עלולים לבחור ב"התמקדות באנשים" כי הם ביצעו תצפיות, אך הפעולה המרכזית המאפיינת את פתרון הבעיה המבנית היא החדירה אל מתחת לסימפטום ופתרון שורש הכשל.
