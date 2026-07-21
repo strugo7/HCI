@@ -1,7 +1,7 @@
 ---
 id: hci-practice-exam-b
 kind: lecturer
-title: "HCI Practice Exam B"
+title: "Claude lecture 2027 b"
 year: 2026
 duration: 7200
 source: "Originally generated to match the structure, tone, and difficulty of lecturer-2025-a and lecturer-2026-a; based on the course syllabus (curriculum.yaml)."
