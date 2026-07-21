@@ -1,7 +1,7 @@
 ---
-id: lecturer-2027-a
+id: Gemini-lecturer-2027-a
 kind: lecturer
-title: "Lecturer Exam — HCI, Term A (2027)"
+title: "Gemini Lecturer Exam 2027 A"
 year: 2027
 duration: 7200
 source: "HCI Exam Term A 2027.pdf"
