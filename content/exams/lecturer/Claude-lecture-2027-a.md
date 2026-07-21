@@ -1,6 +1,6 @@
 ---
 id: hci-practice-exam-a
-kind: generated
+kind: lecturer
 title: "HCI Practice Exam A"
 year: 2026
 duration: 7200
@@ -146,11 +146,13 @@ points: 4
 concepts:
   - ethnographic-research
 
+Which finding would most directly expose a gap between what nurses reported and what they actually do?
+
 ### Scenario
+
 
 A team is redesigning a hospital's medication cart. Interviews suggest nurses "always follow the checklist step by step." A researcher spends two shifts observing nurses in the ward.
 
-Which finding would most directly expose a gap between what nurses reported and what they actually do?
 
 ### Answers
 
@@ -181,11 +183,13 @@ points: 4
 concepts:
   - ethnographic-research
 
+The researcher writes: "The nurse paused at the cart for six seconds before opening drawer three." Which best describes this note?
+
 ### Scenario
+
 
 A team is redesigning a hospital's medication cart. Interviews suggest nurses "always follow the checklist step by step." A researcher spends two shifts observing nurses in the ward.
 
-The researcher writes: "The nurse paused at the cart for six seconds before opening drawer three." Which best describes this note?
 
 ### Answers
 
@@ -216,11 +220,13 @@ points: 4
 concepts:
   - ethnographic-research
 
+Using the AEIOU framework, which pairing correctly matches the framework element with what it captures in this setting?
+
 ### Scenario
+
 
 A team is redesigning a hospital's medication cart. Interviews suggest nurses "always follow the checklist step by step." A researcher spends two shifts observing nurses in the ward.
 
-Using the AEIOU framework, which pairing correctly matches the framework element with what it captures in this setting?
 
 ### Answers
 
@@ -251,11 +257,13 @@ points: 4
 concepts:
   - ethnographic-research
 
+A senior nurse insists the researcher only observe "calm" shifts and avoid busy ones. What role does this senior nurse play in the research, and what is the main risk?
+
 ### Scenario
+
 
 A team is redesigning a hospital's medication cart. Interviews suggest nurses "always follow the checklist step by step." A researcher spends two shifts observing nurses in the ward.
 
-A senior nurse insists the researcher only observe "calm" shifts and avoid busy ones. What role does this senior nurse play in the research, and what is the main risk?
 
 ### Answers
 
@@ -301,7 +309,7 @@ D. A longer physical description of the user's appearance and clothing style.
 E. The exact model and manufacturer of the user's smartphone.
 
 Correct: C
-Explanation: A persona becomes actionable for design when it captures what the user is trying to accomplish and what currently gets in their way, since those goals and frustrations are what design decisions actually respond to. Address, branch history, appearance, and device model are surface-level demographic or incidental details that do not, by themselves, tell a team what to design differently.
+Explanation:  persona becomes actionable for design when it captures what the user is trying to accomplish and what currently gets in their way, since those goals and frustrations are what design decisions actually respond to. Address, branch history, appearance, and device model are surface-level demographic or incidental details that do not, by themselves, tell a team what to design differently.
 Learning Objective: Recognize goals and frustrations as the core design-relevant content of a persona.
 Misconception: Treating demographic filler as more valuable to a persona than goals and pain points.
 
@@ -332,7 +340,7 @@ D. A bullet list ranking the app's five most common features by popularity.
 E. "Users may either scan a receipt or type the amount, depending on their preference."
 
 Correct: B
-Explanation: A proper scenario is a single, chronological narrative with no conditional branching — one persona performing one sequence of actions from start to finish, exactly as shown here. The other options all introduce "if/or" branching or present something other than a linear narrative, such as a flowchart or a ranked feature list, which are different artifacts entirely.
+Explanation:  proper scenario is a single, chronological narrative with no conditional branching — one persona performing one sequence of actions from start to finish, exactly as shown here. The other options all introduce "if/or" branching or present something other than a linear narrative, such as a flowchart or a ranked feature list, which are different artifacts entirely.
 Learning Objective: Recognize a scenario as a strictly linear narrative without conditional branches.
 Misconception: Believing that a scenario should capture every possible path a user might take, like a flowchart.
 
@@ -363,7 +371,7 @@ D. Deleting the waiting phase entirely so it no longer appears in the map.
 E. Increasing the price of delivery during that time window.
 
 Correct: B
-Explanation: A journey map's purpose is to surface exactly this kind of touchpoint where emotion dips, so the team can target it with a concrete improvement such as visible status updates. Rewriting legal text, swapping the persona, erasing the phase from the map, or changing pricing are all unrelated actions that ignore the emotional signal the map was built to reveal in the first place.
+Explanation:  journey map's purpose is to surface exactly this kind of touchpoint where emotion dips, so the team can target it with a concrete improvement such as visible status updates. Rewriting legal text, swapping the persona, erasing the phase from the map, or changing pricing are all unrelated actions that ignore the emotional signal the map was built to reveal in the first place.
 Learning Objective: Use a journey map's emotional dips to identify concrete design opportunities at specific touchpoints.
 Misconception: Treating a low point on a journey map as something to hide or remove rather than address.
 
@@ -456,7 +464,7 @@ D. A moderated usability test on the existing help-center search bar.
 E. An A/B test comparing two already-built versions of the help-center menu.
 
 Correct: A
-Explanation: Because no categories exist yet and the goal is to discover users' own mental grouping, an open card sort — where users both group and name the categories themselves — is the appropriate tool. A closed sort requires categories to already exist, and heuristic evaluation, usability testing, and A/B testing all evaluate an existing interface rather than generate a new category structure from scratch.
+Explanation: Because no categories exist yet and the goal is to discover users' own mental grouping, an open card sort — where users both group and name the categories themselves — is the appropriate tool.  closed sort requires categories to already exist, and heuristic evaluation, usability testing, and / testing all evaluate an existing interface rather than generate a new category structure from scratch.
 Learning Objective: Choose an open card sort specifically for discovering an unknown grouping structure.
 Misconception: Reaching for a closed card sort or an evaluation method before any category structure exists to test.
 
@@ -487,7 +495,7 @@ D. To increase the file size of the app so it appears more advanced to users.
 E. To meet a legal requirement for confirming destructive actions before they occur.
 
 Correct: C
-Explanation: A visual metaphor like tearing paper borrows a familiar real-world action to make an abstract digital operation feel intuitive, which is precisely the learning-curve benefit metaphors are meant to provide. Rendering efficiency, contrast compliance, file size, and legal confirmation requirements are unrelated technical or regulatory concerns that a metaphor's animation does not address.
+Explanation:  visual metaphor like tearing paper borrows a familiar real-world action to make an abstract digital operation feel intuitive, which is precisely the learning-curve benefit metaphors are meant to provide. Rendering efficiency, contrast compliance, file size, and legal confirmation requirements are unrelated technical or regulatory concerns that a metaphor's animation does not address.
 Learning Objective: Explain how a visual metaphor eases learnability by anchoring a new action in a familiar physical one.
 Misconception: Attributing a metaphor's purpose to technical performance or compliance rather than learnability.
 
@@ -518,7 +526,7 @@ D. The specific icon set the marketing department has approved for launch.
 E. The persuasive tone of the marketing copy displayed at checkout.
 
 Correct: B
-Explanation: A wireframe intentionally strips away color, typography, and iconography so that stakeholders evaluate only the structural layout and content placement, exactly as described. Brand colors, code execution, approved icon sets, and marketing tone are all later-stage visual, technical, or content concerns that a deliberately unstyled wireframe is not meant to test.
+Explanation:  wireframe intentionally strips away color, typography, and iconography so that stakeholders evaluate only the structural layout and content placement, exactly as described. Brand colors, code execution, approved icon sets, and marketing tone are all later-stage visual, technical, or content concerns that a deliberately unstyled wireframe is not meant to test.
 Learning Objective: Identify structural layout, not visual styling, as the purpose of a low-fidelity wireframe.
 Misconception: Assuming a black-and-white wireframe is meant to preview or approve visual style choices.
 
@@ -673,7 +681,7 @@ D. Memorability, since trained users forget the system entirely between sessions
 E. Efficiency, since experienced users complete tasks unacceptably slowly.
 
 Correct: B
-Explanation: A long first-attempt completion time paired with few errors once trained is the textbook signature of a learnability problem — new users struggle to become productive quickly, though the system is not necessarily error-prone or slow for experienced users. Errors, satisfaction, memorability, and efficiency all describe different failure patterns that the scenario does not actually report.
+Explanation:  long first-attempt completion time paired with few errors once trained is the textbook signature of a learnability problem — new users struggle to become productive quickly, though the system is not necessarily error-prone or slow for experienced users. Errors, satisfaction, memorability, and efficiency all describe different failure patterns that the scenario does not actually report.
 Learning Objective: Match the specific behavioral pattern described (slow first use, later accuracy) to the learnability dimension.
 Misconception: Defaulting to "efficiency" whenever slowness is mentioned, without checking whether it is first-time or expert slowness.
 
@@ -704,7 +712,7 @@ D. Effectiveness cannot be judged unless the error rate is also cut in half.
 E. Efficiency is irrelevant once effectiveness is already high for both versions.
 
 Correct: B
-Explanation: Effectiveness concerns whether the task is completed successfully, which is equal here at 95% for both, while efficiency concerns the time and effort required, where Version A is clearly better — so the accurate read is equal effectiveness with unequal efficiency. Folding time into effectiveness, assuming speed alone determines effectiveness, requiring an error-rate change to judge effectiveness, or dismissing efficiency once effectiveness is high all blur or discard the effectiveness/efficiency distinction the scenario is testing.
+Explanation: Effectiveness concerns whether the task is completed successfully, which is equal here at 95% for both, while efficiency concerns the time and effort required, where Version  is clearly better — so the accurate read is equal effectiveness with unequal efficiency. Folding time into effectiveness, assuming speed alone determines effectiveness, requiring an error-rate change to judge effectiveness, or dismissing efficiency once effectiveness is high all blur or discard the effectiveness/efficiency distinction the scenario is testing.
 Learning Objective: Keep effectiveness (task success) and efficiency (speed/effort) as separate, independently measurable dimensions.
 Misconception: Merging completion time into the definition of effectiveness instead of treating it as efficiency.
 
@@ -720,11 +728,13 @@ points: 4
 concepts:
   - usability-testing
 
+Given the constraint of limited time and budget, which testing approach is most defensible?
+
 ### Scenario
+
 
 A budgeting app has passed all functional tests, but the team wants to catch remaining usability problems before launch, with very limited time and no budget for a large study.
 
-Given the constraint of limited time and budget, which testing approach is most defensible?
 
 ### Answers
 
@@ -739,7 +749,7 @@ D. Testing with a single internal employee who already knows the app well.
 E. Delaying launch indefinitely until a full-scale usability lab study can be funded.
 
 Correct: B
-Explanation: The well-established finding behind the "five-user rule" is that around five representative participants typically reveal most major usability problems, making it a defensible choice under real time and budget limits. A 50-person survey is disproportionate for the constraint described, skipping testing ignores that functional correctness says nothing about usability, one already-familiar internal employee will not surface problems a real user would hit, and indefinite delay is not a testing approach at all.
+Explanation: The well-established finding behind the "five-user rule" is that around five representative participants typically reveal most major usability problems, making it a defensible choice under real time and budget limits.  50-person survey is disproportionate for the constraint described, skipping testing ignores that functional correctness says nothing about usability, one already-familiar internal employee will not surface problems a real user would hit, and indefinite delay is not a testing approach at all.
 Learning Objective: Apply the five-user rule as a practical, evidence-based choice under time and budget constraints.
 Misconception: Assuming that either a very large sample or no testing at all are the only two realistic options.
 
@@ -755,11 +765,13 @@ points: 4
 concepts:
   - usability-testing
 
+The team decides to run this evaluation with expert reviewers instead of real users, checking the interface against Nielsen's heuristics. What kind of evaluation is this?
+
 ### Scenario
+
 
 A budgeting app has passed all functional tests, but the team wants to catch remaining usability problems before launch, with very limited time and no budget for a large study.
 
-The team decides to run this evaluation with expert reviewers instead of real users, checking the interface against Nielsen's heuristics. What kind of evaluation is this?
 
 ### Answers
 
@@ -774,7 +786,7 @@ D. Ethnographic research, because experts are observing behavior in a natural se
 E. Card sorting, because experts are organizing the app's menu items into categories.
 
 Correct: B
-Explanation: Checking an interface against a known set of principles using expert judgment, without involving real end users performing tasks, is the definition of an analytical evaluation. Empirical evaluation specifically requires real user data, A/B testing requires comparing two live variants with actual traffic, ethnographic research involves observing users in their natural context, and card sorting involves users grouping items — none of which match an expert heuristic review.
+Explanation: Checking an interface against a known set of principles using expert judgment, without involving real end users performing tasks, is the definition of an analytical evaluation. Empirical evaluation specifically requires real user data, / testing requires comparing two live variants with actual traffic, ethnographic research involves observing users in their natural context, and card sorting involves users grouping items — none of which match an expert heuristic review.
 Learning Objective: Classify a heuristic review by experts as analytical rather than empirical evaluation.
 Misconception: Assuming any evaluation involving human judgment automatically counts as empirical.
 
@@ -790,11 +802,13 @@ points: 4
 concepts:
   - conducting-the-test
 
+During the session, the moderator asks each participant to narrate their thoughts out loud while attempting a task. What is the primary purpose of this technique?
+
 ### Scenario
+
 
 A budgeting app has passed all functional tests, but the team wants to catch remaining usability problems before launch, with very limited time and no budget for a large study.
 
-During the session, the moderator asks each participant to narrate their thoughts out loud while attempting a task. What is the primary purpose of this technique?
 
 ### Answers
 
@@ -825,11 +839,13 @@ points: 4
 concepts:
   - usability-testing
 
+Three of five participants fail to find the "export to spreadsheet" option, all clicking the settings icon first instead of the correct menu. What should the team conclude?
+
 ### Scenario
+
 
 A budgeting app has passed all functional tests, but the team wants to catch remaining usability problems before launch, with very limited time and no budget for a large study.
 
-Three of five participants fail to find the "export to spreadsheet" option, all clicking the settings icon first instead of the correct menu. What should the team conclude?
 
 ### Answers
 

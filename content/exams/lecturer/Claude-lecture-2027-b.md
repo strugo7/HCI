@@ -1,6 +1,6 @@
 ---
 id: hci-practice-exam-b
-kind: generated
+kind: lecturer
 title: "HCI Practice Exam B"
 year: 2026
 duration: 7200
@@ -146,10 +146,6 @@ points: 4
 concepts:
   - ethnographic-research
 
-### Scenario
-
-A logistics company wants to redesign the handheld scanner interface used by warehouse pickers. Interviews suggest pickers "always scan every item before placing it in the bin." Management wants confirmation before investing in the redesign.
-
 Given that the interface is used in a noisy, fast-paced warehouse with gloves and time pressure, which method would most directly reveal whether picking actually happens as described?
 
 ### Answers
@@ -165,7 +161,7 @@ D. A heuristic evaluation of the scanner's screen conducted by two usability exp
 E. A card-sorting exercise asking pickers to categorize different types of warehouse items.
 
 Correct: C
-Explanation: Because the concern is whether real behavior under real noisy, time-pressured, gloved conditions matches a reported habit, only direct in-context shadowing during actual shifts can confirm or contradict it — moving the observation out of the warehouse would strip away the very conditions in question. A survey or focus group held elsewhere still only captures self-report, and a heuristic evaluation or card sort evaluates the interface or its categories rather than real on-the-job behavior.
+Explanation: Because the concern is whether real behavior under real noisy, time-pressured, gloved conditions matches a reported habit, only direct in-context shadowing during actual shifts can confirm or contradict it — moving the observation out of the warehouse would strip away the very conditions in question.  survey or focus group held elsewhere still only captures self-report, and a heuristic evaluation or card sort evaluates the interface or its categories rather than real on-the-job behavior.
 Learning Objective: Choose in-context observation over self-report or office-based evaluation methods when the goal is verifying real-world behavior under specific conditions.
 Misconception: Assuming any interview- or expert-based method can substitute for observing behavior in its real physical and situational context.
 
@@ -181,11 +177,17 @@ points: 4
 concepts:
   - ethnographic-research
 
+During shadowing, the researcher notes: "Pickers appear to trust their memory more than the scanner when the bin is nearly full." Why is this note problematic as written?
+
 ### Scenario
 
 A logistics company wants to redesign the handheld scanner interface used by warehouse pickers. Interviews suggest pickers "always scan every item before placing it in the bin." Management wants confirmation before investing in the redesign.
 
-During shadowing, the researcher notes: "Pickers appear to trust their memory more than the scanner when the bin is nearly full." Why is this note problematic as written?
+### Scenario
+
+
+A logistics company wants to redesign the handheld scanner interface used by warehouse pickers. Interviews suggest pickers "always scan every item before placing it in the bin." Management wants confirmation before investing in the redesign.
+
 
 ### Answers
 
@@ -216,10 +218,6 @@ points: 4
 concepts:
   - aeiou-framework
 
-### Scenario
-
-A logistics company wants to redesign the handheld scanner interface used by warehouse pickers. Interviews suggest pickers "always scan every item before placing it in the bin." Management wants confirmation before investing in the redesign.
-
 The researcher records: "Pickers frequently hand off half-scanned totes to the next shift during changeover, without a formal note of what remains." Which AEIOU element does this note primarily capture?
 
 ### Answers
@@ -235,7 +233,7 @@ D. Environments, since it focuses on the lighting conditions of the warehouse fl
 E. Activities, since it focuses exclusively on the act of scanning a single barcode.
 
 Correct: C
-Explanation: A hand-off between one shift and the next, involving an exchange of responsibility (and a gap in information), is squarely an Interaction — it captures how people and information move between individuals at a transition point. The note says nothing about the scanner's physical properties, picker demographics, lighting, or a single scan action, so Objects, Users, Environments, and Activities each miss what the note is actually describing.
+Explanation:  hand-off between one shift and the next, involving an exchange of responsibility (and a gap in information), is squarely an Interaction — it captures how people and information move between individuals at a transition point. The note says nothing about the scanner's physical properties, picker demographics, lighting, or a single scan action, so Objects, Users, Environments, and Activities each miss what the note is actually describing.
 Learning Objective: Correctly identify a hand-off between people as an Interaction rather than another AEIOU category.
 Misconception: Defaulting to Activities whenever an action verb appears, without checking whether the note actually centers on an exchange between people.
 
@@ -251,11 +249,17 @@ points: 4
 concepts:
   - ethnographic-research
 
+After two shadowed shifts, pickers skip scanning small, low-value items about 30% of the time under time pressure. Which conclusion is best supported by this finding alone?
+
 ### Scenario
 
 A logistics company wants to redesign the handheld scanner interface used by warehouse pickers. Interviews suggest pickers "always scan every item before placing it in the bin." Management wants confirmation before investing in the redesign.
 
-After two shadowed shifts, pickers skip scanning small, low-value items about 30% of the time under time pressure. Which conclusion is best supported by this finding alone?
+### Scenario
+
+
+A logistics company wants to redesign the handheld scanner interface used by warehouse pickers. Interviews suggest pickers "always scan every item before placing it in the bin." Management wants confirmation before investing in the redesign.
+
 
 ### Answers
 
@@ -270,7 +274,7 @@ D. No redesign is needed, since 70% of items are still scanned as reported.
 E. The interview method used earlier should never be used again for any future research.
 
 Correct: B
-Explanation: A 30% skip rate concentrated under specific conditions (time pressure, low-value items) is a concrete, bounded finding: it shows a real say-do gap tied to identifiable circumstances, which is exactly the kind of signal that should be investigated further before committing to a redesign. Concluding hardware failure, blanket dishonesty, that no problem exists because most items are scanned, or that interviews are permanently useless all overreach well beyond what this specific, conditional finding actually supports.
+Explanation:  30% skip rate concentrated under specific conditions (time pressure, low-value items) is a concrete, bounded finding: it shows a real say-do gap tied to identifiable circumstances, which is exactly the kind of signal that should be investigated further before committing to a redesign. Concluding hardware failure, blanket dishonesty, that no problem exists because most items are scanned, or that interviews are permanently useless all overreach well beyond what this specific, conditional finding actually supports.
 Learning Objective: Draw a conclusion proportionate to a specific, conditional finding rather than overgeneralizing from it.
 Misconception: Either dismissing a partial gap as negligible or overreacting to it with a sweeping, unsupported conclusion.
 
@@ -363,7 +367,7 @@ D. Clarifying the confirmation email's content and timing, since the map isolate
 E. Building an entirely new persona, since the dip suggests the current persona was inaccurate from the start.
 
 Correct: D
-Explanation: A journey map's value lies in isolating exactly where emotion drops along the timeline, and here that is unambiguously the confirmation-email touchpoint, so the appropriate response is to target that specific point rather than the already-strong phases. Removing the email ignores that confirmation still serves a real purpose, reinforcing an already-strong phase misdirects effort, dismissing the dip as noise ignores a clearly isolated signal, and rebuilding the persona conflates a touchpoint problem with a persona-accuracy problem.
+Explanation:  journey map's value lies in isolating exactly where emotion drops along the timeline, and here that is unambiguously the confirmation-email touchpoint, so the appropriate response is to target that specific point rather than the already-strong phases. Removing the email ignores that confirmation still serves a real purpose, reinforcing an already-strong phase misdirects effort, dismissing the dip as noise ignores a clearly isolated signal, and rebuilding the persona conflates a touchpoint problem with a persona-accuracy problem.
 Learning Objective: Direct design attention specifically at the touchpoint a journey map identifies as low, rather than at unrelated phases.
 Misconception: Responding to a journey-map finding by reinforcing an already-strong phase instead of addressing the identified weak point.
 
@@ -487,7 +491,7 @@ D. Users cannot form any expectations about voice assistants that lack a visual 
 E. The mismatch is irrelevant, since voice assistants are judged only on response speed.
 
 Correct: B
-Explanation: A strongly human-like metaphor implicitly promises humanlike conversational ability, so when the assistant's actual responses fall short of that promise, the gap between expectation and performance becomes more jarring than it would be with a more neutral presentation — this is the same risk illustrated by failed anthropomorphic metaphors in the field. Assuming expressions always help regardless of performance, inventing a regulatory ban, claiming users form no expectations without a visual avatar, and reducing judgment to response speed alone all sidestep the actual expectation-mismatch mechanism at play.
+Explanation:  strongly human-like metaphor implicitly promises humanlike conversational ability, so when the assistant's actual responses fall short of that promise, the gap between expectation and performance becomes more jarring than it would be with a more neutral presentation — this is the same risk illustrated by failed anthropomorphic metaphors in the field. Assuming expressions always help regardless of performance, inventing a regulatory ban, claiming users form no expectations without a visual avatar, and reducing judgment to response speed alone all sidestep the actual expectation-mismatch mechanism at play.
 Learning Objective: Analyze how an anthropomorphic metaphor can raise expectations that a system's actual competence then fails to satisfy.
 Misconception: Assuming a friendlier, more humanlike presentation can only help perceived quality, never work against it.
 
@@ -518,7 +522,7 @@ D. Adding color to the wireframe on the spot so the stakeholder's question can b
 E. Explaining that wireframes are only used for mobile apps, not for this kind of stakeholder review.
 
 Correct: B
-Explanation: A wireframe is deliberately unstyled so that review can focus on structure and content placement, so the correct response is to acknowledge the question but steer it toward the appropriate later stage, keeping the wireframe review on its intended structural purpose. Locking in a color choice, abandoning the review outright, adding color on the spot, or claiming wireframes only apply to mobile apps all either derail the review's actual purpose or misstate what wireframes are for.
+Explanation:  wireframe is deliberately unstyled so that review can focus on structure and content placement, so the correct response is to acknowledge the question but steer it toward the appropriate later stage, keeping the wireframe review on its intended structural purpose. Locking in a color choice, abandoning the review outright, adding color on the spot, or claiming wireframes only apply to mobile apps all either derail the review's actual purpose or misstate what wireframes are for.
 Learning Objective: Redirect visual-design questions raised during a wireframe review back to structural concerns appropriate to that stage.
 Misconception: Treating any visual-design question raised during a wireframe review as something that must be answered immediately within that review.
 
@@ -720,10 +724,6 @@ points: 4
 concepts:
   - usability-testing
 
-### Scenario
-
-A university course-registration portal has drawn complaints for years, but the IT team has never run a moderated usability test, relying only on server uptime metrics and a satisfaction survey sent once per semester.
-
 Given only uptime metrics and a periodic satisfaction survey, what is the university most likely unable to diagnose?
 
 ### Answers
@@ -755,11 +755,17 @@ points: 4
 concepts:
   - conducting-the-test
 
+The team finally schedules sessions but the moderator answers every question participants ask mid-task, such as "Should I click this now?" Why is this problematic?
+
 ### Scenario
 
 A university course-registration portal has drawn complaints for years, but the IT team has never run a moderated usability test, relying only on server uptime metrics and a satisfaction survey sent once per semester.
 
-The team finally schedules sessions but the moderator answers every question participants ask mid-task, such as "Should I click this now?" Why is this problematic?
+### Scenario
+
+
+A university course-registration portal has drawn complaints for years, but the IT team has never run a moderated usability test, relying only on server uptime metrics and a satisfaction survey sent once per semester.
+
 
 ### Answers
 
@@ -789,10 +795,6 @@ cognitive: analyze
 points: 4
 concepts:
   - the-5-user-rule
-
-### Scenario
-
-A university course-registration portal has drawn complaints for years, but the IT team has never run a moderated usability test, relying only on server uptime metrics and a satisfaction survey sent once per semester.
 
 After testing with five students, four hit the same confusing step when adding a course to a waitlist. A committee member argues, "Five students can't represent 20,000, so this finding is worthless." Which is the strongest counter to this argument?
 
@@ -825,11 +827,17 @@ points: 4
 concepts:
   - empirical-vs-analytical
 
+Given limited time before next semester's registration, the team can run either a full moderated usability test with 5 students or a heuristic evaluation with 2 expert reviewers, but not both. Which factor should most influence this choice?
+
 ### Scenario
 
 A university course-registration portal has drawn complaints for years, but the IT team has never run a moderated usability test, relying only on server uptime metrics and a satisfaction survey sent once per semester.
 
-Given limited time before next semester's registration, the team can run either a full moderated usability test with 5 students or a heuristic evaluation with 2 expert reviewers, but not both. Which factor should most influence this choice?
+### Scenario
+
+
+A university course-registration portal has drawn complaints for years, but the IT team has never run a moderated usability test, relying only on server uptime metrics and a satisfaction survey sent once per semester.
+
 
 ### Answers
 
@@ -875,6 +883,6 @@ D. "Warning: Proceeding may have consequences. Are you absolutely certain you wi
 E. "OK," since a universally recognized word removes any need for additional context.
 
 Correct: B
-Explanation: For a high-stakes, irreversible action, microcopy should state the specific consequence plainly (amount, recipient, irreversibility) and offer a clear way out, exactly as this rewrite does, which reduces the risk of an uninformed, irreversible mistake. A bare "Proceed," a vague reference to "the process," an alarming but unspecific warning, and a generic "OK" all fail to give the user the specific, concrete information needed to confirm such a consequential action with confidence.
+Explanation: For a high-stakes, irreversible action, microcopy should state the specific consequence plainly (amount, recipient, irreversibility) and offer a clear way out, exactly as this rewrite does, which reduces the risk of an uninformed, irreversible mistake.  bare "Proceed," a vague reference to "the process," an alarming but unspecific warning, and a generic "OK" all fail to give the user the specific, concrete information needed to confirm such a consequential action with confidence.
 Learning Objective: Apply specific, consequence-stating microcopy as the standard for confirming high-stakes, irreversible actions.
 Misconception: Assuming that shorter or more universally familiar wording is always preferable, even when a specific, irreversible consequence is at stake.
