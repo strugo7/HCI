@@ -1,5 +1,5 @@
 ---
-id: hci-practice-exam-b
+id: Claude-lecture-exam-2027-b
 kind: lecturer
 title: "Claude lecture 2027 b"
 year: 2026
