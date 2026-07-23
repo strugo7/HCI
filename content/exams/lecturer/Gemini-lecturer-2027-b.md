@@ -11,7 +11,7 @@ source: "HCI Exam Term B 2027.pdf"
 
 Human-Computer Interface, 273020 · Dr. Moshe Leiba · 27 Questions · Equal Weight · No Auxiliary Material.
 
-## Question
+
 
 id: q-lecturer-2027-b-001
 type: multiple-choice
@@ -36,9 +36,9 @@ D. UI encompasses the specific visual touchpoints, but UX applies only to hardwa
 E. UI design precedes user research, whereas UX design occurs exclusively after product launch.
 
 Correct: A
-Explanation: UI refers to the visual presentation layer (buttons, typography, screens), whereas UX is the overarching experience, including usability, utility, emotions, and touchpoints across the entire ecosystem. other options, and  misrepresent or reverse the definitions.
-Learning Objective: Differentiate UI design scope from broader UX research and strategy.
-Misconception: Treating UX as purely visual screen styling or viewing UI and UX as synonymous.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -71,9 +71,9 @@ D. The pill badge visually mimics clickable menus, but is rendered in an unreada
 E. The application crashes whenever the user presses the hardware back button.
 
 Correct: A
-Explanation:  perceived affordance issue occurs when an element visually suggests an action (clicking/opening a menu) that it does not actually support. The software operates as built, but the visual signifiers misdirect user expectations. other options, and  are technical/network bugs. this choice introduces a legibility defect rather than false affordance.
-Learning Objective: Identify perceived affordance misalignments in user interface elements.
-Misconception: Classifying user confusion caused by misleading visual styling as backend system coding bugs.
+Explanation: אפורדנס (Affordance) מוגדר כמאפיין של רכיב המציע למשתמש אפשרות פעולה. תשובה זו מזהה נכונה את הקשר בין הרמז הוויזואלי לבין אפשרות הפעולה בפועל.
+Learning Objective: להבין את המושג Affordance ולהבדיל בין אפורדנס נתפס לאפורדנס מיועד.
+Misconception: בלבול בין האפורדנס הפיזי/דיגיטלי לבין תווית טקסטואלית או סימן חיצוני.
 
 ---
 
@@ -106,9 +106,9 @@ D. Automatically compute the debt-to-income ratio, but require users to memorize
 E. Replace the step-by-step wizard with a single page containing 50 unformatted numeric input boxes.
 
 Correct: A
-Explanation: Human working memory is limited in capacity (~4 chunks) and duration. Expecting users to retain and calculate numbers across screens imposes heavy cognitive load. Automating calculations and displaying summary data relies on recognition and system support. other options, and  increase memory burden or friction.
-Learning Objective: Offload cognitive working memory demands by automating calculations and maintaining visibility.
-Misconception: Expecting users to mentally store and calculate data across multi-screen flows.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -137,9 +137,9 @@ D. Re-recognizing visible information requires less cognitive effort, but only f
 E. Recognition eliminates the need for visual hierarchy or responsive layout design.
 
 Correct: A
-Explanation: Recognition involves comparing sensory input with long-term memory (e.g., picking an option from a menu), which requires minimal cognitive load. Recall forces the brain to retrieve information from scratch (e.g., typing a CLI command). this choice is incorrect as recall is mentally taxing. other options, and  are false statements.
-Learning Objective: Contrast cognitive processing demands of recognition versus recall tasks.
-Misconception: Believing typing from memory (recall) is easier for users than choosing from visible options (recognition).
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -172,9 +172,9 @@ D. Adopt a "naive learner" persona, but conduct all observations through high-de
 E. Cancel field observations and ask department managers to fill out performance surveys on behalf of clerks.
 
 Correct: A
-Explanation: Impression Management occurs when participants alter behavior to project a positive image to the researcher ("expert/critic"). Adopting a non-threatening learner persona reduces participant anxiety and yields authentic behavioral data. other options escalate observer bias and artificial behavior. this choice creates surveillance anxiety. this choice relies on proxy reporting.
-Learning Objective: Mitigate impression management and participant reactivity in qualitative field studies.
-Misconception: Assuming researchers should adopt an authoritative audit role during ethnographic observations.
+Explanation: חקירה הקשרית (Contextual inquiry) מתבצעת בסביבת העבודה הטבעית של המשתמש, ולכן מאפשרת ללכוד הפרעות, אילוצי שטח ותהליכי עבודה אמיתיים.
+Learning Objective: לזהות את היתרונות של תצפית וחקירה בסביבת העבודה הטבעית.
+Misconception: הנחה שבדיקת מעבדה מבוקרת או סקר יכולים להחליף תצפית ישירה בהקשר הטבעי.
 
 ---
 
@@ -207,9 +207,9 @@ D. Observing the tools, environmental constraints, and manual workarounds used b
 E. Comparing the technician's observed diagnostic steps against the official digital manual afterwards.
 
 Correct: A
-Explanation: Contextual Inquiry relies on a Master-Apprentice / Partner relationship where the user is the expert and the researcher learns. Interrupting to lecture or correct the participant destroys partnership and invalidates observation. other options, and  adhere to sound contextual inquiry principles.
-Learning Objective: Apply partnership principles during contextual inquiry shadowing.
-Misconception: Treating contextual inquiry as an opportunity to correct or train the participant.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -238,9 +238,9 @@ D. Narrative describing how a persona accomplishes a goal, focusing exclusively 
 E. A legal contract defining project scope deliverables between client and agency.
 
 Correct: A
-Explanation: Scenarios contextualize interaction by framing a persona's motivations, tasks, and environment in story form. this choice describes backend specs. this choice describes analytics logs. this choice mistakenly restricts scenarios to UI colors. this choice describes commercial contracts.
-Learning Objective: Define the purpose and structural components of a UX user scenario.
-Misconception: Confusing qualitative user scenarios with technical system architecture specifications.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -273,9 +273,9 @@ D. The Frontstage Visual Typography stylesheet row.
 E. The Legal Compliance & Liability checklist row.
 
 Correct: A
-Explanation: Customer Journey Maps map emotional states over time using a Sentiment / Experience Curve to highlight pain points (anxiety) and delight points (relief). other options, and  reflect technical, financial, styling, or legal data rather than user sentiment.
-Learning Objective: Map user emotional highs and lows across interaction touchpoints in a journey map.
-Misconception: Omitting subjective emotional mapping from customer journey representations.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -304,9 +304,9 @@ D. Top-Down builds global navigation schemes, but ignores homepages and main lan
 E. There is no difference; both terms refer to hardware server rack configurations.
 
 Correct: A
-Explanation: Top-Down IA designs overarching structures (broad navigation, landing pages) so users can browse down into content. Bottom-Up IA tags granular content objects (metadata, search, relationships) so users can land directly on deep pages via search and understand context. other options, and  are incorrect.
-Learning Objective: Differentiate Top-Down information architecture from Bottom-Up information architecture.
-Misconception: Assuming Information Architecture only consists of top-level main menu bars.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -339,9 +339,9 @@ D. "Tuition Statements" has a clear conceptual category, but must be hidden insi
 E. The university portal should eliminate all main navigation menus and rely entirely on a blank search bar.
 
 Correct: A
-Explanation: High agreement in closed sorting validates a label's location; low agreement signals ambiguous labeling or competing mental models. "Parking Permits" needs cross-linking, label renaming, or open sorting exploration. this choice overreacts to isolated ambiguity. this choice violates semantic grouping to force artificial balance. other options degrade site usability.
-Learning Objective: Analyze closed card sorting agreement data to diagnose information architecture friction.
-Misconception: Forcing content items into arbitrary categories to make navigation menus visually equal in length.
+Explanation: מיון כרטיסים (Card sorting) הוא הכלי המרכזי שנועד לחשוף את המודל המנטלי של המשתמשים לגבי אופן הארגון והסיווג של המידע במערכת.
+Learning Objective: להשתמש במיון כרטיסים לבניית ארכיטקטורת מידע המותאמת למודל המנטלי.
+Misconception: ניסיון להסתמך על בדיקות כמותיות או סקרים כדי לקבוע מבנה סיווג היררכי.
 
 ---
 
@@ -374,9 +374,9 @@ D. Semantic Mapping
 E. Cultural Metaphor
 
 Correct: A
-Explanation: Feedback requires immediate confirmation of user action. The 10-second delay left the user uncertain whether the input registered, causing duplicate inputs (system overshoot). this choice concerns action possibilities. this choice concerns boundary restrictions. other options concern spatial or symbolic logic.
-Learning Objective: Identify failures of feedback in interactive control systems.
-Misconception: Mistaking delayed system responsiveness for a lack of physical affordance.
+Explanation: אפורדנס (Affordance) מוגדר כמאפיין של רכיב המציע למשתמש אפשרות פעולה. תשובה זו מזהה נכונה את הקשר בין הרמז הוויזואלי לבין אפשרות הפעולה בפועל.
+Learning Objective: להבין את המושג Affordance ולהבדיל בין אפורדנס נתפס לאפורדנס מיועד.
+Misconception: בלבול בין האפורדנס הפיזי/דיגיטלי לבין תווית טקסטואלית או סימן חיצוני.
 
 ---
 
@@ -405,9 +405,9 @@ D. Spatial arrangement of controls that deliberately reverses physical relations
 E. A hardware diagram mapping circuit board wiring to microprocessors.
 
 Correct: A
-Explanation: Natural mapping takes advantage of spatial analogies (e.g., arranging stove burner controls in the same 2x2 grid as the burners) to make control outcomes immediately intuitive. other options, and  misdefine the concept.
-Learning Objective: Define natural mapping and give examples of spatial control alignment.
-Misconception: Believing any linear row of controls is intuitive regardless of target spatial geometry.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -440,9 +440,9 @@ D. Pinning targets directly to the screen corners, but reducing their clickable 
 E. Placing targets inside nested sub-menus located three levels deep in the main file explorer.
 
 Correct: A
-Explanation: Screen edges and corners act as physical boundaries ("hard stops") for mouse cursors. Because the cursor cannot overshoot the edge, the effective target size ($W$) becomes functionally infinite, making movement time extraordinarily fast under Fitts' Law. other options, and  increase targeting difficulty or distance.
-Learning Objective: Leverage screen boundary constraints and Fitts' Law to optimize corner and edge target acquisition.
-Misconception: Overlooking the infinite target size advantage provided by physical screen boundaries in desktop GUIs.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -471,9 +471,9 @@ D. Heavy reliance on memory recall, but only when operating on touch screen disp
 E. Inability to transmit text data across network protocols.
 
 Correct: A
-Explanation: CLIs provide no visible cues or signifiers; users must retrieve commands from memory (recall), creating high cognitive entry barriers for non-experts. this choice is incorrect as CLIs excel at batch automation for experts. other options, and  are technically false statements.
-Learning Objective: Contrast cognitive burdens of CLI memory recall with GUI visual recognition.
-Misconception: Assuming CLI interfaces are unusable for all users, ignoring their speed and power for domain experts.
+Explanation: סימן (Signifier) הוא רכיב ויזואלי או קולי המבהיר למשתמש היכן וכיצד לבצע את הפעולה, ובכך משלים את האפורדנס של הרכיב.
+Learning Objective: להשתמש ב-Signifiers כדי להבהיר את אפשרויות הפעולה בממשק.
+Misconception: יחס ל-Affordance ול-Signifier כמושגים זהים ללא הבחנה בתפקיד הסימן המכוון.
 
 ---
 
@@ -506,9 +506,9 @@ D. Require a deliberate secondary gesture, but shorten confirmation hold times t
 E. Replace all 3D spatial hand gesture inputs with a physical wired hardware keyboard.
 
 Correct: A
-Explanation: The "Midas Touch" problem in NUI/gaze/gesture systems occurs when every natural movement is interpreted as an intentional command. Requiring deliberate gestures, dwell times, or explicit confirmation states separates casual movement from intentional input. other options exacerbate tracking errors or hide controls. this choice abandons the gesture modality entirely.
-Learning Objective: Solve the Midas Touch problem in NUI and gesture design using activation thresholds and confirmations.
-Misconception: Assuming maximum gesture tracking sensitivity improves experience, ignoring unintentional movement triggers.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -541,9 +541,9 @@ D. Symmetry
 E. Closure
 
 Correct: A
-Explanation: The Law of Common Region states that elements located within the same bounded area/container are perceived as a distinct visual group. this choice relies on matching visual attributes (e.g., color/shape). this choice relies on continuous alignment. this choice relies on symmetrical weight. this choice fills in missing visual boundaries.
-Learning Objective: Apply the Gestalt principle of Common Region to structure interface layouts.
-Misconception: Confusing visual container boundaries (Common Region) with element proximity or shape similarity.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -572,9 +572,9 @@ D. Optimal line length is 50–75 characters, but only when text is rendered in 
 E. Line length should dynamically shift between 10 and 150 characters within the same paragraph.
 
 Correct: A
-Explanation: Lines that are too long make it difficult for the eye to jump to the next line accurately; lines that are too short break reading flow. 50–75 characters per line is typographic best practice for digital reading. other options, and  contradict established typographic usability research.
-Learning Objective: Apply typographic principles to optimize readability and line measure in text UI.
-Misconception: Believing stretching text across full widescreen displays improves reading comfort.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -603,9 +603,9 @@ D. Maintaining a contrast ratio of at least 4.5:1, but applying it only when the
 E. Disabling user browser zoom controls to keep screen font ratios fixed.
 
 Correct: A
-Explanation: WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for standard text (3:1 for large text). this choice produces a low-contrast ratio (~2.3:1) that fails accessibility standards. this choice creates barriers for color-blind users. other options introduce accessibility failures.
-Learning Objective: Apply WCAG color contrast standards to ensure visual accessibility.
-Misconception: Prioritizing low-contrast "aesthetic" trends over legible, accessible contrast ratios.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -634,9 +634,9 @@ D. Designing products for the average user demographic and ignoring extreme phys
 E. Translating software text into all known global languages automatically.
 
 Correct: A
-Explanation: Universal Design aims to create inclusive experiences accommodating diverse abilities, ages, and contexts from the outset. this choice misinterprets universality as targeting one demographic. this choice describes cross-platform code compatibility. this choice describes exclusive design. this choice describes localization.
-Learning Objective: Define Universal Design principles and distinguish them from retrofitted accessibility hacks.
-Misconception: Viewing universal design as creating separate niche products for specific disability groups.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -665,9 +665,9 @@ D. Consistency and Standards, strictly because international sites must use epoc
 E. Aesthetic and Minimalist Design exlusively
 
 Correct: A
-Explanation: *Consistency and Standards* dictates that users should not have to wonder whether different words, situations, or actions mean the same thing. Inconsistent date formats create ambiguity and input errors. this choice relates to accelerators. this choice relates to error messaging or clutter. other options are misattributions.
-Learning Objective: Identify violations of Nielsen's Consistency and Standards heuristic.
-Misconception: Dismissing data representation inconsistencies as unimportant visual styling details.
+Explanation: התשובה הנכונה מתבססת על עקרונות ההערכה היוריסטית של נילסן (Nielsen's Heuristics), הבוחנת עמידה בכללי אצבע מוכרים כדי למנוע כשלים בממשק.
+Learning Objective: להחיל היוריסטיקות שמישות לזיהוי ולמניעת פגמים בממשק משתמש.
+Misconception: סברה שהערכת מומחים מנטרלת לחלוטין את הצורך בבדיקות אמפיריות עם משתמשים.
 
 ---
 
@@ -700,9 +700,9 @@ D. "You want to check your recent cholesterol test numbers. Show how you would l
 E. "Please evaluate whether the lab results section satisfies ISO usability guidelines."
 
 Correct: A
-Explanation: Task scenarios should describe a realistic user goal without giving away navigation clues, button labels, or specific action paths. this choice gives explicit step-by-step instructions (invalidating the test). this choice specifies the interaction tool. this choice contains restrictive priming. this choice asks for expert evaluation rather than user task performance.
-Learning Objective: Draft non-leading, goal-oriented usability task scenarios.
-Misconception: Including interface terminology or exact action steps inside usability testing tasks.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -731,9 +731,9 @@ D. Uncovers real-time cognitive processes, but only when conducted with groups o
 E. Allows the facilitator to step out of the room completely during testing.
 
 Correct: A
-Explanation: Concurrent think-aloud captures immediate thoughts, expectations, and confusion at the moment of interaction. this choice is false because thinking aloud slightly slows task execution (retrospective think-aloud is used for pure time metrics). other options, and  are false claims.
-Learning Objective: Explain the qualitative advantages and operational mechanics of the Think-Aloud protocol.
-Misconception: Believing concurrent think-aloud is used primarily to collect precise quantitative benchmark times.
+Explanation: פרוטוקול חשיבה בקול (Think-aloud) מאפשר לחוקר ללכוד בזמן אמת את תהליך החשיבה, הלבטים ומוקדי הבלבול של המשתמש בעת ביצוע משימות.
+Learning Objective: ליישם פרוטוקול חשיבה בקול ללכידת תהליכי חשיבה בזמן אמת.
+Misconception: תפיסת חשיבה בקול ככלי להאצת קצב הביצוע במקום כשיטה לאיסוף נתונים איכותניים.
 
 ---
 
@@ -766,9 +766,9 @@ D. Distributing a System Usability Scale (SUS) questionnaire to 100 active beta 
 E. Performing contextual shadowing of 5 families operating the smart home app in their houses.
 
 Correct: A
-Explanation: Analytical evaluation relies on expert analysis, models, or guidelines without gathering data from actual end users (e.g., Heuristic Evaluation, Cognitive Walkthrough). Empirical evaluation collects data directly from user observation or testing (other options, and ).
-Learning Objective: Categorize evaluation techniques as either analytical (expert-based) or empirical (user-based).
-Misconception: Classifying expert heuristic reviews as empirical user studies.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -801,9 +801,9 @@ D. Informal low-cost testing, but restricted strictly to internal executive boar
 E. Quantitative statistical benchmarking requiring a minimum sample size of 500 validated participants.
 
 Correct: A
-Explanation: Guerrilla testing is an informal, fast, low-cost technique for getting immediate user feedback on early concepts in public settings. this choice describes formal lab testing. this choice describes simulation. other options violate the rapid public spirit of guerrilla testing.
-Learning Objective: Identify the operational parameters and appropriate use cases for guerrilla usability testing.
-Misconception: Believing usability testing always requires expensive labs, formal recruitment, and long planning cycles.
+Explanation: שרטוט שלד (Wireframe) או אבטיפוס בנאמנות נמוכה נועד לבחון מבנה, ארכיטקטורה ומיקום תכנים, ללא הפרעה של אלמנטים חזותיים עיצוביים.
+Learning Objective: להבחין בין בחינת מבנה והיררכיה באבטיפוס לבין בחינת הסגנון הוויזואלי.
+Misconception: ציפייה ש-Wireframe ייצג את השפה הוויזואלית או את המותג הסופי.
 
 ---
 
@@ -836,9 +836,9 @@ D. "Payment Failed: Your card was declined. System security will lock your profi
 E. Automatically clear all form fields without displaying any message.
 
 Correct: A
-Explanation: Effective error microcopy explains what happened clearly without technical jargon, avoids blaming the user, and provides a constructive path forward. this choice uses technical jargon. this choice uses an overly cutesy, non-informative tone. this choice threatens the user. this choice creates a dark "silent error" pattern.
-Learning Objective: Construct clear, human-centered error messages that promote user recovery.
-Misconception: Exposing raw database/system error codes directly to end users in UI error banners.
+Explanation: מיקרו-קופי (Microcopy) איכותי מעביר למשתמש מידע בהיר, פשוט ומכוון לפעולה, במיוחד בסיטואציות של הודעות שגיאה או הנחיות שימוש.
+Learning Objective: לנסח מיקרו-קופי ממוקד הפוחת חרדה ומכוון לפעולה ברורה.
+Misconception: הצגת קודים טכניים מורכבים או ניסוח מעורפל במקום הודעה בשפה אנושית פשוטה.
 
 ---
 
@@ -867,9 +867,9 @@ D. Voice represents the brand's personality, but applies only to promotional ban
 E. There is no difference; Voice and Tone are interchangeable marketing synonyms.
 
 Correct: A
-Explanation: Voice is the underlying, consistent character of the brand (e.g., helpful, expert, clear). Tone adapts depending on situation: encouraging during onboarding, direct and empathetic during payment errors. other options, and  are incorrect.
-Learning Objective: Distinguish brand Voice from context-sensitive Tone in microcopy design.
-Misconception: Maintaining a humorous or playful tone during critical error or financial failure moments.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -902,6 +902,6 @@ D. Task Completion Rate + Mouse movement distance in pixels.
 E. Post-test visual visual aesthetics rating + App Store review star counts.
 
 Correct: A
-Explanation: Effectiveness measures whether users can successfully achieve their goals and complete critical tasks accurately (Task Completion Rate + Error Counts). System performance metrics (this choice), brand sentiment (this choice), motor pixel distance (this choice), or visual star ratings (this choice) do not evaluate task success.
-Learning Objective: Select metric sets that accurately evaluate task effectiveness in safety-critical systems.
-Misconception: Using satisfaction ratings or technical system metrics as proxies for task completion accuracy.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.

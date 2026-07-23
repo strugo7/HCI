@@ -12,7 +12,7 @@ source: "Originally generated to match the structure, tone, and difficulty of le
 Human-Computer Interface, 273020 · 27 questions · Equal weight · No reference material allowed.
 All questions below are original and were written to match the format, tone, and difficulty distribution of the official lecturer exams. This exam has not been reviewed, approved, or endorsed by the course lecturer, and is intended for self-study purposes only.
 
-## Question
+
 
 id: q-hci-exam-a-001
 type: multiple-choice
@@ -37,9 +37,9 @@ D. A modern color palette is the strongest available signal that an interface wi
 E. Icons and color choices are irrelevant to any part of the user experience.
 
 Correct: C
-Explanation: UX refers to the totality of a person's experience with a product, including usability, findability, and how it makes them feel — none of which is established by color and icon choices alone. Treating UI and UX as identical, or treating visual style as sufficient or as the strongest learnability signal, collapses a broad concept into a narrow one. HCI is broader than hardware alone, and visual style is not irrelevant, just insufficient by itself.
-Learning Objective: Distinguish UX as a broad, multi-dimensional concept from UI as its visual layer.
-Misconception: Assuming that an attractive interface is proof of good UX.
+Explanation: התשובה הנכונה מבהירה כי חווית משתמש (UX) היא מושג רחב המקיף את מכלול התחושות, הביצועים ושביעות הרצון של המשתמש, בשונה מממשק משתמש (UI) המרכז את השכבה הוויזואלית.
+Learning Objective: להבחין בין חווית משתמש (UX) כוללת לבין ממשק משתמש (UI) ויזואלי נקודתי.
+Misconception: צמצום מושג ה-UX לעיצוב ויזואלי או לליטוש גרפי בלבד.
 
 ---
 
@@ -68,9 +68,9 @@ D. Recognition memory is unlimited, so a long unsorted list has no real cognitiv
 E. The menu violates brand guidelines, which frustrates experienced users the most.
 
 Correct: A
-Explanation: Even when items are visible, users still have to scan and mentally hold candidate matches while searching an unsorted list, which taxes working memory much like recall does — grouping or search would let recognition do more of the work. Claiming recognition is unlimited, blaming branding, or invoking blindness (which concerns unnoticed unexpected objects, not menu length) misidentifies the actual load involved, and reading slowly is a symptom, not the underlying cause.
-Learning Objective: Connect unsorted long lists to working-memory strain rather than to unrelated visual or branding issues.
-Misconception: Believing that if information is visible on screen, it imposes no cognitive cost to process.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -99,9 +99,9 @@ D. Keyboard shortcuts exist only to reduce the total number of pixels used on sc
 E. New users avoid shortcuts because shortcuts are less reliable than mouse-based actions.
 
 Correct: A
-Explanation: Novices lean on recognition — seeing the toolbar and identifying the right option — while experienced users have built recall-based habits that let them act faster without visual search. Framing toolbars as purely an accessibility feature, shortcuts as more error-prone, or expertise as icon-position memorization misses the recognition-versus-recall distinction that actually drives the behavior, and screen space is not the shortcut's purpose.
-Learning Objective: Apply the recognition-versus-recall distinction to explain novice and expert interaction patterns.
-Misconception: Treating the novice/expert difference as a matter of preference or reliability rather than memory mode.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -130,9 +130,9 @@ D. Poor mapping between the light's position and the switch that controls it.
 E. A memorability failure, since the pilot has not used the cockpit recently enough to remember its layout.
 
 Correct: B
-Explanation: Inattentional blindness describes exactly this scenario: intense focus on one task causes people to miss a fully visible, unexpected stimulus elsewhere. The pilot's memory of what the light means, their overall mental model, control-to-display mapping, and general familiarity with the cockpit are separate issues that do not explain why the light was not seen in that moment.
-Learning Objective: Identify inattentional blindness as an attention phenomenon distinct from memory or mapping problems.
-Misconception: Attributing a missed stimulus under focused attention to memory or layout issues instead of attention itself.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -167,9 +167,9 @@ D. Hospital policy officially requires the checklist to be followed in strict or
 E. Nurses report high satisfaction with the current checklist format in a post-shift survey.
 
 Correct: C
-Explanation: Directly watching nurses reorder or skip steps under real interruptions is the concrete behavioral evidence that contradicts their reported strict adherence — this is the classic gap between stated and actual behavior that ethnographic observation is designed to surface. Fluent recall of the steps, the document's age, official policy, and satisfaction scores are all either restatements of the reported behavior or unrelated facts that do not themselves reveal a say-do gap.
-Learning Objective: Recognize that only direct behavioral observation, not interviews or policy, can confirm or contradict a say-do gap.
-Misconception: Treating confident self-report or official policy as sufficient evidence of actual behavior.
+Explanation: חקירה הקשרית (Contextual inquiry) מתבצעת בסביבת העבודה הטבעית של המשתמש, ולכן מאפשרת ללכוד הפרעות, אילוצי שטח ותהליכי עבודה אמיתיים.
+Learning Objective: לזהות את היתרונות של תצפית וחקירה בסביבת העבודה הטבעית.
+Misconception: הנחה שבדיקת מעבדה מבוקרת או סקר יכולים להחליף תצפית ישירה בהקשר הטבעי.
 
 ---
 
@@ -204,9 +204,9 @@ D. A usability heuristic violation, because pausing indicates a visibility-of-st
 E. A journey map touchpoint, because it marks a stage in the nurse's shift.
 
 Correct: B
-Explanation: The note records only what was directly seen and timed — a pause of a specific duration before a specific action — without attaching any explanation for why it happened, which is the defining feature of an observation as opposed to an interpretation. Reading the pause as uncertainty is an interpretation, and labeling it a persona detail, a heuristic violation, or a journey-map touchpoint all impose a framework or explanation the raw note does not contain.
-Learning Objective: Distinguish a purely factual, observable note from any note that adds an inferred reason or label.
-Misconception: Assuming that any note taken during fieldwork automatically counts as an interpretation once a cause is implied.
+Explanation: התשובה הנכונה מתבססת על עקרונות ההערכה היוריסטית של נילסן (Nielsen's Heuristics), הבוחנת עמידה בכללי אצבע מוכרים כדי למנוע כשלים בממשק.
+Learning Objective: להחיל היוריסטיקות שמישות לזיהוי ולמניעת פגמים בממשק משתמש.
+Misconception: סברה שהערכת מומחים מנטרלת לחלוטין את הצורך בבדיקות אמפיריות עם משתמשים.
 
 ---
 
@@ -241,9 +241,9 @@ D. Interactions — the total number of beds in the hospital wing.
 E. Users — the specific brand of gloves nurses wear while working.
 
 Correct: B
-Explanation: Environments in AEIOU refers to the physical and situational context of the setting — the ward's layout, lighting, and noise are a direct match. Objects should refer to physical items like the cart, not emotional states; Activities concerns actions taken, not objects; Interactions concerns exchanges between people or with tools, not bed counts; and Users concerns the people themselves, not their equipment brand.
-Learning Objective: Correctly map real fieldwork details onto the five AEIOU categories.
-Misconception: Swapping AEIOU categories, especially confusing Environments and Objects, or Activities and Objects.
+Explanation: חקירה הקשרית (Contextual inquiry) מתבצעת בסביבת העבודה הטבעית של המשתמש, ולכן מאפשרת ללכוד הפרעות, אילוצי שטח ותהליכי עבודה אמיתיים.
+Learning Objective: לזהות את היתרונות של תצפית וחקירה בסביבת העבודה הטבעית.
+Misconception: הנחה שבדיקת מעבדה מבוקרת או סקר יכולים להחליף תצפית ישירה בהקשר הטבעי.
 
 ---
 
@@ -278,9 +278,9 @@ D. A stakeholder, and the risk is that the project budget will be reduced.
 E. An evaluator, and the risk is that heuristic scores will be inconsistent across reviewers.
 
 Correct: B
-Explanation: Someone who controls or filters a researcher's access to a setting is acting as a gatekeeper, and steering observation only toward calm shifts risks collecting data that misses the interruption-heavy conditions the redesign most needs to address. Persona, moderator, stakeholder, and evaluator are all distinct roles tied to different activities (representation, usability-test facilitation, project sponsorship, expert review) that do not describe someone restricting field access.
-Learning Objective: Identify a gatekeeper's influence on fieldwork and the representativeness risk it introduces.
-Misconception: Confusing a gatekeeper who restricts access with unrelated roles like moderator or stakeholder.
+Explanation: התשובה הנכונה מתבססת על עקרונות ההערכה היוריסטית של נילסן (Nielsen's Heuristics), הבוחנת עמידה בכללי אצבע מוכרים כדי למנוע כשלים בממשק.
+Learning Objective: להחיל היוריסטיקות שמישות לזיהוי ולמניעת פגמים בממשק משתמש.
+Misconception: סברה שהערכת מומחים מנטרלת לחלוטין את הצורך בבדיקות אמפיריות עם משתמשים.
 
 ---
 
@@ -309,9 +309,9 @@ D. A longer physical description of the user's appearance and clothing style.
 E. The exact model and manufacturer of the user's smartphone.
 
 Correct: C
-Explanation:  persona becomes actionable for design when it captures what the user is trying to accomplish and what currently gets in their way, since those goals and frustrations are what design decisions actually respond to. Address, branch history, appearance, and device model are surface-level demographic or incidental details that do not, by themselves, tell a team what to design differently.
-Learning Objective: Recognize goals and frustrations as the core design-relevant content of a persona.
-Misconception: Treating demographic filler as more valuable to a persona than goals and pain points.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -340,9 +340,9 @@ D. A bullet list ranking the app's five most common features by popularity.
 E. "Users may either scan a receipt or type the amount, depending on their preference."
 
 Correct: B
-Explanation:  proper scenario is a single, chronological narrative with no conditional branching — one persona performing one sequence of actions from start to finish, exactly as shown here. The other options all introduce "if/or" branching or present something other than a linear narrative, such as a flowchart or a ranked feature list, which are different artifacts entirely.
-Learning Objective: Recognize a scenario as a strictly linear narrative without conditional branches.
-Misconception: Believing that a scenario should capture every possible path a user might take, like a flowchart.
+Explanation: כלל 5 המשתמשים (Five-user rule) מראה כי במבחן שמישות איכותני, 5 משתמשים מייצגים מספיקים כדי לחשוף כ-85% מבעיות השמישות המרכזיות במערכת.
+Learning Objective: להחיל את כלל 5 המשתמשים לתכנון בדיקות שמישות יעילות תחת אילוצי משאבים.
+Misconception: אמונה שחובה לגייס עשרות משתתפים כדי לקבל תובנות איכותניות תקפות במבחן שמישות.
 
 ---
 
@@ -371,9 +371,9 @@ D. Deleting the waiting phase entirely so it no longer appears in the map.
 E. Increasing the price of delivery during that time window.
 
 Correct: B
-Explanation:  journey map's purpose is to surface exactly this kind of touchpoint where emotion dips, so the team can target it with a concrete improvement such as visible status updates. Rewriting legal text, swapping the persona, erasing the phase from the map, or changing pricing are all unrelated actions that ignore the emotional signal the map was built to reveal in the first place.
-Learning Objective: Use a journey map's emotional dips to identify concrete design opportunities at specific touchpoints.
-Misconception: Treating a low point on a journey map as something to hide or remove rather than address.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -402,9 +402,9 @@ D. Usability, since it concerns whether the checkout process has errors.
 E. Wireframing, since it concerns the black-and-white skeleton of the page layout.
 
 Correct: C
-Explanation: Choosing categories like "Living Room" over "Wood Items" is a taxonomy decision — it defines the grouping scheme used to classify items. Choreography concerns how structure unfolds across space and interaction sequencing rather than mouse movement itself, ontology concerns the meaning and tagging of individual concepts rather than part numbers, and usability and wireframing are unrelated later-stage concerns.
-Learning Objective: Identify taxonomy as the IA pillar responsible for category grouping decisions.
-Misconception: Confusing taxonomy (grouping) with ontology (tagging/meaning) or choreography (structure over time).
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -433,9 +433,9 @@ D. Hierarchy and Alphabet, since price sorting is inherently a strict hierarchy 
 E. Location and Category, since price is best understood as a category rather than a continuum.
 
 Correct: B
-Explanation: Browsing "By City" organizes information around place, matching Location, while "By Check-in Date" organizes it around a point in time, matching Time. Price is more naturally continuous data rather than alphabetic or strictly hierarchical, so options built around treating price as Alphabet, Hierarchy, or Category misassign the LATCH label to the wrong dimension.
-Learning Objective: Correctly map real interface groupings onto the five LATCH dimensions.
-Misconception: Forcing continuous data like price into a LATCH category it does not naturally fit, such as Alphabet or strict Hierarchy.
+Explanation: כלל 5 המשתמשים (Five-user rule) מראה כי במבחן שמישות איכותני, 5 משתמשים מייצגים מספיקים כדי לחשוף כ-85% מבעיות השמישות המרכזיות במערכת.
+Learning Objective: להחיל את כלל 5 המשתמשים לתכנון בדיקות שמישות יעילות תחת אילוצי משאבים.
+Misconception: אמונה שחובה לגייס עשרות משתתפים כדי לקבל תובנות איכותניות תקפות במבחן שמישות.
 
 ---
 
@@ -464,9 +464,9 @@ D. A moderated usability test on the existing help-center search bar.
 E. An A/B test comparing two already-built versions of the help-center menu.
 
 Correct: A
-Explanation: Because no categories exist yet and the goal is to discover users' own mental grouping, an open card sort — where users both group and name the categories themselves — is the appropriate tool.  closed sort requires categories to already exist, and heuristic evaluation, usability testing, and / testing all evaluate an existing interface rather than generate a new category structure from scratch.
-Learning Objective: Choose an open card sort specifically for discovering an unknown grouping structure.
-Misconception: Reaching for a closed card sort or an evaluation method before any category structure exists to test.
+Explanation: התשובה הנכונה מתבססת על עקרונות ההערכה היוריסטית של נילסן (Nielsen's Heuristics), הבוחנת עמידה בכללי אצבע מוכרים כדי למנוע כשלים בממשק.
+Learning Objective: להחיל היוריסטיקות שמישות לזיהוי ולמניעת פגמים בממשק משתמש.
+Misconception: סברה שהערכת מומחים מנטרלת לחלוטין את הצורך בבדיקות אמפיריות עם משתמשים.
 
 ---
 
@@ -495,9 +495,9 @@ D. To increase the file size of the app so it appears more advanced to users.
 E. To meet a legal requirement for confirming destructive actions before they occur.
 
 Correct: C
-Explanation:  visual metaphor like tearing paper borrows a familiar real-world action to make an abstract digital operation feel intuitive, which is precisely the learning-curve benefit metaphors are meant to provide. Rendering efficiency, contrast compliance, file size, and legal confirmation requirements are unrelated technical or regulatory concerns that a metaphor's animation does not address.
-Learning Objective: Explain how a visual metaphor eases learnability by anchoring a new action in a familiar physical one.
-Misconception: Attributing a metaphor's purpose to technical performance or compliance rather than learnability.
+Explanation: התשובה הנכונה מספקת מענה מדויק על פי עקרונות השימושיות ותכנון הממשק (HCI), תוך שמירה על עקרונות התכנון המקובלים.
+Learning Objective: להבין וליישם את עקרון ה-HCI המרכזי המוצג בשאלה.
+Misconception: הסתמכות על הנחות שגויות או על תפיסות מוטעות לגבי התנהגות המשתמש בממשק.
 
 ---
 
@@ -526,9 +526,9 @@ D. The specific icon set the marketing department has approved for launch.
 E. The persuasive tone of the marketing copy displayed at checkout.
 
 Correct: B
-Explanation:  wireframe intentionally strips away color, typography, and iconography so that stakeholders evaluate only the structural layout and content placement, exactly as described. Brand colors, code execution, approved icon sets, and marketing tone are all later-stage visual, technical, or content concerns that a deliberately unstyled wireframe is not meant to test.
-Learning Objective: Identify structural layout, not visual styling, as the purpose of a low-fidelity wireframe.
-Misconception: Assuming a black-and-white wireframe is meant to preview or approve visual style choices.
+Explanation: שרטוט שלד (Wireframe) או אבטיפוס בנאמנות נמוכה נועד לבחון מבנה, ארכיטקטורה ומיקום תכנים, ללא הפרעה של אלמנטים חזותיים עיצוביים.
+Learning Objective: להבחין בין בחינת מבנה והיררכיה באבטיפוס לבין בחינת הסגנון הוויזואלי.
+Misconception: ציפייה ש-Wireframe ייצג את השפה הוויזואלית או את המותג הסופי.
 
 ---
 
@@ -557,9 +557,9 @@ D. Test, because interviews collect feedback on a solution that already exists.
 E. Define, because interviews are used to write the final problem statement immediately.
 
 Correct: B
-Explanation: Design thinking's first phase centers on understanding users' real needs, behaviors, and feelings through direct engagement such as interviews and shadowing, before any problem is framed or solution proposed. Ideation, Prototype, and Test all presuppose that a problem has already been defined or a solution already exists, and Define is the phase that follows empathy work rather than happening simultaneously with initial interviews.
-Learning Objective: Identify empathy-building activities as belonging to the first phase of design thinking.
-Misconception: Assuming interviews always belong to whichever phase is being tested, rather than recognizing empathy as their defining phase.
+Explanation: השלב הראשון בחשיבה עיצובית (Design Thinking) מתמקד בבניית אמפתיה (Empathy) והבנת צרכי המשתמש והתנהגותו באמצעות ראיונות ותצפיות בשטח.
+Learning Objective: לזהות פעילויות לבניית אמפתיה כמשויכות לשלב הראשון בחשיבה עיצובית.
+Misconception: הנחה שראיונות שטח שייכים לשלב הפתרון ולא לשלב האמפתיה.
 
 ---
 
@@ -588,9 +588,9 @@ D. The principle of using AEIOU to structure field observations.
 E. The principle of separating observation from interpretation during fieldwork.
 
 Correct: B
-Explanation: Ideation is meant to generate ideas freely without early criticism, so shutting one down immediately violates the deferred-judgment principle that keeps the idea pool wide before narrowing it down. Prototyping order, the five-user testing rule, the AEIOU framework, and observation-versus-interpretation are all real principles from other parts of the course, but none of them concerns judgment during brainstorming.
-Learning Objective: Recognize deferred judgment as the ideation principle that premature criticism violates.
-Misconception: Confusing an ideation-stage rule with unrelated principles from prototyping, testing, or fieldwork.
+Explanation: שלב הסיעור מוחות (Ideation) מבוסס על עקרון השהיית השיפוט (Deferred judgment), המונע ביקורת ופסילת רעיונות בשלב מוקדם כדי להרחיב את מגוון הרעיונות.
+Learning Objective: להכיר בהשהיית שיפוט כעקרון הרעיונאות שנפגע כתוצאה מביקורת מוקדמת.
+Misconception: בלבול בין כללי שלב הרעיונאות לבין עקרונות משלבי אבטופוס או מחקר שטח.
 
 ---
 
@@ -619,9 +619,9 @@ D. That five users is a hard requirement to legally launch any product.
 E. That once a prototype is built, feedback is no longer needed for the project.
 
 Correct: C
-Explanation: Repeatedly building, testing with users, and revising based on their confusion is the defining iterative loop of design thinking, which is intentionally non-linear and open to repeated cycles. Describing the process as strictly linear, restricting prototypes to stakeholders only, treating five users as a legal requirement, or assuming feedback stops being needed after one round all contradict the iterative nature the scenario demonstrates.
-Learning Objective: Recognize the build-test-revise loop as evidence of design thinking's iterative structure.
-Misconception: Assuming design thinking proceeds through its phases only once, in a strict line.
+Explanation: מעגל הבנייה, הבדיקה והתיקון האיטרטיבי (Iterative loop) מציג תהליך בלתי-ליניארי הפתוח למחזורי שיפור חוזרים בהתאם למשוב המשתמשים.
+Learning Objective: להכיר במעגל בנייה-בדיקה-תיקון כראיה למבנה האיטרטיבי של חשיבה עיצובית.
+Misconception: תפיסת החשיבה העיצובית כתהליך ליניארי חד-פעמי.
 
 ---
 
@@ -650,9 +650,9 @@ D. Branding, since only a consistent visual identity can make the claim complete
 E. Marketing reach, since the number of users acquired determines whether the tool is a success.
 
 Correct: B
-Explanation: The claim addresses only utility — whether the tool does what is needed — while ignoring usability, whether people can actually learn and operate it successfully; Nielsen's model requires both for genuine usefulness. Utility is what the claim already covers, not what is missing, and accessibility, branding, and marketing reach are separate concerns the claim neither confirms nor requires to be considered incomplete in this specific way.
-Learning Objective: Distinguish utility (does it do the job) from usability (can people use it) as jointly required for usefulness.
-Misconception: Assuming that meeting user needs on paper (utility) is the same as people being able to use the solution (usability).
+Explanation: תועלתיות (Utility) בוחנת האם המערכת כוללת את הפונקציות הנדרשות, בעוד שימושיות (Usability) בוחנת האם המשתמשים מסוגלים להפעיל אותה בקלות. מודל נילסן מחייב את שתיהן.
+Learning Objective: להבדיל בין Utility (האם המוצר מבצע את הפונקציה) ל-Usability (האם ניתן להפעילו בקלות).
+Misconception: הנחה שמילוי דרישות פונקציונליות על הנייר משקף שימושיות בפועל.
 
 ---
 
@@ -681,9 +681,9 @@ D. Memorability, since trained users forget the system entirely between sessions
 E. Efficiency, since experienced users complete tasks unacceptably slowly.
 
 Correct: B
-Explanation:  long first-attempt completion time paired with few errors once trained is the textbook signature of a learnability problem — new users struggle to become productive quickly, though the system is not necessarily error-prone or slow for experienced users. Errors, satisfaction, memorability, and efficiency all describe different failure patterns that the scenario does not actually report.
-Learning Objective: Match the specific behavioral pattern described (slow first use, later accuracy) to the learnability dimension.
-Misconception: Defaulting to "efficiency" whenever slowness is mentioned, without checking whether it is first-time or expert slowness.
+Explanation:  זמן ביצוע ארוך בשימוש ראשון לצד ביצוע מהיר ללא שגיאות לאחר מכן הוא המאפיין הקלאסי של בעיה בקלות למידה (Learnability).
+Learning Objective: לתקף דפוס התנהגות של איטיות ראשונית ודיוק בהמשך לממד קלות הלמידה.
+Misconception: קפיצה למסקנה מיהרת שמדובר בבעיית יעילות כללית בכל פעם שמוזכרת איטיות.
 
 ---
 
@@ -712,9 +712,9 @@ D. Effectiveness cannot be judged unless the error rate is also cut in half.
 E. Efficiency is irrelevant once effectiveness is already high for both versions.
 
 Correct: B
-Explanation: Effectiveness concerns whether the task is completed successfully, which is equal here at 95% for both, while efficiency concerns the time and effort required, where Version  is clearly better — so the accurate read is equal effectiveness with unequal efficiency. Folding time into effectiveness, assuming speed alone determines effectiveness, requiring an error-rate change to judge effectiveness, or dismissing efficiency once effectiveness is high all blur or discard the effectiveness/efficiency distinction the scenario is testing.
-Learning Objective: Keep effectiveness (task success) and efficiency (speed/effort) as separate, independently measurable dimensions.
-Misconception: Merging completion time into the definition of effectiveness instead of treating it as efficiency.
+Explanation: אפקטיביות (Effectiveness) מוגדרת לפי שיעור ההצלחה במשימה (שווה בשני המקרים - 95%), בעוד יעילות (Efficiency) נמדדת לפי הזמן והמשאבים (שבהם גירסה אחת עדיפה).
+Learning Objective: להפריד בין אפקטיביות (שיעור הצלחה) לבין יעילות (זמן ומאמץ) כמדדים נפרדים.
+Misconception: עירבוב זמן המשימה בתוך הגדרת האפקטיביות במקום להתייחס אליו כמדד יעילות.
 
 ---
 
@@ -749,9 +749,9 @@ D. Testing with a single internal employee who already knows the app well.
 E. Delaying launch indefinitely until a full-scale usability lab study can be funded.
 
 Correct: B
-Explanation: The well-established finding behind the "five-user rule" is that around five representative participants typically reveal most major usability problems, making it a defensible choice under real time and budget limits.  50-person survey is disproportionate for the constraint described, skipping testing ignores that functional correctness says nothing about usability, one already-familiar internal employee will not surface problems a real user would hit, and indefinite delay is not a testing approach at all.
-Learning Objective: Apply the five-user rule as a practical, evidence-based choice under time and budget constraints.
-Misconception: Assuming that either a very large sample or no testing at all are the only two realistic options.
+Explanation: כלל 5 המשתמשים (Five-user rule) מבוסס על הממצא ש-5 משתמשים מייצגים חושפים את רוב בעיות השמישות המרכזיות בבדיקה איכותנית.
+Learning Objective: להחיל את כלל 5 המשתמשים כבחירה מעשית ומבוססת עובדות תחת אילוצי תקציב וזמן.
+Misconception: סברה שקיימות רק שתי אפשרויות: מדגם ענק בסקר או חוסר בדיקה לחלוטין.
 
 ---
 
@@ -786,9 +786,9 @@ D. Ethnographic research, because experts are observing behavior in a natural se
 E. Card sorting, because experts are organizing the app's menu items into categories.
 
 Correct: B
-Explanation: Checking an interface against a known set of principles using expert judgment, without involving real end users performing tasks, is the definition of an analytical evaluation. Empirical evaluation specifically requires real user data, / testing requires comparing two live variants with actual traffic, ethnographic research involves observing users in their natural context, and card sorting involves users grouping items — none of which match an expert heuristic review.
-Learning Objective: Classify a heuristic review by experts as analytical rather than empirical evaluation.
-Misconception: Assuming any evaluation involving human judgment automatically counts as empirical.
+Explanation: בחינת ממשק מול עקרונות ידועים באמצעות שיפוט מומחים וללא משתמשים אמירטיים מוגדרת כהערכה אנליטית (Analytical evaluation).
+Learning Objective: לסווג הערכה היוריסטית של מומחים כהערכה אנליטית ולא אמפירית.
+Misconception: הנחה שכל הערכה הכוללת שיפוט אנושי נחשבת אוטומטית להערכה אמפירית.
 
 ---
 
@@ -823,9 +823,9 @@ D. To give the moderator a script to read back to the participant afterward.
 E. To measure the participant's typing speed on the keyboard.
 
 Correct: B
-Explanation: The think-aloud technique is used specifically so the moderator can hear the participant's live reasoning, hesitations, and points of confusion as they occur, which is far richer data than an after-the-fact interview alone. Making the session feel casual, speeding up task completion, providing the moderator a script, and measuring typing speed are not the purpose of think-aloud and, if anything, narrating thoughts can slow a participant down rather than speed them up.
-Learning Objective: Identify think-aloud as a technique for capturing real-time reasoning and confusion during a task.
-Misconception: Assuming think-aloud is mainly a social or pacing technique rather than a data-capture method.
+Explanation: פרוטוקול חשיבה בקול (Think-aloud) נועד לאפשר לחוקר לשמוע בזמן אמת את תהליך החשיבה, ההתלבטויות ומוקדי הבלבול של המשתמש בעת ביצוע המשימה.
+Learning Objective: לזהות חשיבה בקול כטכניקה ללכידת תהליכי חשיבה ובלבול בזמן אמת.
+Misconception: תפיסת חשיבה בקול כטכניקה חברתית או ככלי להאצת קצב הביצוע.
 
 ---
 
@@ -860,9 +860,9 @@ D. That the settings icon should be deleted so users are never tempted to click 
 E. That five participants is too small a sample to draw any conclusion at all.
 
 Correct: C
-Explanation: When the majority of a small representative sample independently makes the same wrong turn, that repeated pattern is meaningful evidence of a placement or labeling mismatch with user expectations, which is exactly what usability testing is meant to surface. Dismissing it as isolated preference, removing the feature outright, deleting the settings icon, or declaring the sample too small to matter all ignore the well-supported five-user rule and the clear repeated pattern in the data.
-Learning Objective: Interpret a repeated wrong-path pattern across most participants as evidence of a genuine placement or labeling problem.
-Misconception: Dismissing a clear majority pattern in a small sample as noise rather than a meaningful signal.
+Explanation: כאשר רוב המשתתפים במדגם מייצג קטן מבצעים את אותה טעות באופן בלתי תלוי, דפוס חוזר זה מהווה ראיה למכשל בניווט או בתוויות.
+Learning Objective: לפרש דפוס שגיאות חוזר במדגם קטן כראיה לבעיית מיקום או תוויות אמיתית.
+Misconception: התעלמות מדפוס חוזר במדגם קטן כביכול מדובר בריעוש מקרי.
 
 ---
 
@@ -891,6 +891,6 @@ D. "System exception encountered during the write operation to persistent storag
 E. No message should be shown at all; the app should simply retry silently in the background.
 
 Correct: C
-Explanation: Good microcopy states plainly what happened and gives the user a clear, specific next step, exactly as this rewrite does, which reduces anxiety and confusion without requiring technical knowledge. Repeating a raw error code, being vague and overly casual, using technical jargon like "persistent storage," or hiding the failure with silent retries all fail to give the user a clear, honest, and actionable explanation.
-Learning Objective: Apply plain-language, specific, and actionable phrasing as the standard for error microcopy.
-Misconception: Believing that showing a technical code, or hiding the error altogether, is preferable to plain, specific language.
+Explanation: מיקרו-קופי איכותי בהודעות שגיאה מסביר בבהירות מה קרה ומספק למשתמש צעד הבא ברור ומעשי.
+Learning Objective: להחיל ניסוח בשפה פשוטה, ספציפית ומכוונת לפעולה כתקן למיקרו-קופי בשגיאות.
+Misconception: אמונה שהצגת קוד שגיאה טכני או הסתרת השגיאה עדיפה על פני שפה פשוטה וברורה.
