@@ -1,10 +1,10 @@
 ---
-id: lecturer-2026-b
+id: lecturer-2026-a
 kind: lecturer
-title: "מבחן מרצה — HCI, מועד ב' (2026)"
+title: "מבחן מרצה — HCI, מועד א' סמסטר ב׳ (2026)"
 year: 2026
 duration: 7200
-source: "מבחן HCI מועד ב׳ סמסטר ב׳ שנת 2026.pdf"
+source: "מבחן HCI מועד א׳ סמסטר ב׳ שנת 2026.pdf"
 ---
 
 # מבחן מרצה — HCI, מועד א' (2026)
